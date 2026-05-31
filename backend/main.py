@@ -1,0 +1,171 @@
+import re
+from pathlib import Path
+
+from fastapi import FastAPI, HTTPException, Query
+from fastapi.responses import PlainTextResponse
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI(title="RFP Viewer API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://localhost:4173"],
+    allow_credentials=False,
+    allow_methods=["GET"],
+    allow_headers=["*"],
+)
+
+RFP_DIR = (Path(__file__).parent.parent / "RFP").resolve()
+FL_FILE = (Path(__file__).parent.parent / "output" / "FL.md").resolve()
+
+
+def _parse_fr_row(line: str):
+    """Parse one markdown table row into FR fields. Returns None for non-FR rows."""
+    line = line.strip()
+    if not line.startswith("|") or not line.endswith("|"):
+        return None
+    tokens = [t.strip() for t in line[1:-1].split("|")]
+    if not tokens[0] or set(tokens[0]) <= {"-", ":"}:
+        return None
+    fr_id = tokens[0]
+    requirement = tokens[1]
+    category = tokens[2]
+    # tokens[3] through tokens[-3] = original text (may contain escaped pipes)
+    original_text = " | ".join(tokens[3:-2])
+    references = tokens[-2]
+    line_num_str = tokens[-1]
+    return fr_id, requirement, category, original_text, references, line_num_str
+
+
+def _parse_line_numbers(s: str) -> list[int]:
+    """Parse '101', '101-103', '101, 102' into a list of ints."""
+    nums: list[int] = []
+    for part in re.split(r"[,\s]+", s.strip()):
+        if "-" in part:
+            bounds = part.split("-", 1)
+            try:
+                start, end = int(bounds[0]), int(bounds[1])
+                nums.extend(range(start, end + 1))
+            except ValueError:
+                pass
+        else:
+            try:
+                nums.append(int(part))
+            except ValueError:
+                pass
+    return nums
+
+
+@app.get("/api/fl")
+def get_all_fr():
+    """Return all FR rows from FL.md as a flat list."""
+    items: list[dict] = []
+    if not FL_FILE.exists():
+        return {"items": items}
+
+    for row in FL_FILE.read_text(encoding="utf-8").splitlines():
+        parsed = _parse_fr_row(row)
+        if parsed is None:
+            continue
+        fr_id, requirement, category, original_text, references, line_num_str = parsed
+        items.append({
+            "id": fr_id,
+            "requirement": requirement,
+            "domain": category,
+            "original_text": original_text,
+            "references": references,
+            "line": line_num_str,
+        })
+    return {"items": items}
+
+
+@app.get("/api/fr/{filename}")
+def get_fr_for_file(filename: str):
+    """Return FR annotations for the given RFP file, keyed by line number (string)."""
+    safe_name = Path(filename).name
+    if safe_name != filename or "/" in filename or "\\" in filename or ".." in filename:
+        raise HTTPException(status_code=400, detail="Invalid filename")
+
+    annotations: dict[str, list[dict]] = {}
+    if not FL_FILE.exists():
+        return {"annotations": annotations}
+
+    for row in FL_FILE.read_text(encoding="utf-8").splitlines():
+        parsed = _parse_fr_row(row)
+        if parsed is None:
+            continue
+        fr_id, requirement, category, original_text, references, line_num_str = parsed
+        ref_files = [f.strip() for f in references.split(";")]
+        ref_lines = [s.strip() for s in line_num_str.split(";")]
+        for i, ref_file in enumerate(ref_files):
+            if Path(ref_file).name != safe_name:
+                continue
+            segment = ref_lines[i] if i < len(ref_lines) else ""
+            for ln in _parse_line_numbers(segment):
+                key = str(ln)
+                if key not in annotations:
+                    annotations[key] = []
+                annotations[key].append({"id": fr_id, "requirement": requirement, "domain": category, "original_text": original_text})
+
+    return {"annotations": annotations}
+
+
+def format_size(size_bytes: int) -> str:
+    if size_bytes < 1024:
+        return f"{size_bytes} B"
+    elif size_bytes < 1024 * 1024:
+        return f"{size_bytes / 1024:.1f} KB"
+    else:
+        return f"{size_bytes / (1024 * 1024):.1f} MB"
+
+
+@app.get("/api/files")
+def list_files():
+    files = []
+    for f in sorted(RFP_DIR.glob("*.md")):
+        if f.is_file():
+            stat = f.stat()
+            files.append(
+                {
+                    "name": f.name,
+                    "size": stat.st_size,
+                    "size_formatted": format_size(stat.st_size),
+                }
+            )
+    return {"files": files, "folder": "RFP"}
+
+
+@app.get("/api/files/{filename}")
+def get_file(filename: str, raw: bool = Query(False)):
+    # Security: reject path traversal attempts
+    safe_name = Path(filename).name
+    if safe_name != filename or "/" in filename or "\\" in filename or ".." in filename:
+        raise HTTPException(status_code=400, detail="Invalid filename")
+
+    file_path = (RFP_DIR / safe_name).resolve()
+
+    # Ensure resolved path is within RFP_DIR
+    if not str(file_path).startswith(str(RFP_DIR) + "/") and file_path != RFP_DIR:
+        raise HTTPException(status_code=403, detail="Access denied")
+
+    if not file_path.exists() or not file_path.is_file():
+        raise HTTPException(status_code=404, detail="File not found")
+
+    content = file_path.read_text(encoding="utf-8")
+
+    if raw:
+        return PlainTextResponse(content, media_type="text/plain; charset=utf-8")
+
+    lines = content.splitlines()
+    stat = file_path.stat()
+    loc = sum(1 for line in lines if line.strip())
+
+    return {
+        "name": safe_name,
+        "content": content,
+        "lines": lines,
+        "line_count": len(lines),
+        "loc": loc,
+        "size": stat.st_size,
+        "size_formatted": format_size(stat.st_size),
+    }

@@ -1,0 +1,181 @@
+/* ── Breadcrumb ─────────────────────────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  flex-shrink: 0;
+  background: var(--canvas);
+}
+.breadcrumb-repo   { color: var(--accent); cursor: pointer; font-weight: 500; }
+.breadcrumb-repo:hover { color: var(--accent-hover); text-decoration: underline; }
+.breadcrumb-sep    { color: var(--fg-subtle); font-size: 11px; }
+.breadcrumb-folder { color: var(--accent); font-weight: 500; }
+.breadcrumb-file   { color: var(--fg); font-weight: 600; }
+
+.breadcrumb-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+/* ── File box ───────────────────────────────────────────────────────────── */
+.file-box {
+  margin: 0;
+  flex: 1;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.file-box-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Tab bar ────────────────────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  padding: 0 12px;
+  gap: 0;
+}
+.tab {
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color var(--duration-fast), border-color var(--duration-fast);
+  white-space: nowrap;
+}
+.tab:hover:not(:disabled)  { color: var(--fg); background: var(--canvas-inset); border-radius: 4px 4px 0 0; }
+.tab.active,
+.bottom-panel-tab.active   { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+.tab.disabled { opacity: .4; cursor: default; }
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  border: none;
+  border-radius: 3px;
+  background: var(--canvas-subtle);
+  cursor: pointer;
+  color: var(--fg);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background var(--duration-fast);
+}
+.icon-btn:hover { background: var(--canvas-inset); }
+.icon-btn.active { background: var(--canvas-active); color: var(--accent); }
+
+/* ── Loading / error ────────────────────────────────────────────────────── */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 48px;
+  color: var(--fg-muted);
+  font-size: 13px;
+}
+.spinner {
+  width: 20px;
+  height: 20px;
+  animation: spin .8s linear infinite;
+  color: var(--accent);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-msg {
+  padding: 16px;
+  color: var(--error);
+  font-size: 13px;
+}
+
+/* ── Bottom panel ───────────────────────────────────────────────────────── */
+.bottom-panel-resize-handle {
+  flex-shrink: 0;
+  height: 0;
+  cursor: ns-resize;
+  position: relative;
+  z-index: 10;
+}
+.bottom-panel-resize-handle::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -2px;
+  height: 4px;
+}
+.bottom-panel-resize-handle.dragging::after {
+  background: var(--accent);
+}
+
+.bottom-panel {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--canvas);
+}
+
+.bottom-panel-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 8px;
+  background: var(--canvas-subtle);
+  border-bottom: 1px solid var(--border);
+}
+
+.bottom-panel-tab {
+  padding: 8px 12px 6px 12px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color var(--duration-fast);
+}
+.bottom-panel-tab:hover { color: var(--fg); }
+
+.bottom-panel-close {
+  margin-left: auto;
+  padding: 4px 8px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--fg-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color var(--duration-fast), background var(--duration-fast);
+}
+.bottom-panel-close:hover { color: var(--fg); background: var(--canvas-inset); }
+
+.bottom-panel-empty {
+  flex: 1;
+}
+

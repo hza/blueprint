@@ -1,0 +1,12 @@
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  color: var(--fg-muted);
+}
+.empty-state-icon { opacity: .35; }
+.empty-state-title { font-size: 18px; color: var(--fg); font-weight: 400; }
+.empty-state-desc  { font-size: 13px; }

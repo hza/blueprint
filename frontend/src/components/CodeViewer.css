@@ -1,0 +1,143 @@
+/* ── Code viewer ────────────────────────────────────────────────────────── */
+.code-content {
+  flex: 1;
+  overflow: auto;
+  background: var(--canvas);
+}
+
+.code-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.code-table tbody tr:hover { background: var(--neutral-muted); }
+.code-table tbody tr:hover .line-number { color: var(--fg); }
+
+.line-number {
+  user-select: none;
+  width: 1%;
+  min-width: 50px;
+  padding: 0 16px 0 16px;
+  text-align: right;
+  color: var(--fg-subtle);
+  white-space: nowrap;
+  vertical-align: top;
+  border-right: 1px solid var(--border);
+}
+.line-number a {
+  text-decoration: none;
+  color: inherit;
+}
+.line-number a:hover { color: var(--accent); }
+
+.line-content {
+  padding: 0 16px;
+  white-space: pre;
+  vertical-align: top;
+}
+
+/* Highlighted line */
+.code-table tr.highlighted                     { background: var(--highlight-bg); }
+.code-table tr.highlighted .line-number        { background: var(--highlight-num); color: var(--fg); }
+.code-table tr.highlighted:hover               { background: var(--highlight-bg); }
+
+/* ── FR annotation gutter ───────────────────────────────────────────────── */
+.fr-gutter {
+  user-select: none;
+  width: 18px;
+  min-width: 18px;
+  padding: 0 2px;
+  text-align: center;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.fr-indicator {
+  line-height: 20px;
+  color: #FF991F;
+  cursor: default;
+  display: inline-block;
+}
+
+.fr-gutter.has-fr:hover .fr-indicator {
+  color: #974F0C;
+}
+
+/* FR tooltip */
+.fr-tooltip {
+  position: fixed;
+  z-index: 1000;
+  max-width: 380px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  padding: 8px 0;
+  pointer-events: auto;
+}
+
+.fr-tooltip-item {
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.fr-tooltip-item:last-child {
+  border-bottom: none;
+}
+
+.fr-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.fr-tooltip-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.fr-tooltip-id-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.fr-tooltip-id-link:hover {
+  color: #0550ae;
+}
+
+.fr-tooltip-category {
+  font-size: 11px;
+  color: var(--fg-muted, #57606a);
+  background: var(--neutral-muted);
+  border-radius: 10px;
+  padding: 1px 7px;
+}
+
+.fr-tooltip-req {
+  margin: 0;
+  font-size: 12px;
+  color: var(--fg);
+  line-height: 1.5;
+  font-family: var(--font-sans);
+}
+
+.fr-tooltip-original {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: var(--fg-muted, #8b949e);
+  line-height: 1.45;
+  font-family: var(--font-sans);
+  font-style: italic;
+  border-top: 1px solid var(--border, #30363d);
+  padding-top: 4px;
+}

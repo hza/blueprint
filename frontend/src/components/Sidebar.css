@@ -1,0 +1,30 @@
+.sidebar {
+  flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--canvas-subtle);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--fg-dark);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.sidebar-slash  { color: var(--fg-subtle); font-weight: 400; }
+.sidebar-folder { color: var(--fg-dark); font-size: 13px; font-weight: 500; letter-spacing: -0.01em; text-transform: uppercase; }
+
+.sidebar-error {
+  padding: 16px;
+  font-size: 12px;
+  color: var(--error);
+}
