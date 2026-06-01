@@ -15,7 +15,6 @@ import { UXDesign } from './components/UXDesign'
 import { RFPHealth } from './components/RFPHealth'
 import { RightPanel } from './components/RightPanel'
 import { Sidebar } from './components/Sidebar'
-import { TopBar } from './components/TopBar'
 import type { FileContent, FileView, FileInfo, FRAnnotations, FRItem, ViewTab } from './types'
 
 const SIDEBAR_MIN = 160
@@ -44,6 +43,7 @@ export default function App() {
   const [rightPanelItem, setRightPanelItem] = useState<FRItem | null>(null)
   const [domainFilter, setDomainFilter] = useState('')
   const [requirementEdits, setRequirementEdits] = useState<Record<string, string>>({})
+  const [activeSection, setActiveSection] = useState<string | null>('1')
   const flScrollTopRef = useRef(0)
   const sidebarDragRef = useRef<{ x: number; width: number } | null>(null)
   const rightPanelDragRef = useRef<{ x: number; width: number } | null>(null)
@@ -204,7 +204,6 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <TopBar activeTab={activeTab} onTabChange={(tab) => navigate(`/${tab}${location.hash}`)} />
     <div className="app-layout">
       <Sidebar
         files={files}
@@ -213,6 +212,19 @@ export default function App() {
         onSelectFile={(filename) => openFile(filename, undefined, { preserveCurrentTab: true })}
         onSelectRoot={showListView}
         width={sidebarWidth}
+        activeSection={activeSection}
+        onSectionChange={(id) => {
+          setActiveSection(id)
+          const sectionRouteMap: Record<string, ViewTab> = {
+            '1': 'overview',
+            '2': 'requirements', '2.1': 'requirements', '2.2': 'requirements', '2.3': 'qa',
+            '3': 'technical', '3.1': 'technical', '3.2': 'technical', '3.3': 'analytics', '3.4': 'technical',
+            '4': 'timeline', '4.1': 'timeline', '4.2': 'team', '4.3': 'team', '4.4': 'team', '4.5': 'team',
+            '5': 'cost', '5.1': 'cost', '5.2': 'cost', '5.3': 'cost', '5.4': 'cost',
+          }
+          const tab = sectionRouteMap[id] ?? 'overview'
+          navigate(`/${tab}${location.hash}`)
+        }}
       />
       <div className={`sidebar-resize-handle${draggingSidebar ? ' dragging' : ''}`} onMouseDown={handleSidebarResizeMouseDown} />
 
