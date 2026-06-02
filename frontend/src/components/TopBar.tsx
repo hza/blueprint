@@ -3,11 +3,10 @@ import type { ViewTab } from '../types'
 import './TopBar.css'
 
 const THEMES = [
-  { key: 'day',         label: 'Day',         topbar: '#273664', canvas: '#FFFFFF',  accent: '#2563EB' },
+  { key: 'day',         label: 'Day',         topbar: '#253858', canvas: '#F5F7FA',  accent: '#2196F3' },
   { key: 'night',       label: 'Night',       topbar: '#050D18', canvas: '#0F172A',  accent: '#3B82F6' },
   { key: 'confluence',  label: 'Confluence',  topbar: '#FFFFFF', canvas: '#F4F5F7',  accent: '#0052CC' },
   { key: 'notion',      label: 'Notion',      topbar: '#F7F6F3', canvas: '#FFFFFF',  accent: '#2EAADC' },
-  { key: 'freshworks',  label: 'Freshworks',  topbar: '#253858', canvas: '#F5F7FA',  accent: '#2196F3' },
   { key: 'gray',        label: 'Gray',        topbar: '#2D2E30', canvas: '#F1F3F4',  accent: '#5F6368' },
 ] as const
 type Theme = (typeof THEMES)[number]['key']
