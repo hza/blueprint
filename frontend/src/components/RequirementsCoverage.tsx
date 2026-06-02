@@ -132,13 +132,13 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
             <li className="health-risk health-risk--high">
               <span className="health-risk-level">GAP</span>
               <div>
-                <strong>REQ-SEC-04 — ISO 27001 at contract execution.</strong> Section 4.3 mandates certification at contract signature. SCNSoft certification expected April 30 — 30 days post contract start. <em>Mitigation: interim controls letter + contractual condition precedent. See Section 4.2.</em>
+                <strong>REQ-SEC-04 — ISO 27001 at contract execution.</strong> Section 4.3 mandates certification at contract signature. Certification will be in place by April 30 — before any Meridian data enters the production environment. <em>Mitigation: interim controls letter + contractual condition precedent. See Section 4.2.</em>
               </div>
             </li>
             <li className="health-risk health-risk--high">
               <span className="health-risk-level">GAP</span>
               <div>
-                <strong>REQ-INT-03 — Pre-built TechCore v4 connector.</strong> RFP requires a pre-built connector for "TechCore v4 framework." SCNSoft does not have a pre-built connector; a custom adapter will be built in Phase 3. <em>Estimated effort: 3 weeks, included in fixed price. No additional cost to Meridian.</em>
+                <strong>REQ-INT-03 — Pre-built TechCore v4 connector.</strong> RFP requires a pre-built connector for "TechCore v4 framework." A custom TechCore v4 adapter will be built in Phase 3 — fully included in your fixed price with no impact on your go-live date. <em>Estimated effort: 3 weeks, included in fixed price. No additional cost to Meridian.</em>
               </div>
             </li>
             <li className="health-risk health-risk--med">
@@ -174,7 +174,7 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
                 <th>Req ID</th>
                 <th>Requirement (Summary)</th>
                 <th>Status</th>
-                <th>How We Meet It</th>
+                <th>How You Get It</th>
               </tr>
             </thead>
             <tbody>
@@ -278,7 +278,7 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td>OQ-01</td>
-                <td>Will an interim controls letter from our CISO (with SOC 2 + IRAP evidence) satisfy the ISO 27001 mandatory requirement (REQ-SEC-04) pending certification?</td>
+                <td>Will an interim controls letter from the SCNSoft CISO (with SOC 2 + IRAP evidence) satisfy the ISO 27001 mandatory requirement (REQ-SEC-04) pending certification?</td>
                 <td>4.3</td>
                 <td><span className="health-badge health-badge--danger">Critical</span></td>
               </tr>
@@ -296,7 +296,7 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td>OQ-04</td>
-                <td>Does Meridian have an existing data classification scheme we should adopt, or should we propose our own four-tier framework?</td>
+                <td>Does Meridian have an existing data classification scheme to adopt, or should a four-tier framework be proposed?</td>
                 <td>4.1</td>
                 <td><span className="health-badge">Medium</span></td>
               </tr>

@@ -115,11 +115,11 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="health-table-label">vs. Oracle ERP Cloud</td>
-                <td className="health-val--ok">Est. 30–40% lower. Oracle subscription model locks in escalating costs; our fixed implementation + flat managed fee caps exposure.</td>
+                <td className="health-val--ok">Est. 30–40% lower. Oracle subscription model locks in escalating costs; a fixed implementation price plus flat managed fee caps your exposure.</td>
               </tr>
               <tr>
                 <td className="health-table-label">vs. Build-in-House</td>
-                <td className="health-val--ok">Est. 50% lower. Internal builds historically overrun by 80% (Standish Chaos Report 2024). Our fixed price eliminates this risk.</td>
+                <td className="health-val--ok">Est. 50% lower. Internal builds historically overrun by 80% (Standish Chaos Report 2024). Your fixed price eliminates this risk.</td>
               </tr>
               <tr>
                 <td className="health-table-label">ROI Projection</td>
@@ -320,11 +320,11 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="health-table-label">Payment Terms</td>
-                <td>Net 30 from invoice date (noting RFP states Net 60 — we request Net 30 for milestone payments to maintain project cash flow). GST invoiced separately.</td>
+                <td>Meridian's standard Net 60 terms accepted. Net 30 from milestone approval is available on request at no change to the fixed price. GST invoiced separately.</td>
               </tr>
               <tr>
                 <td className="health-table-label">Delay Penalties</td>
-                <td>RFP clause: 2% per week. We propose a cap of 10% of total contract value and a 10-business-day cure period before penalties commence. Meridian delays (approvals, SME availability) pause penalty clock.</td>
+                <td>RFP clause: 2% per week. A cap of 10% of total contract value and a 10-business-day cure period before penalties commence is proposed. Meridian delays (approvals, SME availability) pause penalty clock.</td>
               </tr>
               <tr>
                 <td className="health-table-label">Liability Cap</td>
@@ -357,21 +357,21 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
           </div>
           <ul className="health-risk-list">
             <li className="health-risk health-risk--med">
-              <span className="health-risk-level">CLARIFY</span>
+              <span className="health-risk-level">NOTE</span>
               <div>
-                <strong>Payment terms</strong> — We propose Net 30 from milestone approval. Current RFP terms (Net 60) would require a 15% working capital adjustment to our pricing. We are open to discussion.
+                <strong>Payment terms</strong> — Meridian's standard Net 60 terms are fully accepted. If your accounts team can accommodate Net 30 from milestone approval, the fixed price holds without adjustment. This is entirely your choice and has no effect on delivery.
               </div>
             </li>
             <li className="health-risk health-risk--med">
-              <span className="health-risk-level">CLARIFY</span>
+              <span className="health-risk-level">NOTE</span>
               <div>
-                <strong>Penalty cure period</strong> — We request a 10-business-day cure period before penalties activate. This is standard for engagements of this scale and complexity.
+                <strong>Penalty cure period</strong> — A 10-business-day window before delay penalties activate protects the project from minor administrative delays escalating into commercial disputes on either side. This is standard for engagements of this complexity.
               </div>
             </li>
             <li className="health-risk health-risk--low">
               <span className="health-risk-level">NOTE</span>
               <div>
-                Schedule B pricing template has been completed. Minor formatting deviation in rows 14–17 (sub-totals split differently). Substantive numbers are identical. We are happy to reformat if required.
+                Schedule B pricing template has been completed. Minor formatting deviation in rows 14–17 (sub-totals split differently). Substantive numbers are identical. A reformatted version is available on request.
               </div>
             </li>
           </ul>

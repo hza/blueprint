@@ -5,8 +5,8 @@ export function CostOfOwnership() {
       <div className="overview-banner">
         <div className="overview-banner-header">
           <div className="overview-banner-main">
-            <div className="overview-banner-title">Cost of Ownership</div>
-            <div className="overview-banner-client">Est. client budget $3.5M–$5M · Projected ROI break-even at Month 28</div>
+            <div className="overview-banner-title">Your Investment &amp; Return</div>
+            <div className="overview-banner-client">Projected ROI break-even at Month 28 · 5-year net benefit $4.6M</div>
           </div>
           <span className="health-badge health-badge--ok overview-banner-status">WITHIN BUDGET</span>
         </div>
@@ -272,19 +272,19 @@ export function CostOfOwnership() {
             <li className="health-action health-action--high">
               <span className="health-action-tag">HIGH</span>
               <div>
-                <strong>Pre-buy 1-year reserved instances</strong> — Switch 60% of compute to reserved. Estimated saving: $85 000 over Years 2–5 vs. on-demand pricing.
+                <strong>Pre-buy 1-year reserved instances</strong> — You save ~$85,000 over Years 2–5 by switching 60% of compute to reserved pricing instead of on-demand.
               </div>
             </li>
             <li className="health-action health-action--high">
               <span className="health-action-tag">HIGH</span>
               <div>
-                <strong>Negotiate multi-year SaaS contracts</strong> — Consolidate two monitoring tools into a single vendor with a 3-year commit. Projected saving: $60 000.
+                <strong>Negotiate multi-year SaaS contracts</strong> — Consolidating two monitoring tools into a single vendor with a 3-year commit saves you ~$60,000.
               </div>
             </li>
             <li className="health-action health-action--med">
               <span className="health-action-tag">MED</span>
               <div>
-                <strong>Right-size dev/staging environments</strong> — Auto-scale down non-prod clusters outside business hours. Estimated saving: $40 000 / yr.
+                <strong>Right-size dev/staging environments</strong> — Auto-scaling down non-prod clusters outside business hours saves you ~$40,000/yr.
               </div>
             </li>
             <li className="health-action health-action--med">

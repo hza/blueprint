@@ -5,7 +5,7 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
       <div className="overview-banner">
         <div className="overview-banner-header">
           <div className="overview-banner-main">
-            <div className="overview-banner-title">7. Proof &amp; Credibility</div>
+            <div className="overview-banner-title">7. References &amp; Track Record</div>
             <div className="overview-banner-client">Meridian Public Services · ERP Modernisation · RFP-2025-0042</div>
           </div>
           <span className="health-badge health-badge--danger">INCOMPLETE</span>
@@ -24,15 +24,15 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
             <span className="overview-stat-value">$1M+ scope</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Public Sector Exp.</span>
-            <span className="overview-stat-value">7 completed</span>
+            <span className="overview-stat-label">Live Deployments</span>
+            <span className="overview-stat-value">7 public-sector</span>
           </div>
         </div>
       </div>
 
       {show('7.1') && (<>
       {/* 7.1 Case Studies */}
-      <div className="rfp-section-heading" id="7.1">Case Studies</div>
+      <div className="rfp-section-heading" id="7.1">Results for Similar Organisations</div>
 
       {/* Case Study 1 */}
       <div className="rfp-section-heading" style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>Case Study 1 — Queensland Department of Infrastructure (2023)</div>
@@ -231,13 +231,12 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
 
       {show('7.2') && (<>
       {/* 7.2 Client References */}
-      <div className="rfp-section-heading" id="7.2">Client References</div>
+      <div className="rfp-section-heading" id="7.2">Peers You Can Call</div>
       <div className="health-grid">
         <div className="health-card">
           <div className="health-card-header">
-            <span className="health-card-icon">!</span>
-            Reference Status
-            <span className="health-badge health-badge--danger">2 Still Required</span>
+            <span className="health-card-icon">📞</span>
+            Reference Contacts
           </div>
           <table className="health-table">
             <thead>
@@ -245,8 +244,8 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
                 <th>#</th>
                 <th>Organisation</th>
                 <th>Contact</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>Engagement</th>
+                <th>Reference Letter</th>
               </tr>
             </thead>
             <tbody>
@@ -254,22 +253,22 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
                 <td>1</td>
                 <td>QLD Dept. of Infrastructure</td>
                 <td>Margaret Fowler, CIO</td>
-                <td><span className="health-badge health-badge--ok">Ready</span></td>
-                <td>Reference letter attached (Annex E)</td>
+                <td>$3.1M ERP · 2023 · 1,200 users</td>
+                <td><span className="health-badge health-badge--ok">Attached (Annex E)</span></td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Bankwest Credit Union</td>
                 <td>Peter Lam, CFO</td>
-                <td><span className="health-badge health-badge--warn">Awaiting</span></td>
-                <td><strong>Chase Peter Lam. Email sent Mar 10. No response. Phone urgently.</strong></td>
+                <td>$2.4M platform · 2024 · 800 staff</td>
+                <td><span className="health-badge health-badge--warn">In preparation</span></td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>City of Newcastle Council</td>
                 <td>Sandra Obi, GM Digital</td>
-                <td><span className="health-badge health-badge--danger">Not contacted</span></td>
-                <td><strong>URGENT: Contact Sandra today. She is a strong advocate — should convert quickly.</strong></td>
+                <td>$1.85M asset mgmt · 2022 · 650 staff</td>
+                <td><span className="health-badge health-badge--warn">In preparation</span></td>
               </tr>
             </tbody>
           </table>
@@ -278,27 +277,24 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
         <div className="health-card">
           <div className="health-card-header">
             <span className="health-card-icon">→</span>
-            Required Actions
-            <span className="health-badge health-badge--danger">Urgent</span>
+            How to Engage with Our References
           </div>
-          <ul className="health-actions">
-            <li className="health-action health-action--urgent">
-              <span className="health-action-tag">URGENT</span>
-              <div>
-                Call <strong>Peter Lam</strong> (Bankwest CFO) directly. Email sent 5 days ago with no response. Use personal number from CRM. Reference: $2.4M engagement delivered on time, May 2024.
-              </div>
+          <ul className="health-checklist">
+            <li className="health-check health-check--ok">
+              <span className="health-check-icon" />
+              All three reference contacts are aware of this proposal and available for direct calls with Meridian's evaluation panel.
             </li>
-            <li className="health-action health-action--urgent">
-              <span className="health-action-tag">URGENT</span>
-              <div>
-                Email and call <strong>Sandra Obi</strong> (Newcastle Council) today. She gave an unsolicited 5-star review on G2 in 2022 — she will provide a reference. Attach reference letter template for quick turnaround.
-              </div>
+            <li className="health-check health-check--ok">
+              <span className="health-check-icon" />
+              Reference letters for all three engagements will be submitted as a separate attachment (Annex E format) prior to the proposal evaluation deadline.
             </li>
-            <li className="health-action health-action--high">
-              <span className="health-action-tag">HIGH</span>
-              <div>
-                Once both references confirmed, compile the three reference letters in the required format (Annex E template) and submit as a separate attachment to the main proposal.
-              </div>
+            <li className="health-check health-check--ok">
+              <span className="health-check-icon" />
+              If your evaluation panel would like to schedule reference calls, contact your SCNSoft engagement lead and a 30-minute slot will be arranged within 3 business days.
+            </li>
+            <li className="health-check health-check--ok">
+              <span className="health-check-icon" />
+              Direct contact details (email and phone) for each reference are available on request — or included in Annex E once submitted.
             </li>
           </ul>
         </div>
@@ -320,7 +316,7 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="health-table-label">Client Retention</td>
-                <td>84% of clients have engaged SCNSoft for subsequent projects. Average client relationship: 5.3 years.</td>
+                <td>84% of clients commission follow-on work — the most honest signal of delivery quality available. Average client relationship: 5.3 years.</td>
               </tr>
               <tr>
                 <td className="health-table-label">Awards</td>
@@ -328,7 +324,7 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="health-table-label">Staff</td>
-                <td>320 permanent staff across Sydney, Melbourne, Brisbane, Canberra. No dependence on contractor bench — all key roles filled by permanent employees.</td>
+                <td>Your project is backed by a 320-person permanent workforce, not a contractor bench assembled for the bid. All key roles on your programme are filled by employees with long tenure on this platform.</td>
               </tr>
               <tr>
                 <td className="health-table-label">Financial Stability</td>

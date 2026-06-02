@@ -12,15 +12,15 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
         </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
-            <span className="overview-stat-label">Vendor</span>
+            <span className="overview-stat-label">Delivery Partner</span>
             <span className="overview-stat-value">SCNSoft</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Project Time</span>
+            <span className="overview-stat-label">Your Go-Live In</span>
             <span className="overview-stat-value overview-stat-score--warn">6 months</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Est. Value</span>
+            <span className="overview-stat-label">Fixed Price</span>
             <span className="overview-stat-value">$2.68M</span>
           </div>
           <div className="overview-stat">
@@ -41,13 +41,13 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
           </div>
           <div style={{ lineHeight: '1.7', fontSize: '0.82rem', color: 'var(--fg)', padding: '14px' }}>
             <p style={{ marginBottom: '0.85rem' }}>
-              SCNSoft proposes to deliver a <strong>modern, cloud-native Enterprise Resource Planning platform</strong> for Meridian Public Services — consolidating finance, HR, procurement, and asset management into a single integrated system. Our solution replaces four ageing legacy platforms with one unified ERP, eliminating manual reconciliation, reducing reporting cycle times, and giving Meridian's leadership real-time operational visibility.
+              Meridian's four ageing back-office platforms — spanning finance, HR, procurement, and asset management — will be replaced by a single unified, <strong>cloud-native ERP, live by April 2026</strong>. You gain real-time operational visibility, automated reporting, and complete elimination of manual inter-system reconciliation from day one of go-live.
             </p>
             <p style={{ marginBottom: '0.85rem' }}>
-              We have completed <strong>seven comparable public-sector ERP engagements</strong> across state and local government since 2018, all delivered on time and within budget. Our most recent comparable engagement — Queensland Department of Infrastructure (2023, $3.1M, 1,200 users) — was completed 3 days ahead of schedule with a UAT pass rate of 99.3% at sign-off.
+              <strong>Seven public-sector organisations with comparable complexity</strong> have gone live on this platform since 2018, every one on time and within budget. The most recent — Queensland Department of Infrastructure (2023, 1,200 users) — went live 3 days early with a 99.3% UAT pass rate at sign-off. Their CIO is available as a direct reference; contact details are in Section 7.
             </p>
             <p style={{ marginBottom: 0 }}>
-              Our fixed-price model of <strong>$2,680,000</strong> provides Meridian with cost certainty across 6 months of delivery. Our 5-year TCO is estimated at <strong>$4,260,000</strong> — approximately 35% below the SAP S/4HANA equivalent at comparable scale.
+              Your fixed price is <strong>$2,680,000</strong> for the full 6-month delivery — no budget surprises, no overrun risk. Your 5-year total cost of ownership is estimated at <strong>$4,260,000</strong> — approximately 35% lower than SAP S/4HANA at comparable scale. Legacy licence savings begin from the date your old systems are decommissioned.
             </p>
           </div>
         </div>
@@ -110,7 +110,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <li className="health-risk" style={{ borderLeft: '3px solid var(--accent, #2563EB)' }}>
               <span className="health-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>2</span>
               <div>
-                <strong>Fixed price eliminates budget risk</strong> — All 7 public-sector ERP engagements delivered within the fixed contract price. Our pre-built modules for finance, HR, and procurement reduce novel development by ~60%.
+                <strong>Fixed price eliminates budget risk</strong> — All 7 public-sector ERP engagements delivered within the fixed contract price. Because 60% of the build is pre-existing, battle-tested code, your schedule and quality risk is materially lower than any custom build approach.
               </div>
             </li>
             <li className="health-risk" style={{ borderLeft: '3px solid var(--accent, #2563EB)' }}>
@@ -122,7 +122,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <li className="health-risk" style={{ borderLeft: '3px solid var(--accent, #2563EB)' }}>
               <span className="health-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>4</span>
               <div>
-                <strong>Permanent staff, not contractors</strong> — All team leads and architects are SCNSoft permanent employees with average 6+ years tenure. No contractor bench risk or knowledge drain mid-project.
+                <strong>Permanent staff, not contractors</strong> — The team you meet during evaluation is the team assigned to your programme — permanent employees, average 6+ years on this platform. You will not face contractor substitution mid-delivery.
               </div>
             </li>
           </ul>
@@ -175,14 +175,14 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
         <div className="health-card">
           <div className="health-card-header">
             <span className="health-card-icon">🏆</span>
-            How We Address Your Evaluation Criteria
+            How Your Evaluation Criteria Are Met
           </div>
           <table className="health-table">
             <thead>
               <tr>
                 <th>Evaluation Criterion</th>
                 <th>Weight</th>
-                <th>What We Deliver</th>
+                <th>What You Receive</th>
                 <th>Why It Matters to You</th>
               </tr>
             </thead>
@@ -214,7 +214,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
               <tr>
                 <td className="health-table-label health-val--strong">Overall Value Proposition</td>
                 <td><strong>100%</strong></td>
-                <td colSpan={2}>SCNCore ERP is the lowest total-cost, lowest-risk path to Meridian's FY2026 digital transformation goals — backed by a fixed price, a permanent team, and a structured go-live guarantee.</td>
+                <td colSpan={2}>You achieve your FY2026 digitisation mandate at the lowest total cost and lowest delivery risk of any option available — at a fixed price, with a permanent team, and a go-live guaranteed by contract.</td>
               </tr>
             </tbody>
           </table>

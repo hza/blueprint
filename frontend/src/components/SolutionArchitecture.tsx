@@ -347,7 +347,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               <tr>
                 <th>Category</th>
                 <th>Requirement</th>
-                <th>Vendor Commitment</th>
+                <th>What You're Guaranteed</th>
                 <th>Status</th>
               </tr>
             </thead>

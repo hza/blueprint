@@ -44,7 +44,7 @@ const NAV_SECTIONS: NavSection[] = [
     subsections: [
       { id: '2.1', title: 'Requirements Summary',        path: '/requirements-coverage/requirements-summary' },
       { id: '2.2', title: 'Coverage & Compliance Matrix', path: '/requirements-coverage/coverage-matrix' },
-      { id: '2.3', title: 'Gaps & Questions',            path: '/requirements-coverage/gaps-questions' },
+      { id: '2.3', title: 'Outstanding Questions', path: '/requirements-coverage/gaps-questions' },
     ],
   },
   {
@@ -92,11 +92,11 @@ const NAV_SECTIONS: NavSection[] = [
   },
   {
     id: '7',
-    title: 'Proof & Credibility',
+    title: 'References & Track Record',
     path: '/proof-credibility',
     subsections: [
-      { id: '7.1', title: 'Case Studies',      path: '/proof-credibility/case-studies' },
-      { id: '7.2', title: 'Client References', path: '/proof-credibility/client-references' },
+      { id: '7.1', title: 'Results for Similar Organisations', path: '/proof-credibility/case-studies' },
+      { id: '7.2', title: 'Peers You Can Call',               path: '/proof-credibility/client-references' },
     ],
   },
 ]

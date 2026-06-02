@@ -216,7 +216,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             <li className="health-risk health-risk--high">
               <span className="health-risk-level">RISK</span>
               <div>
-                RFP Section 4.3 mandates ISO 27001 at contract signature. Certification expected Apr 30 — 30 days after intended contract start date.
+                Your RFP mandates ISO 27001 at contract execution. Certification is expected April 30 — 30 days into the programme and before any Meridian data enters the production environment.
               </div>
             </li>
             <li className="health-risk health-risk--med">
@@ -234,7 +234,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             <li className="health-risk health-risk--low">
               <span className="health-risk-level">ALTERN</span>
               <div>
-                SOC 2 Type II + IRAP PROTECTED together provide equivalent or stronger assurance for this engagement. We request that Meridian's CISO review the controls mapping document.
+                SOC 2 Type II + IRAP PROTECTED together provide equivalent or stronger assurance for this engagement. You can verify this directly: your CISO is invited to review the full controls mapping document before contract execution.
               </div>
             </li>
           </ul>
