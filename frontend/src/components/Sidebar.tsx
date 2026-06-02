@@ -188,13 +188,7 @@ export function Sidebar({
 
       {/* Client / Project */}
       <div className="sidebar-client">
-        <svg className="sidebar-client-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2.5" y="3" width="11" height="12" rx="1.5" />
-          <rect x="5.5" y="1" width="5" height="3.5" rx="1" />
-          <line x1="4.5" y1="7" x2="11.5" y2="7" strokeLinecap="round" />
-          <line x1="4.5" y1="9.5" x2="11.5" y2="9.5" strokeLinecap="round" />
-          <line x1="4.5" y1="12" x2="9.5" y2="12" strokeLinecap="round" />
-        </svg>
+        <img src="/rfp-icon.svg" className="sidebar-client-icon" alt="RFP" />
         <div className="sidebar-client-text">
           <span className="sidebar-client-name">{clientName}</span>
           <span className="sidebar-client-project">{projectName}</span>
