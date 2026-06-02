@@ -237,6 +237,18 @@
 .health-badge--danger, .qa-badge--overdue  { background: var(--sem-danger-bg); color: var(--sem-danger-fg); }
 .health-badge--warn,   .qa-badge--pending  { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
 .health-badge--ok,     .qa-badge--answered { background: var(--sem-ok-bg);     color: var(--sem-ok-fg); }
+.health-badge--internal                    { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
+
+.health-card--internal {
+  border: 1.5px dashed var(--sem-warn-fg);
+  background: var(--sem-warn-bg);
+  opacity: 0.92;
+}
+.health-card--internal .health-card-header {
+  background: var(--sem-warn-bg);
+  border-bottom-color: var(--sem-warn-fg);
+  color: var(--sem-warn-fg);
+}
 
 .health-table {
   width: 100%;

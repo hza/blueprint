@@ -33,7 +33,7 @@ const NAV_SECTIONS: NavSection[] = [
     path: '/executive-overview',
     subsections: [
       { id: '1.1', title: 'Proposal Summary',                path: '/executive-overview/proposal-summary' },
-      { id: '1.2', title: 'Strategic Fit',                   path: '/executive-overview/strategic-fit' },
+      { id: '1.2', title: 'Strategic Alignment',              path: '/executive-overview/strategic-alignment' },
       { id: '1.3', title: 'Key Assumptions & Clarifications', path: '/executive-overview/key-assumptions' },
     ],
   },

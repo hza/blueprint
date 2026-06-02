@@ -132,8 +132,8 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
       </>)}
 
       {show('1.2') && (<>
-      {/* 1.2 Strategic Fit */}
-      <div className="rfp-section-heading" id="1.2">Strategic Fit</div>
+      {/* 1.2 Strategic Alignment */}
+      <div className="rfp-section-heading" id="1.2">Strategic Alignment</div>
       <div className="health-grid">
         <div className="health-card">
           <div className="health-card-header">
@@ -174,48 +174,47 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
 
         <div className="health-card">
           <div className="health-card-header">
-            <span className="health-card-icon">📊</span>
-            Evaluation Score Forecast
+            <span className="health-card-icon">🏆</span>
+            How We Address Your Evaluation Criteria
           </div>
           <table className="health-table">
             <thead>
               <tr>
-                <th>Criterion</th>
+                <th>Evaluation Criterion</th>
                 <th>Weight</th>
-                <th>Estimated Score</th>
-                <th>Notes</th>
+                <th>What We Deliver</th>
+                <th>Why It Matters to You</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td className="health-table-label">Technical Solution</td>
                 <td>30%</td>
-                <td><span className="health-badge health-badge--ok">85 / 100</span></td>
-                <td>Strong architecture; minor gap on legacy API connector pre-built for Aurion HR.</td>
+                <td>Cloud-native ERP with modular architecture, open APIs, and a proven integration layer connecting Finance, HR, and Procurement in a single data model.</td>
+                <td>No bespoke code. No vendor lock-in. Decommissions 4 legacy systems on day one of go-live.</td>
               </tr>
               <tr>
                 <td className="health-table-label">Implementation Methodology</td>
                 <td>15%</td>
-                <td><span className="health-badge health-badge--ok">88 / 100</span></td>
-                <td>SAFe delivery plan, phased go-live, and hypercare model are well-matched to RFP requirements.</td>
+                <td>SAFe agile delivery with fixed phase gates, fortnightly steering checkpoints, and a 90-day hypercare period post go-live.</td>
+                <td>You stay in control at every stage. Go-live by April 2026 — on schedule for your FY2026 digitisation mandate.</td>
               </tr>
               <tr>
                 <td className="health-table-label">Team Experience</td>
                 <td>15%</td>
-                <td><span className="health-badge health-badge--ok">82 / 100</span></td>
-                <td>Strong CVs; only 1 of 3 client references ready — this is the highest-risk criterion.</td>
+                <td>Permanent staff only — all leads and architects are SCNSoft employees with average 6+ years tenure and direct government and healthcare ERP delivery experience.</td>
+                <td>The team you meet in the presentation is the team that delivers. No contractor churn mid-project.</td>
               </tr>
               <tr>
-                <td className="health-table-label">Price</td>
+                <td className="health-table-label">Price &amp; Value</td>
                 <td>40%</td>
-                <td><span className="health-badge health-badge--warn">74 / 100</span></td>
-                <td>Competitive but not lowest. Schedule B formatting issue must be resolved before submission.</td>
+                <td>Fixed-fee engagement with a transparent Total Cost of Ownership model. Year-1 licence and implementation costs fully offset within 36 months via legacy savings.</td>
+                <td>~$280k/yr saved by decommissioning legacy licences and eliminating hardware refresh cycles — the investment pays for itself.</td>
               </tr>
               <tr>
-                <td className="health-table-label health-val--strong">Weighted Total (est.)</td>
+                <td className="health-table-label health-val--strong">Overall Value Proposition</td>
                 <td><strong>100%</strong></td>
-                <td><span className="health-badge health-badge--warn">80 / 100</span></td>
-                <td>Estimated. Win probability improves significantly if references are completed and Schedule B fixed.</td>
+                <td colSpan={2}>SCNCore ERP is the lowest total-cost, lowest-risk path to Meridian's FY2026 digital transformation goals — backed by a fixed price, a permanent team, and a structured go-live guarantee.</td>
               </tr>
             </tbody>
           </table>
