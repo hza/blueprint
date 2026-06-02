@@ -258,6 +258,9 @@ export function Sidebar({
                       className={`sidebar-sub-item${activeSection === sub.id ? ' active' : ''}`}
                       onClick={() => onSectionChange?.(sub.id, sub.path)}
                     >
+                      <svg className="sidebar-sub-icon" viewBox="0 0 8 8" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="4" cy="4" r="2.5" />
+                      </svg>
                       <span className="sidebar-sub-id">{sub.id}</span>
                       <span className="sidebar-sub-title">{sub.title}</span>
                     </button>

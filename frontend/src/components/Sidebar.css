@@ -231,6 +231,20 @@
   padding-bottom: 4px;
 }
 
+.sidebar-sub-icon {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  margin-right: 8px;
+  opacity: 0.35;
+  align-self: center;
+}
+
+.sidebar-sub-item.active .sidebar-sub-icon {
+  opacity: 1;
+  color: var(--accent);
+}
+
 .sidebar-sub-item {
   display: flex;
   align-items: baseline;
