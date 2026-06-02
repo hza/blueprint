@@ -184,7 +184,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
               <tr>
                 <td className="health-table-label health-val--strong">Total Fixed Price</td>
                 <td></td>
-                <td><strong>18 months</strong></td>
+                <td><strong>6 months</strong></td>
                 <td className="health-val--strong">$2,680,000</td>
               </tr>
             </tbody>

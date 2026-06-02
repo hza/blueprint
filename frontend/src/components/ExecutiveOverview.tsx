@@ -17,7 +17,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Project Time</span>
-            <span className="overview-stat-value overview-stat-score--warn">18 months</span>
+            <span className="overview-stat-value overview-stat-score--warn">6 months</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Est. Value</span>
@@ -47,7 +47,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
               We have completed <strong>seven comparable public-sector ERP engagements</strong> across state and local government since 2018, all delivered on time and within budget. Our most recent comparable engagement — Queensland Department of Infrastructure (2023, $3.1M, 1,200 users) — was completed 3 days ahead of schedule with a UAT pass rate of 99.3% at sign-off.
             </p>
             <p style={{ marginBottom: 0 }}>
-              Our fixed-price model of <strong>$2,680,000</strong> provides Meridian with cost certainty across 18 months of delivery. Our 5-year TCO is estimated at <strong>$4,260,000</strong> — approximately 35% below the SAP S/4HANA equivalent at comparable scale.
+              Our fixed-price model of <strong>$2,680,000</strong> provides Meridian with cost certainty across 6 months of delivery. Our 5-year TCO is estimated at <strong>$4,260,000</strong> — approximately 35% below the SAP S/4HANA equivalent at comparable scale.
             </p>
           </div>
         </div>
@@ -73,7 +73,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="health-table-label">Implementation Model</td>
-                <td>Fixed-price, 5-phase delivery · 18 months</td>
+                <td>Fixed-price, 5-phase delivery · 6 months</td>
               </tr>
               <tr>
                 <td className="health-table-label">Contract Value</td>

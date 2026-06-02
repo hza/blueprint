@@ -56,7 +56,6 @@ const NAV_SECTIONS: NavSection[] = [
       { id: '3.2', title: 'Functional Scope',             path: '/solution-architecture/functional-scope' },
       { id: '3.3', title: 'Integration & Data',           path: '/solution-architecture/integration-data' },
       { id: '3.4', title: 'Non-Functional Requirements',  path: '/solution-architecture/non-functional-requirements' },
-      { id: '3.5', title: 'Data Migration',               path: '/solution-architecture/data-migration' },
     ],
   },
   {

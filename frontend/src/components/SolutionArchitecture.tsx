@@ -27,10 +27,6 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
             <span className="overview-stat-label">Availability SLA</span>
             <span className="overview-stat-value overview-stat-score--ok">99.9%</span>
           </div>
-          <div className="overview-stat">
-            <span className="overview-stat-label">Data Migration</span>
-            <span className="overview-stat-value">4 legacy systems</span>
-          </div>
         </div>
       </div>
 
@@ -405,83 +401,6 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
 
       </>)}
 
-      {show('3.5') && (<>
-      {/* 3.5 Data Migration */}
-      <div className="rfp-section-heading" id="3.5">Data Migration</div>
-      <div className="health-grid">
-        <div className="health-card">
-          <div className="health-card-header">
-            <span className="health-card-icon">🗄</span>
-            Migration Scope &amp; Approach
-          </div>
-          <table className="health-table">
-            <thead>
-              <tr>
-                <th>Source System</th>
-                <th>Data Volume</th>
-                <th>Migration Method</th>
-                <th>Phase</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="health-table-label">TechOne Finance (GL/AP/AR)</td>
-                <td>8 years financial history, ~2.1M records</td>
-                <td>Direct DB extract → ETL pipeline → validation → load. 5-year active history migrated; 3 years read-only archive.</td>
-                <td style={{whiteSpace: 'nowrap'}}>Phase 3</td>
-              </tr>
-              <tr>
-                <td className="health-table-label">Aurion HR</td>
-                <td>1,850 employee records, 12 years history</td>
-                <td>Aurion export API + custom transformer. Full employee lifecycle data. Payroll history summary (detailed payroll stays in ADP).</td>
-                <td style={{whiteSpace: 'nowrap'}}>Phase 3</td>
-              </tr>
-              <tr>
-                <td className="health-table-label">Asset Register (Excel)</td>
-                <td>~4,200 assets, 6 spreadsheets</td>
-                <td>Data profiling → cleansing workshop with Meridian asset managers → bulk import. Photos and documents migrated via SharePoint connector.</td>
-                <td style={{whiteSpace: 'nowrap'}}>Phase 3</td>
-              </tr>
-              <tr>
-                <td className="health-table-label">Procurement System (legacy)</td>
-                <td>3 years PO history, ~18k purchase orders</td>
-                <td>Open POs and active contracts migrated. Historical POs migrated as read-only records. Supplier master data cleansed before migration.</td>
-                <td style={{whiteSpace: 'nowrap'}}>Phase 3</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="health-card">
-          <div className="health-card-header">
-            <span className="health-card-icon">✓</span>
-            Migration Quality Gates
-          </div>
-          <ul className="health-checklist">
-            <li className="health-check health-check--ok">
-              <span className="health-check-icon" />
-              <strong>Data Profiling (Phase 1)</strong> — Automated profiling of all source systems. Quality report delivered to Meridian within 3 weeks of contract execution. Issues catalogued and prioritised.
-            </li>
-            <li className="health-check health-check--ok">
-              <span className="health-check-icon" />
-              <strong>Data Cleansing Sprint (Phase 1)</strong> — Dedicated 2-week sprint to resolve data quality issues identified in profiling. Meridian data steward sign-off required before migration proceeds.
-            </li>
-            <li className="health-check health-check--ok">
-              <span className="health-check-icon" />
-              <strong>Mock Migration (Phase 3 — Week 2)</strong> — Full dry run of migration in UAT environment. Reconciliation report produced. Any residual issues resolved before go-live migration.
-            </li>
-            <li className="health-check health-check--ok">
-              <span className="health-check-icon" />
-              <strong>Parallel Run Validation (Phase 3 — Weeks 5–8)</strong> — Both legacy and new systems run simultaneously. Financial period-end reconciled in both. Variance tolerance: 0.01%.
-            </li>
-            <li className="health-check health-check--ok">
-              <span className="health-check-icon" />
-              <strong>Post-Migration Audit (Phase 5 — Week 2)</strong> — Independent data reconciliation by Meridian Finance team with SCNSoft support. Formal sign-off required before hypercare ends.
-            </li>
-          </ul>
-        </div>
-      </div>
-      </>)}
     </div>
   )
 }

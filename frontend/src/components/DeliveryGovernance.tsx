@@ -17,7 +17,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Duration</span>
-            <span className="overview-stat-value">18 months</span>
+            <span className="overview-stat-value">6 months</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Phases</span>
