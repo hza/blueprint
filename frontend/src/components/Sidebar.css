@@ -6,6 +6,7 @@
   overflow: hidden;
   background: var(--canvas-subtle);
   transition: width 0.2s ease;
+  height: 100%;
 }
 
 /* ── Brand ───────────────────────────────────────────────────────────────── */
@@ -313,6 +314,7 @@
   border-top: 1px solid var(--border);
   flex-shrink: 0;
   position: relative;
+  margin-top: auto;
 }
 
 .sidebar-user-btn {
