@@ -57,13 +57,13 @@
 
 .fr-indicator {
   line-height: 20px;
-  color: #FF991F;
+  color: var(--sem-warn-fg);
   cursor: default;
   display: inline-block;
 }
 
 .fr-gutter.has-fr:hover .fr-indicator {
-  color: #974F0C;
+  color: var(--accent);
 }
 
 /* FR tooltip */
@@ -112,7 +112,7 @@
 }
 
 .fr-tooltip-id-link:hover {
-  color: #0550ae;
+  color: var(--accent-hover);
 }
 
 .fr-tooltip-category {

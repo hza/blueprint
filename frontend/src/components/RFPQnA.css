@@ -34,10 +34,10 @@
   color: var(--fg-muted);
   white-space: nowrap;
 }
-.qa-stat--ok      .qa-stat-num { color: #006644; }
-.qa-stat--warn    .qa-stat-num { color: #974F0C; }
-.qa-stat--danger  .qa-stat-num { color: #DE350B; }
-.qa-stat--critical .qa-stat-num { color: #403294; }
+.qa-stat--ok      .qa-stat-num { color: var(--sem-ok-fg); }
+.qa-stat--warn    .qa-stat-num { color: var(--sem-warn-fg); }
+.qa-stat--danger  .qa-stat-num { color: var(--sem-danger-fg); }
+.qa-stat--critical .qa-stat-num { color: var(--sem-purple-fg); }
 
 .qa-filter-group {
   margin-left: auto;
@@ -56,7 +56,7 @@
   transition: color .1s, background .1s;
 }
 .qa-filter:hover { color: var(--fg); }
-.qa-filter.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.qa-filter.active { background: var(--accent); color: var(--fg-on-accent); border-color: var(--accent); }
 
 .qa-list {
   overflow-y: auto;
@@ -74,7 +74,7 @@
   background: var(--canvas);
 }
 .qa-item--critical {
-  border-left: 3px solid #cf222e;
+  border-left: 3px solid var(--sem-danger-fg);
 }
 
 .qa-item-header {
@@ -105,7 +105,7 @@
   font-size: 11px;
   font-weight: 600;
 }
-.qa-badge--critical { background: #EAE6FF; color: #403294; }
+.qa-badge--critical { background: var(--sem-purple-bg); color: var(--sem-purple-fg); }
 
 .qa-question {
   display: flex;
@@ -119,8 +119,8 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #0052CC;
-  color: #fff;
+  background: var(--sem-q-dot-bg);
+  color: var(--fg-on-accent);
   font-size: 11px;
   font-weight: 700;
   display: flex;
@@ -140,7 +140,7 @@
   display: flex;
   gap: 10px;
   padding: 10px 14px 12px;
-  background: #F4FFFA;
+  background: var(--sem-ok-bg-pale);
   border-top: 1px solid var(--border);
   font-size: 13px;
   color: var(--fg);
@@ -150,8 +150,8 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #00875A;
-  color: #fff;
+  background: var(--sem-a-dot-bg);
+  color: var(--fg-on-accent);
   font-size: 11px;
   font-weight: 700;
   display: flex;
@@ -170,6 +170,6 @@
   border-top: 1px solid var(--border);
   font-size: 12px;
   font-style: italic;
-  color: #DE350B;
-  background: #FFEBE6;
+  color: var(--sem-danger-fg);
+  background: var(--sem-danger-bg);
 }

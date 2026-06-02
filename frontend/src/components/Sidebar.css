@@ -368,7 +368,7 @@
   height: 26px;
   border-radius: 50%;
   background: var(--accent);
-  color: #fff;
+  color: var(--fg-on-accent);
   font-size: 10px;
   font-weight: 700;
   display: flex;
@@ -460,9 +460,9 @@
 }
 .sidebar-popup-item:hover { background: var(--canvas-subtle); }
 .sidebar-popup-item svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--fg-muted); }
-.sidebar-popup-item-danger { color: #DE350B; }
-.sidebar-popup-item-danger svg { color: #DE350B; }
-.sidebar-popup-item-danger:hover { background: #FFEBE6; }
+.sidebar-popup-item-danger { color: var(--sem-danger-fg); }
+.sidebar-popup-item-danger svg { color: var(--sem-danger-fg); }
+.sidebar-popup-item-danger:hover { background: var(--sem-danger-bg); }
 
 /* ── Theme picker ────────────────────────────────────────────────────────── */
 .sidebar-theme-section {

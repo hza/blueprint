@@ -44,7 +44,7 @@
 }
 
 .fl-cat-select:focus {
-  border-color: #0052CC;
+  border-color: var(--accent);
 }
 
 .fl-select-wrap {
@@ -135,7 +135,7 @@
 }
 
 .fl-sort-active {
-  color: #0052CC;
+  color: var(--accent);
 }
 
 .fl-row {

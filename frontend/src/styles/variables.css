@@ -11,6 +11,26 @@
 /* ── Day (default light) ─────────────────────────────────────────────────── */
 :root,
 [data-theme="day"] {
+  /* semantic status colors */
+  --sem-danger-bg:     #FFEBE6;
+  --sem-danger-fg:     #DE350B;
+  --sem-warn-bg:       #FFFAE6;
+  --sem-warn-fg:       #974F0C;
+  --sem-ok-bg:         #E3FCEF;
+  --sem-ok-fg:         #006644;
+  --sem-ok-fg-btn:     #006644;
+  --sem-info-bg:       #DEEBFF;
+  --sem-info-fg:       #0052CC;
+  --sem-info-bg-mid:   #B3D4FF;
+  --sem-info-bg-pale:  #F0F4FF;
+  --sem-info-bg-pale2: #f0f7ff;
+  --sem-ok-bg-pale:    #F4FFFA;
+  --sem-purple-bg:     #EAE6FF;
+  --sem-purple-fg:     #403294;
+  --sem-cancel-fg:     #BF2600;
+  --sem-q-dot-bg:      #0052CC;
+  --sem-a-dot-bg:      #00875A;
+
   --fg:             #0F172A;
   --fg-muted:       #64748B;
   --fg-subtle:      #94A3B8;
@@ -44,10 +64,31 @@
   --topbar-input-bg-focus:     rgba(255,255,255,0.12);
   --topbar-input-border-focus: rgba(255,255,255,0.30);
   --topbar-avatar-bg:          #4d6077;
+  --fg-on-accent:              #ffffff;
 }
 
 /* ── Night (dark) ────────────────────────────────────────────────────────── */
 [data-theme="night"] {
+  /* semantic status colors */
+  --sem-danger-bg:     rgba(222,53,11,0.20);
+  --sem-danger-fg:     #FF8A70;
+  --sem-warn-bg:       rgba(255,153,31,0.18);
+  --sem-warn-fg:       #FFB74D;
+  --sem-ok-bg:         rgba(0,135,90,0.18);
+  --sem-ok-fg:         #4ADE80;
+  --sem-ok-fg-btn:     #4ADE80;
+  --sem-info-bg:       rgba(59,130,246,0.18);
+  --sem-info-fg:       #60A5FA;
+  --sem-info-bg-mid:   rgba(59,130,246,0.28);
+  --sem-info-bg-pale:  rgba(59,130,246,0.10);
+  --sem-info-bg-pale2: rgba(59,130,246,0.10);
+  --sem-ok-bg-pale:    rgba(0,135,90,0.12);
+  --sem-purple-bg:     rgba(99,91,255,0.20);
+  --sem-purple-fg:     #A5B4FC;
+  --sem-cancel-fg:     #FC8181;
+  --sem-q-dot-bg:      #3B82F6;
+  --sem-a-dot-bg:      #10B981;
+
   --fg:             #E2E8F0;
   --fg-muted:       #94A3B8;
   --fg-subtle:      #64748B;
@@ -81,6 +122,7 @@
   --topbar-input-bg-focus:     rgba(255,255,255,0.08);
   --topbar-input-border-focus: rgba(255,255,255,0.22);
   --topbar-avatar-bg:          #1E3A5F;
+  --fg-on-accent:              rgba(255,255,255,0.88);
 }
 
 /* ── Confluence ──────────────────────────────────────────────────────────── */
@@ -118,6 +160,7 @@
   --topbar-input-bg-focus:     #FFFFFF;
   --topbar-input-border-focus: #2196F3;
   --topbar-avatar-bg:          #2196F3;
+  --fg-on-accent:              #ffffff;
 }
 
 /* ── Notion ──────────────────────────────────────────────────────────────── */
@@ -155,6 +198,7 @@
   --topbar-input-bg-focus:     rgba(55,53,47,0.09);
   --topbar-input-border-focus: #AEAAA5;
   --topbar-avatar-bg:          #787774;
+  --fg-on-accent:              #ffffff;
 }
 
 /* ── Freshworks ──────────────────────────────────────────────────────────── */
@@ -192,10 +236,31 @@
   --topbar-input-bg-focus:     rgba(255,255,255,0.12);
   --topbar-input-border-focus: rgba(255,255,255,0.35);
   --topbar-avatar-bg:          #3b5278;
+  --fg-on-accent:              #ffffff;
 }
 
 /* ── Gray ────────────────────────────────────────────────────────────────── */
 [data-theme="gray"] {
+  /* semantic status colors (gray is a dark-ish topbar but light canvas — keep light sematics) */
+  --sem-danger-bg:     #FFEBE6;
+  --sem-danger-fg:     #DE350B;
+  --sem-warn-bg:       #FFFAE6;
+  --sem-warn-fg:       #974F0C;
+  --sem-ok-bg:         #E3FCEF;
+  --sem-ok-fg:         #006644;
+  --sem-ok-fg-btn:     #006644;
+  --sem-info-bg:       #DEEBFF;
+  --sem-info-fg:       #0052CC;
+  --sem-info-bg-mid:   #B3D4FF;
+  --sem-info-bg-pale:  #F0F4FF;
+  --sem-info-bg-pale2: #f0f7ff;
+  --sem-ok-bg-pale:    #F4FFFA;
+  --sem-purple-bg:     #EAE6FF;
+  --sem-purple-fg:     #403294;
+  --sem-cancel-fg:     #BF2600;
+  --sem-q-dot-bg:      #0052CC;
+  --sem-a-dot-bg:      #00875A;
+
   --fg:             #1F2937;
   --fg-muted:       #6B7280;
   --fg-subtle:      #9CA3AF;
@@ -229,14 +294,35 @@
   --topbar-input-bg-focus:     rgba(255,255,255,0.12);
   --topbar-input-border-focus: rgba(255,255,255,0.30);
   --topbar-avatar-bg:          #5F6368;
+  --fg-on-accent:              #ffffff;
 }
 
 /* ── Fantasy ─────────────────────────────────────────────────────────────── */
-[data-theme="prophub"] {
-  --fg:             #F5F5F5;
+[data-theme="fantasy"] {
+  /* semantic status colors */
+  --sem-danger-bg:     rgba(255,68,68,0.18);
+  --sem-danger-fg:     #FF8A70;
+  --sem-warn-bg:       rgba(255,144,0,0.18);
+  --sem-warn-fg:       #FFB74D;
+  --sem-ok-bg:         rgba(16,185,129,0.15);
+  --sem-ok-fg:         #4ADE80;
+  --sem-ok-fg-btn:     #4ADE80;
+  --sem-info-bg:       rgba(255,144,0,0.15);
+  --sem-info-fg:       #FF9000;
+  --sem-info-bg-mid:   rgba(255,144,0,0.25);
+  --sem-info-bg-pale:  rgba(255,144,0,0.08);
+  --sem-info-bg-pale2: rgba(255,144,0,0.08);
+  --sem-ok-bg-pale:    rgba(16,185,129,0.08);
+  --sem-purple-bg:     rgba(255,144,0,0.18);
+  --sem-purple-fg:     #FFB74D;
+  --sem-cancel-fg:     #FC8181;
+  --sem-q-dot-bg:      #FF9000;
+  --sem-a-dot-bg:      #10B981;
+
+  --fg:             #C8C8C8;
   --fg-muted:       #A0A0A0;
   --fg-subtle:      #6B6B6B;
-  --fg-dark:        #FFFFFF;
+  --fg-dark:        #5b5b5b;
   --fg-mid:         #C8C8C8;
   --canvas:         #1B1B1B;
   --canvas-subtle:  #111111;
@@ -266,6 +352,7 @@
   --topbar-input-bg-focus:     rgba(255,255,255,0.08);
   --topbar-input-border-focus: rgba(255,144,0,0.50);
   --topbar-avatar-bg:          #7C4400;
+  --fg-on-accent:              rgba(255,255,255,0.88);
 }
 
 /* ── Base ────────────────────────────────────────────────────────────────── */

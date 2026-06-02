@@ -27,8 +27,8 @@
 .right-panel-domain {
   font-size: 11px;
   font-weight: 600;
-  background: #DEEBFF;
-  color: #0052CC;
+  background: var(--sem-info-bg);
+  color: var(--sem-info-fg);
   border: none;
   border-radius: 3px;
   padding: 1px 6px;
@@ -41,7 +41,7 @@
   font-family: inherit;
 }
 .right-panel-domain:hover {
-  background: #B3D4FF;
+  background: var(--sem-info-bg-mid);
 }
 
 .right-panel-nav {
@@ -120,7 +120,7 @@
 }
 .right-panel-requirement-edit:focus {
   outline: none;
-  border-color: #0052CC;
+  border-color: var(--accent);
 }
 
 .right-panel-edit-actions {
@@ -141,19 +141,19 @@
 }
 
 .right-panel-save-btn {
-  color: #006644;
-  border-color: #006644;
+  color: var(--sem-ok-fg-btn);
+  border-color: var(--sem-ok-fg-btn);
 }
 .right-panel-save-btn:hover {
-  background: #E3FCEF;
+  background: var(--sem-ok-bg);
 }
 
 .right-panel-cancel-btn {
-  color: #BF2600;
-  border-color: #BF2600;
+  color: var(--sem-cancel-fg);
+  border-color: var(--sem-cancel-fg);
 }
 .right-panel-cancel-btn:hover {
-  background: #FFEBE6;
+  background: var(--sem-danger-bg);
 }
 
 .right-panel-original {
@@ -188,9 +188,9 @@
   gap: 0;
 }
 .right-panel-ref-btn:hover {
-  background: rgba(9,30,66,0.06);
-  border-color: #0052CC;
-  color: #0052CC;
+  background: var(--neutral-muted);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .right-panel-ref-file { font-weight: 600; }
