@@ -5,6 +5,7 @@ import type { FileInfo } from '../types'
 
 const THEMES = [
   { key: 'day',        label: 'Day',        topbar: '#273664', canvas: '#FFFFFF',  accent: '#2563EB' },
+  { key: 'prophub',    label: 'Fantasy',    topbar: '#000000', canvas: '#1B1B1B',  accent: '#FF9000' },
   { key: 'night',      label: 'Night',      topbar: '#050D18', canvas: '#0F172A',  accent: '#3B82F6' },
   { key: 'confluence', label: 'Confluence', topbar: '#FFFFFF', canvas: '#F4F5F7',  accent: '#0052CC' },
   { key: 'notion',     label: 'Notion',     topbar: '#F7F6F3', canvas: '#FFFFFF',  accent: '#2EAADC' },
@@ -16,67 +17,88 @@ type Theme = (typeof THEMES)[number]['key']
 interface NavSubsection {
   id: string
   title: string
+  path: string
 }
 
 interface NavSection {
   id: string
   title: string
+  path: string
   subsections: NavSubsection[]
 }
 
 const NAV_SECTIONS: NavSection[] = [
   {
     id: '1',
-    title: 'Executive Summary & Overview',
+    title: 'Executive Overview',
+    path: '/executive-overview',
     subsections: [
-      { id: '1.1', title: 'Executive Summary' },
-      { id: '1.2', title: 'Key Assumptions & Dependencies' },
-      { id: '1.3', title: 'Clarifications & Exceptions' },
+      { id: '1.1', title: 'Proposal Summary',                path: '/executive-overview/proposal-summary' },
+      { id: '1.2', title: 'Strategic Fit',                   path: '/executive-overview/strategic-fit' },
+      { id: '1.3', title: 'Key Assumptions & Clarifications', path: '/executive-overview/key-assumptions' },
     ],
   },
   {
     id: '2',
-    title: 'Requirements & Compliance Matrix',
+    title: 'Requirements Coverage',
+    path: '/requirements-coverage',
     subsections: [
-      { id: '2.1', title: 'RFP Requirements Summary' },
-      { id: '2.2', title: 'Coverage & Compliance Matrix' },
+      { id: '2.1', title: 'Requirements Summary',        path: '/requirements-coverage/requirements-summary' },
+      { id: '2.2', title: 'Coverage & Compliance Matrix', path: '/requirements-coverage/coverage-matrix' },
+      { id: '2.3', title: 'Gaps & Questions',            path: '/requirements-coverage/gaps-questions' },
     ],
   },
   {
     id: '3',
-    title: 'Technical & Solution Architecture',
+    title: 'Solution Architecture',
+    path: '/solution-architecture',
     subsections: [
-      { id: '3.1', title: 'High-Level Design (HLD)' },
-      { id: '3.2', title: 'Core Capabilities & Custom Software Scope' },
-      { id: '3.3', title: 'Integration & Data Architecture' },
+      { id: '3.1', title: 'Architecture Overview',        path: '/solution-architecture/architecture-overview' },
+      { id: '3.2', title: 'Functional Scope',             path: '/solution-architecture/functional-scope' },
+      { id: '3.3', title: 'Integration & Data',           path: '/solution-architecture/integration-data' },
+      { id: '3.4', title: 'Non-Functional Requirements',  path: '/solution-architecture/non-functional-requirements' },
+      { id: '3.5', title: 'Data Migration',               path: '/solution-architecture/data-migration' },
     ],
   },
   {
     id: '4',
-    title: 'Information Security & Compliance',
+    title: 'Security & Compliance',
+    path: '/security-compliance',
     subsections: [
-      { id: '4.1', title: 'Security Architecture & Data Protection' },
-      { id: '4.2', title: 'Certifications, Audits & Compliance' },
+      { id: '4.1', title: 'Security Model',           path: '/security-compliance/security-model' },
+      { id: '4.2', title: 'Certifications & Standards', path: '/security-compliance/certifications-standards' },
     ],
   },
   {
     id: '5',
-    title: 'Project Delivery, Team & Governance',
+    title: 'Delivery & Governance',
+    path: '/delivery-governance',
     subsections: [
-      { id: '5.1', title: 'Implementation Approach & Timeline' },
-      { id: '5.2', title: 'Project Team, Expertise & Resource Allocation' },
-      { id: '5.3', title: 'Change Management, Training & Support' },
-      { id: '5.4', title: 'References & Case Studies' },
+      { id: '5.1', title: 'Delivery Approach & Timeline',   path: '/delivery-governance/delivery-timeline' },
+      { id: '5.2', title: 'Team & Roles',                   path: '/delivery-governance/team-roles' },
+      { id: '5.3', title: 'Testing & Quality',              path: '/delivery-governance/testing-quality' },
+      { id: '5.4', title: 'Risks & Mitigation',             path: '/delivery-governance/risks-mitigation' },
+      { id: '5.5', title: 'Training & Change Enablement',   path: '/delivery-governance/training-change-enablement' },
+      { id: '5.6', title: 'Transition & Handover',          path: '/delivery-governance/transition-handover' },
     ],
   },
   {
     id: '6',
-    title: 'Commercials, Pricing & Legal',
+    title: 'Pricing & Commercials',
+    path: '/pricing-commercials',
     subsections: [
-      { id: '6.1', title: 'Total Cost of Ownership (TCO) Summary' },
-      { id: '6.2', title: 'Granular Cost Breakdown' },
-      { id: '6.3', title: 'Value & ROI Analysis' },
-      { id: '6.4', title: 'Legal & Contractual Notes' },
+      { id: '6.1', title: 'TCO Overview',        path: '/pricing-commercials/tco-overview' },
+      { id: '6.2', title: 'Cost Breakdown',       path: '/pricing-commercials/cost-breakdown' },
+      { id: '6.3', title: 'Contractual Terms',    path: '/pricing-commercials/contractual-terms' },
+    ],
+  },
+  {
+    id: '7',
+    title: 'Proof & Credibility',
+    path: '/proof-credibility',
+    subsections: [
+      { id: '7.1', title: 'Case Studies',      path: '/proof-credibility/case-studies' },
+      { id: '7.2', title: 'Client References', path: '/proof-credibility/client-references' },
     ],
   },
 ]
@@ -89,8 +111,10 @@ interface SidebarProps {
   onSelectRoot: () => void
   width?: number
   activeSection?: string | null
-  onSectionChange?: (id: string) => void
+  onSectionChange?: (id: string, path: string) => void
   userName?: string
+  clientName?: string
+  projectName?: string
 }
 
 export function Sidebar({
@@ -103,6 +127,8 @@ export function Sidebar({
   activeSection,
   onSectionChange,
   userName = 'Hans Zimmer',
+  clientName = 'Meridian Public Services',
+  projectName = 'ERP Modernisation',
 }: SidebarProps) {
   const [theme, setThemeState] = useState<Theme>(
     () => (localStorage.getItem('app-theme') as Theme | null) ?? 'day'
@@ -153,17 +179,26 @@ export function Sidebar({
       {/* Brand */}
       <div className="sidebar-brand">
         <svg className="sidebar-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="sb-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#4C9AFF" />
-              <stop offset="100%" stopColor="#0052CC" />
-            </linearGradient>
-          </defs>
-          <rect width="32" height="32" rx="6" fill="rgba(255,255,255,0.1)" />
-          <path d="M6 22 C8 18 12 10 16 8 C20 10 24 18 26 22" stroke="url(#sb-grad)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-          <path d="M10 26 C11.5 23 13.5 19 16 17 C18.5 19 20.5 23 22 26" stroke="rgba(255,255,255,0.9)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+          <rect width="32" height="32" rx="6" fill="var(--topbar-hover)" />
+          <path d="M6 22 C8 18 12 10 16 8 C20 10 24 18 26 22" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+          <path d="M10 26 C11.5 23 13.5 19 16 17 C18.5 19 20.5 23 22 26" stroke="var(--topbar-fg)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
         </svg>
         <span className="sidebar-brand-title">The Blueprint</span>
+      </div>
+
+      {/* Client / Project */}
+      <div className="sidebar-client">
+        <svg className="sidebar-client-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2.5" y="3" width="11" height="12" rx="1.5" />
+          <rect x="5.5" y="1" width="5" height="3.5" rx="1" />
+          <line x1="4.5" y1="7" x2="11.5" y2="7" strokeLinecap="round" />
+          <line x1="4.5" y1="9.5" x2="11.5" y2="9.5" strokeLinecap="round" />
+          <line x1="4.5" y1="12" x2="9.5" y2="12" strokeLinecap="round" />
+        </svg>
+        <div className="sidebar-client-text">
+          <span className="sidebar-client-name">{clientName}</span>
+          <span className="sidebar-client-project">{projectName}</span>
+        </div>
       </div>
 
       {/* Proposal Navigation */}
@@ -180,8 +215,9 @@ export function Sidebar({
                 onClick={() => {
                   if (hasChildren) {
                     toggleSection(section.id)
+                    onSectionChange?.(section.id, section.path)
                   } else {
-                    onSectionChange?.(section.id)
+                    onSectionChange?.(section.id, section.path)
                   }
                 }}
               >
@@ -206,7 +242,7 @@ export function Sidebar({
                     <button
                       key={sub.id}
                       className={`sidebar-sub-item${activeSection === sub.id ? ' active' : ''}`}
-                      onClick={() => onSectionChange?.(sub.id)}
+                      onClick={() => onSectionChange?.(sub.id, sub.path)}
                     >
                       <span className="sidebar-sub-id">{sub.id}</span>
                       <span className="sidebar-sub-title">{sub.title}</span>
@@ -270,7 +306,7 @@ export function Sidebar({
               <span className="sidebar-avatar sidebar-avatar-lg">{initials}</span>
               <div>
                 <div className="sidebar-popup-name">{userName}</div>
-                <div className="sidebar-popup-role">Customer</div>
+                <div className="sidebar-popup-role">Buyer</div>
               </div>
             </div>
             <div className="sidebar-popup-sep" />

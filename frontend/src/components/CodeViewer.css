@@ -71,8 +71,8 @@
   position: fixed;
   z-index: 1000;
   max-width: 380px;
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
+  background: var(--canvas);
+  border: 1px solid var(--border);
   border-radius: 8px;
   box-shadow: var(--shadow-md);
   padding: 8px 0;

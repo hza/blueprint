@@ -13,13 +13,20 @@ import { Timeline } from './components/Timeline'
 import { Team } from './components/Team'
 import { UXDesign } from './components/UXDesign'
 import { RFPHealth } from './components/RFPHealth'
+import { SecurityCompliance } from './components/SecurityCompliance'
+import { DeliveryGovernance } from './components/DeliveryGovernance'
+import { PricingCommercials } from './components/PricingCommercials'
+import { ProofCredibility } from './components/ProofCredibility'
+import { ExecutiveOverview } from './components/ExecutiveOverview'
+import { RequirementsCoverage } from './components/RequirementsCoverage'
+import { SolutionArchitecture } from './components/SolutionArchitecture'
 import { RightPanel } from './components/RightPanel'
 import { Sidebar } from './components/Sidebar'
 import type { FileContent, FileView, FileInfo, FRAnnotations, FRItem, ViewTab } from './types'
 
 const SIDEBAR_MIN = 160
 const SIDEBAR_MAX = 600
-const SIDEBAR_DEFAULT = 272
+const SIDEBAR_DEFAULT = 290
 const RIGHT_PANEL_MIN = 220
 const RIGHT_PANEL_MAX = 700
 const RIGHT_PANEL_DEFAULT = 320
@@ -91,34 +98,34 @@ export default function App() {
   }
 
 
+  const p = location.pathname
   const activeTab: ViewTab =
-    location.pathname === '/requirements'
-        ? 'requirements'
-        : location.pathname === '/overview'
-          ? 'overview'
-          : location.pathname === '/qa'
-            ? 'qa'
-            : location.pathname === '/analytics'
-              ? 'analytics'
-              : location.pathname === '/technical'
-                ? 'technical'
-                : location.pathname === '/cost'
-                  ? 'cost'
-                  : location.pathname === '/timeline'
-                    ? 'timeline'
-                    : location.pathname === '/team'
-                      ? 'team'
-                      : location.pathname === '/uxdesign'
-                        ? 'uxdesign'
-                        : 'code'
+    p === '/requirements' ? 'requirements' :
+    p === '/overview' ? 'overview' :
+    p === '/qa' ? 'qa' :
+    p === '/analytics' ? 'analytics' :
+    p === '/technical' ? 'technical' :
+    p === '/cost' ? 'cost' :
+    p === '/timeline' ? 'timeline' :
+    p === '/team' ? 'team' :
+    p === '/uxdesign' ? 'uxdesign' :
+    p === '/security' || p.startsWith('/security-compliance') ? 'security' :
+    p === '/delivery' || p.startsWith('/delivery-governance') ? 'delivery' :
+    p === '/pricing' || p.startsWith('/pricing-commercials') ? 'pricing' :
+    p === '/proof' || p.startsWith('/proof-credibility') ? 'proof' :
+    p.startsWith('/executive-overview') ? 'executive-overview' :
+    p.startsWith('/requirements-coverage') ? 'requirements-coverage' :
+    p.startsWith('/solution-architecture') ? 'solution-architecture' :
+    'requirements'
 
   useEffect(() => {
     if (location.pathname === '/fl') {
       navigate(`/list${location.search}${location.hash}`, { replace: true })
       return
     }
-    if (!['/code', '/requirements', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/uxdesign'].includes(location.pathname)) {
-      navigate('/code', { replace: true })
+    const knownPrefixes = ['/requirements', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/uxdesign', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility']
+    if (!knownPrefixes.some((prefix) => location.pathname === prefix || location.pathname.startsWith(prefix + '/'))) {
+      navigate('/requirements', { replace: true })
     }
   }, [location.pathname, location.search, location.hash, navigate])
 
@@ -134,18 +141,13 @@ export default function App() {
     fetchFL().then(setFlItems).catch(() => {})
   }, [])
 
-  useEffect(() => {
-    if (!selectedFile && location.pathname !== '/requirements' && location.pathname !== '/overview' && location.pathname !== '/qa' && location.pathname !== '/analytics' && location.pathname !== '/technical' && location.pathname !== '/cost' && location.pathname !== '/timeline' && location.pathname !== '/team' && location.pathname !== '/uxdesign') {
-      navigate('/requirements', { replace: true })
-    }
-  }, [selectedFile, location.pathname, navigate])
 
   const openFile = (
     filename: string,
     line?: number,
     options?: { preserveCurrentTab?: boolean },
   ) => {
-    const targetPath = options?.preserveCurrentTab ? `/${activeTab}` : '/code'
+    const targetPath = options?.preserveCurrentTab ? `/${activeTab}` : '/requirements'
     const fileChanged = filename !== selectedFile
     setSelectedFile(filename)
     navigate({ pathname: targetPath, hash: line ? `#L${line}` : '' })
@@ -209,21 +211,13 @@ export default function App() {
         files={files}
         selectedFile={selectedFile}
         error={error}
-        onSelectFile={(filename) => openFile(filename, undefined, { preserveCurrentTab: true })}
+        onSelectFile={(filename) => openFile(filename)}
         onSelectRoot={showListView}
         width={sidebarWidth}
         activeSection={activeSection}
-        onSectionChange={(id) => {
+        onSectionChange={(id, path) => {
           setActiveSection(id)
-          const sectionRouteMap: Record<string, ViewTab> = {
-            '1': 'overview',
-            '2': 'requirements', '2.1': 'requirements', '2.2': 'requirements', '2.3': 'qa',
-            '3': 'technical', '3.1': 'technical', '3.2': 'technical', '3.3': 'analytics', '3.4': 'technical',
-            '4': 'timeline', '4.1': 'timeline', '4.2': 'team', '4.3': 'team', '4.4': 'team', '4.5': 'team',
-            '5': 'cost', '5.1': 'cost', '5.2': 'cost', '5.3': 'cost', '5.4': 'cost',
-          }
-          const tab = sectionRouteMap[id] ?? 'overview'
-          navigate(`/${tab}${location.hash}`)
+          navigate(path)
         }}
       />
       <div className={`sidebar-resize-handle${draggingSidebar ? ' dragging' : ''}`} onMouseDown={handleSidebarResizeMouseDown} />
@@ -314,6 +308,90 @@ export default function App() {
               </div>
             </div>
           </>
+        ) : activeTab === 'security' ? (
+          <>
+            <nav className="breadcrumb">
+              <span className="breadcrumb-file">Security &amp; Compliance</span>
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            </nav>
+            <div className="file-box">
+              <div className="file-box-body">
+                <SecurityCompliance subsection={activeSection ?? undefined} />
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'delivery' ? (
+          <>
+            <nav className="breadcrumb">
+              <span className="breadcrumb-file">Delivery &amp; Governance</span>
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            </nav>
+            <div className="file-box">
+              <div className="file-box-body">
+                <DeliveryGovernance subsection={activeSection ?? undefined} />
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'pricing' ? (
+          <>
+            <nav className="breadcrumb">
+              <span className="breadcrumb-file">Pricing &amp; Commercials</span>
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            </nav>
+            <div className="file-box">
+              <div className="file-box-body">
+                <PricingCommercials subsection={activeSection ?? undefined} />
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'proof' ? (
+          <>
+            <nav className="breadcrumb">
+              <span className="breadcrumb-file">Proof &amp; Credibility</span>
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            </nav>
+            <div className="file-box">
+              <div className="file-box-body">
+                <ProofCredibility subsection={activeSection ?? undefined} />
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'executive-overview' ? (
+          <>
+            <nav className="breadcrumb">
+              <span className="breadcrumb-file">Executive Overview</span>
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            </nav>
+            <div className="file-box">
+              <div className="file-box-body">
+                <ExecutiveOverview subsection={activeSection ?? undefined} />
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'requirements-coverage' ? (
+          <>
+            <nav className="breadcrumb">
+              <span className="breadcrumb-file">Requirements Coverage</span>
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            </nav>
+            <div className="file-box">
+              <div className="file-box-body">
+                <RequirementsCoverage subsection={activeSection ?? undefined} />
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'solution-architecture' ? (
+          <>
+            <nav className="breadcrumb">
+              <span className="breadcrumb-file">Solution Architecture</span>
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            </nav>
+            <div className="file-box">
+              <div className="file-box-body">
+                <SolutionArchitecture subsection={activeSection ?? undefined} />
+              </div>
+            </div>
+          </>
          ) : activeTab === 'qa' && !selectedFile ? (
           <EmptyState />
         ) : activeTab === 'qa' && selectedFile ? (
@@ -358,6 +436,7 @@ export default function App() {
                   key={domainFilter}
                   initialFile={null}
                   onSelectSource={openFRSource}
+                  onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }}
                   selectedItemId={selectedListItemId}
                   initialScrollTop={flScrollTopRef.current}
                   onScrollTopChange={(top) => { flScrollTopRef.current = top }}
@@ -405,8 +484,8 @@ export default function App() {
           </>
         )}
       </main>
-      <div className={`right-panel-resize-handle${draggingRightPanel ? ' dragging' : ''}`} onMouseDown={handleRightPanelResizeMouseDown} />
-      <RightPanel
+      {activeTab === 'requirements' && <div className={`right-panel-resize-handle${draggingRightPanel ? ' dragging' : ''}`} onMouseDown={handleRightPanelResizeMouseDown} />}
+      {activeTab === 'requirements' && <RightPanel
         item={rightPanelItem}
         width={rightPanelWidth}
         hasPrev={rightPanelItem ? flItems.findIndex((f) => f.id === rightPanelItem.id) > 0 : false}
@@ -436,7 +515,7 @@ export default function App() {
         requirementEdits={requirementEdits}
         onRequirementEdit={(id, text) => setRequirementEdits((prev) => ({ ...prev, [id]: text }))}
         onRequirementCancel={(id) => setRequirementEdits((prev) => { const next = { ...prev }; delete next[id]; return next })}
-      />
+      />}
     </div>
     </div>
   )

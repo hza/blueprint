@@ -4,6 +4,18 @@ import { fetchFL } from '../api'
 import type { FRItem } from '../types'
 import './FLTable.css'
 
+function domainColor(title: string): { background: string; color: string } {
+  let hash = 0
+  for (let i = 0; i < title.length; i++) {
+    hash = (hash * 31 + title.charCodeAt(i)) >>> 0
+  }
+  const hue = hash % 360
+  return {
+    background: `hsl(${hue}, 60%, 88%)`,
+    color: `hsl(${hue}, 60%, 28%)`,
+  }
+}
+
 type SortKey = keyof FRItem
 type SortDir = 'asc' | 'desc'
 
@@ -268,6 +280,7 @@ export function FLTable({
                   <button
                     className="fl-cat-badge"
                     type="button"
+                    style={domainColor(item.domain)}
                     onClick={(e) => { e.stopPropagation(); setDomainFilter(item.domain) }}
                     title={`Filter by ${item.domain}`}
                   >

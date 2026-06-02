@@ -18,7 +18,7 @@ export function RFPHealth() {
             <span className="overview-stat-value overview-stat-score--warn">62 / 100</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Win Probability</span>
+            <span className="overview-stat-label">Award Probability</span>
             <span className="overview-stat-value overview-stat-score--warn">34%</span>
           </div>
           <div className="overview-stat">
@@ -47,7 +47,7 @@ export function RFPHealth() {
         <div className="health-card team-progress-card">
           <div className="health-card-header">
             <span className="health-card-icon">◎</span>
-            Proposal Progress
+            Evaluation Progress
           </div>
           <div className="team-progress-body">
             <div className="team-progress-steps">
@@ -99,12 +99,12 @@ export function RFPHealth() {
               <div className="team-progress-step team-progress-step--pending">
                 <span className="team-progress-step-dot" />
                 <span className="team-progress-step-date">Mar 15, 2025</span>
-                <span>Proposal reviewed</span>
+                <span>Vendor proposal reviewed</span>
               </div>
               <div className="team-progress-step team-progress-step--pending">
                 <span className="team-progress-step-dot" />
                 <span className="team-progress-step-date">Mar 15, 2025</span>
-                <span>Proposal finalised</span>
+                <span>Evaluation complete</span>
               </div>
             </div>
             <div className="team-progress-bar-row">
@@ -114,7 +114,7 @@ export function RFPHealth() {
               <span className="team-progress-pct">87%</span>
             </div>
             <button className="team-progress-download" disabled>
-              ↓ Download Proposal as PDF
+              ↓ Download Vendor Proposal as PDF
             </button>
           </div>
         </div>
@@ -439,7 +439,7 @@ export function RFPHealth() {
             <li className="health-action health-action--high">
               <span className="health-action-tag">HIGH</span>
               <div>
-                <strong>Engage VP Operations before oral presentation</strong> — Executive-to-executive outreach required. If C. Harrington doesn't know our name, we lose in the final round.
+                <strong>Engage VP Operations before oral presentation</strong> — Executive-to-executive outreach required. If C. Harrington is not familiar with the vendor's capabilities, the bid will struggle in the final round.
               </div>
             </li>
             <li className="health-action health-action--med">

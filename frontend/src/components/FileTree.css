@@ -1,14 +1,15 @@
 .file-tree {
   overflow-y: auto;
   flex: 1;
-  padding: 8px 0;
+  padding: 0;
 }
 
 .tree-row {
   display: flex;
   align-items: center;
   gap: 2px;
-  min-height: 32px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-right: 8px;
   cursor: pointer;
   color: var(--fg-mid);
@@ -22,7 +23,7 @@
 .tree-row.active .file-icon { color: var(--accent); }
 
 .tree-folder-row {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   margin-bottom: 2px;
   color: var(--fg-dark);

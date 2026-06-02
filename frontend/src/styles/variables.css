@@ -231,6 +231,43 @@
   --topbar-avatar-bg:          #5F6368;
 }
 
+/* ── Fantasy ─────────────────────────────────────────────────────────────── */
+[data-theme="prophub"] {
+  --fg:             #F5F5F5;
+  --fg-muted:       #A0A0A0;
+  --fg-subtle:      #6B6B6B;
+  --fg-dark:        #FFFFFF;
+  --fg-mid:         #C8C8C8;
+  --canvas:         #1B1B1B;
+  --canvas-subtle:  #111111;
+  --canvas-inset:   #0D0D0D;
+  --canvas-active:  #2A1A00;
+  --border:         #2E2E2E;
+  --accent:         #FF9000;
+  --accent-hover:   #FFB040;
+  --error:          #FF4444;
+  --neutral-muted:  rgba(255,255,255,0.04);
+  --shadow-sm:      0 1px 3px rgba(0,0,0,0.5);
+  --shadow-md:      0 4px 12px rgba(0,0,0,0.7);
+  --highlight-bg:   #2A1A00;
+  --highlight-num:  #7C4400;
+  --tab-active:     #FF9000;
+  --scrollbar-thumb:       rgba(255,144,0,.25);
+  --scrollbar-thumb-hover: rgba(255,144,0,.45);
+  /* topbar */
+  --topbar-bg:                 #000000;
+  --topbar-fg:                 #F5F5F5;
+  --topbar-fg-muted:           rgba(245,245,245,0.50);
+  --topbar-hover:              rgba(255,144,0,0.10);
+  --topbar-active-ind:         #FF9000;
+  --topbar-border:             rgba(255,144,0,0.15);
+  --topbar-input-bg:           rgba(255,255,255,0.05);
+  --topbar-input-border:       rgba(255,144,0,0.20);
+  --topbar-input-bg-focus:     rgba(255,255,255,0.08);
+  --topbar-input-border-focus: rgba(255,144,0,0.50);
+  --topbar-avatar-bg:          #7C4400;
+}
+
 /* ── Base ────────────────────────────────────────────────────────────────── */
 html, body, #root { height: 100%; overflow: hidden; }
 body {

@@ -164,7 +164,7 @@ export function TopBar({ userName = 'Hans Zimmer', activeTab, onTabChange }: Top
                 <span className="topbar-avatar topbar-avatar-lg">{initials}</span>
                 <div>
                   <div className="topbar-user-name">{userName}</div>
-                  <div className="topbar-user-role">Customer</div>
+                  <div className="topbar-user-role">Buyer</div>
                 </div>
               </div>
               <div className="topbar-menu-sep" />

@@ -42,5 +42,6 @@
   flex-direction: column;
   overflow: hidden;
   min-width: 0;
+  font-size: 15px;
 }
 

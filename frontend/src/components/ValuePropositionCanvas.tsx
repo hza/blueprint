@@ -168,7 +168,7 @@ export function ValuePropositionCanvas() {
       {/* Customer Jobs — right sector (330°→90°, through 0°/right) */}
       {fo(808, 158, 128, 140,
         <>
-          <SectionTitle color="#0969da">Customer Jobs</SectionTitle>
+          <SectionTitle color="#0969da">Buyer Jobs</SectionTitle>
           <ul style={{ padding: 0, margin: 0 }}>
             <Li>Manage case data securely</Li>
             <Li>Report to legislature</Li>
