@@ -59,6 +59,7 @@
 /* ── Collapsed state ─────────────────────────────────────────────────────── */
 .sidebar-collapsed {
   width: 52px !important;
+  overflow: visible;
 }
 .sidebar-collapsed .sidebar-brand-title,
 .sidebar-collapsed .sidebar-client-text,
@@ -106,9 +107,9 @@
   width: 52px;
 }
 .sidebar-collapsed .sidebar-user-popup {
-  left: calc(100% + 4px);
+  left: 26px;
   right: auto;
-  bottom: 0;
+  bottom: 23px;
   width: 220px;
 }
 
