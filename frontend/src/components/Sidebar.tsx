@@ -115,6 +115,8 @@ interface SidebarProps {
   userName?: string
   clientName?: string
   projectName?: string
+  collapsed?: boolean
+  onCollapse?: (collapsed: boolean) => void
 }
 
 export function Sidebar({
@@ -129,6 +131,8 @@ export function Sidebar({
   userName = 'Hans Zimmer',
   clientName = 'Meridian Public Services',
   projectName = 'ERP Modernisation',
+  collapsed = false,
+  onCollapse,
 }: SidebarProps) {
   const [theme, setThemeState] = useState<Theme>(
     () => (localStorage.getItem('app-theme') as Theme | null) ?? 'day'
@@ -175,7 +179,7 @@ export function Sidebar({
     .toUpperCase()
 
   return (
-    <aside className="sidebar" style={width !== undefined ? { width } : undefined}>
+    <aside className={`sidebar${collapsed ? ' sidebar-collapsed' : ''}`} style={width !== undefined ? { width } : undefined}>
       {/* Brand */}
       <div className="sidebar-brand">
         <svg className="sidebar-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -184,6 +188,22 @@ export function Sidebar({
           <path d="M10 26 C11.5 23 13.5 19 16 17 C18.5 19 20.5 23 22 26" stroke="var(--topbar-fg)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
         </svg>
         <span className="sidebar-brand-title">The Blueprint</span>
+        <button
+          className="sidebar-collapse-btn"
+          onClick={() => onCollapse?.(!collapsed)}
+          title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1.5" y="1.5" width="17" height="17" rx="3.5" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M5 1.5C3.067 1.5 1.5 3.067 1.5 5v10c0 1.933 1.567 3.5 3.5 3.5H7.5V1.5H5z" fill="currentColor" fillOpacity="0.18" />
+            <line x1="7.5" y1="1.5" x2="7.5" y2="18.5" stroke="currentColor" strokeWidth="1.5" />
+            {collapsed
+              ? <path d="M10.5 8l3 2-3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              : <path d="M13.5 8l-3 2 3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            }
+          </svg>
+        </button>
       </div>
 
       {/* Client / Project */}

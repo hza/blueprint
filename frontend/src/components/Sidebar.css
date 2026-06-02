@@ -25,12 +25,67 @@
 }
 
 .sidebar-brand-title {
+  flex: 1;
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--topbar-fg);
   white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar-collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--topbar-fg);
+  opacity: 0.5;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: opacity 0.15s, background 0.15s;
+}
+.sidebar-collapse-btn:hover { opacity: 1; background: var(--topbar-hover); }
+.sidebar-collapse-btn svg { width: 18px; height: 18px; }
+
+/* ── Collapsed state ─────────────────────────────────────────────────────── */
+.sidebar-collapsed {
+  width: 52px !important;
+}
+.sidebar-collapsed .sidebar-brand-title,
+.sidebar-collapsed .sidebar-client-text,
+.sidebar-collapsed .sidebar-client-icon,
+.sidebar-collapsed .sidebar-nav,
+.sidebar-collapsed .sidebar-docs,
+.sidebar-collapsed .sidebar-user-name,
+.sidebar-collapsed .sidebar-user-chevron {
+  display: none;
+}
+.sidebar-collapsed .sidebar-brand {
+  justify-content: center;
+  padding: 14px 0 12px;
+}
+.sidebar-collapsed .sidebar-logo {
+  display: none;
+}
+.sidebar-collapsed .sidebar-client {
+  justify-content: center;
+  padding: 8px 0;
+}
+.sidebar-collapsed .sidebar-footer {
+  display: flex;
+  justify-content: center;
+}
+.sidebar-collapsed .sidebar-user-btn {
+  justify-content: center;
+  padding: 10px 0;
+  width: auto;
 }
 
 /* ── Client / Project ────────────────────────────────────────────────────── */
