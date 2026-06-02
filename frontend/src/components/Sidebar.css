@@ -525,3 +525,15 @@
   font-family: var(--font-ui);
 }
 .sidebar-theme-swatch.active .sidebar-theme-swatch-name { color: var(--fg); font-weight: 600; }
+
+[data-theme="confluence"] .sidebar-brand {
+  background: #0052CC;
+  border-bottom-color: #0747A6;
+  --topbar-fg:    #FFFFFF;
+  --topbar-hover: rgba(255,255,255,0.15);
+}
+
+[data-theme="confluence"] .sidebar-brand-title,
+[data-theme="confluence"] .sidebar-collapse-btn {
+  color: #FFFFFF;
+}

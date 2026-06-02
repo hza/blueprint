@@ -16,16 +16,16 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <span className="overview-stat-value">SCNSoft</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Evaluation Score</span>
-            <span className="overview-stat-value overview-stat-score--warn">80 / 100</span>
+            <span className="overview-stat-label">Project Time</span>
+            <span className="overview-stat-value overview-stat-score--warn">18 months</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Est. Value</span>
             <span className="overview-stat-value">$2.68M</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Evaluation Criterion</span>
-            <span className="overview-stat-value">60% Tech / 40% Price</span>
+            <span className="overview-stat-label">Warranty Time</span>
+            <span className="overview-stat-value">12 months</span>
           </div>
         </div>
       </div>
