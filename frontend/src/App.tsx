@@ -43,6 +43,7 @@ export default function App() {
   const [selectedListItemId, setSelectedListItemId] = useState<string | null>(null)
   const [fileView, setFileView] = useState<FileView>('source')
   const [sidebarWidth, setSidebarWidth] = useState(SIDEBAR_DEFAULT)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [draggingSidebar, setDraggingSidebar] = useState(false)
   const [rightPanelWidth, setRightPanelWidth] = useState(RIGHT_PANEL_DEFAULT)
   const [draggingRightPanel, setDraggingRightPanel] = useState(false)
@@ -213,14 +214,18 @@ export default function App() {
         error={error}
         onSelectFile={(filename) => openFile(filename)}
         onSelectRoot={showListView}
-        width={sidebarWidth}
+        width={sidebarCollapsed ? undefined : sidebarWidth}
         activeSection={activeSection}
         onSectionChange={(id, path) => {
           setActiveSection(id)
           navigate(path)
         }}
+        collapsed={sidebarCollapsed}
+        onCollapse={setSidebarCollapsed}
       />
-      <div className={`sidebar-resize-handle${draggingSidebar ? ' dragging' : ''}`} onMouseDown={handleSidebarResizeMouseDown} />
+      {!sidebarCollapsed && (
+        <div className={`sidebar-resize-handle${draggingSidebar ? ' dragging' : ''}`} onMouseDown={handleSidebarResizeMouseDown} />
+      )}
 
       <main className="main-content">
         {activeTab === 'overview' ? (

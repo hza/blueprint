@@ -5,6 +5,7 @@
   flex-direction: column;
   overflow: hidden;
   background: var(--canvas-subtle);
+  transition: width 0.2s ease;
 }
 
 /* ── Brand ───────────────────────────────────────────────────────────────── */
@@ -85,7 +86,13 @@
 .sidebar-collapsed .sidebar-user-btn {
   justify-content: center;
   padding: 10px 0;
-  width: auto;
+  width: 52px;
+}
+.sidebar-collapsed .sidebar-user-popup {
+  left: calc(100% + 4px);
+  right: auto;
+  bottom: 0;
+  width: 220px;
 }
 
 /* ── Client / Project ────────────────────────────────────────────────────── */
