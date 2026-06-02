@@ -23,12 +23,14 @@
 .tree-row.active .file-icon { color: var(--accent); }
 
 .tree-folder-row {
-  font-size: 14px;
+  font-family: var(--font-ui);
+  font-size: 13px;
   font-weight: 600;
   margin-bottom: 2px;
   color: var(--fg-dark);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
 }
 .tree-file-row {
   background: none;

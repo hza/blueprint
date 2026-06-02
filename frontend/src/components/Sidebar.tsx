@@ -263,7 +263,7 @@ export function Sidebar({
             <path d="M3 2h7l3 3v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" strokeLinejoin="round" />
             <path d="M10 2v3h3" strokeLinejoin="round" />
           </svg>
-          <span>RFP Documents</span>
+          <span className="sidebar-section-title">RFP Documents</span>
         </button>
         {docsOpen && (
           <div className="sidebar-docs-tree">
