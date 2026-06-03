@@ -21,7 +21,7 @@
   padding: 5px 10px;
   border: 1px solid var(--border, #d0d7de);
   border-radius: 6px;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   background: var(--canvas, #ffffff);
   color: var(--fg, #1f2328);
   outline: none;
@@ -36,7 +36,7 @@
   padding: 5px 32px 5px 8px;
   border: 1px solid var(--border, #d0d7de);
   border-radius: 6px;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   background: var(--canvas, #ffffff);
   color: var(--fg, #1f2328);
   outline: none;
@@ -82,7 +82,7 @@
 .fl-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   table-layout: fixed;
 }
 
@@ -237,7 +237,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   text-align: left;
   color: var(--fg, #1f2328);
 }

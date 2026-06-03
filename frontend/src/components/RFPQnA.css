@@ -111,7 +111,7 @@
   display: flex;
   gap: 10px;
   padding: 12px 14px 4px;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   color: var(--fg);
 }
 .qa-q-label {
@@ -142,7 +142,7 @@
   padding: 10px 14px 12px;
   background: var(--sem-ok-bg-pale);
   border-top: 1px solid var(--border);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   color: var(--fg);
 }
 .qa-a-label {

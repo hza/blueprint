@@ -9,4 +9,4 @@
 }
 .empty-state-icon { opacity: .35; }
 .empty-state-title { font-size: 18px; color: var(--fg); font-weight: 400; }
-.empty-state-desc  { font-size: 13px; }
+.empty-state-desc  { font-size: var(--font-size-sm); }

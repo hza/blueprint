@@ -24,7 +24,7 @@
 
 .tree-folder-row {
   font-family: var(--font-ui);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   margin-bottom: 2px;
   color: var(--fg-dark);

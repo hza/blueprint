@@ -39,7 +39,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">◎</span>
             Executive Statement
           </div>
-          <div style={{ lineHeight: '1.7', fontSize: '0.82rem', color: 'var(--fg)', padding: '14px' }}>
+          <div style={{ lineHeight: '1.7', fontSize: '14px', color: 'var(--fg)', padding: '14px' }}>
             <p style={{ marginBottom: '0.85rem' }}>
               Meridian's four ageing back-office platforms — spanning finance, HR, procurement, and asset management — will be replaced by a single unified, <strong>cloud-native ERP, live by April 2026</strong>. You gain real-time operational visibility, automated reporting, and complete elimination of manual inter-system reconciliation from day one of go-live.
             </p>

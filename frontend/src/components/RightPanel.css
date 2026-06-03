@@ -18,7 +18,7 @@
 }
 
 .right-panel-id {
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   color: var(--fg);
   font-family: var(--font-mono);
@@ -98,14 +98,14 @@
 }
 
 .right-panel-text {
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   color: var(--fg);
   line-height: 1.55;
   margin: 0;
 }
 
 .right-panel-requirement-edit {
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   color: var(--fg);
   line-height: 1.55;
   font-family: inherit;

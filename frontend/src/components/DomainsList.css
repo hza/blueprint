@@ -64,5 +64,5 @@
   justify-content: center;
   gap: 8px;
   color: var(--fg-muted);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
 }

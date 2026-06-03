@@ -9,7 +9,7 @@
 }
 
 .biz-section-title {
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .06em;

@@ -28,7 +28,7 @@
 
 .sidebar-brand-title {
   flex: 1;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -140,7 +140,7 @@
 }
 
 .sidebar-client-name {
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--fg);
   white-space: nowrap;
@@ -203,7 +203,7 @@
 
 .sidebar-section-title {
   flex: 1;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--fg-dark);
   line-height: 1.4;
@@ -309,7 +309,7 @@
   background: none;
   color: var(--fg-dark);
   font-family: var(--font-ui);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -380,12 +380,12 @@
 .sidebar-avatar-lg {
   width: 36px !important;
   height: 36px !important;
-  font-size: 13px !important;
+  font-size: var(--font-size-sm) !important;
 }
 
 .sidebar-user-name {
   flex: 1;
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   font-weight: 500;
   color: var(--fg);
   text-align: left;
@@ -453,7 +453,7 @@
   background: none;
   color: var(--fg);
   font-family: var(--font-ui);
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   text-align: left;
   cursor: pointer;
   transition: background 0.1s;
