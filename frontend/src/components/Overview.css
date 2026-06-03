@@ -89,12 +89,12 @@
   border-bottom: 1px solid var(--border);
 }
 
-.health-grid {
+.overview-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
 }
-.health-grid--team {
+.overview-grid--team {
   grid-template-columns: 1fr;
 }
 
@@ -197,7 +197,7 @@
   border-color: var(--accent-hover);
 }
 
-.health-card {
+.overview-card {
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
@@ -205,7 +205,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-.health-card-header {
+.overview-card-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -218,12 +218,12 @@
   text-transform: uppercase;
   letter-spacing: .05em;
 }
-.health-card-icon {
+.overview-card-icon {
   font-size: 11px;
   opacity: .7;
 }
 
-.health-badge {
+.overview-badge {
   margin-left: auto;
   padding: 2px 8px;
   border-radius: 3px;
@@ -234,28 +234,28 @@
   background: var(--neutral-muted);
   color: var(--fg-muted);
 }
-.health-badge--danger, .qa-badge--overdue  { background: var(--sem-danger-bg); color: var(--sem-danger-fg); }
-.health-badge--warn,   .qa-badge--pending  { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
-.health-badge--ok,     .qa-badge--answered { background: var(--sem-ok-bg);     color: var(--sem-ok-fg); }
-.health-badge--internal                    { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
+.overview-badge--danger, .qa-badge--overdue  { background: var(--sem-danger-bg); color: var(--sem-danger-fg); }
+.overview-badge--warn,   .qa-badge--pending  { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
+.overview-badge--ok,     .qa-badge--answered { background: var(--sem-ok-bg);     color: var(--sem-ok-fg); }
+.overview-badge--internal                    { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
 
-.health-card--internal {
+.overview-card--internal {
   border: 1.5px dashed var(--sem-warn-fg);
   background: var(--sem-warn-bg);
   opacity: 0.92;
 }
-.health-card--internal .health-card-header {
+.overview-card--internal .overview-card-header {
   background: var(--sem-warn-bg);
   border-bottom-color: var(--sem-warn-fg);
   color: var(--sem-warn-fg);
 }
 
-.health-table {
+.overview-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
 }
-.health-table th {
+.overview-table th {
   padding: 8px 14px;
   background: var(--canvas-subtle);
   font-weight: 600;
@@ -266,34 +266,34 @@
   text-align: left;
   border-bottom: 1px solid var(--border);
 }
-.health-table td {
+.overview-table td {
   padding: 8px 14px;
   border-bottom: 1px solid var(--border);
   vertical-align: top;
 }
-.health-table tr:last-child td { border-bottom: none; }
-.health-table th:first-child,
-.health-table td:first-child {
+.overview-table tr:last-child td { border-bottom: none; }
+.overview-table th:first-child,
+.overview-table td:first-child {
   white-space: nowrap;
   width: 1%;
 }
-.health-table-label {
+.overview-table-label {
   color: var(--fg-muted);
   font-size: 13px;
   width: 42%;
   white-space: nowrap;
 }
-.health-table-value { color: var(--fg); }
-.health-val--strong { font-weight: 600; }
-.health-val--danger { color: var(--sem-danger-fg); font-weight: 500; }
-.health-val--warn   { color: var(--sem-warn-fg);   font-weight: 500; }
-.health-val--ok     { color: var(--sem-ok-fg);     font-weight: 500; }
+.overview-table-value { color: var(--fg); }
+.overview-val--strong { font-weight: 600; }
+.overview-val--danger { color: var(--sem-danger-fg); font-weight: 500; }
+.overview-val--warn   { color: var(--sem-warn-fg);   font-weight: 500; }
+.overview-val--ok     { color: var(--sem-ok-fg);     font-weight: 500; }
 
-.health-checklist {
+.overview-checklist {
   list-style: none;
   padding: 8px 0;
 }
-.health-check {
+.overview-check {
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -301,8 +301,8 @@
   font-size: 13px;
   border-bottom: 1px solid var(--border);
 }
-.health-check:last-child { border-bottom: none; }
-.health-check-icon {
+.overview-check:last-child { border-bottom: none; }
+.overview-check-icon {
   flex-shrink: 0;
   width: 16px;
   height: 16px;
@@ -310,19 +310,19 @@
   margin-top: 1px;
   background: var(--border);
 }
-.health-check--ok   .health-check-icon { background: var(--sem-a-dot-bg); }
-.health-check--ok   { color: var(--fg-muted); }
-.health-check--warn .health-check-icon { background: #FF991F; }
-.health-check--warn { color: var(--sem-warn-fg); }
-.health-check--fail .health-check-icon { background: var(--sem-danger-fg); }
-.health-check--fail { color: var(--sem-danger-fg); }
-.health-check--fail strong { color: var(--sem-danger-fg); }
+.overview-check--ok   .overview-check-icon { background: var(--sem-a-dot-bg); }
+.overview-check--ok   { color: var(--fg-muted); }
+.overview-check--warn .overview-check-icon { background: #FF991F; }
+.overview-check--warn { color: var(--sem-warn-fg); }
+.overview-check--fail .overview-check-icon { background: var(--sem-danger-fg); }
+.overview-check--fail { color: var(--sem-danger-fg); }
+.overview-check--fail strong { color: var(--sem-danger-fg); }
 
-.health-risk-list {
+.overview-risk-list {
   list-style: none;
   padding: 8px 0;
 }
-.health-risk {
+.overview-risk {
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -331,8 +331,8 @@
   border-bottom: 1px solid var(--border);
   color: var(--fg);
 }
-.health-risk:last-child { border-bottom: none; }
-.health-risk-level {
+.overview-risk:last-child { border-bottom: none; }
+.overview-risk-level {
   flex-shrink: 0;
   font-size: 10px;
   font-weight: 700;
@@ -340,11 +340,11 @@
   border-radius: 4px;
   margin-top: 1px;
 }
-.health-risk--high .health-risk-level { background: var(--sem-danger-bg); color: var(--sem-danger-fg); }
-.health-risk--med  .health-risk-level { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
-.health-risk--low  .health-risk-level { background: var(--sem-ok-bg);     color: var(--sem-ok-fg); }
+.overview-risk--high .overview-risk-level { background: var(--sem-danger-bg); color: var(--sem-danger-fg); }
+.overview-risk--med  .overview-risk-level { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
+.overview-risk--low  .overview-risk-level { background: var(--sem-ok-bg);     color: var(--sem-ok-fg); }
 
-.health-timeline {
+.overview-timeline {
   list-style: none;
   padding: 12px 14px;
   display: flex;
@@ -352,7 +352,7 @@
   gap: 0;
   position: relative;
 }
-.health-timeline::before {
+.overview-timeline::before {
   content: '';
   position: absolute;
   left: 21px;
@@ -361,7 +361,7 @@
   width: 2px;
   background: var(--border);
 }
-.health-tl-item {
+.overview-tl-item {
   display: flex;
   gap: 12px;
   align-items: flex-start;
@@ -369,7 +369,7 @@
   font-size: 13px;
   position: relative;
 }
-.health-tl-dot {
+.overview-tl-dot {
   flex-shrink: 0;
   width: 10px;
   height: 10px;
@@ -379,31 +379,31 @@
   border: 2px solid var(--canvas);
   z-index: 1;
 }
-.health-tl--done    .health-tl-dot { background: var(--accent); border-color: var(--canvas); }
-.health-tl--overdue .health-tl-dot { background: var(--sem-danger-fg); }
-.health-tl--future  .health-tl-dot { background: var(--border); }
-.health-tl-item > div {
+.overview-tl--done    .overview-tl-dot { background: var(--accent); border-color: var(--canvas); }
+.overview-tl--overdue .overview-tl-dot { background: var(--sem-danger-fg); }
+.overview-tl--future  .overview-tl-dot { background: var(--border); }
+.overview-tl-item > div {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
-.health-tl-date {
+.overview-tl-date {
   font-weight: 600;
   font-size: 12px;
   color: var(--fg-muted);
   white-space: nowrap;
   min-width: 90px;
 }
-.health-tl-event { color: var(--fg); }
-.health-tl--overdue .health-tl-event { color: var(--sem-danger-fg); }
-.health-tl--future  .health-tl-date  { color: var(--fg-subtle); }
-.health-tl--future  .health-tl-event { color: var(--fg-muted); }
+.overview-tl-event { color: var(--fg); }
+.overview-tl--overdue .overview-tl-event { color: var(--sem-danger-fg); }
+.overview-tl--future  .overview-tl-date  { color: var(--fg-subtle); }
+.overview-tl--future  .overview-tl-event { color: var(--fg-muted); }
 
-.health-actions {
+.overview-actions {
   list-style: none;
   padding: 8px 0;
 }
-.health-action {
+.overview-action {
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -412,8 +412,8 @@
   border-bottom: 1px solid var(--border);
   color: var(--fg);
 }
-.health-action:last-child { border-bottom: none; }
-.health-action-tag {
+.overview-action:last-child { border-bottom: none; }
+.overview-action-tag {
   flex-shrink: 0;
   font-size: 10px;
   font-weight: 700;
@@ -421,6 +421,6 @@
   border-radius: 4px;
   margin-top: 1px;
 }
-.health-action--urgent .health-action-tag { background: var(--sem-danger-bg); color: var(--sem-danger-fg); }
-.health-action--high   .health-action-tag { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
-.health-action--med    .health-action-tag { background: var(--sem-ok-bg);     color: var(--sem-ok-fg); }
+.overview-action--urgent .overview-action-tag { background: var(--sem-danger-bg); color: var(--sem-danger-fg); }
+.overview-action--high   .overview-action-tag { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
+.overview-action--med    .overview-action-tag { background: var(--sem-ok-bg);     color: var(--sem-ok-fg); }
