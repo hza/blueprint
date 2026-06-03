@@ -1,6 +1,6 @@
 export function TechnicalSolution() {
   return (
-    <div className="rfp-health">
+    <div className="overview">
       {/* Architecture Banner */}
       <div className="overview-banner">
         <div className="overview-banner-header">

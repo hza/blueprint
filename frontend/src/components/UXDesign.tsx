@@ -1,6 +1,6 @@
 export function UXDesign() {
   return (
-    <div className="rfp-health">
+    <div className="overview">
       {/* Banner */}
       <div className="overview-banner">
         <div className="overview-banner-header">

@@ -1,5 +1,5 @@
-/* ── RFP Health Dashboard ───────────────────────────────────────────────── */
-.rfp-health {
+/* ── Overview Dashboard ─────────────────────────────────────────────────── */
+.overview {
   padding: 16px 20px;
   overflow-y: auto;
   flex: 1;
@@ -79,7 +79,7 @@
   font-weight: 700;
 }
 
-.rfp-section-heading {
+.overview-section-heading {
   font-size: 13px;
   font-weight: 600;
   color: var(--fg-muted);

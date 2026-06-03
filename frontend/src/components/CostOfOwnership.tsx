@@ -1,6 +1,6 @@
 export function CostOfOwnership() {
   return (
-    <div className="rfp-health">
+    <div className="overview">
       {/* Summary Banner */}
       <div className="overview-banner">
         <div className="overview-banner-header">

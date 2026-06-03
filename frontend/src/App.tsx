@@ -12,7 +12,7 @@ import { CostOfOwnership } from './components/CostOfOwnership'
 import { Timeline } from './components/Timeline'
 import { Team } from './components/Team'
 import { UXDesign } from './components/UXDesign'
-import { RFPHealth } from './components/RFPHealth'
+import { Overview } from './components/Overview'
 import { SecurityCompliance } from './components/SecurityCompliance'
 import { DeliveryGovernance } from './components/DeliveryGovernance'
 import { PricingCommercials } from './components/PricingCommercials'
@@ -236,7 +236,7 @@ export default function App() {
             </nav>
             <div className="file-box">
               <div className="file-box-body">
-                <RFPHealth />
+                <Overview />
               </div>
             </div>
           </>

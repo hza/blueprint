@@ -1,8 +1,8 @@
-import './RFPHealth.css'
+import './Overview.css'
 
-export function RFPHealth() {
+export function Overview() {
   return (
-    <div className="rfp-health">
+    <div className="overview">
       {/* Overview Banner */}
       <div className="overview-banner">
         <div className="overview-banner-header">
@@ -41,7 +41,7 @@ export function RFPHealth() {
       </div>
 
       {/* RFP Team */}
-      <div className="rfp-section-heading">RFP Team</div>
+      <div className="overview-section-heading">RFP Team</div>
       <div className="health-grid health-grid--team">
         {/* Progress block */}
         <div className="health-card team-progress-card">
@@ -171,7 +171,7 @@ export function RFPHealth() {
       </div>
 
       {/* RFP Health subsection */}
-      <div className="rfp-section-heading">RFP Health</div>
+      <div className="overview-section-heading">RFP Health</div>
 
       <div className="health-grid">
         {/* Budget Signals */}
