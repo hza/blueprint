@@ -123,7 +123,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
         <div className="health-card">
           <div className="health-card-header">
             <span className="health-card-icon">👥</span>
-            Core Delivery Team
+            Your Delivery Team
           </div>
           <table className="health-table">
             <thead>
@@ -262,7 +262,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="health-table-label">UAT</td>
-                <td>Meridian-led UAT in dedicated UAT environment. SCNSoft provides UAT coordinator, pre-populated test data, and defect SLA (Critical 24h, High 72h).</td>
+                <td>Meridian-led UAT in a dedicated UAT environment. You receive a dedicated UAT coordinator, pre-populated test data, and a committed defect SLA (Critical 24h, High 72h).</td>
               </tr>
               <tr>
                 <td className="health-table-label">Security Testing</td>

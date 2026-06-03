@@ -267,7 +267,7 @@ export default function App() {
         ) : activeTab === 'cost' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">Cost of Ownership</span>
+              <span className="breadcrumb-file">Your Investment &amp; Return</span>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">
@@ -352,7 +352,7 @@ export default function App() {
         ) : activeTab === 'proof' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">Proof &amp; Credibility</span>
+              <span className="breadcrumb-file">References &amp; Track Record</span>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">

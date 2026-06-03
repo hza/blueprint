@@ -277,7 +277,7 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
         <div className="health-card">
           <div className="health-card-header">
             <span className="health-card-icon">→</span>
-            How to Engage with Our References
+            How to Contact These References
           </div>
           <ul className="health-checklist">
             <li className="health-check health-check--ok">

@@ -48,7 +48,7 @@ export function Timeline() {
   return (
     <div className="timeline-wrap">
       <div className="timeline-header-row">
-        <div className="timeline-title">Project Timeline — 14-Week Implementation</div>
+        <div className="timeline-title">Your Implementation Timeline — 14 Weeks to Go-Live</div>
         <div className="timeline-legend">
           {Object.entries(PHASE_LABELS).map(([key, label]) => (
             <span key={key} className="timeline-legend-item">

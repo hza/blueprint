@@ -17,7 +17,7 @@ interface QAItem {
 const QA_DATA: QAItem[] = [
   {
     id: 1,
-    question: 'Section 4.3 requires ISO 27001 certification. We currently hold SOC 2 Type II and are in the process of obtaining ISO 27001. Will SOC 2 Type II be accepted as an equivalent, or is there a waiver process?',
+    question: 'Section 4.3 requires ISO 27001 certification at contract execution. Will SOC 2 Type II be accepted as an equivalent for vendors currently pursuing ISO 27001 certification, or is there a waiver process?',
     section: '4.3 — Security Certifications',
     askedBy: 'Buyer Team',
     askedDate: 'Mar 5, 2025',
@@ -35,7 +35,7 @@ const QA_DATA: QAItem[] = [
   },
   {
     id: 3,
-    question: 'Section 9.4 references "TechCore v4 framework" as a deployment requirement. Please clarify whether this is a mandatory platform constraint or a preferred architecture. Our solution uses a functionally equivalent proprietary framework.',
+    question: 'Section 9.4 references "TechCore v4 framework" as a deployment requirement. Please clarify whether this is a mandatory platform constraint or a preferred architecture. Can vendors provide a feature capability mapping in lieu of TechCore v4 compliance?',
     section: '9.4 — Technical Architecture',
     askedBy: 'Buyer Team',
     askedDate: 'Mar 6, 2025',
@@ -47,7 +47,7 @@ const QA_DATA: QAItem[] = [
   },
   {
     id: 4,
-    question: 'Schedule B pricing template uses fixed annual licensing tiers. Our pricing model is consumption-based. Are we permitted to submit an alternative pricing structure with a cost equivalence analysis, or must we strictly adhere to Schedule B format?',
+    question: 'Schedule B pricing template uses fixed annual licensing tiers. Are vendors with consumption-based pricing models permitted to submit an alternative pricing structure with a cost equivalence analysis, or must all submissions strictly adhere to Schedule B format?',
     section: 'Schedule B — Pricing',
     askedBy: 'Buyer Team',
     askedDate: 'Mar 7, 2025',
@@ -173,7 +173,7 @@ export function RFPQnA() {
             ) : (
               <div className="qa-no-answer">
                 {q.status === 'overdue'
-                  ? 'No response received. Escalate to J. Matthews immediately — this is a disqualifying gap.'
+                  ? 'No response received from procurement. Follow up with the evaluation team directly.'
                   : 'Response pending. Follow up if not received 48 hours before submission.'}
               </div>
             )}

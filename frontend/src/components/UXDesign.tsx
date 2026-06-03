@@ -166,7 +166,7 @@ export function UXDesign() {
               <span className="health-tl-dot" />
               <div>
                 <span className="health-tl-date">Week 3</span>
-                <span className="health-tl-event">Cognitive walkthrough — 5 internal participants completed core task scenarios. SUS score: 78 (Good).</span>
+                <span className="health-tl-event">Cognitive walkthrough — 5 participants completed core task scenarios. SUS score: 78 (Good).</span>
               </div>
             </li>
             <li className="health-tl-item health-tl--future">
@@ -272,7 +272,7 @@ export function UXDesign() {
             <li className="health-action health-action--urgent">
               <span className="health-action-tag">BLOCKING</span>
               <div>
-                <strong>Stakeholder sign-off on approval workflow</strong> — 3 review rounds completed; final approval from client Product Owner pending since 2026-05-20. Escalate to PM.
+                <strong>Stakeholder sign-off on approval workflow</strong> — 3 review rounds completed; final approval from your Product Owner pending since 2026-05-20.
               </div>
             </li>
             <li className="health-action health-action--high">
@@ -284,13 +284,13 @@ export function UXDesign() {
             <li className="health-action health-action--high">
               <span className="health-action-tag">HIGH</span>
               <div>
-                <strong>Mobile (&lt;480 px) layout pass</strong> — Validate field-use screens at phone viewport. Coordinate with backend team on offline sync UX before designing.
+                <strong>Mobile (&lt;480 px) layout pass</strong> — Validate field-use screens at phone viewport. Offline sync UX to be confirmed before dev handoff.
               </div>
             </li>
             <li className="health-action health-action--med">
               <span className="health-action-tag">MED</span>
               <div>
-                Schedule moderated prototype sessions with 8 client users — coordinate with client PM to confirm participant list and dates for Week 5–6 window.
+                Moderated prototype sessions with 8 Meridian users scheduled for Week 5–6. Participant list and dates to be confirmed with your programme team.
               </div>
             </li>
           </ul>

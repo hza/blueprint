@@ -26,7 +26,7 @@ const NAV_TABS: { key: ViewTab; label: string }[] = [
   { key: 'technical', label: 'Technical Solution' },
   { key: 'timeline', label: 'Timeline' },
   { key: 'team', label: 'Team' },
-  { key: 'cost', label: 'Cost of Ownership' },
+  { key: 'cost', label: 'Investment & ROI' },
 ]
 
 export function TopBar({ userName = 'Hans Zimmer', activeTab, onTabChange }: TopBarProps) {

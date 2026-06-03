@@ -273,6 +273,7 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
                 <th>Question</th>
                 <th>Section</th>
                 <th>Urgency</th>
+                <th>Meridian's Answer</th>
               </tr>
             </thead>
             <tbody>
@@ -281,24 +282,28 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
                 <td>Will an interim controls letter from the SCNSoft CISO (with SOC 2 + IRAP evidence) satisfy the ISO 27001 mandatory requirement (REQ-SEC-04) pending certification?</td>
                 <td>4.3</td>
                 <td><span className="health-badge health-badge--danger">Critical</span></td>
+                <td><span className="health-badge health-badge--ok">Confirmed</span> Yes — an interim controls letter is acceptable provided SOC 2 Type II + IRAP evidence is submitted at contract execution. ISO 27001 certification must be in place before Meridian data enters the production environment.</td>
               </tr>
               <tr>
                 <td>OQ-02</td>
                 <td>How many concurrent users should the performance test target? RFP §6.2 cites "500 users" but the user register provided indicates 380 active users.</td>
                 <td>6.2</td>
                 <td><span className="health-badge health-badge--warn">High</span></td>
+                <td><span className="health-badge health-badge--ok">Confirmed</span> Performance tests must target 500 concurrent users — the figure reflects peak projected load at end of contract term, not current headcount.</td>
               </tr>
               <tr>
                 <td>OQ-03</td>
                 <td>Is the TechCore v4 framework connector requirement (REQ-INT-03) driven by an existing system integration, or is it an evaluation differentiator? A custom adapter delivers the same outcome — is this acceptable?</td>
                 <td>5.4</td>
                 <td><span className="health-badge health-badge--warn">High</span></td>
+                <td><span className="health-badge health-badge--ok">Confirmed</span> Driven by the existing HR legacy system integration. A custom adapter is acceptable, subject to sign-off by Meridian's IT Architecture Review Board prior to Phase 3 build.</td>
               </tr>
               <tr>
                 <td>OQ-04</td>
                 <td>Does Meridian have an existing data classification scheme to adopt, or should a four-tier framework be proposed?</td>
                 <td>4.1</td>
                 <td><span className="health-badge">Medium</span></td>
+                <td><span className="health-badge health-badge--ok">Confirmed</span> No existing scheme. Please propose a four-tier framework aligned with the Australian Government Information Security Manual (ISM).</td>
               </tr>
             </tbody>
           </table>
@@ -339,14 +344,14 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td>REQ-AST-09</td>
-                <td>GIS map layer integration requires Esri ArcGIS licence not held by SCNSoft</td>
+                <td>GIS map layer integration requires Esri ArcGIS licence (to be provided by you)</td>
                 <td>Open-source MapLibre used for map visualisation. ArcGIS REST service calls supported. Meridian to provide ArcGIS API key.</td>
                 <td>Phase 3</td>
               </tr>
               <tr>
                 <td>REQ-RPT-08</td>
                 <td>Crystal Reports migration — legacy reports in Crystal format</td>
-                <td>Top 20 legacy reports migrated to Power BI by SCNSoft (Phase 2). Remaining reports: self-service migration toolkit + 2-day training session provided.</td>
+                <td>You receive migration of your top 20 legacy reports to Power BI (Phase 2). Remaining reports: self-service migration toolkit + 2-day training session included.</td>
                 <td>Phase 2 / Phase 4</td>
               </tr>
               <tr>
