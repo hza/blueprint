@@ -72,7 +72,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
                 <td>$220,000</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Licences (MS Azure est.)</td>
+                <td className="overview-table-label">LLM API costs (est.)</td>
                 <td>$48,000</td>
                 <td>$48,000</td>
                 <td>$48,000</td>
@@ -197,13 +197,13 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
               <tr>
                 <td className="overview-table-label">M1 — Contract Signed</td>
                 <td>Execution of contract</td>
-                <td>$268,000</td>
+                <td>$228,000</td>
                 <td>10%</td>
               </tr>
               <tr>
                 <td className="overview-table-label">M2 — Discovery Complete</td>
                 <td>Approved architecture &amp; design docs</td>
-                <td>$268,000</td>
+                <td>$228,000</td>
                 <td>10%</td>
               </tr>
               <tr>

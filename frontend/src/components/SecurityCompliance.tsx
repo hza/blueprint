@@ -176,7 +176,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
               <tr>
                 <td className="overview-table-label">SOC 2 Type II</td>
                 <td><span className="overview-badge overview-badge--ok">Certified</span></td>
-                <td>Audit period: Jan–Dec 2024. Certificate available for download. Next audit: Jan 2026.</td>
+                <td>Audit period: Jan–Dec 2025. Certificate available for download. Next audit: Jan 2027.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">ISO 27001:2022</td>

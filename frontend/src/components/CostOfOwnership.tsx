@@ -215,6 +215,13 @@ export function CostOfOwnership() {
                 <span className="overview-tl-event">15% milestone — $342,000</span>
               </div>
             </li>
+            <li className="overview-tl-item overview-tl--future">
+              <span className="overview-tl-dot" />
+              <div>
+                <span className="overview-tl-date">Programme Close — Hypercare &amp; Handover</span>
+                <span className="overview-tl-event">30% final payment — $684,000</span>
+              </div>
+            </li>
           </ul>
         </div>
 

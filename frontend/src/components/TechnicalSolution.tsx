@@ -28,8 +28,8 @@ export function TechnicalSolution() {
             <span className="overview-stat-value">EU or US (at award)</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Open Gaps</span>
-            <span className="overview-stat-value overview-val--warn">3</span>
+            <span className="overview-stat-label">Open Actions</span>
+            <span className="overview-stat-value overview-val--warn">5</span>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ export function TechnicalSolution() {
               </tr>
               <tr>
                 <td className="overview-table-label">Frontend</td>
-                <td className="overview-table-value">React 18 · TypeScript · Vite</td>
+                <td className="overview-table-value">React 18+ or Next.js 14+ · TypeScript · strict mode</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Backend API</td>
@@ -131,13 +131,13 @@ export function TechnicalSolution() {
             <li className="overview-risk overview-risk--med">
               <span className="overview-risk-level">RISK</span>
               <div>
-                <strong>Third-party dependency audit incomplete</strong> — 12 open-source libraries flagged by Snyk with medium CVEs. Must be resolved before pen-test sign-off.
+                <strong>Dependency scanning active in CI</strong> — Hard block on critical CVEs in every pipeline run (RFP §4.4). Medium CVEs reviewed per release; none block deployment unless escalated to critical.
               </div>
             </li>
             <li className="overview-risk overview-risk--med">
               <span className="overview-risk-level">RISK</span>
               <div>
-                <strong>Pen-test scoped but not scheduled</strong> — Client requires OWASP Top 10 report with submission. Engage testing vendor this week.
+                <strong>Pre-go-live penetration test</strong> — Full-scope pen test by accredited third party before Phase 1 go-live. OWASP ZAP DAST runs every sprint throughout delivery (RFP §4.4).
               </div>
             </li>
             <li className="overview-risk overview-risk--low">
