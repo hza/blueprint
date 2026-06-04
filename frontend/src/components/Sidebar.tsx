@@ -17,7 +17,8 @@ interface NavSubsection {
   id: string
   title: string
   path: string
-  badge?: number
+  badge?: number | string
+  badgeGrey?: boolean
 }
 
 interface NavSection {
@@ -43,7 +44,7 @@ const NAV_SECTIONS: NavSection[] = [
     title: 'Requirements Coverage',
     path: '/requirements-coverage',
     subsections: [
-      { id: '2.1', title: 'Requirements Summary',        path: '/requirements-coverage/requirements-summary' },
+      { id: '2.1', title: 'Requirements Summary',        path: '/requirements-coverage/requirements-summary', badge: 142, badgeGrey: true },
       { id: '2.2', title: 'Coverage & Compliance Matrix', path: '/requirements-coverage/coverage-matrix' },
       { id: '2.3', title: 'Outstanding Questions', path: '/requirements-coverage/gaps-questions', badge: 4 },
     ],
@@ -55,7 +56,7 @@ const NAV_SECTIONS: NavSection[] = [
     subsections: [
       { id: '3.1', title: 'Architecture Overview',        path: '/solution-architecture/architecture-overview' },
       { id: '3.2', title: 'Functional Scope',             path: '/solution-architecture/functional-scope' },
-      { id: '3.3', title: 'Roles & Integrations',          path: '/solution-architecture/integration-data' },
+      { id: '3.3', title: 'Roles & Integrations',          path: '/solution-architecture/integration-data', badge: '9+7', badgeGrey: true },
       { id: '3.4', title: 'Non-Functional Requirements',  path: '/solution-architecture/non-functional-requirements' },
       { id: '3.5', title: 'Acceptance Criteria',           path: '/solution-architecture/acceptance-criteria' },
     ],
@@ -231,8 +232,8 @@ export function Sidebar({
                           <line x1="5.5" y1="10.5" x2="8.5" y2="10.5" />
                         </svg>
                         <span className="sidebar-sub-title">{sub.title}</span>
-                        {sub.badge !== undefined && sub.badge > 0 && (
-                          <span className="sidebar-badge">{sub.badge}</span>
+                        {sub.badge !== undefined && sub.badge !== 0 && (
+                          <span className={sub.badgeGrey ? 'sidebar-badge sidebar-badge--grey' : 'sidebar-badge'}>{sub.badge}</span>
                         )}
                       </button>
                     ))}
