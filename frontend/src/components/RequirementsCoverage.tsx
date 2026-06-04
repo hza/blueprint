@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { FRItem, RequirementsSummary } from '../types'
 import './FLTable.css'
 
@@ -19,12 +19,20 @@ export function RequirementsCoverage({
   subsection,
   summary,
   items = [],
+  selectedItemId: selectedItemIdProp,
+  initialScrollTop = 0,
+  onScrollTopChange,
   onSelectItem,
+  onOpenSource,
 }: {
   subsection?: string
   summary?: RequirementsSummary | null
   items?: FRItem[]
+  selectedItemId?: string | null
+  initialScrollTop?: number
+  onScrollTopChange?: (top: number) => void
   onSelectItem?: (item: FRItem) => void
+  onOpenSource?: (item: FRItem) => void
 }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
   const gapCount = summary?.gaps ?? 0
@@ -36,6 +44,15 @@ export function RequirementsCoverage({
   const [matrixStatus, setMatrixStatus] = useState('')
   const [matrixSortKey, setMatrixSortKey] = useState<MatrixSortKey>('id')
   const [matrixSortDir, setMatrixSortDir] = useState<'asc' | 'desc'>('asc')
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(selectedItemIdProp ?? null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const restoredRef = useRef(false)
+
+  useEffect(() => {
+    if (restoredRef.current || !scrollRef.current) return
+    scrollRef.current.scrollTop = initialScrollTop
+    restoredRef.current = true
+  }, [initialScrollTop])
 
   const matrixDomains = useMemo(
     () => ['', ...Array.from(new Set(items.map((i) => i.domain))).sort()],
@@ -84,7 +101,7 @@ export function RequirementsCoverage({
   }
 
   return (
-    <div className="overview">
+    <div className="overview" ref={scrollRef} onScroll={(e) => onScrollTopChange?.(e.currentTarget.scrollTop)}>
       <div className="overview-banner">
         <div className="overview-banner-header">
           <div className="overview-banner-main">
@@ -215,9 +232,9 @@ export function RequirementsCoverage({
                 <tr>
                   <td className="overview-table-label overview-val--strong">Total</td>
                   <td><strong>{summary.total}</strong></td>
-                  <td>{summary.met}</td>
+                  <td><strong>{summary.met}</strong></td>
                   <td><strong>{summary.risky}</strong></td>
-                  <td><span className="overview-badge overview-badge--danger">{summary.gaps}</span></td>
+                  <td><strong>{summary.gaps}</strong></td>
                 </tr>
               )}
             </tbody>
@@ -231,15 +248,14 @@ export function RequirementsCoverage({
               Requirement Gaps &amp; Risks — Action Required
             </span>
             {gapRiskLabel && (
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4em', fontSize: '11px' }}>
-                <span style={{ background: 'var(--color-warn-bg, #fff3cd)', color: 'var(--color-warn, #856404)', borderRadius: '3px', padding: '0.1em 0.5em', fontWeight: 500 }}>{gapRiskLabel}</span>
-                <button
-                  type="button"
-                  onClick={() => { setGapRiskDomains([]); setGapRiskLabel('') }}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-muted)', fontSize: '1em', lineHeight: 1, padding: '0 0.1em' }}
-                  title="Clear domain filter"
-                >✕</button>
-              </span>
+              <button
+                type="button"
+                onClick={() => { setGapRiskDomains([]); setGapRiskLabel('') }}
+                style={{ display: 'flex', alignItems: 'center', gap: '0.3em', background: 'var(--color-warn-bg, #fff3cd)', color: 'var(--color-warn, #856404)', border: 'none', borderRadius: '3px', padding: '0.1em 0.5em', fontWeight: 500, fontSize: '11px', cursor: 'pointer' }}
+                title="Clear domain filter"
+              >
+                {gapRiskLabel} <span style={{ opacity: 0.6 }}>✕</span>
+              </button>
             )}
           </div>
           {!summary ? (
@@ -337,8 +353,13 @@ export function RequirementsCoverage({
               ) : matrixSorted.map((item) => (
                 <tr
                   key={item.id}
-                  className={onSelectItem ? 'fl-row fl-row-clickable' : 'fl-row'}
-                  onClick={() => onSelectItem?.(item)}
+                  className={[
+                    'fl-row',
+                    onSelectItem ? 'fl-row-clickable' : '',
+                    selectedItemId === item.id ? 'fl-row-selected' : '',
+                  ].filter(Boolean).join(' ')}
+                  onClick={() => { setSelectedItemId(item.id); onSelectItem?.(item) }}
+                  onDoubleClick={() => onOpenSource?.(item)}
                 >
                   <td style={{ whiteSpace: 'nowrap' }}>{item.id}</td>
                   <td>

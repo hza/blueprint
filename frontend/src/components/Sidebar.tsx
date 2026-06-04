@@ -219,7 +219,7 @@ export function Sidebar({
             <div key={section.id} className="sidebar-section">
               {hasChildren ? (
                 <>
-                  <div className="sidebar-group-label">{section.title}</div>
+                  <div className="sidebar-group-label" style={{cursor: 'pointer'}} onClick={() => onSectionChange?.(section.id, section.path)}>{section.title}</div>
                   <div className="sidebar-subsections">
                     {section.subsections.map((sub) => (
                       <button

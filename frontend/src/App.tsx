@@ -42,6 +42,7 @@ export default function App() {
   const [error, setError] = useState<string | null>(null)
   const [selectedListItemId, setSelectedListItemId] = useState<string | null>(null)
   const [fileView, setFileView] = useState<FileView>('source')
+  const outlineReturnPath = useRef<string | null>(null)
   const [sidebarWidth, setSidebarWidth] = useState(SIDEBAR_DEFAULT)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [draggingSidebar, setDraggingSidebar] = useState(false)
@@ -162,7 +163,8 @@ export default function App() {
     line?: number,
     options?: { preserveCurrentTab?: boolean },
   ) => {
-    const targetPath = options?.preserveCurrentTab ? `/${activeTab}` : '/requirements'
+    const fileViewingTabs = new Set<ViewTab>(['requirements', 'qa'])
+    const targetPath = options?.preserveCurrentTab && fileViewingTabs.has(activeTab) ? `/${activeTab}` : '/requirements'
     const fileChanged = filename !== selectedFile
     setSelectedFile(filename)
     navigate({ pathname: targetPath, hash: line ? `#L${line}` : '' })
@@ -209,6 +211,7 @@ export default function App() {
 
     if (!targetFile) return
     setSelectedListItemId(item.id)
+    if (activeTab === 'requirements-coverage') outlineReturnPath.current = location.pathname
     openFile(targetFile, targetLine, { preserveCurrentTab: true })
   }
 
@@ -396,7 +399,7 @@ export default function App() {
             </nav>
             <div className="file-box">
               <div className="file-box-body">
-                <RequirementsCoverage subsection={activeSection ?? undefined} summary={reqSummary} items={flItems} onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }} />
+                <RequirementsCoverage subsection={activeSection ?? undefined} summary={reqSummary} items={flItems} selectedItemId={selectedListItemId} onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }} onOpenSource={(item) => { setSelectedListItemId(item.id); openFRSource(item) }} />
               </div>
             </div>
           </>
@@ -479,7 +482,17 @@ export default function App() {
               ) : (
                 <span className="breadcrumb-file">{selectedFile}</span>
               )}
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={(v) => {
+                if (v === 'outline' && outlineReturnPath.current) {
+                  const returnTo = outlineReturnPath.current
+                  outlineReturnPath.current = null
+                  setSelectedFile(null)
+                  setFileContent(null)
+                  navigate(returnTo)
+                } else {
+                  setFileView(v)
+                }
+              }} />
             </nav>
 
             <div className="file-box">
