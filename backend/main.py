@@ -200,3 +200,14 @@ def get_file(filename: str, raw: bool = Query(False)):
         "size": stat.st_size,
         "size_formatted": format_size(stat.st_size),
     }
+
+
+
+# Catch-all: serve index.html for any unmatched route so React Router handles client-side navigation.
+# Must be registered last so it doesn't shadow API routes.
+@app.get("/{full_path:path}", response_class=HTMLResponse, include_in_schema=False)
+def spa_fallback(full_path: str):
+    index = WEBROOT_DIR / "index.html"
+    if index.exists():
+        return HTMLResponse(index.read_text(encoding="utf-8"))
+    raise HTTPException(status_code=404, detail="Not found")
