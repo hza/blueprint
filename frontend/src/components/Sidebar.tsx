@@ -78,8 +78,8 @@ const NAV_SECTIONS: NavSection[] = [
       { id: '5.3', title: 'Testing & Quality',              path: '/delivery-governance/testing-quality' },
       { id: '5.4', title: 'Risks & Mitigation',             path: '/delivery-governance/risks-mitigation' },
       { id: '5.5', title: 'Training & Change Enablement',   path: '/delivery-governance/training-change-enablement' },
-      { id: '5.6', title: 'Transition & Handover',          path: '/delivery-governance/transition-handover' },
-      { id: '5.7', title: 'SLA & Support Post-Go-Live',    path: '/delivery-governance/sla-support' },
+      { id: '5.6', title: 'SLA & Support Post-Go-Live',    path: '/delivery-governance/sla-support' },
+      { id: '5.7', title: 'Transition & Handover',          path: '/delivery-governance/transition-handover' },
     ],
   },
   {

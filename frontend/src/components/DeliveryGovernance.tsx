@@ -382,45 +382,8 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
       </>)}
 
       {show('5.6') && (<>
-      {/* 5.6 Transition & Handover */}
-      <div className="rfp-section-heading" id="5.6">Transition &amp; Handover</div>
-      <div className="overview-grid">
-        <div className="overview-card">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">→</span>
-            Hypercare &amp; BAU Transition
-          </div>
-          <table className="overview-table">
-            <tbody>
-              <tr>
-                <td className="overview-table-label">Hypercare Period</td>
-                <td>4 weeks per go-live wave. Dedicated support team on-site or on-call. P1 response SLA: 30 minutes. Daily operational call with Meridian IT.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Knowledge Transfer</td>
-                <td>Pair-programming and handover sessions with Meridian internal team. Architecture decision records (ADRs) maintained throughout. Runbook and SOP library delivered.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Documentation Package</td>
-                <td>System Architecture Document, Operations Manual, Disaster Recovery Playbook, API Reference, Data Dictionary, Security Policies. All in Meridian Confluence.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">BAU Support Model</td>
-                <td>Post-hypercare: 12-month managed service option (separate SOW) or full handover to Meridian IT + nominated third-party support partner.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Warranty Period</td>
-                <td>90-day warranty on all delivered code. Critical defects fixed within 24 hours at no charge. High defects within 5 business days.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      </>)}
-
-      {show('5.7') && (<>
-      {/* 5.7 SLA & Support Post-Go-Live */}
-      <div className="rfp-section-heading" id="5.7">SLA &amp; Support Post-Go-Live</div>
+      {/* 5.6 SLA & Support Post-Go-Live */}
+      <div className="rfp-section-heading" id="5.6">SLA &amp; Support Post-Go-Live</div>
       <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
@@ -514,6 +477,43 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
               <tr>
                 <td className="overview-table-label">SLA Penalty Regime</td>
                 <td>Missed P1 SLA: service credit applied automatically. Repeated breaches trigger a remediation plan review. Full terms in the managed services SOW.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </>)}
+
+      {show('5.7') && (<>
+      {/* 5.7 Transition & Handover */}
+      <div className="rfp-section-heading" id="5.7">Transition &amp; Handover</div>
+      <div className="overview-grid">
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">→</span>
+            Hypercare &amp; BAU Transition
+          </div>
+          <table className="overview-table">
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Hypercare Period</td>
+                <td>4 weeks per go-live wave. Dedicated support team on-site or on-call. P1 response SLA: 30 minutes. Daily operational call with Meridian IT.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Knowledge Transfer</td>
+                <td>Pair-programming and handover sessions with Meridian internal team. Architecture decision records (ADRs) maintained throughout. Runbook and SOP library delivered.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Documentation Package</td>
+                <td>System Architecture Document, Operations Manual, Disaster Recovery Playbook, API Reference, Data Dictionary, Security Policies. All in Meridian Confluence.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">BAU Support Model</td>
+                <td>Post-hypercare: 12-month managed service option (separate SOW) or full handover to Meridian IT + nominated third-party support partner.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Warranty Period</td>
+                <td>90-day warranty on all delivered code. Critical defects fixed within 24 hours at no charge. High defects within 5 business days.</td>
               </tr>
             </tbody>
           </table>
