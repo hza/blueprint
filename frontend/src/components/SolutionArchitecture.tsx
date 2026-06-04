@@ -13,7 +13,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Platform</span>
-            <span className="overview-stat-value">SCNCore ERP v5.2</span>
+            <span className="overview-stat-value">Meridian ERP v5.2</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Cloud</span>
@@ -396,6 +396,89 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      </>)}
+
+      {show('3.5') && (<>
+      {/* 3.5 Acceptance Criteria */}
+      <div className="rfp-section-heading" id="3.5">Acceptance Criteria</div>
+      <div className="overview-grid">
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">✅</span>
+            Phase Acceptance Gates
+          </div>
+          <table className="overview-table">
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Criterion</th>
+                <th>Measurement</th>
+                <th>Approver</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Phase 1 — Foundation</td>
+                <td>Infrastructure provisioned and environments stable</td>
+                <td>All CI pipelines green for 5 consecutive business days; dev, test, and UAT environments accessible to Meridian team</td>
+                <td>Meridian IT Director</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Phase 2 — Core ERP</td>
+                <td>All in-scope functional requirements delivered and UAT-passed</td>
+                <td>≥ 95% of agreed user stories accepted in UAT; zero open P1/P2 defects; load test confirms p95 ≤ 2s at 500 concurrent users</td>
+                <td>Meridian Project Sponsor</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Phase 3 — Extended Modules</td>
+                <td>Asset Management and Document Management live with data migrated</td>
+                <td>Asset register reconciled to legacy data (≤ 0.1% variance); all documents accessible; GIS map view verified by field team</td>
+                <td>Meridian Operations Lead</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Phase 4 — Analytics</td>
+                <td>All contracted Power BI dashboards delivered and signed off</td>
+                <td>Each dashboard reviewed in UAT and approved by named business owner; financial close pack automation reduces manual effort by ≥ 50%</td>
+                <td>Meridian CFO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">📋</span>
+            System-Wide Acceptance Conditions
+          </div>
+          <ul className="overview-checklist">
+            <li className="overview-check overview-check--ok">
+              <span className="overview-check-icon" />
+              <strong>Security sign-off</strong> — Independent penetration test completed with no critical or high findings unresolved. IRAP assessment report provided to Meridian before go-live.
+            </li>
+            <li className="overview-check overview-check--ok">
+              <span className="overview-check-icon" />
+              <strong>Data integrity</strong> — Migrated data reconciliation report accepted by Meridian Finance team. Row counts, totals, and spot-check samples within agreed tolerances.
+            </li>
+            <li className="overview-check overview-check--ok">
+              <span className="overview-check-icon" />
+              <strong>Disaster recovery rehearsal</strong> — Full DR failover test executed and RTO ≤ 4 hours confirmed. Test results and sign-off documented.
+            </li>
+            <li className="overview-check overview-check--ok">
+              <span className="overview-check-icon" />
+              <strong>Training completion</strong> — ≥ 90% of nominated end-users complete role-based training before go-live. Completion report provided to Meridian HR.
+            </li>
+            <li className="overview-check overview-check--ok">
+              <span className="overview-check-icon" />
+              <strong>Documentation handover</strong> — System administration guide, user manuals, API documentation, and runbooks delivered and acknowledged by Meridian IT.
+            </li>
+            <li className="overview-check overview-check--ok">
+              <span className="overview-check-icon" />
+              <strong>Hypercare sign-off</strong> — 30-day hypercare period completed with no open P1 defects. Formal transition to BAU support acknowledged in writing by both parties.
+            </li>
+          </ul>
         </div>
       </div>
 

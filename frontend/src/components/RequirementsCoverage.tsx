@@ -144,7 +144,7 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
             <li className="overview-risk overview-risk--med">
               <span className="overview-risk-level">PARTIAL</span>
               <div>
-                <strong>REQ-HR-11 — Union collective agreement rules engine.</strong> Standard SCNCore HR module handles 14 of 17 collective agreement rule types. The remaining 3 (penalty rate escalation, rostering overrides, shift-swap arbitration) require configuration. Fully addressed by end of Phase 2.
+                <strong>REQ-HR-11 — Union collective agreement rules engine.</strong> Standard Meridian HR module handles 14 of 17 collective agreement rule types. The remaining 3 (penalty rate escalation, rostering overrides, shift-swap arbitration) require configuration. Fully addressed by end of Phase 2.
               </div>
             </li>
             <li className="overview-risk overview-risk--med">
@@ -182,7 +182,7 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
                 <td>REQ-FIN-01</td>
                 <td>General Ledger with AASB-compliant chart of accounts</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>SCNCore Finance GL module ships with pre-configured AASB chart. Fully customisable.</td>
+                <td>Meridian Finance GL module ships with pre-configured AASB chart. Fully customisable.</td>
               </tr>
               <tr>
                 <td>REQ-FIN-05</td>

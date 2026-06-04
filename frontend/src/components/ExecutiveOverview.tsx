@@ -65,7 +65,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="overview-table-label">Solution Name</td>
-                <td>SCNCore ERP — Public Sector Edition</td>
+                <td>Meridian ERP — Public Sector Edition</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Deployment Model</td>
@@ -182,13 +182,13 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
       </>)}
 
       {show('1.4') && (<>
-      {/* 1.4 Clarifications Submitted */}
-      <div className="rfp-section-heading" id="1.4">Clarifications Submitted</div>
+      {/* 1.4 Clarifications */}
+      <div className="rfp-section-heading" id="1.4">Clarifications</div>
       <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">❓</span>
-            Clarifications Submitted (Q&amp;A Deadline: Mar 8)
+            Clarifications
           </div>
           <table className="overview-table">
             <thead>
