@@ -21,7 +21,7 @@ import { ExecutiveOverview } from './components/ExecutiveOverview'
 import { RequirementsCoverage } from './components/RequirementsCoverage'
 import { SolutionArchitecture } from './components/SolutionArchitecture'
 import { RightPanel } from './components/RightPanel'
-import { Sidebar } from './components/Sidebar'
+import { Sidebar, NAV_SECTIONS } from './components/Sidebar'
 import type { FileContent, FileView, FileInfo, FRAnnotations, FRItem, RequirementsSummary, ViewTab } from './types'
 
 const SIDEBAR_MIN = 160
@@ -52,7 +52,16 @@ export default function App() {
   const [rightPanelItem, setRightPanelItem] = useState<FRItem | null>(null)
   const [domainFilter, setDomainFilter] = useState('')
   const [requirementEdits, setRequirementEdits] = useState<Record<string, string>>({})
-  const [activeSection, setActiveSection] = useState<string | null>('1')
+  const [activeSection, setActiveSection] = useState<string | null>(() => {
+    const path = window.location.pathname
+    for (const section of NAV_SECTIONS) {
+      for (const sub of section.subsections) {
+        if (path === sub.path) return sub.id
+      }
+      if (path === section.path) return section.id
+    }
+    return '1'
+  })
   const flScrollTopRef = useRef(0)
   const sidebarDragRef = useRef<{ x: number; width: number } | null>(null)
   const rightPanelDragRef = useRef<{ x: number; width: number } | null>(null)
@@ -227,6 +236,7 @@ export default function App() {
         }}
         collapsed={sidebarCollapsed}
         onCollapse={setSidebarCollapsed}
+        reqSummaryTotal={reqSummary?.total ?? null}
       />
       {!sidebarCollapsed && (
         <div className={`sidebar-resize-handle${draggingSidebar ? ' dragging' : ''}`} onMouseDown={handleSidebarResizeMouseDown} />

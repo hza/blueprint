@@ -28,7 +28,7 @@ interface NavSection {
   subsections: NavSubsection[]
 }
 
-const NAV_SECTIONS: NavSection[] = [
+export const NAV_SECTIONS: NavSection[] = [
   {
     id: '1',
     title: 'Executive Overview',
@@ -44,7 +44,7 @@ const NAV_SECTIONS: NavSection[] = [
     title: 'Requirements Coverage',
     path: '/requirements-coverage',
     subsections: [
-      { id: '2.1', title: 'Requirements Summary',        path: '/requirements-coverage/requirements-summary', badge: 198, badgeGrey: true },
+      { id: '2.1', title: 'Requirements Summary',        path: '/requirements-coverage/requirements-summary', badge: 0, badgeGrey: true },
       { id: '2.2', title: 'Coverage & Compliance Matrix', path: '/requirements-coverage/coverage-matrix' },
       { id: '2.3', title: 'Outstanding Questions', path: '/requirements-coverage/gaps-questions', badge: 4 },
     ],
@@ -119,6 +119,7 @@ interface SidebarProps {
   projectName?: string
   collapsed?: boolean
   onCollapse?: (collapsed: boolean) => void
+  reqSummaryTotal?: number | null
 }
 
 export function Sidebar({
@@ -135,6 +136,7 @@ export function Sidebar({
   projectName = 'ERP Modernisation',
   collapsed = false,
   onCollapse,
+  reqSummaryTotal,
 }: SidebarProps) {
   const [theme, setThemeState] = useState<Theme>(
     () => (localStorage.getItem('app-theme') as Theme | null) ?? 'day'
@@ -232,9 +234,14 @@ export function Sidebar({
                           <line x1="5.5" y1="10.5" x2="8.5" y2="10.5" />
                         </svg>
                         <span className="sidebar-sub-title">{sub.title}</span>
-                        {sub.badge !== undefined && sub.badge !== 0 && (
-                          <span className={sub.badgeGrey ? 'sidebar-badge sidebar-badge--grey' : 'sidebar-badge'}>{sub.badge}</span>
-                        )}
+                        {(() => {
+                          const badgeVal = sub.path === '/requirements-coverage/requirements-summary' && reqSummaryTotal != null
+                            ? reqSummaryTotal
+                            : sub.badge
+                          return badgeVal !== undefined && badgeVal !== 0 && (
+                            <span className={sub.badgeGrey ? 'sidebar-badge sidebar-badge--grey' : 'sidebar-badge'}>{badgeVal}</span>
+                          )
+                        })()}
                       </button>
                     ))}
                   </div>
