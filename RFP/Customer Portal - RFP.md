@@ -30,7 +30,6 @@ document is strictly prohibited and may result in legal action.
    - 4.2 [AI Analysis](#42-ai-analysis)
    - 4.3 [Portal, Collaboration, and Workflow](#43-portal-collaboration-and-
      workflow)
-     - 4.3.1 [Requirements Review Workflow](#requirements-review-workflow)
    - 4.4 [Performance, Reliability, and Security](#44-performance-reliability-
      and-security)
    - 4.5 [Technical Stack and Infrastructure](#45-technical-stack-and-
@@ -244,10 +243,6 @@ extracted technology stack, processing pipeline shape, and non-functional
 requirements. Delivered as a rendered diagram and editable PlantUML/Mermaid
 source.
 
-*(Note: The **Component View** (C4 Level 3) and Infrastructure View are
-deliberately excluded from the pre-sales scope and reserved for the Paid
-Discovery Phase.)*
-
 Both views are editable inline by a Solution Architect, versioned, and
 exportable as PNG, SVG, or embedded Confluence page.
 
@@ -340,42 +335,6 @@ of, or all of, a specified user group. Automated reminders go out for approvals
 that are overdue past a configured SLA. All approval decisions are recorded in
 the audit log with timestamps and approver identity. Workflow templates can be
 saved and applied per project type or client tier.
-
-#### Requirements Review Workflow
-
-The Requirements deliverable follows a structured BA-led review process before
-it can advance past Draft.
-
-**BA review gate** — The Requirements deliverable is locked in Draft until the
-assigned BA has explicitly signed it off as Reviewed. This gate is enforced at
-the data layer; no other role can advance the deliverable past Draft on the BA's
-behalf. If no BA is assigned, the Sales Manager is notified to assign one before
-the gate can be cleared.
-
-**Clarification Requests (CRs)** — The BA can raise a formal Clarification
-Request against any extracted requirement or document section, tagging it as one
-of: Ambiguous, Conflicting, or Incomplete. An open CR is visible directly on the
-requirement item and blocks that item from being marked Ready. The total count
-of open CRs is shown on the project Overview tab so Sales Managers can track BA
-progress at a glance.
-
-**CR resolution flow** — CRs can be resolved in three ways: by the BA themselves
-after editing the requirement text; by the assigned SA if the clarification is a
-technical constraint; or escalated to the Account Manager or Sales Manager to
-request clarification from the client. Escalated CRs appear in the client portal
-as a structured question thread if the Account Manager chooses to surface them.
-Every resolution records the resolver's identity, the resolution note, and a
-timestamp in the audit log.
-
-**Requirements sign-off** — Once all CRs are resolved, the BA marks the full
-Requirements set as Reviewed. This action triggers an in-app notification and
-email to the SA and Sales Manager, and unlocks downstream deliverables — canvas
-generation, feature estimation — for editing by other assigned roles. The sign-
-off is recorded in the audit log and shown on the project timeline.
-
-**Audit trail** — All CR raises, edits, escalations, resolutions, and BA sign-
-offs are written to the immutable audit log with user identity, timestamp, and
-before/after content where applicable.
 
 #### Export and Reporting
 
