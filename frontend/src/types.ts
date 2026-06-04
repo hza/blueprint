@@ -16,7 +16,7 @@ export interface FileContent {
 
 export type ViewTab = 'overview' | 'qa' | 'analytics' | 'technical' | 'cost' | 'timeline' | 'team' | 'uxdesign' | 'code' | 'requirements' | 'security' | 'delivery' | 'pricing' | 'proof' | 'executive-overview' | 'requirements-coverage' | 'solution-architecture'
 
-export type FileView = 'source' | 'preview' | 'outline'
+export type FileView = 'source' | 'preview'
 
 export interface FRItem {
   id: string

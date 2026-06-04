@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { FRItem } from '../types'
 import './RightPanel.css'
-import './FLTable.css'
+import './fl.css'
 
 interface Props {
   item: FRItem | null

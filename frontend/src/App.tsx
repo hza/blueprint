@@ -4,7 +4,6 @@ import { fetchFile, fetchFiles, fetchFR, fetchFL, fetchRequirementsSummary } fro
 import { CodeViewer } from './components/CodeViewer'
 import { EmptyState } from './components/EmptyState'
 import { FileBoxHeader } from './components/FileBoxHeader'
-import { FLTable } from './components/FLTable'
 import { PreviewRenderer } from './components/PreviewRenderer'
 import { BusinessAnalytics } from './components/BusinessAnalytics'
 import { TechnicalSolution } from './components/TechnicalSolution'
@@ -51,7 +50,6 @@ export default function App() {
   const [flItems, setFlItems] = useState<FRItem[]>([])
   const [reqSummary, setReqSummary] = useState<RequirementsSummary | null>(null)
   const [rightPanelItem, setRightPanelItem] = useState<FRItem | null>(null)
-  const [domainFilter, setDomainFilter] = useState('')
   const [requirementEdits, setRequirementEdits] = useState<Record<string, string>>({})
   const [activeSection, setActiveSection] = useState<string | null>(() => {
     const path = window.location.pathname
@@ -63,7 +61,6 @@ export default function App() {
     }
     return '1'
   })
-  const flScrollTopRef = useRef(0)
   const rcScrollTopRef = useRef(0)
   const sidebarDragRef = useRef<{ x: number; width: number } | null>(null)
   const rightPanelDragRef = useRef<{ x: number; width: number } | null>(null)
@@ -214,13 +211,6 @@ export default function App() {
     setSelectedListItemId(item.id)
     if (activeTab === 'requirements-coverage') outlineReturnPath.current = location.pathname
     openFile(targetFile, targetLine, { preserveCurrentTab: true })
-  }
-
-  const showListView = () => {
-    setSelectedFile(null)
-    setFileContent(null)
-    setFrAnnotations({})
-    navigate('/requirements')
   }
 
   return (
@@ -440,31 +430,8 @@ export default function App() {
                 {!loading && fileContent && (
                   fileView === 'preview'
                     ? <PreviewRenderer content={fileContent.content} />
-                    : fileView === 'outline'
-                      ? <FLTable initialFile={selectedFile} onSelectSource={openFRSource} onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }} selectedItemId={selectedListItemId} initialScrollTop={flScrollTopRef.current} onScrollTopChange={(top) => { flScrollTopRef.current = top }} />
-                      : <CodeViewer file={fileContent} />
+                    : <CodeViewer file={fileContent} />
                 )}
-              </div>
-            </div>
-          </>
-        ) : activeTab === 'requirements' && !selectedFile ? (
-          <>
-            <nav className="breadcrumb">
-              <span className="breadcrumb-file">Requirements</span>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
-            <div className="file-box">
-              <div className="file-box-body">
-                <FLTable
-                  key={domainFilter}
-                  initialFile={null}
-                  onSelectSource={openFRSource}
-                  onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }}
-                  selectedItemId={selectedListItemId}
-                  initialScrollTop={flScrollTopRef.current}
-                  onScrollTopChange={(top) => { flScrollTopRef.current = top }}
-                  initialDomainFilter={domainFilter}
-                />
               </div>
             </div>
           </>
@@ -482,16 +449,12 @@ export default function App() {
               ) : (
                 <span className="breadcrumb-file">{selectedFile}</span>
               )}
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={(v) => {
-                if (v === 'outline' && outlineReturnPath.current) {
-                  const returnTo = outlineReturnPath.current
-                  outlineReturnPath.current = null
-                  setSelectedFile(null)
-                  setFileContent(null)
-                  navigate(returnTo)
-                } else {
-                  setFileView(v)
-                }
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} onClose={() => {
+                const returnTo = outlineReturnPath.current
+                outlineReturnPath.current = null
+                setSelectedFile(null)
+                setFileContent(null)
+                navigate(returnTo ?? '/requirements')
               }} />
             </nav>
 
@@ -502,9 +465,7 @@ export default function App() {
                   {!error && fileContent && (
                     fileView === 'preview'
                       ? <PreviewRenderer content={fileContent.content} />
-                      : fileView === 'outline'
-                        ? <FLTable initialFile={selectedFile} onSelectSource={openFRSource} onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }} selectedItemId={selectedListItemId} initialScrollTop={flScrollTopRef.current} onScrollTopChange={(top) => { flScrollTopRef.current = top }} />
-                        : <CodeViewer file={fileContent} frAnnotations={frAnnotations} onSelectFR={(id) => {
+                      : <CodeViewer file={fileContent} frAnnotations={frAnnotations} onSelectFR={(id) => {
                           setSelectedListItemId(id)
                           const item = flItems.find((f) => f.id === id)
                           if (!item) return
@@ -538,8 +499,7 @@ export default function App() {
           setFileView('source')
           openFRSource(item, refIndex)
         }}
-        onDomainClick={(domain) => {
-          setDomainFilter(domain)
+        onDomainClick={() => {
           setSelectedFile(null)
           setFileContent(null)
           setFrAnnotations({})

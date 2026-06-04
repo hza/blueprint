@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { FRItem, RequirementsSummary } from '../types'
-import './FLTable.css'
+import './fl.css'
 
 const MAX_DOMAIN_ROWS = 7
 
