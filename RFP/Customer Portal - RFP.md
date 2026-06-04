@@ -111,12 +111,10 @@ engagement.
 - Feature list extractor with basic effort estimation
 - Risk Register generator with heatmap visualization
 - RFP Health Score / maturity indicator per project
-- C4 architecture views generator (Context, Application, Infrastructure)
-- Integration Sequence Diagram generator per external integration
+- C4 architecture views generator (Context, Application)
 - Technology stack recommendation based on requirements
 - Client-facing project view with role-based access control
-- Collaboration tools (comments, annotations, approvals, in-app chat)
-- Audio/video call integration for client-team meetings within the portal
+- Collaboration tools (comments, annotations, approvals)
 - Export to PDF, DOCX, Confluence
 - Admin panel for user and system management
 - Analytics dashboard for management
@@ -125,6 +123,8 @@ engagement.
 
 - Automated proposal writing (Phase 2)
 - Contract generation (Phase 2)
+- In-app persistent chat (Phase 2)
+- Audio/video calling integration (Phase 2)
 - Project management after deal close (Phase 3)
 
 ---
@@ -135,11 +135,9 @@ engagement.
 
 Analysts upload RFP documents through a drag-and-drop interface or by pasting a
 public URL. Supported formats include PDF (up to 200 MB), Word documents, Excel
-spreadsheets, PowerPoint files, plain text, HTML, Markdown, and raw email body
-submitted via API. Up to 10 files can be attached to a single project to
-accommodate annexes and supporting materials. The system also accepts inbound
-emails at a dedicated company address (e.g., `rfp@company.com`) and
-automatically creates a new project from the message content and attachments.
+spreadsheets, PowerPoint files, plain text, HTML, and Markdown. Up to 10 files
+can be attached to a single project to accommodate annexes and supporting
+materials.
 
 Every upload is integrity-checked on arrival and rejected with a clear error if
 the file is corrupted. Document metadata — author, creation date, page count,
@@ -153,20 +151,15 @@ the document is segmented into logical sections — executive summary,
 requirements, technical specs, budget, timeline, appendices — using a
 combination of heading detection and semantic similarity. The system detects the
 document language and handles English, German, French, Spanish, and Ukrainian.
-If a near-duplicate document already exists in the same project, the user is
-warned before proceeding.
 
 A paginated in-browser preview is generated without any plugin requirement. When
 a revised version of an RFP is uploaded, a new document version is created and
-the previous version with all its analysis is preserved. Analysts can also
-correct OCR errors manually and trigger re-analysis of specific sections without
-reprocessing the whole document.
+the previous version with all its analysis is preserved.
 
 Processing status is shown in real-time as a stage pipeline: Uploaded → Queued →
 OCR → Segmentation → Anonymisation → AI Analysis → Complete / Failed. The
 uploader receives an in-app notification and email when processing finishes or
-fails. A Sales Manager or Admin can escalate a job to high priority, in which
-case the estimated completion time is shown. Jobs can be cancelled before the AI
+fails. Jobs can be cancelled before the AI
 analysis stage starts. If a job fails, it is retried up to three times with
 exponential backoff; if it keeps failing, the ops team is alerted.
 
@@ -195,19 +188,10 @@ figures, and timeline dates — and builds a project-level glossary of domain-
 specific terms with auto-generated definitions drawn from context. Integration
 points with external systems and quantitative constraints (response time
 targets, load numbers, uptime requirements) are extracted and stored as
-structured data. The client's industry vertical is detected automatically, and
-industry-specific enrichment templates are applied to suggest commonly expected
-requirements for that domain.
-
-On top of extraction, a light sentiment analysis runs across the document
-language to pick up urgency signals, pain points, and frustration with existing
-solutions. Budget-to-scope and timeline-to-scope mismatches are flagged — for
-example, if the stated budget looks too small for the described scope, or a
-3-month deadline is attached to what reads like an enterprise-scale platform.
+structured data.
 
 Reviewers can accept, reject, edit, split, or merge any extracted requirement
-directly in the UI, and can trigger re-analysis of individual sections after
-making manual corrections to the source document.
+directly in the UI.
 
 #### Feature List and Estimation
 
@@ -219,30 +203,19 @@ infrastructure). User stories follow the standard "As a [role], I want
 [feature], so that [benefit]" format, and acceptance criteria are written in
 Given/When/Then (Gherkin) style.
 
-The system detects feature dependencies and shows them as a dependency graph. It
-identifies the MVP scope by clustering Must Have items and flags overlapping
-features suggesting consolidation. Analysts can drag features between MVP, Phase
-2, and Backlog buckets, and can add custom features that weren't extracted from
-the document.
+It identifies the MVP scope by clustering Must Have items and flags overlapping
+features suggesting consolidation. Analysts can add custom features that weren't
+extracted from the document.
 
-Effort estimates are produced in both story points and hours per feature, broken
-down by discipline: Frontend, Backend, QA/Testing, UX/UI Design,
-DevOps/Infrastructure, Business Analysis, and Project Management. Three
-estimation methodologies are supported — T-shirt sizing, Fibonacci story points,
-and three-point estimation (optimistic / most likely / pessimistic) — and the
-methodology is configurable. The total project estimate comes with a confidence
-interval (e.g., 1,200 hours ± 20%) derived from complexity signals. Adjusting
-any individual estimate immediately recalculates the totals; bulk multipliers
-can be applied to a filtered set of features. Estimation buffers for risk,
-management overhead, and QA can be configured by the Admin. The system also
-recommends a team composition — headcount per role — needed to hit a given
-target timeline.
+Effort estimates are produced in hours per feature, broken down by discipline:
+Frontend, Backend, QA/Testing, UX/UI Design, DevOps/Infrastructure, Business
+Analysis, and Project Management. Estimates use T-shirt sizing (XS/S/M/L/XL)
+converted to hours. The total project estimate comes with a confidence interval
+(e.g., 1,200 hours ± 20%) derived from complexity signals. Adjusting any
+individual estimate immediately recalculates the totals. Estimation buffers for
+risk, management overhead, and QA can be configured by the Admin.
 
-Multiple estimation scenarios can be maintained side by side (MVP, Full Scope,
-Phased Delivery), each with its own summary. Estimates are visualized as a
-summary table, a high-level Gantt chart, a discipline breakdown pie chart, and a
-burndown projection. All changes are recorded in an estimation history log to
-track updates and revisions.
+Estimates are visualized as a summary table and a discipline breakdown chart.
 
 The AI also recommends a technology stack — frontend framework, backend language
 and framework, database, cloud provider, message broker, CI/CD tooling — based
@@ -271,28 +244,11 @@ extracted technology stack, processing pipeline shape, and non-functional
 requirements. Delivered as a rendered diagram and editable PlantUML/Mermaid
 source.
 
-*(Note: The **Component View** (C4 Level 3) is deliberately excluded from the
-automated pre-sales scope. Detailed component design is reserved for the Paid
-Discovery Phase to monetize deep architectural work.)*
+*(Note: The **Component View** (C4 Level 3) and Infrastructure View are
+deliberately excluded from the pre-sales scope and reserved for the Paid
+Discovery Phase.)*
 
-The **Infrastructure View** shows the deployment topology: Kubernetes namespaces
-and node groups, network zones (public / private / data), CDN edge, load
-balancers, managed services (RDS, ElastiCache, S3, Qdrant), and CI/CD pipeline
-entry points. It is inferred from the selected cloud provider and the
-non-functional requirements. Delivered as a rendered diagram and editable
-PlantUML/Mermaid source.
-
-For each named external integration extracted from the RFP (CRM, SSO provider,
-Confluence, JIRA, etc.), the system generates an **Integration Sequence
-Diagram** showing the end-to-end request/response flow: actors, systems, key
-messages, auth handshake, and error paths. Diagrams follow the UML sequence
-notation and are delivered as rendered diagrams with editable PlantUML/Mermaid
-source. The SA can add, remove, or reorder steps inline. Sequence diagrams are
-listed under each integration point in the Architecture tab and included in the
-full export bundle.
-
-All architecture views — Context, Application, Infrastructure, and Sequence
-Diagrams — are editable inline by a Solution Architect, versioned, and
+Both views are editable inline by a Solution Architect, versioned, and
 exportable as PNG, SVG, or embedded Confluence page.
 
 #### Risk Register
@@ -336,8 +292,7 @@ compliance annex." The Health Score is recalculated automatically whenever a new
 document version is uploaded or a manual section correction is submitted.
 Analysts can dismiss individual recommendations with a note, and the dismissed
 recommendations are logged in the audit trail. The aggregate Health Score is
-shown on the project list / Kanban card so Sales Managers can triage documents
-at a glance.
+shown on the project list so Sales Managers can triage documents at a glance.
 
 ### 4.3 Portal, Collaboration, and Workflow
 
@@ -353,11 +308,10 @@ while Sales Managers and Admins see everything.
 
 The main project dashboard shows name, client, submission date, processing
 status, assigned analyst, deliverable completion percentage, and last activity.
-It supports both list and Kanban card views, and can be filtered and sorted by
-status, client, date, industry, estimated value, and analyst. Summary KPIs —
-active projects, average time-to-analysis, pipeline hours, win rate — are shown
-at the top. Projects can be archived and restored; project templates can be
-saved from existing projects for reuse with similar clients.
+It can be filtered and sorted by status, client, date, industry, estimated
+value, and analyst. Summary KPIs — active projects, average time-to-analysis,
+pipeline hours, win rate — are shown at the top. Projects can be archived and
+restored.
 
 #### Client View
 
@@ -379,23 +333,6 @@ indicators). Each project has a live activity feed showing all changes,
 comments, and status transitions. Team members can assign review tasks to each
 other with due dates and priority levels. Artifacts can be tagged with custom
 labels.
-
-Each project has a persistent **in-app chat** channel visible to all internal
-team members assigned to the project. A separate, scoped chat thread is
-available when a Customer is active on the project, bridging internal and
-external participants without exposing the internal-only channel to the client.
-Messages support rich text, file attachments, emoji reactions, and @mentions.
-Chat history is searchable and retained in the audit log.
-
-For richer collaboration, the portal integrates **audio and video calling**
-directly within the project workspace. Any project member can start an ad-hoc
-call or schedule one in advance; invitations go out via in-app notification and
-email. Clients (Customer role) can be invited to a call directly from the client
-portal view. Calls support screen sharing, in-call chat, and recording with
-participant consent. Recordings are stored against the project and accessible to
-all members with project access. The integration is delivered via an embeddable
-provider (e.g., Daily.co, Whereby, or Livekit) to avoid building WebRTC
-infrastructure from scratch.
 
 The approval workflow moves deliverables through configurable stages: Draft → In
 Review → Approved → Sent to Client. Each stage can require sign-off from any one
@@ -436,11 +373,6 @@ email to the SA and Sales Manager, and unlocks downstream deliverables — canva
 generation, feature estimation — for editing by other assigned roles. The sign-
 off is recorded in the audit log and shown on the project timeline.
 
-**Selective re-analysis** — After the BA corrects a requirement or resolves a
-CR, they can trigger re-analysis of the affected document section without
-reprocessing the entire document. Re-analysis updates only the artifacts derived
-from that section and appends a new entry to the artifact version history.
-
 **Audit trail** — All CR raises, edits, escalations, resolutions, and BA sign-
 offs are written to the immutable audit log with user identity, timestamp, and
 before/after content where applicable.
@@ -450,16 +382,13 @@ before/after content where applicable.
 Any deliverable can be exported individually or as a full project bundle.
 Supported formats are PDF (branded, print-ready), DOCX (editable), XLSX (for
 estimation data), Markdown, and JSON. A single-click ZIP export packages all
-deliverables together. The feature list exports as a JIRA-compatible CSV/JSON
-or as an Azure DevOps work item import file. The system can push content directly to
-Confluence (creating or updating a page tree) and Google Drive (uploading to a
-specified folder). Exported PDFs use the company's brand template — logo, fonts,
-colors, cover page, and footer.
+deliverables together. The system can push content directly to Confluence
+(creating or updating a page tree). Exported PDFs use the company's brand
+template — logo, fonts, colors, cover page, and footer.
 
 Admins and Sales Managers have access to an analytics dashboard covering
 proposals created per period, average processing time, feature count
-distributions, common industry verticals, and analyst productivity. Scheduled
-report digests (daily, weekly, or monthly) can be sent by email.
+distributions, common industry verticals, and analyst productivity.
 
 #### Notifications and Audit
 
@@ -553,15 +482,7 @@ documents.
 
 #### PII Anonymisation
 
-Before any content reaches an external LLM, a dedicated anonymisation worker replaces sensitive entities with typed placeholders (e.g. `[PERSON_1]`, `[EMAIL_1]`, `[AMOUNT_EUR_1]`). The placeholder → original mapping is stored encrypted and never sent to the LLM; outputs are re-hydrated before display or export.
-
-| Sensitivity level | What is scrubbed |
-| --- | --- |
-| Standard (default) | PII only |
-| Strict | PII + company names + financial figures |
-| Off | No scrubbing (self-hosted LLM deployments only) |
-
-Analysts can review and adjust detected entities before AI analysis begins. The active level and placeholder count are recorded in the audit log per document version.
+Before any content reaches an external LLM, a dedicated anonymisation worker replaces PII (names, emails, phone numbers, financial figures) with typed placeholders (e.g. `[PERSON_1]`, `[EMAIL_1]`). The placeholder → original mapping is stored encrypted and never sent to the LLM; outputs are re-hydrated before display or export. The placeholder count is recorded in the audit log per document version.
 
 #### AI / LLM
 
@@ -611,8 +532,6 @@ Backups run daily with 30-day retention and point-in-time recovery enabled.
 | SSO | OAuth 2.0 — Google Workspace, Azure AD, Okta, SAML 2.0 |
 | Confluence | REST API (page publishing) |
 | Slack / Teams | Incoming webhooks |
-| JIRA Cloud | Bulk issue import |
-| Azure DevOps | Work item import |
 | No-code automation | Webhook endpoint or Zapier/Make app |
 
 #### DevOps & Infrastructure
@@ -704,12 +623,10 @@ hours.
 **so that** I can produce an accurate proposal before submitting to the client.
 
 **Acceptance Criteria:**
-- **Given** a feature list is generated, **When** I change a story point value,
+- **Given** a feature list is generated, **When** I change an estimate value,
   **Then** the total project estimate recalculates within 500ms.
 - **Given** I adjust estimates, **When** I export to XLSX, **Then** the export
   reflects my changes, not the original AI estimates.
-- **Given** I apply a bulk multiplier (e.g., +15%), **When** the change is
-  applied, **Then** each affected estimate is individually recorded in history.
 
 ### US-003: Client Reviews Deliverables
 
@@ -765,8 +682,7 @@ hours.
 - Deal Go/No-Go AI Advisor (ICP & Capability alignment)
 - Requirement extraction (FR, NFR, BR)
 - Feature list extraction with basic effort estimation
-- C4 Context, Application, and Infrastructure views
-- Integration Sequence Diagrams per named external integration
+- C4 Context and Application views
 - Risk Register generation (AI-extracted, editable heatmap)
 - RFP Health Score with actionable recommendations
 - PDF and DOCX export
@@ -776,11 +692,11 @@ hours.
 #### Phase 2 — Enhanced Analytics (Target: +8 weeks)
 
 - C4 Component View (Level 3) generation for Paid Discovery
-- Advanced estimation scenarios and comparison
 - Real-time collaboration (WebSockets)
 - Approval workflow engine
+- In-app persistent chat
+- Audio/video calling integration
 - Confluence export
-- JIRA issue export
 - Email notifications
 - Full audit trail UI
 
@@ -819,7 +735,7 @@ of-business in the timezone specified at contract award.
 
 | Milestone | Target Date |
 | --- | --- |
-| RFP published to shortlisted vendors | 2026-05-18 |
+| RFP published to shortlisted vendors | 2026-05-28 |
 | Vendor questions deadline | 2026-05-29 |
 | Q&A responses published (shared with all vendors) | 2026-06-05 |
 | Proposal submission deadline | 2026-06-20 |
