@@ -37,8 +37,8 @@
   border: none;
   text-align: left;
   width: calc(100% - 12px);
-  font-family: var(--font-ui);
-  font-size: 14px;
+  font-family: monospace;
+  font-size: 12px;
 }
 
 .tree-chevron { color: var(--fg-muted); flex-shrink: 0; }
