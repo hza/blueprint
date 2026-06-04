@@ -6,7 +6,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
         <div className="overview-banner-header">
           <div className="overview-banner-main">
             <div className="overview-banner-title">1. Executive Overview</div>
-            <div className="overview-banner-client">Meridian Public Services · ERP Modernisation · RFP-2025-0042</div>
+            <div className="overview-banner-client">Meridian Software · Customer Facing Portal — RFP</div>
           </div>
           <span className="overview-badge overview-badge--ok">SUBMITTED</span>
         </div>

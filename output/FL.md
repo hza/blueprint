@@ -1,300 +1,300 @@
 | ID | Requirement | Category | Original Text | File Name | Line Number |
 |---|---|---|---|---|---|
-| BR-001 | System must enforce role-based access control | Access Control | Employee Roles table defining six distinct roles with specific permissions | RFP/Customer Portal - RFP.md | 0 |
-| FR-001 | Employees can upload client RFP documents | Document Ingestion | enables company employees — Business Analysts, Solution Architects, Sales Managers, and Account Managers — to upload client RFP documents | RFP/Customer Portal - RFP.md | 30 |
-| FR-002 | System generates automated business model analysis | AI Analysis | receive automated, AI-generated deliverables including business model analysis | RFP/Customer Portal - RFP.md | 30 |
-| FR-003 | System generates feature breakdowns with effort estimates | AI Analysis | receive automated, AI-generated deliverables including business model analysis, feature breakdowns with effort estimates | RFP/Customer Portal - RFP.md | 30 |
-| FR-004 | System generates strategic canvases automatically | AI Analysis | receive automated, AI-generated deliverables including business model analysis, feature breakdowns with effort estimates, and strategic canvases | RFP/Customer Portal - RFP.md | 30 |
-| FR-005 | Provide access-controlled dedicated view for external clients | User Management | External clients receive a dedicated, access-controlled view | RFP/Customer Portal - RFP.md | 30 |
-| FR-006 | External clients can review and comment on deliverables | Portal & Collaboration | External clients receive a dedicated, access-controlled view to review and comment on the deliverables prepared for them | RFP/Customer Portal - RFP.md | 30 |
-| NFR-001 | Reduce proposal time from days to hours | Performance | The system reduces time-to-proposal from days to hours | RFP/Customer Portal - RFP.md | 32 |
-| BR-002 | Standardize analysis quality across the internal team | Quality Assurance | standardizes analysis quality across the team | RFP/Customer Portal - RFP.md | 32 |
-| BR-003 | Provide professional workspace for client artifact review | Portal & Collaboration | gives clients a professional workspace for reviewing pre-sales artifacts | RFP/Customer Portal - RFP.md | 32 |
-| BR-004 | Reduce manual pre-sales effort by 70% | Business Process Efficiency | Reduce manual pre-sales effort by **≥ 70%** through AI automation. | RFP/Customer Portal - RFP.md | 36 |
-| BR-005 | Standardize proposal quality across teams | Quality Assurance | Standardize proposal quality across all internal teams. | RFP/Customer Portal - RFP.md | 37 |
-| BR-006 | Reduce proposal turnaround time to under 24 hours | Process Efficiency | Shorten average proposal turnaround from **5–7 business days to < 24 hours**. | RFP/Customer Portal - RFP.md | 38 |
-| BR-007 | Improve requirement analysis depth and accuracy | Quality Assurance | Increase proposal win rate by improving depth and accuracy of requirement analysis. | RFP/Customer Portal - RFP.md | 39 |
-| FR-007 | Provide professional deliverables view to clients | User Interface | Provide clients with a clean, professional view of the deliverables prepared for them. | RFP/Customer Portal - RFP.md | 40 |
-| FR-008 | Automate RFP document parsing to reduce analysis time | Document Processing | Manual RFP parsing takes 8–40 hours per document | RFP/Customer Portal - RFP.md | 50 |
-| BR-008 | Standardize analysis quality independent of analyst experience | Process Standardization | Analysis quality varies by analyst experience | RFP/Customer Portal - RFP.md | 51 |
-| FR-009 | Provide centralized workspace for client collaboration | Portal & Collaboration | No centralized client workspace | RFP/Customer Portal - RFP.md | 52 |
-| FR-010 | Enable structured client feedback and review mechanism | Portal & Collaboration | No structured way for clients to comment and review deliverables | RFP/Customer Portal - RFP.md | 53 |
-| FR-011 | Provide automated project estimation framework | Analysis & Estimation | No automated estimation framework | RFP/Customer Portal - RFP.md | 54 |
-| FR-012 | Identify and surface risk and architecture concerns | Analysis & Risk Management | Risk and architecture concerns missed | RFP/Customer Portal - RFP.md | 55 |
-| FR-013 | Provide Deal Go/No-Go AI Advisor | AI Analysis | Deal Go/No-Go AI Advisor | RFP/Customer Portal - RFP.md | 66 |
-| FR-014 | Provide analytics dashboard for management | Analytics | Analytics dashboard for management | RFP/Customer Portal - RFP.md | 76 |
-| FR-015 | Provide in-app persistent chat functionality | Communication | In-app persistent chat | RFP/Customer Portal - RFP.md | 82 |
-| FR-016 | Integrate audio and video calling | Communication | Audio/video calling integration | RFP/Customer Portal - RFP.md | 83 |
-| FR-017 | Support PDF, DOCX, XLSX, PPTX, TXT, HTML, Markdown formats | Document Ingestion | PDF (up to 200 MB), DOCX, XLSX, PPTX, TXT, HTML, Markdown | RFP/Customer Portal - RFP.md | 93 |
-| TC-001 | PDF files must not exceed 200 MB | Document Ingestion | PDF (up to 200 MB) | RFP/Customer Portal - RFP.md | 93 |
-| BR-009 | Support maximum of 10 files per project | Document Ingestion | up to 10 files per project | RFP/Customer Portal - RFP.md | 93 |
-| FR-018 | Support drag-and-drop and URL paste upload | Document Ingestion | Upload via drag-and-drop or public URL paste | RFP/Customer Portal - RFP.md | 94 |
-| FR-019 | Validate file integrity and reject corrupted files | Document Ingestion | Integrity check on arrival; corrupted files rejected with a clear error | RFP/Customer Portal - RFP.md | 97 |
-| FR-020 | Perform OCR on scanned PDFs and image pages | Document Processing | OCR on scanned PDFs / image pages (≥ 95% accuracy, standard English) | RFP/Customer Portal - RFP.md | 98 |
-| NFR-002 | OCR must achieve minimum 95% accuracy | Document Processing | OCR on scanned PDFs / image pages (≥ 95% accuracy, standard English) | RFP/Customer Portal - RFP.md | 98 |
-| FR-021 | Extract tables with original structure preserved | Document Processing | Table extraction with structure intact | RFP/Customer Portal - RFP.md | 99 |
-| FR-022 | Segment documents into sections semantically | Document Processing | Semantic segmentation into sections: executive summary, requirements, technical specs, budget, timeline, appendices | RFP/Customer Portal - RFP.md | 100 |
-| FR-023 | Detect document language from supported languages | Document Processing | Language detection: English, German, French, Spanish, Ukrainian | RFP/Customer Portal - RFP.md | 101 |
-| FR-024 | Extract document metadata automatically | Document Processing | Metadata extracted: author, creation date, page count, word count | RFP/Customer Portal - RFP.md | 102 |
-| FR-025 | Provide paginated in-browser preview without plugins | Document Ingestion | Paginated in-browser preview (no plugin required) | RFP/Customer Portal - RFP.md | 105 |
-| FR-026 | Create new version on upload with history preserved | Document Management | New upload creates a new document version; prior version and its analysis are preserved | RFP/Customer Portal - RFP.md | 106 |
-| FR-027 | Display upload history with user and timestamp | Document Management | Upload history shows who uploaded what and when | RFP/Customer Portal - RFP.md | 107 |
-| FR-028 | Display processing pipeline status in real time | Processing Pipeline | Stages shown in real time: Uploaded → Queued → OCR → Segmentation → Anonymisation → AI Analysis → Complete / Failed | RFP/Customer Portal - RFP.md | 110 |
-| FR-029 | Allow job cancellation before AI Analysis | Processing Pipeline | Jobs cancellable before AI Analysis stage | RFP/Customer Portal - RFP.md | 111 |
-| FR-030 | Send in-app and email notifications on completion | Notifications | In-app + email notification when processing finishes or fails | RFP/Customer Portal - RFP.md | 112 |
-| FR-031 | Retry failed processing up to 3 times with backoff | Error Handling | Auto-retry up to 3 times with exponential backoff | RFP/Customer Portal - RFP.md | 115 |
-| FR-032 | Alert operations team on persistent failures | Error Handling | Persistent failure alerts the ops team | RFP/Customer Portal - RFP.md | 116 |
-| FR-033 | Classify requirements into FR, NFR, BR, TC, CR types | AI Analysis | Classifies every requirement into: Functional (FR), Non-Functional (NFR), Business (BR), Technical Constraints (TC), Compliance/Regulatory (CR) | RFP/Customer Portal - RFP.md | 124 |
-| FR-034 | Include confidence score, source reference, MoSCoW priority | AI Analysis | Each item includes: confidence score (0–100%), source reference (page + section), MoSCoW priority | RFP/Customer Portal - RFP.md | 125 |
-| FR-035 | Surface implicit requirements from explicit statements | AI Analysis | Surfaces implicit requirements (e.g., "mobile-friendly" → responsive design, accessibility, potential offline support) | RFP/Customer Portal - RFP.md | 126 |
-| FR-036 | Flag ambiguous, conflicting, or contradictory requirements | AI Analysis | Flags ambiguous, conflicting, or contradictory requirements with explanations | RFP/Customer Portal - RFP.md | 127 |
-| FR-037 | Raise gap alerts for missing critical areas | AI Analysis | Completeness check raises gap alerts for missing critical areas (e.g., no security section, no SLA) | RFP/Customer Portal - RFP.md | 128 |
-| FR-038 | Extract named entities from requirements document | AI Analysis | Extracts named entities: company names, products, technologies, regulatory frameworks, budgets, dates | RFP/Customer Portal - RFP.md | 129 |
-| FR-039 | Generate auto-generated project-level glossary with definitions | AI Analysis | Builds a project-level glossary with auto-generated definitions | RFP/Customer Portal - RFP.md | 130 |
-| FR-040 | Store integration points as structured data | AI Analysis | Stores integration points and quantitative constraints as structured data | RFP/Customer Portal - RFP.md | 131 |
-| FR-041 | Allow reviewers to accept, reject, edit, split, merge requirements | AI Analysis | Reviewers can accept, reject, edit, split, or merge any extracted requirement in the UI | RFP/Customer Portal - RFP.md | 132 |
-| BR-010 | Structure features as Epic → Feature → User Story → Criteria | Feature List and Estimation | Features structured as: Epic → Feature → User Story → Acceptance Criteria | RFP/Customer Portal - RFP.md | 136 |
-| FR-042 | Tag features with domain, role, priority, complexity, type | Feature List and Estimation | Each feature tagged with: domain module, user role, MoSCoW priority, complexity (XS/S/M/L/XL), type (UI, API, integration, infrastructure) | RFP/Customer Portal - RFP.md | 137 |
-| BR-011 | Format user stories as As a / I want / so that | Feature List and Estimation | User stories in "As a / I want / so that" format; acceptance criteria in Given/When/Then (Gherkin) | RFP/Customer Portal - RFP.md | 138 |
-| FR-043 | Identify MVP scope by clustering Must Have items | Feature List and Estimation | Identifies MVP scope by clustering Must Have items; flags overlapping features for consolidation | RFP/Customer Portal - RFP.md | 139 |
-| FR-044 | Enable analysts to add custom features | Feature List and Estimation | Analysts can add custom features | RFP/Customer Portal - RFP.md | 140 |
-| FR-045 | Break down effort estimates by discipline | Feature List and Estimation | Effort estimates per feature, broken down by: Frontend, Backend, QA/Testing, UX/UI, DevOps, BA, PM | RFP/Customer Portal - RFP.md | 141 |
-| NFR-003 | Include confidence interval with effort estimates | Feature List and Estimation | Total estimate includes a confidence interval (e.g., 1,200 hrs ± 20%) derived from complexity signals | RFP/Customer Portal - RFP.md | 142 |
-| FR-046 | Recalculate estimates in real time when adjusted | Feature List and Estimation | Adjusting any estimate recalculates totals in real time | RFP/Customer Portal - RFP.md | 143 |
-| FR-047 | Admin can configure risk, management, QA buffers | Feature List and Estimation | Admin can configure risk/management/QA buffers | RFP/Customer Portal - RFP.md | 143 |
-| FR-048 | Display summary table and discipline breakdown chart | Feature List and Estimation | Visualization: summary table + discipline breakdown chart | RFP/Customer Portal - RFP.md | 144 |
-| FR-049 | Recommend technology stack with rationale and TCO | Feature List and Estimation | Technology stack recommendation (frontend, backend, DB, cloud, message broker, CI/CD) with rationale, maturity, license, TCO implications | RFP/Customer Portal - RFP.md | 145 |
-| FR-050 | Allow override and lock of tech stack items | Feature List and Estimation | analysts can override and lock items | RFP/Customer Portal - RFP.md | 145 |
-| FR-051 | Flag conflicts between recommendations and constraints | Feature List and Estimation | conflicts with stated constraints are flagged | RFP/Customer Portal - RFP.md | 145 |
-| FR-052 | Deliver diagrams as rendered and editable PlantUML/Mermaid | Architecture Views | Both views delivered as rendered diagrams and editable PlantUML/Mermaid source | RFP/Customer Portal - RFP.md | 149 |
-| FR-053 | Export architecture views as PNG, SVG, Confluence | Architecture Views | exportable as PNG, SVG, or Confluence page | RFP/Customer Portal - RFP.md | 149 |
-| FR-054 | Generate Context View showing system, users, dependencies | Architecture Views | Context View (C4 L1): system as a black box + users and external systems; generated from integration points, user roles, and named external dependencies | RFP/Customer Portal - RFP.md | 151 |
-| FR-055 | Generate Application View showing containers and communication | Architecture Views | Application View (C4 L2 Container): deployable containers (web app, API, workers, DB, queue) and their communication; inferred from tech stack, pipeline shape, and NFRs | RFP/Customer Portal - RFP.md | 152 |
-| FR-056 | Allow architects to edit architecture views inline | Architecture Views | Both views editable inline by a Solution Architect and versioned | RFP/Customer Portal - RFP.md | 153 |
-| FR-057 | Auto-generate risk register from analysed document | Risk Register | Auto-generated from the analysed document | RFP/Customer Portal - RFP.md | 157 |
-| BR-012 | Categorize risks as Technical, Financial, Timeline, Scope, Compliance, People | Risk Register | categories: Technical, Financial, Timeline, Scope, Compliance, People | RFP/Customer Portal - RFP.md | 157 |
-| FR-058 | Include description, likelihood, impact, score, mitigation, reference | Risk Register | Each entry: description, likelihood (1–5), impact (1–5), risk score (likelihood × impact), mitigation strategy, RFP source reference | RFP/Customer Portal - RFP.md | 158 |
-| FR-059 | Render risks as editable table and colour-coded heatmap | Risk Register | Rendered as an editable table and a colour-coded heatmap (green / amber / red) | RFP/Customer Portal - RFP.md | 159 |
-| FR-060 | Allow analysts to add custom risks and edit AI entries | Risk Register | Analysts can add custom risks, edit AI entries, assign owner and due date per mitigation | RFP/Customer Portal - RFP.md | 160 |
-| FR-061 | Version risks and include in full-project export | Risk Register | Versioned alongside all other artifacts; included in full-project export | RFP/Customer Portal - RFP.md | 161 |
-| CR-001 | Show risks to internal roles, hide from customer by default | Risk Register | Visible to all internal roles; hidden from Customer view by default | RFP/Customer Portal - RFP.md | 162 |
-| FR-062 | Evaluate RFP against ICP and technical capability matrix | Deal Go/No-Go Advisor | evaluates the RFP against the company's ICP, technical capability matrix, and strategic alignment | RFP/Customer Portal - RFP.md | 166 |
-| FR-063 | Output clear recommendation with match percentage | Deal Go/No-Go Advisor | first output is a clear recommendation with a match percentage (e.g., "85% match — Proceed" or "High-compliance trap — Decline to bid") | RFP/Customer Portal - RFP.md | 166 |
-| FR-064 | Calculate RFP Health Score on 0–100 scale | Deal Go/No-Go Advisor | RFP Health Score (0–100) | RFP/Customer Portal - RFP.md | 167 |
-| BR-013 | Weight Business Clarity at 30% of health score | Deal Go/No-Go Advisor | Business Clarity \| 30% \| Executive summary, stated goals, success metrics, budget signals | RFP/Customer Portal - RFP.md | 171 |
-| BR-014 | Weight Requirements Completeness at 35% of score | Deal Go/No-Go Advisor | Requirements Completeness \| 35% \| Coverage of functional, non-functional, compliance, and integration requirements | RFP/Customer Portal - RFP.md | 172 |
-| BR-015 | Weight Technical Specificity at 20% of score | Deal Go/No-Go Advisor | Technical Specificity \| 20% \| Stack constraints, integration endpoints, performance targets, deployment model | RFP/Customer Portal - RFP.md | 173 |
-| BR-016 | Weight Commercial Terms at 15% of score | Deal Go/No-Go Advisor | Commercial Terms \| 15% \| Budget range, timeline, evaluation criteria, submission instructions | RFP/Customer Portal - RFP.md | 174 |
-| FR-065 | Include actionable recommendations for each sub-score | Deal Go/No-Go Advisor | Each sub-score includes actionable recommendations (e.g., "No budget range detected — clarify before estimating") | RFP/Customer Portal - RFP.md | 176 |
-| FR-066 | Recalculate health score on document version upload | Deal Go/No-Go Advisor | Recalculated automatically on new document version upload or manual section correction | RFP/Customer Portal - RFP.md | 177 |
-| FR-067 | Allow analysts to dismiss recommendations with audit trail | Deal Go/No-Go Advisor | Analysts can dismiss individual recommendations with a note (logged in audit trail) | RFP/Customer Portal - RFP.md | 178 |
-| FR-068 | Display health score on project list for triage | Deal Go/No-Go Advisor | Aggregate Health Score visible on project list for at-a-glance triage | RFP/Customer Portal - RFP.md | 179 |
-| FR-069 | Admin configures company branding colors and logo | Portal & Collaboration | Company branding (logo, colors) configured by Admin | RFP/Customer Portal - RFP.md | 187 |
-| NFR-004 | System supports unlimited number of projects | Scalability | No hard cap on number of projects | RFP/Customer Portal - RFP.md | 188 |
-| FR-070 | Admin configures data retention policies | Portal & Collaboration | Admin configures data retention, estimation buffers, notification preferences, export templates | RFP/Customer Portal - RFP.md | 188 |
-| FR-071 | Admin configures estimation buffers | Portal & Collaboration | Admin configures data retention, estimation buffers, notification preferences, export templates | RFP/Customer Portal - RFP.md | 188 |
-| FR-072 | Admin configures notification preferences | Portal & Collaboration | Admin configures data retention, estimation buffers, notification preferences, export templates | RFP/Customer Portal - RFP.md | 188 |
-| FR-073 | Admin configures export templates | Portal & Collaboration | Admin configures data retention, estimation buffers, notification preferences, export templates | RFP/Customer Portal - RFP.md | 188 |
-| FR-074 | Project access enforced at data layer by role | Security | Project access enforced at the data layer: employees see only assigned projects; Sales Managers and Admins see all | RFP/Customer Portal - RFP.md | 189 |
-| FR-075 | Dashboard displays project name, client, submission date | Portal & Collaboration | Main project dashboard columns: name, client, submission date, processing status, assigned analyst, deliverable completion %, last activity | RFP/Customer Portal - RFP.md | 190 |
-| FR-076 | Dashboard displays processing status and assigned analyst | Portal & Collaboration | Main project dashboard columns: name, client, submission date, processing status, assigned analyst, deliverable completion %, last activity | RFP/Customer Portal - RFP.md | 190 |
-| FR-077 | Dashboard displays completion percentage and last activity | Portal & Collaboration | Main project dashboard columns: name, client, submission date, processing status, assigned analyst, deliverable completion %, last activity | RFP/Customer Portal - RFP.md | 190 |
-| FR-078 | Project list filterable by status, client, date, industry | Portal & Collaboration | Filterable and sortable by: status, client, date, industry, estimated value, analyst | RFP/Customer Portal - RFP.md | 191 |
-| FR-079 | Project list sortable by estimated value and analyst | Portal & Collaboration | Filterable and sortable by: status, client, date, industry, estimated value, analyst | RFP/Customer Portal - RFP.md | 191 |
-| FR-080 | Dashboard displays active projects and average time-to-analysis KPIs | Portal & Collaboration | Summary KPIs at top: active projects, average time-to-analysis, pipeline hours, win rate | RFP/Customer Portal - RFP.md | 192 |
-| FR-081 | Dashboard displays pipeline hours and win rate KPIs | Portal & Collaboration | Summary KPIs at top: active projects, average time-to-analysis, pipeline hours, win rate | RFP/Customer Portal - RFP.md | 192 |
-| FR-082 | Projects can be archived and restored | Portal & Collaboration | Projects can be archived and restored | RFP/Customer Portal - RFP.md | 193 |
-| FR-083 | Client view hides internal notes and pricing data | Portal & Collaboration | Clients see only deliverables explicitly shared by an Account Manager or Sales Manager — no internal notes, pricing, or estimation details | RFP/Customer Portal - RFP.md | 197 |
-| FR-084 | Client portal accessible via unique project URL | Portal & Collaboration | Accessible via a unique project URL with optional PIN or SSO login | RFP/Customer Portal - RFP.md | 198 |
-| FR-085 | Client authentication supports PIN or SSO login | Security | Accessible via a unique project URL with optional PIN or SSO login | RFP/Customer Portal - RFP.md | 198 |
-| FR-086 | Clients can leave threaded comments on deliverables | Portal & Collaboration | Clients can leave threaded comments on any visible section | RFP/Customer Portal - RFP.md | 199 |
-| FR-087 | Clients approve deliverables or request revisions | Portal & Collaboration | Clients can formally approve a deliverable or request revision (notifies internal team) | RFP/Customer Portal - RFP.md | 200 |
-| FR-088 | System tracks client views and download activity | Portal & Collaboration | Internal team can see which deliverables the client has viewed, time spent, and downloads | RFP/Customer Portal - RFP.md | 201 |
-| FR-089 | Artifacts support threaded inline comments with @mentions | Portal & Collaboration | Any artifact supports threaded inline comments with @mention support | RFP/Customer Portal - RFP.md | 205 |
-| FR-090 | Canvases and feature lists support real-time collaborative editing | Portal & Collaboration | Canvases and feature lists support real-time collaborative editing (last-write-wins with conflict indicators) | RFP/Customer Portal - RFP.md | 206 |
-| FR-091 | System maintains per-project live activity feed | Portal & Collaboration | Per-project live activity feed: all changes, comments, and status transitions | RFP/Customer Portal - RFP.md | 207 |
-| FR-092 | Team members assign review tasks with due dates | Portal & Collaboration | Team members can assign review tasks with due dates and priority levels | RFP/Customer Portal - RFP.md | 208 |
-| FR-093 | Artifacts support custom labeling and tagging | Portal & Collaboration | Artifacts can be tagged with custom labels | RFP/Customer Portal - RFP.md | 209 |
-| FR-094 | Approval workflow supports configurable stages and approvers | Portal & Collaboration | Approval workflow: Draft → In Review → Approved → Sent to Client; each stage configurable to require one or all approvers from a specified group | RFP/Customer Portal - RFP.md | 210 |
-| FR-095 | System sends automated reminders for overdue approvals | Portal & Collaboration | Automated reminders for overdue approvals; all decisions recorded in audit log with timestamp and approver identity | RFP/Customer Portal - RFP.md | 211 |
-| CR-002 | All approval decisions recorded in audit log with identity | Compliance | Automated reminders for overdue approvals; all decisions recorded in audit log with timestamp and approver identity | RFP/Customer Portal - RFP.md | 211 |
-| FR-096 | Workflow templates saveable and reusable per client tier | Portal & Collaboration | Workflow templates saveable and reusable per project type or client tier | RFP/Customer Portal - RFP.md | 212 |
-| FR-097 | System supports individual or full-project bundle export | Portal & Collaboration | Individual or full-project bundle export | RFP/Customer Portal - RFP.md | 216 |
-| FR-098 | Export formats include PDF, DOCX, XLSX, Markdown, JSON | Portal & Collaboration | Formats: PDF (branded, print-ready), DOCX (editable), XLSX (estimation data), Markdown, JSON | RFP/Customer Portal - RFP.md | 217 |
-| FR-099 | Single-click ZIP export for full project bundle | Portal & Collaboration | Single-click ZIP export for full project bundle | RFP/Customer Portal - RFP.md | 218 |
-| TC-002 | System supports Confluence integration for page creation | Integration | Direct push to Confluence (create or update page tree) | RFP/Customer Portal - RFP.md | 219 |
-| FR-100 | Analytics dashboard displays proposals and processing metrics | Portal & Collaboration | Analytics dashboard (Admins and Sales Managers): proposals per period, average processing time, feature count distributions, industry verticals, analyst productivity | RFP/Customer Portal - RFP.md | 220 |
-| FR-101 | Notifications support in-app, email, Slack/Teams channels | Portal & Collaboration | Delivery channels: in-app, email, Slack or Microsoft Teams (webhook); users configure events and frequency (immediate / hourly / daily digest) | RFP/Customer Portal - RFP.md | 224 |
-| FR-102 | Users configure notification events and frequency preferences | Portal & Collaboration | Delivery channels: in-app, email, Slack or Microsoft Teams (webhook); users configure events and frequency (immediate / hourly / daily digest) | RFP/Customer Portal - RFP.md | 224 |
-| FR-103 | Notifications triggered for processing, approvals, mentions, SLA | Portal & Collaboration | Events covered: processing complete/failed, approval required, comment @mention, client viewed deliverable, SLA breach warning, export complete | RFP/Customer Portal - RFP.md | 225 |
-| CR-003 | Immutable audit log records all system events | Compliance | Immutable audit log: all logins, uploads, edits, exports, approvals, deletions — queryable by user, event type, project, date range; exportable for compliance | RFP/Customer Portal - RFP.md | 226 |
-| CR-004 | Audit log queryable by user, event type, project, date range | Compliance | Immutable audit log: all logins, uploads, edits, exports, approvals, deletions — queryable by user, event type, project, date range; exportable for compliance | RFP/Customer Portal - RFP.md | 226 |
-| CR-005 | Audit log exportable for compliance purposes | Compliance | Immutable audit log: all logins, uploads, edits, exports, approvals, deletions — queryable by user, event type, project, date range; exportable for compliance | RFP/Customer Portal - RFP.md | 226 |
-| FR-104 | System maintains full version history for all artifacts | Portal & Collaboration | Full version history for every artifact with diff view between any two versions and one-click rollback | RFP/Customer Portal - RFP.md | 227 |
-| FR-105 | Version history includes diff view between any versions | Portal & Collaboration | Full version history for every artifact with diff view between any two versions and one-click rollback | RFP/Customer Portal - RFP.md | 227 |
-| FR-106 | One-click rollback to previous artifact versions | Portal & Collaboration | Full version history for every artifact with diff view between any two versions and one-click rollback | RFP/Customer Portal - RFP.md | 227 |
-| NFR-005 | File uploads ≤ 10 MB processed within 3 seconds | Performance | File uploads ≤ 10 MB: processing initiated within 3 s | RFP/Customer Portal - RFP.md | 234 |
-| NFR-006 | 30-page RFP analysis completes within 120 seconds | Performance | Standard 30-page RFP analysis: complete within 120 s | RFP/Customer Portal - RFP.md | 235 |
-| NFR-007 | UI Time to Interactive under 2 seconds | Performance | UI pages: Time to Interactive < 2 s (10 Mbps connection) | RFP/Customer Portal - RFP.md | 236 |
-| NFR-008 | API reads complete within 300 ms at p95 | Performance | API reads: < 300 ms at p95 | RFP/Customer Portal - RFP.md | 237 |
-| NFR-009 | Canvas rendering completes within 500 milliseconds | Performance | Canvas rendering: < 500 ms | RFP/Customer Portal - RFP.md | 238 |
-| NFR-010 | Full project bundle export completes within 30 seconds | Performance | full project bundle export: < 30 s | RFP/Customer Portal - RFP.md | 238 |
-| NFR-011 | Real-time collaboration updates propagate within 500 ms | Performance | Real-time collaboration updates: propagate within 500 ms | RFP/Customer Portal - RFP.md | 239 |
-| NFR-012 | System handles 20+ concurrent jobs and 100 users | Scalability | Handle ≥ 20 concurrent analysis jobs and ~100 concurrent users without degradation | RFP/Customer Portal - RFP.md | 242 |
-| NFR-013 | Job queue clears all jobs within 5 minutes peak | Scalability | Job queue absorbs bursts; clears all queued jobs within 5 min at peak; no dropped jobs or silent timeouts | RFP/Customer Portal - RFP.md | 243 |
-| TC-003 | AI workers scale horizontally independently of web tier | Architecture | AI workers scale horizontally (new instances when queue depth > 5), independently of the web tier | RFP/Customer Portal - RFP.md | 244 |
-| NFR-014 | System scales 2× users and projects without reconfiguration | Scalability | System handles 2× active users/projects without infrastructure reconfiguration, within SLA | RFP/Customer Portal - RFP.md | 245 |
-| NFR-015 | Data layer supports 1,000 reads/s and 200 writes/s | Performance | Data layer: 1,000 read queries/s, 200 writes/s; up to 5,000 projects and 500,000 artifacts | RFP/Customer Portal - RFP.md | 246 |
-| NFR-016 | System stores up to 5,000 projects and 500,000 artifacts | Scalability | up to 5,000 projects and 500,000 artifacts | RFP/Customer Portal - RFP.md | 246 |
-| NFR-017 | Portal maintains 99.9% uptime monthly | Reliability | Portal uptime: 99.9%/month | RFP/Customer Portal - RFP.md | 249 |
-| NFR-018 | AI pipeline maintains 99.5% uptime | Reliability | AI pipeline: 99.5% | RFP/Customer Portal - RFP.md | 249 |
-| NFR-019 | Recovery Time Objective (RTO) 1 hour, RPO 15 minutes | Reliability | RTO: 1 hour; RPO: 15 minutes | RFP/Customer Portal - RFP.md | 250 |
-| FR-107 | Expose /healthz endpoint for subsystem status | Monitoring | `/healthz` endpoint exposes structured status for all subsystems | RFP/Customer Portal - RFP.md | 251 |
-| FR-108 | Failed jobs automatically retry up to 3 times | Reliability | Failed jobs auto-retried ×3; persistent failures alert ops team within 5 min | RFP/Customer Portal - RFP.md | 252 |
-| FR-109 | Graceful degradation when AI service unavailable | Availability | Graceful degradation: if AI service goes down, upload and manual editing remain functional; degraded mode activates automatically within 30 s with a visible user banner | RFP/Customer Portal - RFP.md | 253 |
-| CR-006 | All data in transit encrypted with TLS 1.3 | Security | All data in transit: TLS 1.3; all data at rest: AES-256 | RFP/Customer Portal - RFP.md | 256 |
-| CR-007 | All data at rest encrypted with AES-256 | Security | All data in transit: TLS 1.3; all data at rest: AES-256 | RFP/Customer Portal - RFP.md | 256 |
-| CR-008 | System GDPR-compliant with right to erasure support | GDPR | GDPR-compliant (right to erasure, data portability, consent management, DPAs); targets SOC 2 Type II | RFP/Customer Portal - RFP.md | 257 |
-| CR-009 | System targets SOC 2 Type II certification | Compliance | targets SOC 2 Type II | RFP/Customer Portal - RFP.md | 257 |
-| CR-010 | Client data purged within 72 hours, purge tested and recorded | GDPR | Client data deletion purged within 72 hours across all artifacts and audit log; purge completion recorded; must be a tested, deliberate flow | RFP/Customer Portal - RFP.md | 258 |
-| FR-110 | Employee accounts support optional MFA | Security | Employee accounts: optional MFA, enforceable company-wide by Admin | RFP/Customer Portal - RFP.md | 259 |
-| FR-111 | Admin can enforce MFA company-wide | Security | Employee accounts: optional MFA, enforceable company-wide by Admin | RFP/Customer Portal - RFP.md | 259 |
-| FR-112 | Project-level access control enforced at data layer | Security | Project-level access control enforced at the data layer | RFP/Customer Portal - RFP.md | 260 |
-| FR-113 | IP allowlisting configurable by administrator | Security | IP allowlisting configurable by Admin | RFP/Customer Portal - RFP.md | 261 |
-| BR-017 | Auth tokens expire after 8 hours of inactivity | Security | Auth tokens expire after 8 hours of inactivity; refresh tokens after 30 days | RFP/Customer Portal - RFP.md | 262 |
-| BR-018 | Refresh tokens expire after 30 days | Security | Auth tokens expire after 8 hours of inactivity; refresh tokens after 30 days | RFP/Customer Portal - RFP.md | 262 |
-| BR-019 | Rate limit 100 requests per minute per session | Security | Rate limiting: 100 req/min per session; 20 uploads/hour per user | RFP/Customer Portal - RFP.md | 263 |
-| BR-020 | Rate limit 20 uploads per hour per user | Security | Rate limiting: 100 req/min per session; 20 uploads/hour per user | RFP/Customer Portal - RFP.md | 263 |
-| TC-004 | Passwords hashed with bcrypt (cost ≥12) or Argon2id | Security | Passwords hashed with bcrypt (cost ≥ 12) or Argon2id | RFP/Customer Portal - RFP.md | 264 |
-| CR-011 | CSP headers prevent XSS attacks | Security | CSP headers prevent XSS; all inputs validated server-side against SQL injection, SSRF, path traversal | RFP/Customer Portal - RFP.md | 265 |
-| CR-012 | Server-side input validation prevents SQL injection | Security | all inputs validated server-side against SQL injection, SSRF, path traversal | RFP/Customer Portal - RFP.md | 265 |
-| CR-013 | Server-side input validation prevents SSRF attacks | Security | all inputs validated server-side against SQL injection, SSRF, path traversal | RFP/Customer Portal - RFP.md | 265 |
-| CR-014 | Server-side input validation prevents path traversal attacks | Security | all inputs validated server-side against SQL injection, SSRF, path traversal | RFP/Customer Portal - RFP.md | 265 |
-| BR-021 | Dependency scanning in CI blocks critical CVEs | Security | Dependency scanning in CI with hard block on critical CVEs | RFP/Customer Portal - RFP.md | 266 |
-| CR-015 | PII anonymized before external LLM dispatch | Data Protection | PII anonymised before dispatch to any external LLM (reversible mapping never leaves company infrastructure) | RFP/Customer Portal - RFP.md | 267 |
-| CR-016 | LLM providers contractually prevent training on content | Data Protection | LLM providers must contractually commit to not training on client content | RFP/Customer Portal - RFP.md | 267 |
-| TC-005 | Single data region chosen at installation time | Data Residency | Single data region chosen at installation time | RFP/Customer Portal - RFP.md | 268 |
-| CR-017 | UI meets WCAG 2.1 Level AA compliance | Accessibility | UI meets WCAG 2.1 Level AA; full keyboard navigation including canvas interactions | RFP/Customer Portal - RFP.md | 271 |
-| CR-018 | Full keyboard navigation including canvas interactions | Accessibility | UI meets WCAG 2.1 Level AA; full keyboard navigation including canvas interactions | RFP/Customer Portal - RFP.md | 271 |
-| FR-114 | System supports dark and light mode | UI | Dark and light mode (follows system preference) | RFP/Customer Portal - RFP.md | 272 |
-| FR-115 | Theme follows system preference automatically | UI | Dark and light mode (follows system preference) | RFP/Customer Portal - RFP.md | 272 |
-| FR-116 | UI optimized for 1280–2560 pixel desktop widths | UI | optimised for 1280–2560 px desktop widths | RFP/Customer Portal - RFP.md | 272 |
-| FR-117 | Destructive actions require confirmation dialog | UX | Destructive actions require confirmation dialog; error messages human-readable, never expose internals | RFP/Customer Portal - RFP.md | 273 |
-| FR-118 | Error messages human-readable, never expose internals | UX | Destructive actions require confirmation dialog; error messages human-readable, never expose internals | RFP/Customer Portal - RFP.md | 273 |
-| FR-119 | New employees guided with in-app tour | Onboarding | New employees: in-app guided tour and contextual tooltips; all forms auto-save with visible status indicator | RFP/Customer Portal - RFP.md | 274 |
-| FR-120 | System provides contextual tooltips for users | UX | New employees: in-app guided tour and contextual tooltips | RFP/Customer Portal - RFP.md | 274 |
-| FR-121 | All forms auto-save with visible status indicator | UX | all forms auto-save with visible status indicator | RFP/Customer Portal - RFP.md | 274 |
-| FR-122 | UI supports English, German, French, Spanish, Ukrainian | i18n | UI supports English, German, French, Spanish, Ukrainian; all strings externalised to locale files; date/time/number/currency formatted per locale in UI and exported documents | RFP/Customer Portal - RFP.md | 275 |
-| TC-006 | All strings externalised to locale files | i18n | all strings externalised to locale files | RFP/Customer Portal - RFP.md | 275 |
-| FR-123 | Date, time, number, currency formatted per locale | i18n | date/time/number/currency formatted per locale in UI and exported documents | RFP/Customer Portal - RFP.md | 275 |
-| TC-007 | Support AWS, GCP, Azure cloud deployment | Infrastructure & Deployment | AWS, GCP, or Azure (cloud-native, containerised) | RFP/Customer Portal - RFP.md | 285 |
-| TC-008 | Event-driven pipeline with independent workers | Infrastructure & Deployment | Event-driven; each stage (OCR, segmentation, anonymisation, extraction) runs as an independent worker via RabbitMQ, Kafka, or SQS | RFP/Customer Portal - RFP.md | 286 |
-| TC-009 | Implement CQRS, Outbox Pattern, BFF architecture | Infrastructure & Deployment | CQRS (read/write separation), Outbox Pattern (reliable event publishing), BFF layer | RFP/Customer Portal - RFP.md | 287 |
-| TC-010 | Use CDN, Redis, application-level caching | Infrastructure & Deployment | CDN for static assets · Redis for sessions and API responses · application-level cache for AI results | RFP/Customer Portal - RFP.md | 288 |
-| FR-124 | Anonymise PII before sending to external LLM | Security & Compliance | Before any content reaches an external LLM, a dedicated anonymisation worker replaces PII (names, emails, phone numbers, financial figures) with typed placeholders (e.g. `[PERSON_1]`, `[EMAIL_1]`) | RFP/Customer Portal - RFP.md | 292 |
-| FR-125 | Store encrypted PII mappings, never send LLM | Security & Compliance | The placeholder → original mapping is stored encrypted and never sent to the LLM | RFP/Customer Portal - RFP.md | 292 |
-| FR-126 | Re-hydrate anonymised outputs before display | Security & Compliance | outputs are re-hydrated before display or export | RFP/Customer Portal - RFP.md | 292 |
-| FR-127 | Record placeholder count in audit log | Audit & Compliance | The placeholder count is recorded in the audit log per document version | RFP/Customer Portal - RFP.md | 292 |
-| TC-011 | Support multiple LLM providers via abstraction | AI & LLM | OpenAI GPT-4-class, Anthropic Claude Sonnet/Opus, or Azure OpenAI — swappable via abstraction layer | RFP/Customer Portal - RFP.md | 298 |
-| TC-012 | Support Ollama/vLLM for on-premise deployment | AI & LLM | Ollama or vLLM for on-premise deployments (graceful feature degradation) | RFP/Customer Portal - RFP.md | 299 |
-| TC-013 | Implement RAG with 512-token chunks in Qdrant | AI & LLM | RAG pipeline: 512-token chunks (10% overlap), embedded into Qdrant, retrieved at analysis time | RFP/Customer Portal - RFP.md | 300 |
-| FR-128 | Validate LLM outputs against JSON schemas | AI & LLM | All LLM outputs validated against JSON schemas | RFP/Customer Portal - RFP.md | 301 |
-| FR-129 | Track costs, log redacted I/O, capture feedback | Observability & Analytics | Costs tracked per project; inputs/outputs logged with PII redacted; thumbs up/down feedback from analysts | RFP/Customer Portal - RFP.md | 302 |
-| FR-130 | Version prompts as config without deployment | AI & LLM | Versioned config (not code) — prompt tuning requires no deployment | RFP/Customer Portal - RFP.md | 303 |
-| TC-014 | Use React 18+/Next.js 14+ with TypeScript | Frontend | React 18+ or Next.js 14+, strict TypeScript | RFP/Customer Portal - RFP.md | 309 |
-| FR-131 | Support drag-and-drop diagramming with zoom/pan | Frontend | React Flow or Konva.js (drag-and-drop, zoom, pan) | RFP/Customer Portal - RFP.md | 310 |
-| TC-015 | Implement WebSocket real-time communication | Frontend | WebSockets | RFP/Customer Portal - RFP.md | 311 |
-| NFR-020 | Bundle <500KB, LCP <2.5s, FID <100ms, CLS <0.1 | Performance | Bundle < 500 KB gzipped · LCP < 2.5s · FID < 100ms · CLS < 0.1 | RFP/Customer Portal - RFP.md | 312 |
-| TC-016 | Use Node.js/NestJS or Python/FastAPI with OpenAPI | Backend | Node.js (NestJS) or Python (FastAPI), OpenAPI 3.1 | RFP/Customer Portal - RFP.md | 318 |
-| TC-017 | Use Zod, Joi, or Pydantic for validation | Backend | Zod, Joi, or Pydantic | RFP/Customer Portal - RFP.md | 319 |
-| FR-132 | Persist background job status with BullMQ/Celery | Backend | BullMQ or Celery; job status persisted | RFP/Customer Portal - RFP.md | 320 |
-| NFR-021 | Structured logging and distributed tracing | Observability | Structured JSON logs with trace IDs; distributed tracing via OpenTelemetry | RFP/Customer Portal - RFP.md | 321 |
-| TC-018 | Use PostgreSQL 15+ with versioned migrations | Data Storage | PostgreSQL 15+ \| Primary relational data; versioned migrations; column-level encryption for sensitive fields | RFP/Customer Portal - RFP.md | 327 |
-| TC-019 | Store documents in S3-compatible encrypted storage | Data Storage | S3-compatible object storage \| Raw document files (server-side encryption, versioning) | RFP/Customer Portal - RFP.md | 328 |
-| TC-020 | Use Redis for sessions and short-lived cache | Data Storage | Redis \| Sessions and short-lived cache | RFP/Customer Portal - RFP.md | 329 |
-| TC-021 | Use Qdrant for vector embeddings storage | Data Storage | Qdrant \| Vector embeddings | RFP/Customer Portal - RFP.md | 330 |
-| BR-022 | Daily backups with 30-day retention and PITR | Data Storage & Backup | Backups run daily with 30-day retention and point-in-time recovery enabled | RFP/Customer Portal - RFP.md | 332 |
-| FR-133 | Integrate Salesforce CRM with webhook sync | Integrations | REST API, API key auth; CRM webhooks create/update projects within 60 s | RFP/Customer Portal - RFP.md | 338 |
-| FR-134 | Support OAuth 2.0 SSO with Google/Azure/Okta | Authentication & Access | OAuth 2.0 — Google Workspace, Azure AD, Okta, SAML 2.0 | RFP/Customer Portal - RFP.md | 339 |
-| FR-135 | Integrate with Confluence for page publishing | Integrations | REST API (page publishing) | RFP/Customer Portal - RFP.md | 340 |
-| FR-136 | Send notifications to Slack and Teams | Integrations | Incoming webhooks | RFP/Customer Portal - RFP.md | 341 |
-| FR-137 | Support webhooks and Zapier/Make automation | Integrations | Webhook endpoint or Zapier/Make app | RFP/Customer Portal - RFP.md | 342 |
-| TC-022 | Use Docker multi-stage builds with docker-compose | DevOps & Infrastructure | Docker multi-stage builds; single `docker compose up` for local dev | RFP/Customer Portal - RFP.md | 348 |
-| TC-023 | Deploy with Kubernetes and Helm charts | DevOps & Infrastructure | Kubernetes with Helm charts | RFP/Customer Portal - RFP.md | 349 |
-| TC-024 | Implement CI/CD with GitHub Actions or GitLab | DevOps & Infrastructure | GitHub Actions or GitLab CI (lint, test, build, security scan, deploy) | RFP/Customer Portal - RFP.md | 350 |
-| TC-025 | Manage infrastructure as code with Terraform/Pulumi | DevOps & Infrastructure | Terraform or Pulumi | RFP/Customer Portal - RFP.md | 351 |
-| TC-026 | Implement logging with ELK or Prometheus stack | Observability | ELK stack or cloud-equivalent; Prometheus + Grafana or cloud-equivalent | RFP/Customer Portal - RFP.md | 352 |
-| NFR-022 | Blue/green or canary deployments with auto-rollback | DevOps & Infrastructure | Blue/green or canary with automatic rollback on failed health checks | RFP/Customer Portal - RFP.md | 353 |
-| NFR-023 | Achieve 80% unit test coverage for business logic | Quality Assurance | ≥ 80% unit test coverage for business logic | RFP/Customer Portal - RFP.md | 354 |
-| FR-138 | Support feature flags for gradual AI rollout | AI & LLM | Gradual rollout for new AI models and analysis capabilities | RFP/Customer Portal - RFP.md | 355 |
-| FR-139 | System must support Employees and Customers user role categories | User Management | The system defines two top-level categories: **Employees** (internal staff) and **Customers** (external clients). | RFP/Customer Portal - RFP.md | 361 |
-| FR-140 | Admin can manage system users | User Management | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Portal - RFP.md | 367 |
-| FR-141 | Admin can configure system settings | System Configuration | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Portal - RFP.md | 367 |
-| FR-142 | Admin can manage application branding | System Configuration | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Portal - RFP.md | 367 |
-| FR-143 | Admin can configure LLM parameters | System Configuration | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Portal - RFP.md | 367 |
-| FR-144 | Admin can view audit log | Audit & Logging | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Portal - RFP.md | 367 |
-| FR-145 | Admin can view all projects and analytics | Analytics | All system permissions; user management; system configuration; view all projects and analytics | RFP/Customer Portal - RFP.md | 367 |
-| FR-146 | Sales Manager can view all projects | Project Management | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Portal - RFP.md | 368 |
-| FR-147 | Sales Manager can create projects | Project Management | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Portal - RFP.md | 368 |
-| FR-148 | Sales Manager can archive projects | Project Management | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Portal - RFP.md | 368 |
-| FR-149 | Sales Manager can assign employees to projects | Team Assignment | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Portal - RFP.md | 368 |
-| FR-150 | Sales Manager can access management analytics | Analytics | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Portal - RFP.md | 368 |
-| FR-151 | Sales Manager can send deliverables to client | Deliverable Management | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Portal - RFP.md | 368 |
-| FR-152 | Solution Architect can edit all assigned project artifacts | Artifact Management | Edit all artifacts on assigned projects; approve architectural deliverables | RFP/Customer Portal - RFP.md | 369 |
-| FR-153 | Solution Architect can approve architectural deliverables | Approval Workflow | Edit all artifacts on assigned projects; approve architectural deliverables | RFP/Customer Portal - RFP.md | 369 |
-| FR-154 | Business Analyst can edit requirements on assigned projects | Artifact Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Portal - RFP.md | 370 |
-| FR-155 | Business Analyst can edit canvases on assigned projects | Artifact Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Portal - RFP.md | 370 |
-| FR-156 | Business Analyst can edit feature list on assigned projects | Artifact Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Portal - RFP.md | 370 |
-| FR-157 | Business Analyst can edit risk register on assigned projects | Artifact Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Portal - RFP.md | 370 |
-| FR-158 | Business Analyst can submit deliverables for review | Deliverable Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Portal - RFP.md | 370 |
-| FR-159 | Estimator can edit feature list estimates on assigned projects | Estimation | Edit feature list estimates on assigned projects; read-only access to all other artifacts | RFP/Customer Portal - RFP.md | 371 |
-| FR-160 | Estimator has read-only access to other artifacts | Access Control | Edit feature list estimates on assigned projects; read-only access to all other artifacts | RFP/Customer Portal - RFP.md | 371 |
-| FR-161 | Account Manager can read all assigned project artifacts | Artifact Management | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Portal - RFP.md | 372 |
-| FR-162 | Account Manager can comment on assigned project artifacts | Collaboration | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Portal - RFP.md | 372 |
-| FR-163 | Account Manager can invite customers | User Management | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Portal - RFP.md | 372 |
-| FR-164 | Account Manager can manage customer access | Access Control | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Portal - RFP.md | 372 |
-| FR-165 | Account Manager can send deliverables to client | Deliverable Management | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Portal - RFP.md | 372 |
-| FR-166 | Admins and Sales Managers can create and archive projects | Access Control & Permissions | Create / archive project \| ✓ \| ✓ \| — \| — \| — \| — \| — | RFP/Customer Portal - RFP.md | 384 |
-| FR-167 | Admins and Sales Managers assign employees to projects | Access Control & Permissions | Assign employees to project \| ✓ \| ✓ \| — \| — \| — \| — \| — | RFP/Customer Portal - RFP.md | 385 |
-| FR-168 | Admins, Sales Managers, SAs, BAs upload RFP documents | Document Ingestion | Upload RFP document \| ✓ \| ✓ \| ✓ \| ✓ \| — \| — \| — | RFP/Customer Portal - RFP.md | 386 |
-| FR-169 | Admins, SAs, BAs edit requirements and canvases | Requirements Management | Edit requirements & canvases \| ✓ \| — \| ✓ \| ✓ \| — \| — \| — | RFP/Customer Portal - RFP.md | 387 |
-| FR-170 | Admins, SAs, BAs, Estimators edit feature estimations | Estimation & Planning | Edit feature estimations \| ✓ \| — \| ✓ \| ✓ \| ✓ \| — \| — | RFP/Customer Portal - RFP.md | 388 |
-| FR-171 | Admins, SAs, BAs raise and resolve Clarification Requests | Clarification Requests | Raise / resolve Clarification Request \| ✓ \| — \| ✓ \| ✓ \| — \| — \| — | RFP/Customer Portal - RFP.md | 389 |
-| FR-172 | Admins, Sales Managers, BAs, Account Managers escalate CRs to client | Clarification Requests | Escalate CR to client \| ✓ \| ✓ \| — \| ✓ \| — \| ✓ \| — | RFP/Customer Portal - RFP.md | 390 |
-| FR-173 | Admins and BAs sign off requirements at BA gate | Requirements Management | Sign off Requirements (BA gate) \| ✓ \| — \| — \| ✓ \| — \| — \| — | RFP/Customer Portal - RFP.md | 391 |
-| FR-174 | Specified roles submit deliverables for internal review | Deliverable Management | Submit deliverable for review \| ✓ \| ✓ \| ✓ \| ✓ \| — \| ✓ \| — | RFP/Customer Portal - RFP.md | 392 |
-| FR-175 | Specified roles approve deliverables internally (SA arch, BA) | Deliverable Management | Approve deliverable (internal) \| ✓ \| ✓ \| ✓ (arch) \| ✓ (BA) \| — \| ✓ \| — | RFP/Customer Portal - RFP.md | 393 |
-| FR-176 | Admins, Sales Managers, Account Managers send deliverables to Customer | Deliverable Management | Send deliverable to Customer \| ✓ \| ✓ \| — \| — \| — \| ✓ \| — | RFP/Customer Portal - RFP.md | 394 |
-| FR-177 | Customers view and comment on deliverables | Portal & Collaboration | View & comment (Customer) \| — \| — \| — \| — \| — \| — \| ✓ | RFP/Customer Portal - RFP.md | 395 |
-| FR-178 | Customers approve deliverables or request revisions | Portal & Collaboration | Approve / request revision (Customer) \| — \| — \| — \| — \| — \| — \| ✓ | RFP/Customer Portal - RFP.md | 396 |
-| FR-179 | Only Admins can manage system users | User Management | Manage users \| ✓ \| — \| — \| — \| — \| — \| — | RFP/Customer Portal - RFP.md | 397 |
-| FR-180 | Only Admins can configure system settings | Configuration | Configure system settings \| ✓ \| — \| — \| — \| — \| — \| — | RFP/Customer Portal - RFP.md | 398 |
-| FR-181 | Admins and Sales Managers view analytics dashboard | Analytics & Reporting | View analytics dashboard \| ✓ \| ✓ \| — \| — \| — \| — \| — | RFP/Customer Portal - RFP.md | 399 |
-| FR-182 | User management for all roles | User Management | User management (all roles) | RFP/Customer Portal - RFP.md | 424 |
-| FR-183 | Support document upload and OCR pipeline | Document Processing | Document upload (PDF, DOCX, MD) and OCR pipeline | RFP/Customer Portal - RFP.md | 425 |
-| FR-184 | Anonymise documents by redacting PII | Document Processing | Anonymisation worker for PII redaction | RFP/Customer Portal - RFP.md | 426 |
-| FR-185 | Extract functional, non-functional, business requirements | Requirements & Analysis | Requirement extraction (FR, NFR, BR) | RFP/Customer Portal - RFP.md | 428 |
-| FR-186 | Extract feature lists with basic effort estimation | Requirements & Analysis | Feature list extraction with basic effort estimation | RFP/Customer Portal - RFP.md | 429 |
-| FR-187 | Generate C4 Context and Application views | Architecture & Design | C4 Context and Application views | RFP/Customer Portal - RFP.md | 430 |
-| FR-188 | Generate AI-extracted risk register with editable heatmap | Risk Management | Risk Register generation (AI-extracted, editable heatmap) | RFP/Customer Portal - RFP.md | 431 |
-| FR-189 | Calculate RFP Health Score with recommendations | AI Analysis | RFP Health Score with actionable recommendations | RFP/Customer Portal - RFP.md | 432 |
-| FR-190 | Export project to PDF and DOCX formats | Export & Integration | PDF and DOCX export | RFP/Customer Portal - RFP.md | 433 |
-| FR-191 | Provide view-only client portal | Portal & Collaboration | Basic client portal (view-only) | RFP/Customer Portal - RFP.md | 434 |
-| TC-027 | Send notifications via MS Teams | Notifications & Integration | MS Teams notifications | RFP/Customer Portal - RFP.md | 435 |
-| FR-192 | Generate C4 Component View (Level 3) architecture | Architecture & Design | C4 Component View (Level 3) for Paid Discovery | RFP/Customer Portal - RFP.md | 439 |
-| TC-028 | Support real-time collaboration with WebSockets | Portal & Collaboration | Real-time collaboration (WebSockets) | RFP/Customer Portal - RFP.md | 440 |
-| FR-193 | Implement approval workflow engine | Workflow & Approval | Approval workflow engine | RFP/Customer Portal - RFP.md | 441 |
-| FR-194 | Export project to Confluence | Export & Integration | Confluence export | RFP/Customer Portal - RFP.md | 444 |
-| FR-195 | Send notifications via email | Notifications & Integration | Email notifications | RFP/Customer Portal - RFP.md | 445 |
-| FR-196 | Display full audit trail in UI | Audit & Compliance | Full audit trail UI | RFP/Customer Portal - RFP.md | 446 |
-| TC-029 | Support Single Sign-On via SAML | Authentication & Security | SSO (SAML) | RFP/Customer Portal - RFP.md | 450 |
-| TC-030 | Integrate with Salesforce via webhooks | CRM Integration | CRM webhook integration (Salesforce) | RFP/Customer Portal - RFP.md | 451 |
-| FR-197 | Allow custom canvas configuration in admin panel | Admin & Configuration | Custom canvas configuration via Admin panel | RFP/Customer Portal - RFP.md | 453 |
-| FR-198 | Support LLM provider switching and prompt A/B testing | LLM & AI | LLM provider switching and prompt A/B testing | RFP/Customer Portal - RFP.md | 454 |
-| TC-031 | Support self-hosted LLM via Ollama | LLM & AI | Self-hosted LLM support (Ollama) | RFP/Customer Portal - RFP.md | 455 |
-| FR-199 | Manage API keys for external integrations | Integration & Security | API key management for external integrations | RFP/Customer Portal - RFP.md | 456 |
-| BR-023 | Proposal must achieve minimum 50-point evaluation score | Evaluation Process | Vendors scoring below 50 total points will not be invited to the presentation round. | RFP/Customer Portal - RFP.md | 508 |
-| BR-024 | Vendor must have delivered AI-powered web application | Vendor Qualifications | At least one delivered AI-powered web application with a live reference customer. | RFP/Customer Portal - RFP.md | 511 |
-| BR-025 | Vendor must demonstrate production LLM integration experience | Vendor Qualifications | Demonstrated experience with LLM integration (OpenAI, Anthropic, or equivalent) in production. | RFP/Customer Portal - RFP.md | 512 |
-| BR-026 | Team must include Solution Architect and senior Frontend engineer | Vendor Qualifications | Team must include at least one dedicated Solution Architect and one senior Frontend engineer for Phase 1. | RFP/Customer Portal - RFP.md | 513 |
-| TC-032 | System must be deployable to EU or US cloud region | Infrastructure & Deployment | Willingness to work within the client's preferred cloud region (EU or US, confirmed at award). | RFP/Customer Portal - RFP.md | 514 |
+| BR-001 | System must enforce role-based access control | Access Control | Employee Roles table defining six distinct roles with specific permissions | RFP/Customer Facing Portal - RFP.md | 0 |
+| FR-001 | Employees can upload client RFP documents | Document Ingestion | enables company employees — Business Analysts, Solution Architects, Sales Managers, and Account Managers — to upload client RFP documents | RFP/Customer Facing Portal - RFP.md | 30 |
+| FR-002 | System generates automated business model analysis | AI Analysis | receive automated, AI-generated deliverables including business model analysis | RFP/Customer Facing Portal - RFP.md | 30 |
+| FR-003 | System generates feature breakdowns with effort estimates | AI Analysis | receive automated, AI-generated deliverables including business model analysis, feature breakdowns with effort estimates | RFP/Customer Facing Portal - RFP.md | 30 |
+| FR-004 | System generates strategic canvases automatically | AI Analysis | receive automated, AI-generated deliverables including business model analysis, feature breakdowns with effort estimates, and strategic canvases | RFP/Customer Facing Portal - RFP.md | 30 |
+| FR-005 | Provide access-controlled dedicated view for external clients | User Management | External clients receive a dedicated, access-controlled view | RFP/Customer Facing Portal - RFP.md | 30 |
+| FR-006 | External clients can review and comment on deliverables | Portal & Collaboration | External clients receive a dedicated, access-controlled view to review and comment on the deliverables prepared for them | RFP/Customer Facing Portal - RFP.md | 30 |
+| NFR-001 | Reduce proposal time from days to hours | Performance | The system reduces time-to-proposal from days to hours | RFP/Customer Facing Portal - RFP.md | 32 |
+| BR-002 | Standardize analysis quality across the internal team | Quality Assurance | standardizes analysis quality across the team | RFP/Customer Facing Portal - RFP.md | 32 |
+| BR-003 | Provide professional workspace for client artifact review | Portal & Collaboration | gives clients a professional workspace for reviewing pre-sales artifacts | RFP/Customer Facing Portal - RFP.md | 32 |
+| BR-004 | Reduce manual pre-sales effort by 70% | Business Process Efficiency | Reduce manual pre-sales effort by **≥ 70%** through AI automation. | RFP/Customer Facing Portal - RFP.md | 36 |
+| BR-005 | Standardize proposal quality across teams | Quality Assurance | Standardize proposal quality across all internal teams. | RFP/Customer Facing Portal - RFP.md | 37 |
+| BR-006 | Reduce proposal turnaround time to under 24 hours | Process Efficiency | Shorten average proposal turnaround from **5–7 business days to < 24 hours**. | RFP/Customer Facing Portal - RFP.md | 38 |
+| BR-007 | Improve requirement analysis depth and accuracy | Quality Assurance | Increase proposal win rate by improving depth and accuracy of requirement analysis. | RFP/Customer Facing Portal - RFP.md | 39 |
+| FR-007 | Provide professional deliverables view to clients | User Interface | Provide clients with a clean, professional view of the deliverables prepared for them. | RFP/Customer Facing Portal - RFP.md | 40 |
+| FR-008 | Automate RFP document parsing to reduce analysis time | Document Processing | Manual RFP parsing takes 8–40 hours per document | RFP/Customer Facing Portal - RFP.md | 50 |
+| BR-008 | Standardize analysis quality independent of analyst experience | Process Standardization | Analysis quality varies by analyst experience | RFP/Customer Facing Portal - RFP.md | 51 |
+| FR-009 | Provide centralized workspace for client collaboration | Portal & Collaboration | No centralized client workspace | RFP/Customer Facing Portal - RFP.md | 52 |
+| FR-010 | Enable structured client feedback and review mechanism | Portal & Collaboration | No structured way for clients to comment and review deliverables | RFP/Customer Facing Portal - RFP.md | 53 |
+| FR-011 | Provide automated project estimation framework | Analysis & Estimation | No automated estimation framework | RFP/Customer Facing Portal - RFP.md | 54 |
+| FR-012 | Identify and surface risk and architecture concerns | Analysis & Risk Management | Risk and architecture concerns missed | RFP/Customer Facing Portal - RFP.md | 55 |
+| FR-013 | Provide Deal Go/No-Go AI Advisor | AI Analysis | Deal Go/No-Go AI Advisor | RFP/Customer Facing Portal - RFP.md | 66 |
+| FR-014 | Provide analytics dashboard for management | Analytics | Analytics dashboard for management | RFP/Customer Facing Portal - RFP.md | 76 |
+| FR-015 | Provide in-app persistent chat functionality | Communication | In-app persistent chat | RFP/Customer Facing Portal - RFP.md | 82 |
+| FR-016 | Integrate audio and video calling | Communication | Audio/video calling integration | RFP/Customer Facing Portal - RFP.md | 83 |
+| FR-017 | Support PDF, DOCX, XLSX, PPTX, TXT, HTML, Markdown formats | Document Ingestion | PDF (up to 200 MB), DOCX, XLSX, PPTX, TXT, HTML, Markdown | RFP/Customer Facing Portal - RFP.md | 93 |
+| TC-001 | PDF files must not exceed 200 MB | Document Ingestion | PDF (up to 200 MB) | RFP/Customer Facing Portal - RFP.md | 93 |
+| BR-009 | Support maximum of 10 files per project | Document Ingestion | up to 10 files per project | RFP/Customer Facing Portal - RFP.md | 93 |
+| FR-018 | Support drag-and-drop and URL paste upload | Document Ingestion | Upload via drag-and-drop or public URL paste | RFP/Customer Facing Portal - RFP.md | 94 |
+| FR-019 | Validate file integrity and reject corrupted files | Document Ingestion | Integrity check on arrival; corrupted files rejected with a clear error | RFP/Customer Facing Portal - RFP.md | 97 |
+| FR-020 | Perform OCR on scanned PDFs and image pages | Document Processing | OCR on scanned PDFs / image pages (≥ 95% accuracy, standard English) | RFP/Customer Facing Portal - RFP.md | 98 |
+| NFR-002 | OCR must achieve minimum 95% accuracy | Document Processing | OCR on scanned PDFs / image pages (≥ 95% accuracy, standard English) | RFP/Customer Facing Portal - RFP.md | 98 |
+| FR-021 | Extract tables with original structure preserved | Document Processing | Table extraction with structure intact | RFP/Customer Facing Portal - RFP.md | 99 |
+| FR-022 | Segment documents into sections semantically | Document Processing | Semantic segmentation into sections: executive summary, requirements, technical specs, budget, timeline, appendices | RFP/Customer Facing Portal - RFP.md | 100 |
+| FR-023 | Detect document language from supported languages | Document Processing | Language detection: English, German, French, Spanish, Ukrainian | RFP/Customer Facing Portal - RFP.md | 101 |
+| FR-024 | Extract document metadata automatically | Document Processing | Metadata extracted: author, creation date, page count, word count | RFP/Customer Facing Portal - RFP.md | 102 |
+| FR-025 | Provide paginated in-browser preview without plugins | Document Ingestion | Paginated in-browser preview (no plugin required) | RFP/Customer Facing Portal - RFP.md | 105 |
+| FR-026 | Create new version on upload with history preserved | Document Management | New upload creates a new document version; prior version and its analysis are preserved | RFP/Customer Facing Portal - RFP.md | 106 |
+| FR-027 | Display upload history with user and timestamp | Document Management | Upload history shows who uploaded what and when | RFP/Customer Facing Portal - RFP.md | 107 |
+| FR-028 | Display processing pipeline status in real time | Processing Pipeline | Stages shown in real time: Uploaded → Queued → OCR → Segmentation → Anonymisation → AI Analysis → Complete / Failed | RFP/Customer Facing Portal - RFP.md | 110 |
+| FR-029 | Allow job cancellation before AI Analysis | Processing Pipeline | Jobs cancellable before AI Analysis stage | RFP/Customer Facing Portal - RFP.md | 111 |
+| FR-030 | Send in-app and email notifications on completion | Notifications | In-app + email notification when processing finishes or fails | RFP/Customer Facing Portal - RFP.md | 112 |
+| FR-031 | Retry failed processing up to 3 times with backoff | Error Handling | Auto-retry up to 3 times with exponential backoff | RFP/Customer Facing Portal - RFP.md | 115 |
+| FR-032 | Alert operations team on persistent failures | Error Handling | Persistent failure alerts the ops team | RFP/Customer Facing Portal - RFP.md | 116 |
+| FR-033 | Classify requirements into FR, NFR, BR, TC, CR types | AI Analysis | Classifies every requirement into: Functional (FR), Non-Functional (NFR), Business (BR), Technical Constraints (TC), Compliance/Regulatory (CR) | RFP/Customer Facing Portal - RFP.md | 124 |
+| FR-034 | Include confidence score, source reference, MoSCoW priority | AI Analysis | Each item includes: confidence score (0–100%), source reference (page + section), MoSCoW priority | RFP/Customer Facing Portal - RFP.md | 125 |
+| FR-035 | Surface implicit requirements from explicit statements | AI Analysis | Surfaces implicit requirements (e.g., "mobile-friendly" → responsive design, accessibility, potential offline support) | RFP/Customer Facing Portal - RFP.md | 126 |
+| FR-036 | Flag ambiguous, conflicting, or contradictory requirements | AI Analysis | Flags ambiguous, conflicting, or contradictory requirements with explanations | RFP/Customer Facing Portal - RFP.md | 127 |
+| FR-037 | Raise gap alerts for missing critical areas | AI Analysis | Completeness check raises gap alerts for missing critical areas (e.g., no security section, no SLA) | RFP/Customer Facing Portal - RFP.md | 128 |
+| FR-038 | Extract named entities from requirements document | AI Analysis | Extracts named entities: company names, products, technologies, regulatory frameworks, budgets, dates | RFP/Customer Facing Portal - RFP.md | 129 |
+| FR-039 | Generate auto-generated project-level glossary with definitions | AI Analysis | Builds a project-level glossary with auto-generated definitions | RFP/Customer Facing Portal - RFP.md | 130 |
+| FR-040 | Store integration points as structured data | AI Analysis | Stores integration points and quantitative constraints as structured data | RFP/Customer Facing Portal - RFP.md | 131 |
+| FR-041 | Allow reviewers to accept, reject, edit, split, merge requirements | AI Analysis | Reviewers can accept, reject, edit, split, or merge any extracted requirement in the UI | RFP/Customer Facing Portal - RFP.md | 132 |
+| BR-010 | Structure features as Epic → Feature → User Story → Criteria | Feature List and Estimation | Features structured as: Epic → Feature → User Story → Acceptance Criteria | RFP/Customer Facing Portal - RFP.md | 136 |
+| FR-042 | Tag features with domain, role, priority, complexity, type | Feature List and Estimation | Each feature tagged with: domain module, user role, MoSCoW priority, complexity (XS/S/M/L/XL), type (UI, API, integration, infrastructure) | RFP/Customer Facing Portal - RFP.md | 137 |
+| BR-011 | Format user stories as As a / I want / so that | Feature List and Estimation | User stories in "As a / I want / so that" format; acceptance criteria in Given/When/Then (Gherkin) | RFP/Customer Facing Portal - RFP.md | 138 |
+| FR-043 | Identify MVP scope by clustering Must Have items | Feature List and Estimation | Identifies MVP scope by clustering Must Have items; flags overlapping features for consolidation | RFP/Customer Facing Portal - RFP.md | 139 |
+| FR-044 | Enable analysts to add custom features | Feature List and Estimation | Analysts can add custom features | RFP/Customer Facing Portal - RFP.md | 140 |
+| FR-045 | Break down effort estimates by discipline | Feature List and Estimation | Effort estimates per feature, broken down by: Frontend, Backend, QA/Testing, UX/UI, DevOps, BA, PM | RFP/Customer Facing Portal - RFP.md | 141 |
+| NFR-003 | Include confidence interval with effort estimates | Feature List and Estimation | Total estimate includes a confidence interval (e.g., 1,200 hrs ± 20%) derived from complexity signals | RFP/Customer Facing Portal - RFP.md | 142 |
+| FR-046 | Recalculate estimates in real time when adjusted | Feature List and Estimation | Adjusting any estimate recalculates totals in real time | RFP/Customer Facing Portal - RFP.md | 143 |
+| FR-047 | Admin can configure risk, management, QA buffers | Feature List and Estimation | Admin can configure risk/management/QA buffers | RFP/Customer Facing Portal - RFP.md | 143 |
+| FR-048 | Display summary table and discipline breakdown chart | Feature List and Estimation | Visualization: summary table + discipline breakdown chart | RFP/Customer Facing Portal - RFP.md | 144 |
+| FR-049 | Recommend technology stack with rationale and TCO | Feature List and Estimation | Technology stack recommendation (frontend, backend, DB, cloud, message broker, CI/CD) with rationale, maturity, license, TCO implications | RFP/Customer Facing Portal - RFP.md | 145 |
+| FR-050 | Allow override and lock of tech stack items | Feature List and Estimation | analysts can override and lock items | RFP/Customer Facing Portal - RFP.md | 145 |
+| FR-051 | Flag conflicts between recommendations and constraints | Feature List and Estimation | conflicts with stated constraints are flagged | RFP/Customer Facing Portal - RFP.md | 145 |
+| FR-052 | Deliver diagrams as rendered and editable PlantUML/Mermaid | Architecture Views | Both views delivered as rendered diagrams and editable PlantUML/Mermaid source | RFP/Customer Facing Portal - RFP.md | 149 |
+| FR-053 | Export architecture views as PNG, SVG, Confluence | Architecture Views | exportable as PNG, SVG, or Confluence page | RFP/Customer Facing Portal - RFP.md | 149 |
+| FR-054 | Generate Context View showing system, users, dependencies | Architecture Views | Context View (C4 L1): system as a black box + users and external systems; generated from integration points, user roles, and named external dependencies | RFP/Customer Facing Portal - RFP.md | 151 |
+| FR-055 | Generate Application View showing containers and communication | Architecture Views | Application View (C4 L2 Container): deployable containers (web app, API, workers, DB, queue) and their communication; inferred from tech stack, pipeline shape, and NFRs | RFP/Customer Facing Portal - RFP.md | 152 |
+| FR-056 | Allow architects to edit architecture views inline | Architecture Views | Both views editable inline by a Solution Architect and versioned | RFP/Customer Facing Portal - RFP.md | 153 |
+| FR-057 | Auto-generate risk register from analysed document | Risk Register | Auto-generated from the analysed document | RFP/Customer Facing Portal - RFP.md | 157 |
+| BR-012 | Categorize risks as Technical, Financial, Timeline, Scope, Compliance, People | Risk Register | categories: Technical, Financial, Timeline, Scope, Compliance, People | RFP/Customer Facing Portal - RFP.md | 157 |
+| FR-058 | Include description, likelihood, impact, score, mitigation, reference | Risk Register | Each entry: description, likelihood (1–5), impact (1–5), risk score (likelihood × impact), mitigation strategy, RFP source reference | RFP/Customer Facing Portal - RFP.md | 158 |
+| FR-059 | Render risks as editable table and colour-coded heatmap | Risk Register | Rendered as an editable table and a colour-coded heatmap (green / amber / red) | RFP/Customer Facing Portal - RFP.md | 159 |
+| FR-060 | Allow analysts to add custom risks and edit AI entries | Risk Register | Analysts can add custom risks, edit AI entries, assign owner and due date per mitigation | RFP/Customer Facing Portal - RFP.md | 160 |
+| FR-061 | Version risks and include in full-project export | Risk Register | Versioned alongside all other artifacts; included in full-project export | RFP/Customer Facing Portal - RFP.md | 161 |
+| CR-001 | Show risks to internal roles, hide from customer by default | Risk Register | Visible to all internal roles; hidden from Customer view by default | RFP/Customer Facing Portal - RFP.md | 162 |
+| FR-062 | Evaluate RFP against ICP and technical capability matrix | Deal Go/No-Go Advisor | evaluates the RFP against the company's ICP, technical capability matrix, and strategic alignment | RFP/Customer Facing Portal - RFP.md | 166 |
+| FR-063 | Output clear recommendation with match percentage | Deal Go/No-Go Advisor | first output is a clear recommendation with a match percentage (e.g., "85% match — Proceed" or "High-compliance trap — Decline to bid") | RFP/Customer Facing Portal - RFP.md | 166 |
+| FR-064 | Calculate RFP Health Score on 0–100 scale | Deal Go/No-Go Advisor | RFP Health Score (0–100) | RFP/Customer Facing Portal - RFP.md | 167 |
+| BR-013 | Weight Business Clarity at 30% of health score | Deal Go/No-Go Advisor | Business Clarity \| 30% \| Executive summary, stated goals, success metrics, budget signals | RFP/Customer Facing Portal - RFP.md | 171 |
+| BR-014 | Weight Requirements Completeness at 35% of score | Deal Go/No-Go Advisor | Requirements Completeness \| 35% \| Coverage of functional, non-functional, compliance, and integration requirements | RFP/Customer Facing Portal - RFP.md | 172 |
+| BR-015 | Weight Technical Specificity at 20% of score | Deal Go/No-Go Advisor | Technical Specificity \| 20% \| Stack constraints, integration endpoints, performance targets, deployment model | RFP/Customer Facing Portal - RFP.md | 173 |
+| BR-016 | Weight Commercial Terms at 15% of score | Deal Go/No-Go Advisor | Commercial Terms \| 15% \| Budget range, timeline, evaluation criteria, submission instructions | RFP/Customer Facing Portal - RFP.md | 174 |
+| FR-065 | Include actionable recommendations for each sub-score | Deal Go/No-Go Advisor | Each sub-score includes actionable recommendations (e.g., "No budget range detected — clarify before estimating") | RFP/Customer Facing Portal - RFP.md | 176 |
+| FR-066 | Recalculate health score on document version upload | Deal Go/No-Go Advisor | Recalculated automatically on new document version upload or manual section correction | RFP/Customer Facing Portal - RFP.md | 177 |
+| FR-067 | Allow analysts to dismiss recommendations with audit trail | Deal Go/No-Go Advisor | Analysts can dismiss individual recommendations with a note (logged in audit trail) | RFP/Customer Facing Portal - RFP.md | 178 |
+| FR-068 | Display health score on project list for triage | Deal Go/No-Go Advisor | Aggregate Health Score visible on project list for at-a-glance triage | RFP/Customer Facing Portal - RFP.md | 179 |
+| FR-069 | Admin configures company branding colors and logo | Portal & Collaboration | Company branding (logo, colors) configured by Admin | RFP/Customer Facing Portal - RFP.md | 187 |
+| NFR-004 | System supports unlimited number of projects | Scalability | No hard cap on number of projects | RFP/Customer Facing Portal - RFP.md | 188 |
+| FR-070 | Admin configures data retention policies | Portal & Collaboration | Admin configures data retention, estimation buffers, notification preferences, export templates | RFP/Customer Facing Portal - RFP.md | 188 |
+| FR-071 | Admin configures estimation buffers | Portal & Collaboration | Admin configures data retention, estimation buffers, notification preferences, export templates | RFP/Customer Facing Portal - RFP.md | 188 |
+| FR-072 | Admin configures notification preferences | Portal & Collaboration | Admin configures data retention, estimation buffers, notification preferences, export templates | RFP/Customer Facing Portal - RFP.md | 188 |
+| FR-073 | Admin configures export templates | Portal & Collaboration | Admin configures data retention, estimation buffers, notification preferences, export templates | RFP/Customer Facing Portal - RFP.md | 188 |
+| FR-074 | Project access enforced at data layer by role | Security | Project access enforced at the data layer: employees see only assigned projects; Sales Managers and Admins see all | RFP/Customer Facing Portal - RFP.md | 189 |
+| FR-075 | Dashboard displays project name, client, submission date | Portal & Collaboration | Main project dashboard columns: name, client, submission date, processing status, assigned analyst, deliverable completion %, last activity | RFP/Customer Facing Portal - RFP.md | 190 |
+| FR-076 | Dashboard displays processing status and assigned analyst | Portal & Collaboration | Main project dashboard columns: name, client, submission date, processing status, assigned analyst, deliverable completion %, last activity | RFP/Customer Facing Portal - RFP.md | 190 |
+| FR-077 | Dashboard displays completion percentage and last activity | Portal & Collaboration | Main project dashboard columns: name, client, submission date, processing status, assigned analyst, deliverable completion %, last activity | RFP/Customer Facing Portal - RFP.md | 190 |
+| FR-078 | Project list filterable by status, client, date, industry | Portal & Collaboration | Filterable and sortable by: status, client, date, industry, estimated value, analyst | RFP/Customer Facing Portal - RFP.md | 191 |
+| FR-079 | Project list sortable by estimated value and analyst | Portal & Collaboration | Filterable and sortable by: status, client, date, industry, estimated value, analyst | RFP/Customer Facing Portal - RFP.md | 191 |
+| FR-080 | Dashboard displays active projects and average time-to-analysis KPIs | Portal & Collaboration | Summary KPIs at top: active projects, average time-to-analysis, pipeline hours, win rate | RFP/Customer Facing Portal - RFP.md | 192 |
+| FR-081 | Dashboard displays pipeline hours and win rate KPIs | Portal & Collaboration | Summary KPIs at top: active projects, average time-to-analysis, pipeline hours, win rate | RFP/Customer Facing Portal - RFP.md | 192 |
+| FR-082 | Projects can be archived and restored | Portal & Collaboration | Projects can be archived and restored | RFP/Customer Facing Portal - RFP.md | 193 |
+| FR-083 | Client view hides internal notes and pricing data | Portal & Collaboration | Clients see only deliverables explicitly shared by an Account Manager or Sales Manager — no internal notes, pricing, or estimation details | RFP/Customer Facing Portal - RFP.md | 197 |
+| FR-084 | Client portal accessible via unique project URL | Portal & Collaboration | Accessible via a unique project URL with optional PIN or SSO login | RFP/Customer Facing Portal - RFP.md | 198 |
+| FR-085 | Client authentication supports PIN or SSO login | Security | Accessible via a unique project URL with optional PIN or SSO login | RFP/Customer Facing Portal - RFP.md | 198 |
+| FR-086 | Clients can leave threaded comments on deliverables | Portal & Collaboration | Clients can leave threaded comments on any visible section | RFP/Customer Facing Portal - RFP.md | 199 |
+| FR-087 | Clients approve deliverables or request revisions | Portal & Collaboration | Clients can formally approve a deliverable or request revision (notifies internal team) | RFP/Customer Facing Portal - RFP.md | 200 |
+| FR-088 | System tracks client views and download activity | Portal & Collaboration | Internal team can see which deliverables the client has viewed, time spent, and downloads | RFP/Customer Facing Portal - RFP.md | 201 |
+| FR-089 | Artifacts support threaded inline comments with @mentions | Portal & Collaboration | Any artifact supports threaded inline comments with @mention support | RFP/Customer Facing Portal - RFP.md | 205 |
+| FR-090 | Canvases and feature lists support real-time collaborative editing | Portal & Collaboration | Canvases and feature lists support real-time collaborative editing (last-write-wins with conflict indicators) | RFP/Customer Facing Portal - RFP.md | 206 |
+| FR-091 | System maintains per-project live activity feed | Portal & Collaboration | Per-project live activity feed: all changes, comments, and status transitions | RFP/Customer Facing Portal - RFP.md | 207 |
+| FR-092 | Team members assign review tasks with due dates | Portal & Collaboration | Team members can assign review tasks with due dates and priority levels | RFP/Customer Facing Portal - RFP.md | 208 |
+| FR-093 | Artifacts support custom labeling and tagging | Portal & Collaboration | Artifacts can be tagged with custom labels | RFP/Customer Facing Portal - RFP.md | 209 |
+| FR-094 | Approval workflow supports configurable stages and approvers | Portal & Collaboration | Approval workflow: Draft → In Review → Approved → Sent to Client; each stage configurable to require one or all approvers from a specified group | RFP/Customer Facing Portal - RFP.md | 210 |
+| FR-095 | System sends automated reminders for overdue approvals | Portal & Collaboration | Automated reminders for overdue approvals; all decisions recorded in audit log with timestamp and approver identity | RFP/Customer Facing Portal - RFP.md | 211 |
+| CR-002 | All approval decisions recorded in audit log with identity | Compliance | Automated reminders for overdue approvals; all decisions recorded in audit log with timestamp and approver identity | RFP/Customer Facing Portal - RFP.md | 211 |
+| FR-096 | Workflow templates saveable and reusable per client tier | Portal & Collaboration | Workflow templates saveable and reusable per project type or client tier | RFP/Customer Facing Portal - RFP.md | 212 |
+| FR-097 | System supports individual or full-project bundle export | Portal & Collaboration | Individual or full-project bundle export | RFP/Customer Facing Portal - RFP.md | 216 |
+| FR-098 | Export formats include PDF, DOCX, XLSX, Markdown, JSON | Portal & Collaboration | Formats: PDF (branded, print-ready), DOCX (editable), XLSX (estimation data), Markdown, JSON | RFP/Customer Facing Portal - RFP.md | 217 |
+| FR-099 | Single-click ZIP export for full project bundle | Portal & Collaboration | Single-click ZIP export for full project bundle | RFP/Customer Facing Portal - RFP.md | 218 |
+| TC-002 | System supports Confluence integration for page creation | Integration | Direct push to Confluence (create or update page tree) | RFP/Customer Facing Portal - RFP.md | 219 |
+| FR-100 | Analytics dashboard displays proposals and processing metrics | Portal & Collaboration | Analytics dashboard (Admins and Sales Managers): proposals per period, average processing time, feature count distributions, industry verticals, analyst productivity | RFP/Customer Facing Portal - RFP.md | 220 |
+| FR-101 | Notifications support in-app, email, Slack/Teams channels | Portal & Collaboration | Delivery channels: in-app, email, Slack or Microsoft Teams (webhook); users configure events and frequency (immediate / hourly / daily digest) | RFP/Customer Facing Portal - RFP.md | 224 |
+| FR-102 | Users configure notification events and frequency preferences | Portal & Collaboration | Delivery channels: in-app, email, Slack or Microsoft Teams (webhook); users configure events and frequency (immediate / hourly / daily digest) | RFP/Customer Facing Portal - RFP.md | 224 |
+| FR-103 | Notifications triggered for processing, approvals, mentions, SLA | Portal & Collaboration | Events covered: processing complete/failed, approval required, comment @mention, client viewed deliverable, SLA breach warning, export complete | RFP/Customer Facing Portal - RFP.md | 225 |
+| CR-003 | Immutable audit log records all system events | Compliance | Immutable audit log: all logins, uploads, edits, exports, approvals, deletions — queryable by user, event type, project, date range; exportable for compliance | RFP/Customer Facing Portal - RFP.md | 226 |
+| CR-004 | Audit log queryable by user, event type, project, date range | Compliance | Immutable audit log: all logins, uploads, edits, exports, approvals, deletions — queryable by user, event type, project, date range; exportable for compliance | RFP/Customer Facing Portal - RFP.md | 226 |
+| CR-005 | Audit log exportable for compliance purposes | Compliance | Immutable audit log: all logins, uploads, edits, exports, approvals, deletions — queryable by user, event type, project, date range; exportable for compliance | RFP/Customer Facing Portal - RFP.md | 226 |
+| FR-104 | System maintains full version history for all artifacts | Portal & Collaboration | Full version history for every artifact with diff view between any two versions and one-click rollback | RFP/Customer Facing Portal - RFP.md | 227 |
+| FR-105 | Version history includes diff view between any versions | Portal & Collaboration | Full version history for every artifact with diff view between any two versions and one-click rollback | RFP/Customer Facing Portal - RFP.md | 227 |
+| FR-106 | One-click rollback to previous artifact versions | Portal & Collaboration | Full version history for every artifact with diff view between any two versions and one-click rollback | RFP/Customer Facing Portal - RFP.md | 227 |
+| NFR-005 | File uploads ≤ 10 MB processed within 3 seconds | Performance | File uploads ≤ 10 MB: processing initiated within 3 s | RFP/Customer Facing Portal - RFP.md | 234 |
+| NFR-006 | 30-page RFP analysis completes within 120 seconds | Performance | Standard 30-page RFP analysis: complete within 120 s | RFP/Customer Facing Portal - RFP.md | 235 |
+| NFR-007 | UI Time to Interactive under 2 seconds | Performance | UI pages: Time to Interactive < 2 s (10 Mbps connection) | RFP/Customer Facing Portal - RFP.md | 236 |
+| NFR-008 | API reads complete within 300 ms at p95 | Performance | API reads: < 300 ms at p95 | RFP/Customer Facing Portal - RFP.md | 237 |
+| NFR-009 | Canvas rendering completes within 500 milliseconds | Performance | Canvas rendering: < 500 ms | RFP/Customer Facing Portal - RFP.md | 238 |
+| NFR-010 | Full project bundle export completes within 30 seconds | Performance | full project bundle export: < 30 s | RFP/Customer Facing Portal - RFP.md | 238 |
+| NFR-011 | Real-time collaboration updates propagate within 500 ms | Performance | Real-time collaboration updates: propagate within 500 ms | RFP/Customer Facing Portal - RFP.md | 239 |
+| NFR-012 | System handles 20+ concurrent jobs and 100 users | Scalability | Handle ≥ 20 concurrent analysis jobs and ~100 concurrent users without degradation | RFP/Customer Facing Portal - RFP.md | 242 |
+| NFR-013 | Job queue clears all jobs within 5 minutes peak | Scalability | Job queue absorbs bursts; clears all queued jobs within 5 min at peak; no dropped jobs or silent timeouts | RFP/Customer Facing Portal - RFP.md | 243 |
+| TC-003 | AI workers scale horizontally independently of web tier | Architecture | AI workers scale horizontally (new instances when queue depth > 5), independently of the web tier | RFP/Customer Facing Portal - RFP.md | 244 |
+| NFR-014 | System scales 2× users and projects without reconfiguration | Scalability | System handles 2× active users/projects without infrastructure reconfiguration, within SLA | RFP/Customer Facing Portal - RFP.md | 245 |
+| NFR-015 | Data layer supports 1,000 reads/s and 200 writes/s | Performance | Data layer: 1,000 read queries/s, 200 writes/s; up to 5,000 projects and 500,000 artifacts | RFP/Customer Facing Portal - RFP.md | 246 |
+| NFR-016 | System stores up to 5,000 projects and 500,000 artifacts | Scalability | up to 5,000 projects and 500,000 artifacts | RFP/Customer Facing Portal - RFP.md | 246 |
+| NFR-017 | Portal maintains 99.9% uptime monthly | Reliability | Portal uptime: 99.9%/month | RFP/Customer Facing Portal - RFP.md | 249 |
+| NFR-018 | AI pipeline maintains 99.5% uptime | Reliability | AI pipeline: 99.5% | RFP/Customer Facing Portal - RFP.md | 249 |
+| NFR-019 | Recovery Time Objective (RTO) 1 hour, RPO 15 minutes | Reliability | RTO: 1 hour; RPO: 15 minutes | RFP/Customer Facing Portal - RFP.md | 250 |
+| FR-107 | Expose /healthz endpoint for subsystem status | Monitoring | `/healthz` endpoint exposes structured status for all subsystems | RFP/Customer Facing Portal - RFP.md | 251 |
+| FR-108 | Failed jobs automatically retry up to 3 times | Reliability | Failed jobs auto-retried ×3; persistent failures alert ops team within 5 min | RFP/Customer Facing Portal - RFP.md | 252 |
+| FR-109 | Graceful degradation when AI service unavailable | Availability | Graceful degradation: if AI service goes down, upload and manual editing remain functional; degraded mode activates automatically within 30 s with a visible user banner | RFP/Customer Facing Portal - RFP.md | 253 |
+| CR-006 | All data in transit encrypted with TLS 1.3 | Security | All data in transit: TLS 1.3; all data at rest: AES-256 | RFP/Customer Facing Portal - RFP.md | 256 |
+| CR-007 | All data at rest encrypted with AES-256 | Security | All data in transit: TLS 1.3; all data at rest: AES-256 | RFP/Customer Facing Portal - RFP.md | 256 |
+| CR-008 | System GDPR-compliant with right to erasure support | GDPR | GDPR-compliant (right to erasure, data portability, consent management, DPAs); targets SOC 2 Type II | RFP/Customer Facing Portal - RFP.md | 257 |
+| CR-009 | System targets SOC 2 Type II certification | Compliance | targets SOC 2 Type II | RFP/Customer Facing Portal - RFP.md | 257 |
+| CR-010 | Client data purged within 72 hours, purge tested and recorded | GDPR | Client data deletion purged within 72 hours across all artifacts and audit log; purge completion recorded; must be a tested, deliberate flow | RFP/Customer Facing Portal - RFP.md | 258 |
+| FR-110 | Employee accounts support optional MFA | Security | Employee accounts: optional MFA, enforceable company-wide by Admin | RFP/Customer Facing Portal - RFP.md | 259 |
+| FR-111 | Admin can enforce MFA company-wide | Security | Employee accounts: optional MFA, enforceable company-wide by Admin | RFP/Customer Facing Portal - RFP.md | 259 |
+| FR-112 | Project-level access control enforced at data layer | Security | Project-level access control enforced at the data layer | RFP/Customer Facing Portal - RFP.md | 260 |
+| FR-113 | IP allowlisting configurable by administrator | Security | IP allowlisting configurable by Admin | RFP/Customer Facing Portal - RFP.md | 261 |
+| BR-017 | Auth tokens expire after 8 hours of inactivity | Security | Auth tokens expire after 8 hours of inactivity; refresh tokens after 30 days | RFP/Customer Facing Portal - RFP.md | 262 |
+| BR-018 | Refresh tokens expire after 30 days | Security | Auth tokens expire after 8 hours of inactivity; refresh tokens after 30 days | RFP/Customer Facing Portal - RFP.md | 262 |
+| BR-019 | Rate limit 100 requests per minute per session | Security | Rate limiting: 100 req/min per session; 20 uploads/hour per user | RFP/Customer Facing Portal - RFP.md | 263 |
+| BR-020 | Rate limit 20 uploads per hour per user | Security | Rate limiting: 100 req/min per session; 20 uploads/hour per user | RFP/Customer Facing Portal - RFP.md | 263 |
+| TC-004 | Passwords hashed with bcrypt (cost ≥12) or Argon2id | Security | Passwords hashed with bcrypt (cost ≥ 12) or Argon2id | RFP/Customer Facing Portal - RFP.md | 264 |
+| CR-011 | CSP headers prevent XSS attacks | Security | CSP headers prevent XSS; all inputs validated server-side against SQL injection, SSRF, path traversal | RFP/Customer Facing Portal - RFP.md | 265 |
+| CR-012 | Server-side input validation prevents SQL injection | Security | all inputs validated server-side against SQL injection, SSRF, path traversal | RFP/Customer Facing Portal - RFP.md | 265 |
+| CR-013 | Server-side input validation prevents SSRF attacks | Security | all inputs validated server-side against SQL injection, SSRF, path traversal | RFP/Customer Facing Portal - RFP.md | 265 |
+| CR-014 | Server-side input validation prevents path traversal attacks | Security | all inputs validated server-side against SQL injection, SSRF, path traversal | RFP/Customer Facing Portal - RFP.md | 265 |
+| BR-021 | Dependency scanning in CI blocks critical CVEs | Security | Dependency scanning in CI with hard block on critical CVEs | RFP/Customer Facing Portal - RFP.md | 266 |
+| CR-015 | PII anonymized before external LLM dispatch | Data Protection | PII anonymised before dispatch to any external LLM (reversible mapping never leaves company infrastructure) | RFP/Customer Facing Portal - RFP.md | 267 |
+| CR-016 | LLM providers contractually prevent training on content | Data Protection | LLM providers must contractually commit to not training on client content | RFP/Customer Facing Portal - RFP.md | 267 |
+| TC-005 | Single data region chosen at installation time | Data Residency | Single data region chosen at installation time | RFP/Customer Facing Portal - RFP.md | 268 |
+| CR-017 | UI meets WCAG 2.1 Level AA compliance | Accessibility | UI meets WCAG 2.1 Level AA; full keyboard navigation including canvas interactions | RFP/Customer Facing Portal - RFP.md | 271 |
+| CR-018 | Full keyboard navigation including canvas interactions | Accessibility | UI meets WCAG 2.1 Level AA; full keyboard navigation including canvas interactions | RFP/Customer Facing Portal - RFP.md | 271 |
+| FR-114 | System supports dark and light mode | UI | Dark and light mode (follows system preference) | RFP/Customer Facing Portal - RFP.md | 272 |
+| FR-115 | Theme follows system preference automatically | UI | Dark and light mode (follows system preference) | RFP/Customer Facing Portal - RFP.md | 272 |
+| FR-116 | UI optimized for 1280–2560 pixel desktop widths | UI | optimised for 1280–2560 px desktop widths | RFP/Customer Facing Portal - RFP.md | 272 |
+| FR-117 | Destructive actions require confirmation dialog | UX | Destructive actions require confirmation dialog; error messages human-readable, never expose internals | RFP/Customer Facing Portal - RFP.md | 273 |
+| FR-118 | Error messages human-readable, never expose internals | UX | Destructive actions require confirmation dialog; error messages human-readable, never expose internals | RFP/Customer Facing Portal - RFP.md | 273 |
+| FR-119 | New employees guided with in-app tour | Onboarding | New employees: in-app guided tour and contextual tooltips; all forms auto-save with visible status indicator | RFP/Customer Facing Portal - RFP.md | 274 |
+| FR-120 | System provides contextual tooltips for users | UX | New employees: in-app guided tour and contextual tooltips | RFP/Customer Facing Portal - RFP.md | 274 |
+| FR-121 | All forms auto-save with visible status indicator | UX | all forms auto-save with visible status indicator | RFP/Customer Facing Portal - RFP.md | 274 |
+| FR-122 | UI supports English, German, French, Spanish, Ukrainian | i18n | UI supports English, German, French, Spanish, Ukrainian; all strings externalised to locale files; date/time/number/currency formatted per locale in UI and exported documents | RFP/Customer Facing Portal - RFP.md | 275 |
+| TC-006 | All strings externalised to locale files | i18n | all strings externalised to locale files | RFP/Customer Facing Portal - RFP.md | 275 |
+| FR-123 | Date, time, number, currency formatted per locale | i18n | date/time/number/currency formatted per locale in UI and exported documents | RFP/Customer Facing Portal - RFP.md | 275 |
+| TC-007 | Support AWS, GCP, Azure cloud deployment | Infrastructure & Deployment | AWS, GCP, or Azure (cloud-native, containerised) | RFP/Customer Facing Portal - RFP.md | 285 |
+| TC-008 | Event-driven pipeline with independent workers | Infrastructure & Deployment | Event-driven; each stage (OCR, segmentation, anonymisation, extraction) runs as an independent worker via RabbitMQ, Kafka, or SQS | RFP/Customer Facing Portal - RFP.md | 286 |
+| TC-009 | Implement CQRS, Outbox Pattern, BFF architecture | Infrastructure & Deployment | CQRS (read/write separation), Outbox Pattern (reliable event publishing), BFF layer | RFP/Customer Facing Portal - RFP.md | 287 |
+| TC-010 | Use CDN, Redis, application-level caching | Infrastructure & Deployment | CDN for static assets · Redis for sessions and API responses · application-level cache for AI results | RFP/Customer Facing Portal - RFP.md | 288 |
+| FR-124 | Anonymise PII before sending to external LLM | Security & Compliance | Before any content reaches an external LLM, a dedicated anonymisation worker replaces PII (names, emails, phone numbers, financial figures) with typed placeholders (e.g. `[PERSON_1]`, `[EMAIL_1]`) | RFP/Customer Facing Portal - RFP.md | 292 |
+| FR-125 | Store encrypted PII mappings, never send LLM | Security & Compliance | The placeholder → original mapping is stored encrypted and never sent to the LLM | RFP/Customer Facing Portal - RFP.md | 292 |
+| FR-126 | Re-hydrate anonymised outputs before display | Security & Compliance | outputs are re-hydrated before display or export | RFP/Customer Facing Portal - RFP.md | 292 |
+| FR-127 | Record placeholder count in audit log | Audit & Compliance | The placeholder count is recorded in the audit log per document version | RFP/Customer Facing Portal - RFP.md | 292 |
+| TC-011 | Support multiple LLM providers via abstraction | AI & LLM | OpenAI GPT-4-class, Anthropic Claude Sonnet/Opus, or Azure OpenAI — swappable via abstraction layer | RFP/Customer Facing Portal - RFP.md | 298 |
+| TC-012 | Support Ollama/vLLM for on-premise deployment | AI & LLM | Ollama or vLLM for on-premise deployments (graceful feature degradation) | RFP/Customer Facing Portal - RFP.md | 299 |
+| TC-013 | Implement RAG with 512-token chunks in Qdrant | AI & LLM | RAG pipeline: 512-token chunks (10% overlap), embedded into Qdrant, retrieved at analysis time | RFP/Customer Facing Portal - RFP.md | 300 |
+| FR-128 | Validate LLM outputs against JSON schemas | AI & LLM | All LLM outputs validated against JSON schemas | RFP/Customer Facing Portal - RFP.md | 301 |
+| FR-129 | Track costs, log redacted I/O, capture feedback | Observability & Analytics | Costs tracked per project; inputs/outputs logged with PII redacted; thumbs up/down feedback from analysts | RFP/Customer Facing Portal - RFP.md | 302 |
+| FR-130 | Version prompts as config without deployment | AI & LLM | Versioned config (not code) — prompt tuning requires no deployment | RFP/Customer Facing Portal - RFP.md | 303 |
+| TC-014 | Use React 18+/Next.js 14+ with TypeScript | Frontend | React 18+ or Next.js 14+, strict TypeScript | RFP/Customer Facing Portal - RFP.md | 309 |
+| FR-131 | Support drag-and-drop diagramming with zoom/pan | Frontend | React Flow or Konva.js (drag-and-drop, zoom, pan) | RFP/Customer Facing Portal - RFP.md | 310 |
+| TC-015 | Implement WebSocket real-time communication | Frontend | WebSockets | RFP/Customer Facing Portal - RFP.md | 311 |
+| NFR-020 | Bundle <500KB, LCP <2.5s, FID <100ms, CLS <0.1 | Performance | Bundle < 500 KB gzipped · LCP < 2.5s · FID < 100ms · CLS < 0.1 | RFP/Customer Facing Portal - RFP.md | 312 |
+| TC-016 | Use Node.js/NestJS or Python/FastAPI with OpenAPI | Backend | Node.js (NestJS) or Python (FastAPI), OpenAPI 3.1 | RFP/Customer Facing Portal - RFP.md | 318 |
+| TC-017 | Use Zod, Joi, or Pydantic for validation | Backend | Zod, Joi, or Pydantic | RFP/Customer Facing Portal - RFP.md | 319 |
+| FR-132 | Persist background job status with BullMQ/Celery | Backend | BullMQ or Celery; job status persisted | RFP/Customer Facing Portal - RFP.md | 320 |
+| NFR-021 | Structured logging and distributed tracing | Observability | Structured JSON logs with trace IDs; distributed tracing via OpenTelemetry | RFP/Customer Facing Portal - RFP.md | 321 |
+| TC-018 | Use PostgreSQL 15+ with versioned migrations | Data Storage | PostgreSQL 15+ \| Primary relational data; versioned migrations; column-level encryption for sensitive fields | RFP/Customer Facing Portal - RFP.md | 327 |
+| TC-019 | Store documents in S3-compatible encrypted storage | Data Storage | S3-compatible object storage \| Raw document files (server-side encryption, versioning) | RFP/Customer Facing Portal - RFP.md | 328 |
+| TC-020 | Use Redis for sessions and short-lived cache | Data Storage | Redis \| Sessions and short-lived cache | RFP/Customer Facing Portal - RFP.md | 329 |
+| TC-021 | Use Qdrant for vector embeddings storage | Data Storage | Qdrant \| Vector embeddings | RFP/Customer Facing Portal - RFP.md | 330 |
+| BR-022 | Daily backups with 30-day retention and PITR | Data Storage & Backup | Backups run daily with 30-day retention and point-in-time recovery enabled | RFP/Customer Facing Portal - RFP.md | 332 |
+| FR-133 | Integrate Salesforce CRM with webhook sync | Integrations | REST API, API key auth; CRM webhooks create/update projects within 60 s | RFP/Customer Facing Portal - RFP.md | 338 |
+| FR-134 | Support OAuth 2.0 SSO with Google/Azure/Okta | Authentication & Access | OAuth 2.0 — Google Workspace, Azure AD, Okta, SAML 2.0 | RFP/Customer Facing Portal - RFP.md | 339 |
+| FR-135 | Integrate with Confluence for page publishing | Integrations | REST API (page publishing) | RFP/Customer Facing Portal - RFP.md | 340 |
+| FR-136 | Send notifications to Slack and Teams | Integrations | Incoming webhooks | RFP/Customer Facing Portal - RFP.md | 341 |
+| FR-137 | Support webhooks and Zapier/Make automation | Integrations | Webhook endpoint or Zapier/Make app | RFP/Customer Facing Portal - RFP.md | 342 |
+| TC-022 | Use Docker multi-stage builds with docker-compose | DevOps & Infrastructure | Docker multi-stage builds; single `docker compose up` for local dev | RFP/Customer Facing Portal - RFP.md | 348 |
+| TC-023 | Deploy with Kubernetes and Helm charts | DevOps & Infrastructure | Kubernetes with Helm charts | RFP/Customer Facing Portal - RFP.md | 349 |
+| TC-024 | Implement CI/CD with GitHub Actions or GitLab | DevOps & Infrastructure | GitHub Actions or GitLab CI (lint, test, build, security scan, deploy) | RFP/Customer Facing Portal - RFP.md | 350 |
+| TC-025 | Manage infrastructure as code with Terraform/Pulumi | DevOps & Infrastructure | Terraform or Pulumi | RFP/Customer Facing Portal - RFP.md | 351 |
+| TC-026 | Implement logging with ELK or Prometheus stack | Observability | ELK stack or cloud-equivalent; Prometheus + Grafana or cloud-equivalent | RFP/Customer Facing Portal - RFP.md | 352 |
+| NFR-022 | Blue/green or canary deployments with auto-rollback | DevOps & Infrastructure | Blue/green or canary with automatic rollback on failed health checks | RFP/Customer Facing Portal - RFP.md | 353 |
+| NFR-023 | Achieve 80% unit test coverage for business logic | Quality Assurance | ≥ 80% unit test coverage for business logic | RFP/Customer Facing Portal - RFP.md | 354 |
+| FR-138 | Support feature flags for gradual AI rollout | AI & LLM | Gradual rollout for new AI models and analysis capabilities | RFP/Customer Facing Portal - RFP.md | 355 |
+| FR-139 | System must support Employees and Customers user role categories | User Management | The system defines two top-level categories: **Employees** (internal staff) and **Customers** (external clients). | RFP/Customer Facing Portal - RFP.md | 361 |
+| FR-140 | Admin can manage system users | User Management | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Facing Portal - RFP.md | 367 |
+| FR-141 | Admin can configure system settings | System Configuration | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Facing Portal - RFP.md | 367 |
+| FR-142 | Admin can manage application branding | System Configuration | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Facing Portal - RFP.md | 367 |
+| FR-143 | Admin can configure LLM parameters | System Configuration | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Facing Portal - RFP.md | 367 |
+| FR-144 | Admin can view audit log | Audit & Logging | Manages the application: users, system settings, branding, LLM configuration, audit log | RFP/Customer Facing Portal - RFP.md | 367 |
+| FR-145 | Admin can view all projects and analytics | Analytics | All system permissions; user management; system configuration; view all projects and analytics | RFP/Customer Facing Portal - RFP.md | 367 |
+| FR-146 | Sales Manager can view all projects | Project Management | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 368 |
+| FR-147 | Sales Manager can create projects | Project Management | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 368 |
+| FR-148 | Sales Manager can archive projects | Project Management | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 368 |
+| FR-149 | Sales Manager can assign employees to projects | Team Assignment | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 368 |
+| FR-150 | Sales Manager can access management analytics | Analytics | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 368 |
+| FR-151 | Sales Manager can send deliverables to client | Deliverable Management | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 368 |
+| FR-152 | Solution Architect can edit all assigned project artifacts | Artifact Management | Edit all artifacts on assigned projects; approve architectural deliverables | RFP/Customer Facing Portal - RFP.md | 369 |
+| FR-153 | Solution Architect can approve architectural deliverables | Approval Workflow | Edit all artifacts on assigned projects; approve architectural deliverables | RFP/Customer Facing Portal - RFP.md | 369 |
+| FR-154 | Business Analyst can edit requirements on assigned projects | Artifact Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Facing Portal - RFP.md | 370 |
+| FR-155 | Business Analyst can edit canvases on assigned projects | Artifact Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Facing Portal - RFP.md | 370 |
+| FR-156 | Business Analyst can edit feature list on assigned projects | Artifact Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Facing Portal - RFP.md | 370 |
+| FR-157 | Business Analyst can edit risk register on assigned projects | Artifact Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Facing Portal - RFP.md | 370 |
+| FR-158 | Business Analyst can submit deliverables for review | Deliverable Management | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review | RFP/Customer Facing Portal - RFP.md | 370 |
+| FR-159 | Estimator can edit feature list estimates on assigned projects | Estimation | Edit feature list estimates on assigned projects; read-only access to all other artifacts | RFP/Customer Facing Portal - RFP.md | 371 |
+| FR-160 | Estimator has read-only access to other artifacts | Access Control | Edit feature list estimates on assigned projects; read-only access to all other artifacts | RFP/Customer Facing Portal - RFP.md | 371 |
+| FR-161 | Account Manager can read all assigned project artifacts | Artifact Management | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 372 |
+| FR-162 | Account Manager can comment on assigned project artifacts | Collaboration | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 372 |
+| FR-163 | Account Manager can invite customers | User Management | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 372 |
+| FR-164 | Account Manager can manage customer access | Access Control | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 372 |
+| FR-165 | Account Manager can send deliverables to client | Deliverable Management | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client | RFP/Customer Facing Portal - RFP.md | 372 |
+| FR-166 | Admins and Sales Managers can create and archive projects | Access Control & Permissions | Create / archive project \| ✓ \| ✓ \| — \| — \| — \| — \| — | RFP/Customer Facing Portal - RFP.md | 384 |
+| FR-167 | Admins and Sales Managers assign employees to projects | Access Control & Permissions | Assign employees to project \| ✓ \| ✓ \| — \| — \| — \| — \| — | RFP/Customer Facing Portal - RFP.md | 385 |
+| FR-168 | Admins, Sales Managers, SAs, BAs upload RFP documents | Document Ingestion | Upload RFP document \| ✓ \| ✓ \| ✓ \| ✓ \| — \| — \| — | RFP/Customer Facing Portal - RFP.md | 386 |
+| FR-169 | Admins, SAs, BAs edit requirements and canvases | Requirements Management | Edit requirements & canvases \| ✓ \| — \| ✓ \| ✓ \| — \| — \| — | RFP/Customer Facing Portal - RFP.md | 387 |
+| FR-170 | Admins, SAs, BAs, Estimators edit feature estimations | Estimation & Planning | Edit feature estimations \| ✓ \| — \| ✓ \| ✓ \| ✓ \| — \| — | RFP/Customer Facing Portal - RFP.md | 388 |
+| FR-171 | Admins, SAs, BAs raise and resolve Clarification Requests | Clarification Requests | Raise / resolve Clarification Request \| ✓ \| — \| ✓ \| ✓ \| — \| — \| — | RFP/Customer Facing Portal - RFP.md | 389 |
+| FR-172 | Admins, Sales Managers, BAs, Account Managers escalate CRs to client | Clarification Requests | Escalate CR to client \| ✓ \| ✓ \| — \| ✓ \| — \| ✓ \| — | RFP/Customer Facing Portal - RFP.md | 390 |
+| FR-173 | Admins and BAs sign off requirements at BA gate | Requirements Management | Sign off Requirements (BA gate) \| ✓ \| — \| — \| ✓ \| — \| — \| — | RFP/Customer Facing Portal - RFP.md | 391 |
+| FR-174 | Specified roles submit deliverables for internal review | Deliverable Management | Submit deliverable for review \| ✓ \| ✓ \| ✓ \| ✓ \| — \| ✓ \| — | RFP/Customer Facing Portal - RFP.md | 392 |
+| FR-175 | Specified roles approve deliverables internally (SA arch, BA) | Deliverable Management | Approve deliverable (internal) \| ✓ \| ✓ \| ✓ (arch) \| ✓ (BA) \| — \| ✓ \| — | RFP/Customer Facing Portal - RFP.md | 393 |
+| FR-176 | Admins, Sales Managers, Account Managers send deliverables to Customer | Deliverable Management | Send deliverable to Customer \| ✓ \| ✓ \| — \| — \| — \| ✓ \| — | RFP/Customer Facing Portal - RFP.md | 394 |
+| FR-177 | Customers view and comment on deliverables | Portal & Collaboration | View & comment (Customer) \| — \| — \| — \| — \| — \| — \| ✓ | RFP/Customer Facing Portal - RFP.md | 395 |
+| FR-178 | Customers approve deliverables or request revisions | Portal & Collaboration | Approve / request revision (Customer) \| — \| — \| — \| — \| — \| — \| ✓ | RFP/Customer Facing Portal - RFP.md | 396 |
+| FR-179 | Only Admins can manage system users | User Management | Manage users \| ✓ \| — \| — \| — \| — \| — \| — | RFP/Customer Facing Portal - RFP.md | 397 |
+| FR-180 | Only Admins can configure system settings | Configuration | Configure system settings \| ✓ \| — \| — \| — \| — \| — \| — | RFP/Customer Facing Portal - RFP.md | 398 |
+| FR-181 | Admins and Sales Managers view analytics dashboard | Analytics & Reporting | View analytics dashboard \| ✓ \| ✓ \| — \| — \| — \| — \| — | RFP/Customer Facing Portal - RFP.md | 399 |
+| FR-182 | User management for all roles | User Management | User management (all roles) | RFP/Customer Facing Portal - RFP.md | 424 |
+| FR-183 | Support document upload and OCR pipeline | Document Processing | Document upload (PDF, DOCX, MD) and OCR pipeline | RFP/Customer Facing Portal - RFP.md | 425 |
+| FR-184 | Anonymise documents by redacting PII | Document Processing | Anonymisation worker for PII redaction | RFP/Customer Facing Portal - RFP.md | 426 |
+| FR-185 | Extract functional, non-functional, business requirements | Requirements & Analysis | Requirement extraction (FR, NFR, BR) | RFP/Customer Facing Portal - RFP.md | 428 |
+| FR-186 | Extract feature lists with basic effort estimation | Requirements & Analysis | Feature list extraction with basic effort estimation | RFP/Customer Facing Portal - RFP.md | 429 |
+| FR-187 | Generate C4 Context and Application views | Architecture & Design | C4 Context and Application views | RFP/Customer Facing Portal - RFP.md | 430 |
+| FR-188 | Generate AI-extracted risk register with editable heatmap | Risk Management | Risk Register generation (AI-extracted, editable heatmap) | RFP/Customer Facing Portal - RFP.md | 431 |
+| FR-189 | Calculate RFP Health Score with recommendations | AI Analysis | RFP Health Score with actionable recommendations | RFP/Customer Facing Portal - RFP.md | 432 |
+| FR-190 | Export project to PDF and DOCX formats | Export & Integration | PDF and DOCX export | RFP/Customer Facing Portal - RFP.md | 433 |
+| FR-191 | Provide view-only client portal | Portal & Collaboration | Basic client portal (view-only) | RFP/Customer Facing Portal - RFP.md | 434 |
+| TC-027 | Send notifications via MS Teams | Notifications & Integration | MS Teams notifications | RFP/Customer Facing Portal - RFP.md | 435 |
+| FR-192 | Generate C4 Component View (Level 3) architecture | Architecture & Design | C4 Component View (Level 3) for Paid Discovery | RFP/Customer Facing Portal - RFP.md | 439 |
+| TC-028 | Support real-time collaboration with WebSockets | Portal & Collaboration | Real-time collaboration (WebSockets) | RFP/Customer Facing Portal - RFP.md | 440 |
+| FR-193 | Implement approval workflow engine | Workflow & Approval | Approval workflow engine | RFP/Customer Facing Portal - RFP.md | 441 |
+| FR-194 | Export project to Confluence | Export & Integration | Confluence export | RFP/Customer Facing Portal - RFP.md | 444 |
+| FR-195 | Send notifications via email | Notifications & Integration | Email notifications | RFP/Customer Facing Portal - RFP.md | 445 |
+| FR-196 | Display full audit trail in UI | Audit & Compliance | Full audit trail UI | RFP/Customer Facing Portal - RFP.md | 446 |
+| TC-029 | Support Single Sign-On via SAML | Authentication & Security | SSO (SAML) | RFP/Customer Facing Portal - RFP.md | 450 |
+| TC-030 | Integrate with Salesforce via webhooks | CRM Integration | CRM webhook integration (Salesforce) | RFP/Customer Facing Portal - RFP.md | 451 |
+| FR-197 | Allow custom canvas configuration in admin panel | Admin & Configuration | Custom canvas configuration via Admin panel | RFP/Customer Facing Portal - RFP.md | 453 |
+| FR-198 | Support LLM provider switching and prompt A/B testing | LLM & AI | LLM provider switching and prompt A/B testing | RFP/Customer Facing Portal - RFP.md | 454 |
+| TC-031 | Support self-hosted LLM via Ollama | LLM & AI | Self-hosted LLM support (Ollama) | RFP/Customer Facing Portal - RFP.md | 455 |
+| FR-199 | Manage API keys for external integrations | Integration & Security | API key management for external integrations | RFP/Customer Facing Portal - RFP.md | 456 |
+| BR-023 | Proposal must achieve minimum 50-point evaluation score | Evaluation Process | Vendors scoring below 50 total points will not be invited to the presentation round. | RFP/Customer Facing Portal - RFP.md | 508 |
+| BR-024 | Vendor must have delivered AI-powered web application | Vendor Qualifications | At least one delivered AI-powered web application with a live reference customer. | RFP/Customer Facing Portal - RFP.md | 511 |
+| BR-025 | Vendor must demonstrate production LLM integration experience | Vendor Qualifications | Demonstrated experience with LLM integration (OpenAI, Anthropic, or equivalent) in production. | RFP/Customer Facing Portal - RFP.md | 512 |
+| BR-026 | Team must include Solution Architect and senior Frontend engineer | Vendor Qualifications | Team must include at least one dedicated Solution Architect and one senior Frontend engineer for Phase 1. | RFP/Customer Facing Portal - RFP.md | 513 |
+| TC-032 | System must be deployable to EU or US cloud region | Infrastructure & Deployment | Willingness to work within the client's preferred cloud region (EU or US, confirmed at award). | RFP/Customer Facing Portal - RFP.md | 514 |

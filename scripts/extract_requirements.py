@@ -10,7 +10,7 @@ Requirement types extracted:
 
 Usage:
     python scripts/extract_requirements.py
-    python scripts/extract_requirements.py --rfp "RFP/Customer Portal - RFP.md" --output output/FL.md
+    python scripts/extract_requirements.py --rfp "RFP/Customer Facing Portal - RFP.md" --output output/FL.md
 """
 
 import argparse
@@ -151,7 +151,7 @@ def write_fl_md(items: list[dict], rfp_path: str, output_path: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Extract FR/NFR/BR/TC/CR requirements from an RFP markdown file.")
-    parser.add_argument("--rfp", default="RFP/Customer Portal - RFP.md", help="Path to RFP markdown file")
+    parser.add_argument("--rfp", default="RFP/Customer Facing Portal - RFP.md", help="Path to RFP markdown file")
     parser.add_argument("--output", default="output/FL.md", help="Path to output FL.md")
     parser.add_argument("--model", default="claude-haiku-4-5-20251001", help="Claude model to use")
     args = parser.parse_args()

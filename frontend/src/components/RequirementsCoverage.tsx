@@ -20,7 +20,7 @@ export function RequirementsCoverage({
         <div className="overview-banner-header">
           <div className="overview-banner-main">
             <div className="overview-banner-title">2. Requirements Coverage</div>
-            <div className="overview-banner-client">Customer Portal — RFP</div>
+            <div className="overview-banner-client">Meridian Software · Customer Facing Portal — RFP</div>
           </div>
           <span className={`overview-badge ${gapCount > 0 ? 'overview-badge--danger' : 'overview-badge--ok'}`}>
             {gapCount} {gapCount === 1 ? 'GAP' : 'GAPS'}

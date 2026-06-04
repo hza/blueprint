@@ -1,8 +1,8 @@
-# RFP: AI-Powered Customer Portal
+# RFP: AI-Powered Customer Facing Portal
 
 *CONFIDENTIAL — For authorized recipients only. NDA required before access.*
 
-**Version:** 1.0 · **Date:** 2026-05-31 · **Status:** Draft · **Prepared by:** [Company Name]
+**Version:** 1.0 · **Date:** 2026-05-31 · **Status:** Draft · **Prepared by:** Meridian Software
 
 ---
 
@@ -27,7 +27,7 @@
 
 ## 1. Executive Summary
 
-This document defines requirements for an **AI-powered Customer Portal** built for internal use by a single outsourcing software company. The portal enables company employees — Business Analysts, Solution Architects, Sales Managers, and Account Managers — to upload client RFP documents and receive automated, AI-generated deliverables including business model analysis, feature breakdowns with effort estimates, and strategic canvases. External clients receive a dedicated, access-controlled view to review and comment on the deliverables prepared for them.
+This document defines requirements for an **AI-powered Customer Facing Portal** built for internal use by a single outsourcing software company. The portal enables company employees — Business Analysts, Solution Architects, Sales Managers, and Account Managers — to upload client RFP documents and receive automated, AI-generated deliverables including business model analysis, feature breakdowns with effort estimates, and strategic canvases. External clients receive a dedicated, access-controlled view to review and comment on the deliverables prepared for them.
 
 The system reduces time-to-proposal from days to hours, standardizes analysis quality across the team, and gives clients a professional workspace for reviewing pre-sales artifacts.
 
@@ -487,7 +487,7 @@ Vendors must provide estimates broken down by:
 | Contract signing target | 2026-07-25 |
 | Kick-off / project start | 2026-08-04 |
 
-**Submission instructions:** Submit as a single PDF (max 80 pages, excluding appendices) + XLSX covering the effort breakdown table from Section 8. Send to `rfp@[company].com` with subject line `Proposal — AI-Powered Customer Portal — [Vendor Name]`. Questions must be submitted in writing before the questions deadline; verbal questions will not be accepted. All questions and anonymised answers are shared with all participating vendors simultaneously.
+**Submission instructions:** Submit as a single PDF (max 80 pages, excluding appendices) + XLSX covering the effort breakdown table from Section 8. Send to `rfp@[company].com` with subject line `Proposal — AI-Powered Customer Facing Portal — [Vendor Name]`. Questions must be submitted in writing before the questions deadline; verbal questions will not be accepted. All questions and anonymised answers are shared with all participating vendors simultaneously.
 
 NDA must be on file before accessing this document.
 

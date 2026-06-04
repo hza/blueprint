@@ -8,7 +8,7 @@ export function Overview() {
         <div className="overview-banner-header">
           <div className="overview-banner-main">
             <div className="overview-banner-title">Enterprise Resource Planning Modernisation</div>
-            <div className="overview-banner-client">Meridian Public Services · Project #RFP-2025-0042</div>
+            <div className="overview-banner-client">Meridian Software · Project #RFP-2025-0042</div>
           </div>
           <span className="overview-badge overview-badge--danger overview-banner-status">AT RISK</span>
         </div>

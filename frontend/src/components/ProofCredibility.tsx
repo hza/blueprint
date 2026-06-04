@@ -6,7 +6,7 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
         <div className="overview-banner-header">
           <div className="overview-banner-main">
             <div className="overview-banner-title">7. References &amp; Track Record</div>
-            <div className="overview-banner-client">Meridian Public Services · ERP Modernisation · RFP-2025-0042</div>
+            <div className="overview-banner-client">Meridian Software · Customer Facing Portal — RFP</div>
           </div>
           <span className="overview-badge overview-badge--danger">INCOMPLETE</span>
         </div>
@@ -187,7 +187,7 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="overview-table-label">Scope</td>
-                <td>Integrated asset management and works management system. Replaces 4 disparate systems. Integration with GIS, finance, and 311 customer portal.</td>
+                <td>Integrated asset management and works management system. Replaces 4 disparate systems. Integration with GIS, finance, and 311 Customer Facing Portal.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Contract Value</td>
