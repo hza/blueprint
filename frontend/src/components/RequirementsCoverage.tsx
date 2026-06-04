@@ -58,7 +58,7 @@ export function RequirementsCoverage({
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">📋</span>
-            Requirements by Domain
+            Requirements by Domain — Prioritized by coverage gaps and delivery risk
           </div>
           <table className="overview-table">
             <thead>
