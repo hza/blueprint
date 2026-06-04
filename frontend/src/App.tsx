@@ -396,7 +396,7 @@ export default function App() {
             </nav>
             <div className="file-box">
               <div className="file-box-body">
-                <RequirementsCoverage subsection={activeSection ?? undefined} summary={reqSummary} />
+                <RequirementsCoverage subsection={activeSection ?? undefined} summary={reqSummary} items={flItems} onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }} />
               </div>
             </div>
           </>
@@ -504,8 +504,8 @@ export default function App() {
           </>
         )}
       </main>
-      {activeTab === 'requirements' && <div className={`right-panel-resize-handle${draggingRightPanel ? ' dragging' : ''}`} onMouseDown={handleRightPanelResizeMouseDown} />}
-      {activeTab === 'requirements' && <RightPanel
+      {(activeTab === 'requirements' || (activeTab === 'requirements-coverage' && activeSection === '2.2')) && <div className={`right-panel-resize-handle${draggingRightPanel ? ' dragging' : ''}`} onMouseDown={handleRightPanelResizeMouseDown} />}
+      {(activeTab === 'requirements' || (activeTab === 'requirements-coverage' && activeSection === '2.2')) && <RightPanel
         item={rightPanelItem}
         width={rightPanelWidth}
         hasPrev={rightPanelItem ? flItems.findIndex((f) => f.id === rightPanelItem.id) > 0 : false}

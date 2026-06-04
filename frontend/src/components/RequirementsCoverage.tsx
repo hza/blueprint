@@ -1,18 +1,85 @@
-import { useState } from 'react'
-import type { RequirementsSummary } from '../types'
+import { useMemo, useState } from 'react'
+import type { FRItem, RequirementsSummary } from '../types'
+import './FLTable.css'
 
 const MAX_DOMAIN_ROWS = 7
+
+function domainColor(title: string): { background: string; color: string } {
+  let hash = 0
+  for (let i = 0; i < title.length; i++) {
+    hash = (hash * 31 + title.charCodeAt(i)) >>> 0
+  }
+  const hue = hash % 360
+  return { background: `hsl(${hue}, 60%, 88%)`, color: `hsl(${hue}, 60%, 28%)` }
+}
+
+type MatrixSortKey = 'id' | 'domain' | 'requirement' | 'status'
 
 export function RequirementsCoverage({
   subsection,
   summary,
+  items = [],
+  onSelectItem,
 }: {
   subsection?: string
   summary?: RequirementsSummary | null
+  items?: FRItem[]
+  onSelectItem?: (item: FRItem) => void
 }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
   const gapCount = summary?.gaps ?? 0
   const [showAllDomains, setShowAllDomains] = useState(false)
+  const [matrixFilter, setMatrixFilter] = useState('')
+  const [matrixDomain, setMatrixDomain] = useState('')
+  const [matrixStatus, setMatrixStatus] = useState('')
+  const [matrixSortKey, setMatrixSortKey] = useState<MatrixSortKey>('id')
+  const [matrixSortDir, setMatrixSortDir] = useState<'asc' | 'desc'>('asc')
+
+  const matrixDomains = useMemo(
+    () => ['', ...Array.from(new Set(items.map((i) => i.domain))).sort()],
+    [items],
+  )
+
+  const matrixFiltered = useMemo(() => {
+    const lc = matrixFilter.toLowerCase()
+    return items.filter((item) => {
+      if (matrixDomain && item.domain !== matrixDomain) return false
+      if (matrixStatus && (item.status ?? 'met') !== matrixStatus) return false
+      if (lc && !item.id.toLowerCase().includes(lc) && !item.requirement.toLowerCase().includes(lc)) return false
+      return true
+    })
+  }, [items, matrixFilter, matrixDomain, matrixStatus])
+
+  const matrixSorted = useMemo(() => {
+    return [...matrixFiltered].sort((a, b) => {
+      const statusRank = (s: string | undefined) => s === 'gap' ? 0 : s === 'risky' ? 1 : 2
+      const av = matrixSortKey === 'status' ? statusRank(a.status) : a[matrixSortKey] ?? ''
+      const bv = matrixSortKey === 'status' ? statusRank(b.status) : b[matrixSortKey] ?? ''
+      const cmp = av < bv ? -1 : av > bv ? 1 : 0
+      return matrixSortDir === 'asc' ? cmp : -cmp
+    })
+  }, [matrixFiltered, matrixSortKey, matrixSortDir])
+
+  function handleMatrixSort(key: MatrixSortKey) {
+    if (matrixSortKey === key) {
+      setMatrixSortDir((d) => (d === 'asc' ? 'desc' : 'asc'))
+    } else {
+      setMatrixSortKey(key)
+      setMatrixSortDir('asc')
+    }
+  }
+
+  function sortIcon(key: MatrixSortKey) {
+    if (matrixSortKey !== key) return <span style={{ opacity: 0.35, marginLeft: '0.2em' }}>⇅</span>
+    return <span style={{ marginLeft: '0.2em' }}>{matrixSortDir === 'asc' ? '↑' : '↓'}</span>
+  }
+
+  function statusBadge(status: string | undefined) {
+    const s = status ?? 'met'
+    if (s === 'gap') return <span className="overview-badge overview-badge--danger">Gap</span>
+    if (s === 'risky') return <span className="overview-badge overview-badge--warn">Risk</span>
+    return <span className="overview-badge overview-badge--ok">Met</span>
+  }
 
   return (
     <div className="overview">
@@ -36,7 +103,7 @@ export function RequirementsCoverage({
             <span className="overview-stat-value overview-stat-score--ok">{summary?.met ?? '—'}</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Risky</span>
+            <span className="overview-stat-label">Risk</span>
             <span className="overview-stat-value overview-stat-score--warn">{summary?.risky ?? '—'}</span>
           </div>
           <div className="overview-stat">
@@ -66,7 +133,7 @@ export function RequirementsCoverage({
                 <th>Domain</th>
                 <th>Total</th>
                 <th>Met</th>
-                <th>Risky</th>
+                <th>Risk</th>
                 <th>Gap</th>
               </tr>
             </thead>
@@ -151,7 +218,7 @@ export function RequirementsCoverage({
               ))}
               {summary.risky_items.map((item) => (
                 <li key={item.id} className="overview-risk overview-risk--med">
-                  <span className="overview-risk-level">RISKY</span>
+                  <span className="overview-risk-level">RISK</span>
                   <div>
                     <strong>{item.id} — {item.requirement}</strong>
                     {item.description && <> {item.description}</>}
@@ -170,70 +237,79 @@ export function RequirementsCoverage({
       {show('2.2') && (<>
       {/* 2.2 Coverage & Compliance Matrix */}
       <div className="rfp-section-heading" id="2.2">Coverage &amp; Compliance Matrix</div>
-      <div className="overview-grid">
+      <div className="overview-grid" style={{ gridTemplateColumns: '1fr' }}>
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">✓</span>
-             Requirements Compliance Matrix — Detailed view of coverage status
+            Requirements Compliance Matrix — Detailed view of coverage status
+          </div>
+          <div className="fl-toolbar" style={{ borderTop: 'none', borderLeft: 'none', borderRight: 'none', marginBottom: '0' }}>
+            <input
+              className="fl-filter-input"
+              type="search"
+              placeholder="Filter requirements…"
+              value={matrixFilter}
+              onChange={(e) => setMatrixFilter(e.target.value)}
+            />
+            <select
+              className="fl-cat-select"
+              value={matrixDomain}
+              onChange={(e) => setMatrixDomain(e.target.value)}
+            >
+              {matrixDomains.map((d) => (
+                <option key={d} value={d}>{d || 'All domains'}</option>
+              ))}
+            </select>
+            <select
+              className="fl-cat-select"
+              value={matrixStatus}
+              onChange={(e) => setMatrixStatus(e.target.value)}
+            >
+              <option value="">All statuses</option>
+              <option value="met">Met</option>
+              <option value="risky">Risk</option>
+              <option value="gap">Gap</option>
+            </select>
+            <span className="fl-count">
+              {matrixSorted.length} / {items.length} requirements
+            </span>
           </div>
           <table className="overview-table">
             <thead>
               <tr>
-                <th>Req ID</th>
-                <th>Domain</th>
-                <th>Requirement (Summary)</th>
-                <th>Status</th>
+                {([['id', 'Req ID'], ['domain', 'Domain'], ['requirement', 'Requirement'], ['status', 'Status']] as [MatrixSortKey, string][]).map(([key, label]) => (
+                  <th key={key} onClick={() => handleMatrixSort(key)} style={{ cursor: 'pointer', userSelect: 'none' }}>
+                    {label}{sortIcon(key)}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>FR-001</td>
-                <td>Functional</td>
-                <td>Employees can upload client RFP documents (PDF up to 200 MB)</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-              </tr>
-              <tr>
-                <td>NFR-001</td>
-                <td>Non-Functional</td>
-                <td>Reduce proposal time from days to hours</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-              </tr>
-              <tr>
-                <td>BR-001</td>
-                <td>Business</td>
-                <td>Role-based access control enforced system-wide</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-              </tr>
-              <tr>
-                <td>CR-009</td>
-                <td>Compliance</td>
-                <td>SOC 2 Type II certification at go-live</td>
-                <td><span className="overview-badge overview-badge--danger">Gap</span></td>
-              </tr>
-              <tr>
-                <td>TC-029</td>
-                <td>Technical</td>
-                <td>SAML SSO integration with enterprise IdP</td>
-                <td><span className="overview-badge overview-badge--danger">Gap</span></td>
-              </tr>
-              <tr>
-                <td>NFR-002</td>
-                <td>Non-Functional</td>
-                <td>95% OCR accuracy on uploaded documents</td>
-                <td><span className="overview-badge overview-badge--danger">Gap</span></td>
-              </tr>
-              <tr>
-                <td>TC-009</td>
-                <td>Technical</td>
-                <td>CQRS + Outbox Pattern + BFF architecture</td>
-                <td><span className="overview-badge overview-badge--warn">Risky</span></td>
-              </tr>
-              <tr>
-                <td>FR-090</td>
-                <td>Functional</td>
-                <td>Real-time collaborative editing with conflict resolution</td>
-                <td><span className="overview-badge overview-badge--warn">Risky</span></td>
-              </tr>
+              {items.length === 0 ? (
+                <tr><td colSpan={4} style={{ textAlign: 'center', color: 'var(--color-muted)' }}>Loading…</td></tr>
+              ) : matrixSorted.length === 0 ? (
+                <tr><td colSpan={4} style={{ textAlign: 'center', color: 'var(--color-muted)' }}>No matching requirements</td></tr>
+              ) : matrixSorted.map((item) => (
+                <tr
+                  key={item.id}
+                  className={onSelectItem ? 'fl-row fl-row-clickable' : 'fl-row'}
+                  onClick={() => onSelectItem?.(item)}
+                >
+                  <td style={{ whiteSpace: 'nowrap' }}>{item.id}</td>
+                  <td>
+                    <button
+                      type="button"
+                      style={{ ...domainColor(item.domain), border: 'none', borderRadius: '3px', padding: '0.15rem 0.4rem', fontSize: '0.78rem', cursor: 'pointer', fontWeight: 500 }}
+                      onClick={() => setMatrixDomain(matrixDomain === item.domain ? '' : item.domain)}
+                      title={`Filter by ${item.domain}`}
+                    >
+                      {item.domain}
+                    </button>
+                  </td>
+                  <td>{item.requirement}</td>
+                  <td>{statusBadge(item.status)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
