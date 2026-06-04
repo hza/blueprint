@@ -27,19 +27,6 @@ For each requirement return:
 Return a JSON object with a single key "requirements" containing an array of the above objects. If there are no requirements in this section, return {"requirements": []}.
 """
 
-GAP_PROMPT = """You are an expert business analyst. The lines below are from an RFP document that were NOT captured as requirements in a previous extraction pass.
-
-Check whether any of these lines contain concrete, testable functional (FR) or non-functional (NFR) requirements that were missed. Skip narrative context, background paragraphs, and general goals that are not testable requirements.
-
-For each missed requirement return:
-- "type": "FR" (functional) or "NFR" (non-functional)
-- "requirement": concise one-line label, 12 words or fewer
-- "category": the feature domain (e.g. "Document Ingestion", "AI Analysis", "Security", "Performance", "User Management", "Portal & Collaboration")
-- "original_text": the verbatim text from these lines expressing the requirement (exact wording, no paraphrase)
-
-Return a JSON object {"requirements": [...]}. Return {"requirements": []} if nothing was missed.
-"""
-
 
 def read_lines(content: str) -> list[tuple[int, str]]:
     """Return (1-based file line number, text) for every non-empty line."""
@@ -149,97 +136,12 @@ def write_fl_md(items: list[dict], rfp_path: str, output_path: Path) -> None:
     print(f"  FR: {fr_counter}  NFR: {nfr_counter}")
 
 
-def parse_fl_md(fl_path: Path) -> set[int]:
-    """Return the set of line numbers already covered in FL.md."""
-    covered: set[int] = set()
-    if not fl_path.exists():
-        return covered
-    for line in fl_path.read_text(encoding="utf-8").splitlines():
-        if not line.startswith("|"):
-            continue
-        parts = [p.strip() for p in line.split("|")]
-        # | ID | Requirement | Category | Original Text | File Name | Line Number |
-        #   1       2            3            4               5           6
-        if len(parts) >= 7:
-            try:
-                covered.add(int(parts[6]))
-            except (ValueError, IndexError):
-                pass
-    return covered
-
-
-def run_gaps_check(model: str, content: str, rfp_relative: str, fl_path: Path, output_path: Path, append: bool) -> None:
-    file_lines = content.splitlines()
-    lines = read_lines(content)
-    covered = parse_fl_md(fl_path)
-
-    uncovered = [(ln, text) for ln, text in lines if ln not in covered]
-    print(f"\nGap analysis: {len(uncovered)} uncovered lines out of {len(lines)} non-empty lines")
-
-    if not uncovered:
-        print("No gaps — all lines are already covered.")
-        return
-
-    print("\nUncovered lines:")
-    for ln, text in uncovered:
-        print(f"  {ln:4d}: {text[:100]}")
-
-    sections = chunk_by_heading(lines)
-    found: list[dict] = []
-    print(f"\nChecking {len(sections)} sections for missed requirements...")
-
-    for idx, (_, section_lines) in enumerate(sections, start=1):
-        heading = section_lines[0][1] if section_lines else "(empty)"
-        gap_lines = [(ln, text) for ln, text in section_lines if ln not in covered]
-        if not gap_lines:
-            continue
-        print(f"[{idx}/{len(sections)}] {heading[:60]} — {len(gap_lines)} uncovered line(s)")
-        chunk_text = format_chunk(gap_lines)
-        reqs = extract_from_chunk(model, chunk_text, system_prompt=GAP_PROMPT)
-        print(f"  → {len(reqs)} missed requirement(s) found")
-        found.extend(reqs)
-
-    for req in found:
-        req["line_number"] = find_line_number(file_lines, req.get("original_text", ""))
-
-    found.sort(key=lambda r: r.get("line_number", 0))
-
-    print(f"\nTotal missed requirements: {len(found)}")
-    for req in found:
-        print(f"  [{req.get('type')}] line {req.get('line_number', '?'):>4}: {req.get('requirement')}")
-
-    if not append or not found:
-        return
-
-    existing = output_path.read_text(encoding="utf-8") if output_path.exists() else ""
-    fr_counter = sum(1 for ln in existing.splitlines() if re.match(r"\| FR-\d+", ln))
-    nfr_counter = sum(1 for ln in existing.splitlines() if re.match(r"\| NFR-\d+", ln))
-    rows: list[str] = []
-    for item in found:
-        req_type = item.get("type", "FR").upper()
-        if req_type == "NFR":
-            nfr_counter += 1
-            req_id = f"NFR-{nfr_counter:03d}"
-        else:
-            fr_counter += 1
-            req_id = f"FR-{fr_counter:03d}"
-        requirement = escape_pipes(item.get("requirement", ""))
-        category = escape_pipes(item.get("category", ""))
-        original_text = escape_pipes(item.get("original_text", ""))
-        line_number = str(item.get("line_number", ""))
-        rows.append(f"| {req_id} | {requirement} | {category} | {original_text} | {rfp_relative} | {line_number} |")
-    with output_path.open("a", encoding="utf-8") as f:
-        f.write("\n".join(rows) + "\n")
-    print(f"Appended {len(rows)} requirements to {output_path}")
-
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Extract FR/NFR requirements from an RFP markdown file.")
     parser.add_argument("--rfp", default="RFP/Customer Portal - RFP.md", help="Path to RFP markdown file")
     parser.add_argument("--output", default="output/FL.md", help="Path to output FL.md")
     parser.add_argument("--model", default="claude-haiku-4-5-20251001", help="Claude model to use")
-    parser.add_argument("--gaps", action="store_true", help="Check RFP lines not yet covered in FL.md")
-    parser.add_argument("--append", action="store_true", help="Append newly found requirements to FL.md (used with --gaps)")
     args = parser.parse_args()
 
     root = Path(__file__).parent.parent
@@ -253,10 +155,6 @@ def main() -> None:
     print(f"Reading: {rfp_path}")
     content = rfp_path.read_text(encoding="utf-8")
     rfp_relative = str(Path(args.rfp))
-
-    if args.gaps:
-        run_gaps_check(args.model, content, rfp_relative, output_path, output_path, args.append)
-        return
 
     file_lines = content.splitlines()
     lines = read_lines(content)
