@@ -13,15 +13,15 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Fixed-Price Total</span>
-            <span className="overview-stat-value overview-stat-score--ok">$2,280,000</span>
+            <span className="overview-stat-value overview-stat-score--ok">$456,000</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Annual SaaS / Managed</span>
-            <span className="overview-stat-value">$220,000/yr</span>
+            <span className="overview-stat-value">$44,000/yr</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">5-Year TCO</span>
-            <span className="overview-stat-value">$4,612,300</span>
+            <span className="overview-stat-value">$922,460</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Price Model</span>
@@ -57,7 +57,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Implementation (Fixed)</td>
-                <td className="overview-val--strong">$2,280,000</td>
+                <td className="overview-val--strong">$456,000</td>
                 <td>—</td>
                 <td>—</td>
                 <td>—</td>
@@ -65,40 +65,40 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="overview-table-label">Managed Support &amp; Hosting</td>
-                <td>$220,000</td>
-                <td>$220,000</td>
-                <td>$220,000</td>
-                <td>$220,000</td>
-                <td>$220,000</td>
+                <td>$44,000</td>
+                <td>$44,000</td>
+                <td>$44,000</td>
+                <td>$44,000</td>
+                <td>$44,000</td>
               </tr>
               <tr>
                 <td className="overview-table-label">LLM API costs (est.)</td>
-                <td>$48,000</td>
-                <td>$48,000</td>
-                <td>$48,000</td>
-                <td>$48,000</td>
-                <td>$48,000</td>
+                <td>$9,600</td>
+                <td>$9,600</td>
+                <td>$9,600</td>
+                <td>$9,600</td>
+                <td>$9,600</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Change Requests (est.)</td>
-                <td>$80,000</td>
-                <td>$60,000</td>
-                <td>$40,000</td>
-                <td>$30,000</td>
-                <td>$30,000</td>
+                <td>$16,000</td>
+                <td>$12,000</td>
+                <td>$8,000</td>
+                <td>$6,000</td>
+                <td>$6,000</td>
               </tr>
               <tr>
                 <td className="overview-table-label overview-val--strong">Total (excl. GST)</td>
-                <td className="overview-val--strong">$3,028,000</td>
-                <td className="overview-val--strong">$328,000</td>
-                <td className="overview-val--strong">$308,000</td>
-                <td className="overview-val--strong">$298,000</td>
-                <td className="overview-val--strong">$298,000</td>
+                <td className="overview-val--strong">$605,600</td>
+                <td className="overview-val--strong">$65,600</td>
+                <td className="overview-val--strong">$61,600</td>
+                <td className="overview-val--strong">$59,600</td>
+                <td className="overview-val--strong">$59,600</td>
               </tr>
             </tbody>
           </table>
           <div style={{ marginTop: '0.75rem', fontSize: '0.8rem', color: 'var(--text-muted, #666)' }}>
-            5-Year TCO: <strong>$4,612,300</strong>. All figures USD. Change requests estimated at market average for similar engagements; actuals billed at agreed rate card.
+            5-Year TCO: <strong>$922,460</strong>. All figures USD. Change requests estimated at market average for similar engagements; actuals billed at agreed rate card.
           </div>
         </div>
 
@@ -155,25 +155,25 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
                 <td className="overview-table-label">Phase 1 — MVP</td>
                 <td>Document ingestion, PII anonymisation, AI analysis, feature list, C4 views, risk register, Go/No-Go, RFP Health Score, basic client portal, PDF/DOCX export, MS Teams notifications</td>
                 <td>12 weeks</td>
-                <td>$980,000</td>
+                <td>$196,000</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Phase 2 — Enhanced Analytics</td>
                 <td>Real-time collaboration (WebSockets), approval workflow, C4 Level 3 views, Confluence export, email notifications, full audit trail UI</td>
                 <td>+8 weeks</td>
-                <td>$720,000</td>
+                <td>$144,000</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Phase 3 — Platform &amp; Ecosystem</td>
                 <td>SSO (SAML), Salesforce CRM webhooks, analytics dashboard, LLM provider switching, Ollama self-hosted option, API key management</td>
                 <td>+8 weeks</td>
-                <td>$580,000</td>
+                <td>$116,000</td>
               </tr>
               <tr>
                 <td className="overview-table-label overview-val--strong">Total Fixed Price</td>
                 <td></td>
                 <td><strong>28 weeks</strong></td>
-                <td className="overview-val--strong">$2,280,000</td>
+                <td className="overview-val--strong">$456,000</td>
               </tr>
             </tbody>
           </table>
@@ -197,37 +197,37 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
               <tr>
                 <td className="overview-table-label">M1 — Contract Signed</td>
                 <td>Execution of contract</td>
-                <td>$228,000</td>
+                <td>$45,600</td>
                 <td>10%</td>
               </tr>
               <tr>
                 <td className="overview-table-label">M2 — Discovery Complete</td>
                 <td>Approved architecture &amp; design docs</td>
-                <td>$228,000</td>
+                <td>$45,600</td>
                 <td>10%</td>
               </tr>
               <tr>
                 <td className="overview-table-label">M3 — Phase 1 MVP UAT Sign-off</td>
                 <td>UAT accepted: document ingestion, AI analysis, feature list, C4 views, risk register, Go/No-Go, client portal, PDF/DOCX export (~2026-10-27)</td>
-                <td>$456,000</td>
+                <td>$91,200</td>
                 <td>20%</td>
               </tr>
               <tr>
                 <td className="overview-table-label">M4 — Phase 2 UAT Sign-off</td>
                 <td>UAT accepted: real-time collaboration, approval workflow, Confluence export, audit trail (~2026-12-22)</td>
-                <td>$342,000</td>
+                <td>$68,400</td>
                 <td>15%</td>
               </tr>
               <tr>
                 <td className="overview-table-label">M5 — Phase 3 UAT Sign-off</td>
                 <td>UAT accepted: SSO, Salesforce webhooks, analytics dashboard, LLM switching (~2027-02-16)</td>
-                <td>$342,000</td>
+                <td>$68,400</td>
                 <td>15%</td>
               </tr>
               <tr>
                 <td className="overview-table-label">M6 — Programme Close</td>
                 <td>Hypercare complete, documentation delivered, knowledge transfer sign-off</td>
-                <td>$684,000</td>
+                <td>$136,800</td>
                 <td>30%</td>
               </tr>
             </tbody>
@@ -250,32 +250,32 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Programme Director</td>
-                <td>$2,200</td>
+                <td>$440</td>
                 <td>Dec 31, 2026</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Solution Architect</td>
-                <td>$2,000</td>
+                <td>$400</td>
                 <td>Dec 31, 2026</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Senior Developer</td>
-                <td>$1,600</td>
+                <td>$320</td>
                 <td>Dec 31, 2026</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Mid Developer / BA</td>
-                <td>$1,300</td>
+                <td>$260</td>
                 <td>Dec 31, 2026</td>
               </tr>
               <tr>
                 <td className="overview-table-label">QA / Test Engineer</td>
-                <td>$1,100</td>
+                <td>$220</td>
                 <td>Dec 31, 2026</td>
               </tr>
               <tr>
                 <td className="overview-table-label">AI/ML Engineer</td>
-                <td>$1,700</td>
+                <td>$340</td>
                 <td>Dec 31, 2026</td>
               </tr>
             </tbody>
