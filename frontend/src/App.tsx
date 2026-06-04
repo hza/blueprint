@@ -229,7 +229,7 @@ export default function App() {
         }}
         collapsed={sidebarCollapsed}
         onCollapse={setSidebarCollapsed}
-        reqSummaryTotal={reqSummary?.total ?? null}
+        reqSummaryTotal={reqSummary != null ? (reqSummary.gaps + reqSummary.risky) : null}
       />
       {!sidebarCollapsed && (
         <div className={`sidebar-resize-handle${draggingSidebar ? ' dragging' : ''}`} onMouseDown={handleSidebarResizeMouseDown} />

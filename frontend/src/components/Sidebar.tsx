@@ -232,11 +232,11 @@ export function Sidebar({
                         </svg>
                         <span className="sidebar-sub-title">{sub.title}</span>
                         {(() => {
-                          const badgeVal = sub.path === '/requirements-coverage/requirements-summary' && reqSummaryTotal != null
-                            ? reqSummaryTotal
-                            : sub.badge
+                          const isReqSummary = sub.path === '/requirements-coverage/requirements-summary' && reqSummaryTotal != null
+                          const badgeVal = isReqSummary ? reqSummaryTotal : sub.badge
+                          const badgeGrey = isReqSummary ? false : sub.badgeGrey
                           return badgeVal !== undefined && badgeVal !== 0 && (
-                            <span className={sub.badgeGrey ? 'sidebar-badge sidebar-badge--grey' : 'sidebar-badge'}>{badgeVal}</span>
+                            <span className={badgeGrey ? 'sidebar-badge sidebar-badge--grey' : 'sidebar-badge'}>{badgeVal}</span>
                           )
                         })()}
                       </button>

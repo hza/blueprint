@@ -36,6 +36,8 @@ export function RequirementsCoverage({
 }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
   const gapCount = summary?.gaps ?? 0
+  const riskCount = summary?.risky ?? 0
+  const gapRiskCount = gapCount + riskCount
   const [showAllDomains, setShowAllDomains] = useState(false)
   const [gapRiskDomains, setGapRiskDomains] = useState<string[]>([])
   const [gapRiskLabel, setGapRiskLabel] = useState('')
@@ -119,8 +121,8 @@ export function RequirementsCoverage({
             <div className="overview-banner-title">2. Requirements Coverage</div>
             <div className="overview-banner-client">Meridian Software · Customer Facing Portal — RFP</div>
           </div>
-          <span className={`overview-badge ${gapCount > 0 ? 'overview-badge--danger' : 'overview-badge--ok'}`}>
-            {gapCount} {gapCount === 1 ? 'GAP' : 'GAPS'}
+          <span className={`overview-badge ${gapRiskCount > 0 ? 'overview-badge--danger' : 'overview-badge--ok'}`}>
+            {gapRiskCount} {gapRiskCount === 1 ? 'GAP/RISK' : 'GAPS/RISKS'}
           </span>
         </div>
         <div className="overview-banner-stats">
