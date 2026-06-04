@@ -3,6 +3,7 @@ import { useState } from 'react'
 export function SolutionArchitecture({ subsection }: { subsection?: string }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
   const [diagramScale, setDiagramScale] = useState(70)
+  const [diagramScaleL2, setDiagramScaleL2] = useState(70)
   const scaleStep = 10
   const scaleMin = 30
   const scaleMax = 100
@@ -168,6 +169,162 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
       </>)}
 
       {show('3.2') && (<>
+
+
+      <div className="overview-grid">
+        <div className="overview-card" style={{gridColumn: '1 / -1'}}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🏛</span>
+            C4 Level 2 — Container Diagram
+          </div>
+          <div style={{position: 'relative', overflowX: 'auto', padding: '1rem 0', display: 'flex', justifyContent: 'center'}}>
+            <div style={{position: 'absolute', top: '0.75rem', right: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.25rem', background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #e5e7eb)', borderRadius: '6px', padding: '2px 6px', boxShadow: '0 1px 4px rgba(0,0,0,0.1)', zIndex: 1}}>
+              <button onClick={() => setDiagramScaleL2(s => Math.max(scaleMin, s - scaleStep))} style={{border: 'none', background: 'none', cursor: 'pointer', fontSize: '1rem', lineHeight: 1, padding: '2px 4px', color: 'var(--text, #374151)'}}>−</button>
+              <span style={{fontSize: '0.75rem', minWidth: '2.5rem', textAlign: 'center', color: 'var(--text-secondary, #6b7280)'}}>{diagramScaleL2}%</span>
+              <button onClick={() => setDiagramScaleL2(s => Math.min(scaleMax, s + scaleStep))} style={{border: 'none', background: 'none', cursor: 'pointer', fontSize: '1rem', lineHeight: 1, padding: '2px 4px', color: 'var(--text, #374151)'}}>+</button>
+            </div>
+            <svg viewBox="0 0 1050 720" style={{width: `${diagramScaleL2}%`, minWidth: 360, fontFamily: 'inherit'}} aria-label="C4 Level 2 Container diagram for AI-Powered Customer Facing Portal">
+              <defs>
+                <marker id="arrowL2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L8,3 z" fill="#6b7280"/>
+                </marker>
+              </defs>
+
+              {/* ── System boundary ── */}
+              <rect x="20" y="35" width="800" height="660" rx="8" fill="none" stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="8,4"/>
+              <text x="32" y="55" fill="#9ca3af" fontSize="10" fontStyle="italic">AI-Powered Customer Facing Portal  [Software System Boundary]</text>
+
+              {/* ── External: SSO Provider (top-right, outside boundary) ── */}
+              <rect x="850" y="80" width="175" height="75" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="937" y="103" textAnchor="middle" fill="#111827" fontSize="10" fontWeight="bold">SSO Provider</text>
+              <text x="937" y="117" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="937" y="131" textAnchor="middle" fill="#6b7280" fontSize="9">Google WS · Azure AD · Okta</text>
+
+              {/* ── External: LLM Providers (right, outside boundary) ── */}
+              <rect x="850" y="325" width="175" height="80" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="937" y="349" textAnchor="middle" fill="#111827" fontSize="10" fontWeight="bold">LLM Providers</text>
+              <text x="937" y="363" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="937" y="377" textAnchor="middle" fill="#6b7280" fontSize="9">OpenAI · Anthropic · Azure OAI</text>
+
+              {/* ── Row 1: Single-Page Application ── */}
+              <rect x="310" y="80" width="220" height="75" rx="6" fill="#1d4ed8" stroke="#1e40af" strokeWidth="2"/>
+              <text x="420" y="103" textAnchor="middle" fill="#bfdbfe" fontSize="9">«container»</text>
+              <text x="420" y="119" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold">Single-Page Application</text>
+              <text x="420" y="135" textAnchor="middle" fill="#bfdbfe" fontSize="9">React 18 · TypeScript · WebSocket</text>
+
+              {/* ── Arrow: SPA → SSO ── */}
+              <line x1="530" y1="117" x2="848" y2="117" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+              <text x="689" y="111" textAnchor="middle" fill="#6b7280" fontSize="9">OAuth 2.0 / SAML</text>
+
+              {/* ── Arrow: SPA → API GW ── */}
+              <line x1="420" y1="155" x2="420" y2="203" stroke="#6b7280" strokeWidth="1.5" markerEnd="url(#arrowL2)"/>
+              <text x="433" y="183" fill="#6b7280" fontSize="9">HTTPS / WS</text>
+
+              {/* ── Row 2: API Gateway / BFF ── */}
+              <rect x="300" y="205" width="240" height="75" rx="6" fill="#1e40af" stroke="#1e3a8a" strokeWidth="2"/>
+              <text x="420" y="228" textAnchor="middle" fill="#bfdbfe" fontSize="9">«container»</text>
+              <text x="420" y="244" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold">API Gateway / BFF</text>
+              <text x="420" y="260" textAnchor="middle" fill="#bfdbfe" fontSize="9">FastAPI · OpenAPI 3.1 · Auth · Rate-limit</text>
+
+              {/* ── Arrows: API GW → Services ── */}
+              <line x1="360" y1="280" x2="175" y2="323" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+              <line x1="420" y1="280" x2="410" y2="323" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+              <line x1="480" y1="280" x2="645" y2="323" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+              <text x="420" y="306" textAnchor="middle" fill="#6b7280" fontSize="8">REST (internal)</text>
+
+              {/* ── Row 3: Application Services ── */}
+
+              {/* Document Service */}
+              <rect x="30" y="325" width="200" height="80" rx="6" fill="#1e40af" stroke="#1e3a8a" strokeWidth="2"/>
+              <text x="130" y="347" textAnchor="middle" fill="#bfdbfe" fontSize="9">«container»</text>
+              <text x="130" y="363" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold">Document Service</text>
+              <text x="130" y="378" textAnchor="middle" fill="#bfdbfe" fontSize="9">FastAPI · OCR · Segmentation</text>
+              <text x="130" y="393" textAnchor="middle" fill="#bfdbfe" fontSize="8">PDF · DOCX · MD ingestion</text>
+
+              {/* AI Analysis Service */}
+              <rect x="310" y="325" width="200" height="80" rx="6" fill="#1e40af" stroke="#1e3a8a" strokeWidth="2"/>
+              <text x="410" y="347" textAnchor="middle" fill="#bfdbfe" fontSize="9">«container»</text>
+              <text x="410" y="363" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold">AI Analysis Service</text>
+              <text x="410" y="378" textAnchor="middle" fill="#bfdbfe" fontSize="9">FastAPI · LangChain · RAG</text>
+              <text x="410" y="393" textAnchor="middle" fill="#bfdbfe" fontSize="8">Requirements · MoSCoW · Risk</text>
+
+              {/* Export & Notify Service */}
+              <rect x="590" y="325" width="200" height="80" rx="6" fill="#1e40af" stroke="#1e3a8a" strokeWidth="2"/>
+              <text x="690" y="347" textAnchor="middle" fill="#bfdbfe" fontSize="9">«container»</text>
+              <text x="690" y="363" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold">Export &amp; Notify</text>
+              <text x="690" y="378" textAnchor="middle" fill="#bfdbfe" fontSize="9">FastAPI · Celery</text>
+              <text x="690" y="393" textAnchor="middle" fill="#bfdbfe" fontSize="8">PDF · DOCX · Webhooks</text>
+
+              {/* ── Arrows: Services → Queue ── */}
+              <line x1="130" y1="405" x2="340" y2="453" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+              <line x1="410" y1="405" x2="410" y2="453" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+
+              {/* ── Row 4: Message Queue ── */}
+              <rect x="300" y="455" width="220" height="65" rx="6" fill="#7c3aed" stroke="#6d28d9" strokeWidth="2"/>
+              <text x="410" y="476" textAnchor="middle" fill="#ddd6fe" fontSize="9">«message queue»</text>
+              <text x="410" y="492" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold">Kafka / RabbitMQ</text>
+              <text x="410" y="508" textAnchor="middle" fill="#ddd6fe" fontSize="9">Event-driven async pipeline</text>
+
+              {/* ── Arrows: Queue → Workers ── */}
+              <line x1="350" y1="520" x2="165" y2="543" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+              <line x1="470" y1="520" x2="540" y2="543" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+
+              {/* ── Row 5: Background Workers ── */}
+
+              {/* OCR + Anonymisation Worker */}
+              <rect x="30" y="545" width="185" height="65" rx="6" fill="#1e3a8a" stroke="#1e3a8a" strokeWidth="2"/>
+              <text x="122" y="566" textAnchor="middle" fill="#bfdbfe" fontSize="9">«worker»</text>
+              <text x="122" y="582" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold">OCR + Anon Worker</text>
+              <text x="122" y="598" textAnchor="middle" fill="#bfdbfe" fontSize="9">Celery · PII anonymisation</text>
+
+              {/* AI Analysis Worker */}
+              <rect x="490" y="545" width="195" height="65" rx="6" fill="#1e3a8a" stroke="#1e3a8a" strokeWidth="2"/>
+              <text x="587" y="566" textAnchor="middle" fill="#bfdbfe" fontSize="9">«worker»</text>
+              <text x="587" y="582" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold">AI Analysis Worker</text>
+              <text x="587" y="598" textAnchor="middle" fill="#bfdbfe" fontSize="9">Celery · LLM · JSON schema val.</text>
+
+              {/* ── Arrow: AI Worker → LLM Providers ── */}
+              <line x1="685" y1="577" x2="848" y2="405" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+              <text x="778" y="479" textAnchor="middle" fill="#6b7280" fontSize="9">REST (anonymised)</text>
+
+              {/* ── Arrows: Workers → Data Stores ── */}
+              <line x1="122" y1="610" x2="104" y2="628" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+              <line x1="587" y1="610" x2="420" y2="628" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrowL2)" strokeDasharray="5,3"/>
+
+              {/* ── Row 6: Data Stores ── */}
+
+              {/* PostgreSQL */}
+              <rect x="30" y="630" width="148" height="58" rx="6" fill="#0891b2" stroke="#0e7490" strokeWidth="1.5"/>
+              <text x="104" y="648" textAnchor="middle" fill="#cffafe" fontSize="9">«database»</text>
+              <text x="104" y="663" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="bold">PostgreSQL</text>
+              <text x="104" y="678" textAnchor="middle" fill="#cffafe" fontSize="8">Primary datastore</text>
+
+              {/* Redis */}
+              <rect x="195" y="630" width="128" height="58" rx="6" fill="#0891b2" stroke="#0e7490" strokeWidth="1.5"/>
+              <text x="259" y="648" textAnchor="middle" fill="#cffafe" fontSize="9">«cache»</text>
+              <text x="259" y="663" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="bold">Redis</text>
+              <text x="259" y="678" textAnchor="middle" fill="#cffafe" fontSize="8">Session · rate-limit</text>
+
+              {/* Qdrant */}
+              <rect x="340" y="630" width="128" height="58" rx="6" fill="#0891b2" stroke="#0e7490" strokeWidth="1.5"/>
+              <text x="404" y="648" textAnchor="middle" fill="#cffafe" fontSize="9">«vector db»</text>
+              <text x="404" y="663" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="bold">Qdrant</text>
+              <text x="404" y="678" textAnchor="middle" fill="#cffafe" fontSize="8">RAG embeddings</text>
+
+              {/* S3 Storage */}
+              <rect x="485" y="630" width="138" height="58" rx="6" fill="#0891b2" stroke="#0e7490" strokeWidth="1.5"/>
+              <text x="554" y="648" textAnchor="middle" fill="#cffafe" fontSize="9">«storage»</text>
+              <text x="554" y="663" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="bold">S3 Storage</text>
+              <text x="554" y="678" textAnchor="middle" fill="#cffafe" fontSize="8">RFP docs · exports</text>
+
+            </svg>
+          </div>
+          <p style={{fontSize: '0.8rem', color: 'var(--text-secondary, #6b7280)', marginTop: '0.5rem'}}>
+            C4 Model — Level 2 (Container). Shows the major containers inside the portal boundary and their interactions with external systems. Dashed arrows = async / external; solid = synchronous.
+          </p>
+        </div>
+      </div>
+
       {/* 3.2 Functional Scope */}
       <div className="rfp-section-heading" id="3.2">Functional Scope</div>
       <div className="overview-grid">
@@ -254,6 +411,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
           </ul>
         </div>
       </div>
+
 
       </>)}
 
