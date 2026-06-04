@@ -18,11 +18,10 @@
    - 4.4 [Performance, Reliability, and Security](#44-performance-reliability-and-security)
    - 4.5 [Technical Stack and Infrastructure](#45-technical-stack-and-infrastructure)
 5. [User Roles & Permissions](#5-user-roles--permissions)
-6. [User Stories & Acceptance Criteria](#6-user-stories--acceptance-criteria)
-7. [UX/UI Requirements](#7-uxui-requirements)
-8. [Estimation & Delivery Requirements](#8-estimation--delivery-requirements)
-9. [Submission Timeline](#9-submission-timeline)
-10. [Evaluation Criteria](#10-evaluation-criteria)
+6. [UX/UI Requirements](#6-uxui-requirements)
+7. [Estimation & Delivery Requirements](#7-estimation--delivery-requirements)
+8. [Submission Timeline](#8-submission-timeline)
+9. [Evaluation Criteria](#9-evaluation-criteria)
 
 ---
 
@@ -401,38 +400,7 @@ The system defines two top-level categories: **Employees** (internal staff) and 
 
 ---
 
-## 6. User Stories & Acceptance Criteria
-
-### US-001: Upload and Analyze RFP
-
-**As a** Business Analyst, **I want to** upload an RFP document and receive an automated analysis, **so that** I can review structured requirements within minutes instead of hours.
-
-**Acceptance Criteria:**
-- Given I am logged in as a BA, when I drag and drop a valid PDF, then the file uploads with a progress bar and enters the processing queue.
-- Given a document is queued, when processing completes, then I receive an in-app notification and email.
-- Given processing completes, when I open the project, then all deliverables (requirements, feature list, architecture views) are populated with confidence scores.
-- Given processing fails after 3 retries, then I receive an error notification with a support reference ID.
-
-### US-002: Review Feature Estimations
-
-**As a** Solution Architect, **I want to** adjust individual feature estimates and see the total update in real time, **so that** I can produce an accurate proposal before submitting to the client.
-
-**Acceptance Criteria:**
-- Given a feature list is generated, when I change an estimate value, then the total recalculates within 500 ms.
-- Given I adjust estimates, when I export to XLSX, then the export reflects my changes, not the original AI estimates.
-
-### US-003: Client Reviews Deliverables
-
-**As a** Client, **I want to** review generated deliverables and leave comments, **so that** I can provide feedback without needing access to the full portal.
-
-**Acceptance Criteria:**
-- Given my account manager shares a client portal link, when I visit it, then I can view deliverables without creating an account (PIN auth).
-- Given I am viewing a shared deliverable, when I click a section, then I can add a comment that notifies my account manager.
-- Given I review a deliverable, when I click "Approve", then the status updates and the internal team is notified.
-
----
-
-## 7. UX/UI Requirements
+## 6. UX/UI Requirements
 
 - Primary navigation: persistent left sidebar with project list + top header with user menu and global search.
 - Project view: tab-based layout — Overview | Requirements | Features & Estimates | Architecture | Risk Register | Export.
@@ -447,7 +415,7 @@ The system defines two top-level categories: **Employees** (internal staff) and 
 
 ---
 
-## 8. Estimation & Delivery Requirements
+## 7. Estimation & Delivery Requirements
 
 ### Delivery Phases
 
@@ -505,7 +473,7 @@ Vendors must provide estimates broken down by:
 
 ---
 
-## 9. Submission Timeline
+## 8. Submission Timeline
 
 | Milestone | Target Date |
 | --- | --- |
@@ -525,7 +493,7 @@ NDA must be on file before accessing this document.
 
 ---
 
-## 10. Evaluation Criteria
+## 9. Evaluation Criteria
 
 Proposals scored on a 100-point scale across five dimensions. Scoring panel: Sales Manager, Solution Architect, senior Business Analyst.
 
