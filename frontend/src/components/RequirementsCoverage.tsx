@@ -370,25 +370,31 @@ export function RequirementsCoverage({
               value={matrixFilter}
               onChange={(e) => setMatrixFilter(e.target.value)}
             />
-            <select
-              className="fl-cat-select"
-              value={matrixDomain}
-              onChange={(e) => setMatrixDomain(e.target.value)}
-            >
-              {matrixDomains.map((d) => (
-                <option key={d} value={d}>{d || 'All domains'}</option>
-              ))}
-            </select>
-            <select
-              className="fl-cat-select"
-              value={matrixStatus}
-              onChange={(e) => setMatrixStatus(e.target.value)}
-            >
-              <option value="">All statuses</option>
-              <option value="met">Met</option>
-              <option value="risky">Risk</option>
-              <option value="gap">Gap</option>
-            </select>
+            <div className="fl-select-wrap">
+              <select
+                className="fl-cat-select"
+                value={matrixDomain}
+                onChange={(e) => setMatrixDomain(e.target.value)}
+              >
+                {matrixDomains.map((d) => (
+                  <option key={d} value={d}>{d || 'All domains'}</option>
+                ))}
+              </select>
+              {matrixDomain && <button className="fl-select-clear" onClick={() => setMatrixDomain('')} title="Clear">×</button>}
+            </div>
+            <div className="fl-select-wrap">
+              <select
+                className="fl-cat-select"
+                value={matrixStatus}
+                onChange={(e) => setMatrixStatus(e.target.value)}
+              >
+                <option value="">All statuses</option>
+                <option value="met">Met</option>
+                <option value="risky">Risk</option>
+                <option value="gap">Gap</option>
+              </select>
+              {matrixStatus && <button className="fl-select-clear" onClick={() => setMatrixStatus('')} title="Clear">×</button>}
+            </div>
             <span className="fl-count">
               {matrixSorted.length} / {items.length} requirements
             </span>
@@ -440,108 +446,6 @@ export function RequirementsCoverage({
       </div>
       </>)}
 
-      {show('2.3') && (<>
-      {/* 2.3 Gaps & Questions */}
-      <div className="rfp-section-heading" id="2.3">Outstanding Questions</div>
-      <div className="overview-grid">
-        <div className="overview-card">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">❓</span>
-            Outstanding Questions to Client
-          </div>
-          <table className="overview-table">
-            <thead>
-              <tr>
-                <th>Ref</th>
-                <th>Question</th>
-                <th>Req</th>
-                <th>Urgency</th>
-                <th>Client's Answer</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>OQ-01</td>
-                <td>Will interim security controls evidence (SOC 2 Type II + documented GDPR/PII controls) satisfy the SOC 2 Type II requirement (CR-009) at go-live, with certification to follow post-launch?</td>
-                <td>CR-009</td>
-                <td><span className="overview-badge overview-badge--danger">Critical</span></td>
-                <td><span className="overview-badge overview-badge--warn">Pending</span></td>
-              </tr>
-              <tr>
-                <td>OQ-02</td>
-                <td>Which enterprise IdP provider is in use (Okta, Azure AD, ADFS)? Timeline for IdP configuration sign-off to unblock SAML SSO delivery.</td>
-                <td>TC-029</td>
-                <td><span className="overview-badge overview-badge--warn">High</span></td>
-                <td><span className="overview-badge overview-badge--warn">Pending</span></td>
-              </tr>
-              <tr>
-                <td>OQ-03</td>
-                <td>What is the expected quality (DPI, scan resolution) of RFP documents uploaded? This directly determines achievable OCR accuracy against the 95% target.</td>
-                <td>NFR-002</td>
-                <td><span className="overview-badge overview-badge--warn">High</span></td>
-                <td><span className="overview-badge overview-badge--warn">Pending</span></td>
-              </tr>
-              <tr>
-                <td>OQ-04</td>
-                <td>Is the Salesforce webhook integration (FR-133) required at go-live or can it be deferred to Phase 2? Depends on your SF edition and API access tier.</td>
-                <td>FR-133</td>
-                <td><span className="overview-badge">Medium</span></td>
-                <td><span className="overview-badge overview-badge--warn">Pending</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="overview-card">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">→</span>
-            High-Risk Items — Resolution Plan
-          </div>
-          <table className="overview-table">
-            <thead>
-              <tr>
-                <th>Req ID</th>
-                <th>Issue</th>
-                <th>Resolution</th>
-                <th>Target Phase</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>TC-013</td>
-                <td>RAG pipeline with 512-token chunking and Qdrant requires ML infrastructure setup and iterative prompt tuning</td>
-                <td>Dedicated ML infrastructure sprint in Phase 1; retrieval quality benchmarked before Phase 2 feature build.</td>
-                <td>Phase 1</td>
-              </tr>
-              <tr>
-                <td>NFR-011</td>
-                <td>500 ms real-time collaboration propagation under concurrent load</td>
-                <td>WebSocket infrastructure with horizontal scaling; load test milestone gating Phase 2 go/no-go.</td>
-                <td>Phase 2</td>
-              </tr>
-              <tr>
-                <td>NFR-019</td>
-                <td>RTO 1 hour / RPO 15 minutes requires active standby and continuous replication</td>
-                <td>DR architecture scoped in Phase 1; DR test run before production launch.</td>
-                <td>Phase 1 / Launch</td>
-              </tr>
-              <tr>
-                <td>CR-015</td>
-                <td>PII anonymisation before LLM dispatch — entity detection accuracy affects downstream output quality</td>
-                <td>NLP-based PII detection with reversible mapping; accuracy threshold validated on representative dataset before go-live.</td>
-                <td>Phase 1</td>
-              </tr>
-              <tr>
-                <td>FR-016</td>
-                <td>Audio/video calling requires third-party SDK (Twilio/Daily.co); not in base scope</td>
-                <td>Scoped and priced separately. Can be added to Phase 3 if confirmed. No impact on core portal delivery.</td>
-                <td>Phase 3 (optional)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      </>)}
     </div>
   )
 }

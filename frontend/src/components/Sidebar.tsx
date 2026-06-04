@@ -46,7 +46,6 @@ export const NAV_SECTIONS: NavSection[] = [
     subsections: [
       { id: '2.1', title: 'Requirements Summary',        path: '/requirements-coverage/requirements-summary', badge: 0, badgeGrey: true },
       { id: '2.2', title: 'Coverage & Compliance Matrix', path: '/requirements-coverage/coverage-matrix' },
-      { id: '2.3', title: 'Outstanding Questions', path: '/requirements-coverage/gaps-questions', badge: 4 },
     ],
   },
   {
