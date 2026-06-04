@@ -29,6 +29,8 @@ export function RequirementsCoverage({
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
   const gapCount = summary?.gaps ?? 0
   const [showAllDomains, setShowAllDomains] = useState(false)
+  const [gapRiskDomains, setGapRiskDomains] = useState<string[]>([])
+  const [gapRiskLabel, setGapRiskLabel] = useState('')
   const [matrixFilter, setMatrixFilter] = useState('')
   const [matrixDomain, setMatrixDomain] = useState('')
   const [matrixStatus, setMatrixStatus] = useState('')
@@ -164,12 +166,36 @@ export function RequirementsCoverage({
                     <td>{d.met}</td>
                     <td>
                       {d.risky > 0
-                        ? <span className="overview-badge overview-badge--warn">{d.risky}</span>
+                        ? <span
+                            className="overview-badge overview-badge--warn"
+                            style={{ cursor: 'pointer' }}
+                            title={`Show risks for ${d.domain}`}
+                            onClick={() => {
+                              const domains = d.domain === 'Other' ? rest.map(r => r.domain) : [d.domain]
+                              const label = d.domain === 'Other' ? `Other (${rest.length} domains)` : d.domain
+                              const isActive = gapRiskLabel === label
+                              setGapRiskDomains(isActive ? [] : domains)
+                              setGapRiskLabel(isActive ? '' : label)
+                              if (!isActive) document.getElementById('gaps-risks-card')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+                            }}
+                          >{d.risky}</span>
                         : 0}
                     </td>
                     <td>
                       {d.gap > 0
-                        ? <span className="overview-badge overview-badge--danger">{d.gap}</span>
+                        ? <span
+                            className="overview-badge overview-badge--danger"
+                            style={{ cursor: 'pointer' }}
+                            title={`Show gaps for ${d.domain}`}
+                            onClick={() => {
+                              const domains = d.domain === 'Other' ? rest.map(r => r.domain) : [d.domain]
+                              const label = d.domain === 'Other' ? `Other (${rest.length} domains)` : d.domain
+                              const isActive = gapRiskLabel === label
+                              setGapRiskDomains(isActive ? [] : domains)
+                              setGapRiskLabel(isActive ? '' : label)
+                              if (!isActive) document.getElementById('gaps-risks-card')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+                            }}
+                          >{d.gap}</span>
                         : 0}
                     </td>
                   </tr>
@@ -198,38 +224,57 @@ export function RequirementsCoverage({
           </table>
         </div>
 
-        <div className="overview-card">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">!</span>
-            Requirement Gaps &amp; Risks — Action Required
+        <div className="overview-card" id="gaps-risks-card">
+          <div className="overview-card-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <span>
+              <span className="overview-card-icon">!</span>
+              Requirement Gaps &amp; Risks — Action Required
+            </span>
+            {gapRiskLabel && (
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4em', fontSize: '0.82rem' }}>
+                <span style={{ background: 'var(--color-warn-bg, #fff3cd)', color: 'var(--color-warn, #856404)', borderRadius: '3px', padding: '0.1em 0.5em', fontWeight: 500 }}>{gapRiskLabel}</span>
+                <button
+                  type="button"
+                  onClick={() => { setGapRiskDomains([]); setGapRiskLabel('') }}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-muted)', fontSize: '1em', lineHeight: 1, padding: '0 0.1em' }}
+                  title="Clear domain filter"
+                >✕</button>
+              </span>
+            )}
           </div>
           {!summary ? (
             <p style={{ color: 'var(--color-muted)', padding: '0.5rem 0' }}>Loading…</p>
-          ) : (
-            <ul className="overview-risk-list">
-              {summary.gap_items.map((item) => (
-                <li key={item.id} className="overview-risk overview-risk--high">
-                  <span className="overview-risk-level">GAP</span>
-                  <div>
-                    <strong>{item.id} — {item.requirement}</strong>
-                    {item.description && <> {item.description}</>}
-                  </div>
-                </li>
-              ))}
-              {summary.risky_items.map((item) => (
-                <li key={item.id} className="overview-risk overview-risk--med">
-                  <span className="overview-risk-level">RISK</span>
-                  <div>
-                    <strong>{item.id} — {item.requirement}</strong>
-                    {item.description && <> {item.description}</>}
-                  </div>
-                </li>
-              ))}
-              {summary.gap_items.length === 0 && summary.risky_items.length === 0 && (
-                <li style={{ color: 'var(--color-muted)' }}>No gaps or risks identified.</li>
-              )}
-            </ul>
-          )}
+          ) : (() => {
+            const gapItems = gapRiskDomains.length ? summary.gap_items.filter(i => gapRiskDomains.includes(i.domain)) : summary.gap_items
+            const riskyItems = gapRiskDomains.length ? summary.risky_items.filter(i => gapRiskDomains.includes(i.domain)) : summary.risky_items
+            return (
+              <ul className="overview-risk-list">
+                {gapItems.map((item) => (
+                  <li key={item.id} className="overview-risk overview-risk--high">
+                    <span className="overview-risk-level">GAP</span>
+                    <div>
+                      <strong>{item.id} — {item.requirement}</strong>
+                      {item.description && <> {item.description}</>}
+                    </div>
+                  </li>
+                ))}
+                {riskyItems.map((item) => (
+                  <li key={item.id} className="overview-risk overview-risk--med">
+                    <span className="overview-risk-level">RISK</span>
+                    <div>
+                      <strong>{item.id} — {item.requirement}</strong>
+                      {item.description && <> {item.description}</>}
+                    </div>
+                  </li>
+                ))}
+                {gapItems.length === 0 && riskyItems.length === 0 && (
+                  <li style={{ color: 'var(--color-muted)' }}>
+                    {gapRiskLabel ? `No gaps or risks for "${gapRiskLabel}".` : 'No gaps or risks identified.'}
+                  </li>
+                )}
+              </ul>
+            )
+          })()}
         </div>
       </div>
       </>)}
