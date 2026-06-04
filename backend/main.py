@@ -116,8 +116,9 @@ def get_requirements_summary():
                 req_id = row.get("id", "").strip()
                 status = row.get("status", "").strip()
                 description = row.get("description", "").strip()
+                options = row.get("options", "").strip()
                 if req_id and status:
-                    statuses[req_id] = {"status": status, "description": description}
+                    statuses[req_id] = {"status": status, "description": description, "options": options}
 
     domain_map: dict[str, dict] = {}
     gaps: list[dict] = []
@@ -136,10 +137,10 @@ def get_requirements_summary():
             domain_map[domain]["total"] += 1
             if s and s["status"] == "gap":
                 domain_map[domain]["gap"] += 1
-                gaps.append({"id": fr_id, "requirement": requirement, "domain": domain, "description": s["description"]})
+                gaps.append({"id": fr_id, "requirement": requirement, "domain": domain, "description": s["description"], "options": s.get("options", "")})
             elif s and s["status"] == "risky":
                 domain_map[domain]["risky"] += 1
-                risky_items.append({"id": fr_id, "requirement": requirement, "domain": domain, "description": s["description"]})
+                risky_items.append({"id": fr_id, "requirement": requirement, "domain": domain, "description": s["description"], "options": s.get("options", "")})
             else:
                 domain_map[domain]["met"] += 1
 

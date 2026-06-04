@@ -52,6 +52,7 @@ export interface RequirementsSummaryItem {
   requirement: string
   domain: string
   description: string
+  options?: string
 }
 
 export interface RequirementsSummary {

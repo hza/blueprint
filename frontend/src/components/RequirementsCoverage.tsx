@@ -44,6 +44,17 @@ export function RequirementsCoverage({
   const [matrixStatus, setMatrixStatus] = useState('')
   const [matrixSortKey, setMatrixSortKey] = useState<MatrixSortKey>('id')
   const [matrixSortDir, setMatrixSortDir] = useState<'asc' | 'desc'>('asc')
+
+  const [buyerResponses, setBuyerResponses] = useState<Record<string, { option: string; comment: string }>>(() => {
+    try { return JSON.parse(localStorage.getItem('buyer-gap-responses') ?? '{}') } catch { return {} }
+  })
+  const setBuyerResponse = (id: string, field: 'option' | 'comment', value: string) => {
+    setBuyerResponses(prev => {
+      const next = { ...prev, [id]: { ...prev[id], [field]: value } }
+      localStorage.setItem('buyer-gap-responses', JSON.stringify(next))
+      return next
+    })
+  }
   const [selectedItemId, setSelectedItemId] = useState<string | null>(selectedItemIdProp ?? null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const restoredRef = useRef(false)
@@ -265,24 +276,71 @@ export function RequirementsCoverage({
             const riskyItems = gapRiskDomains.length ? summary.risky_items.filter(i => gapRiskDomains.includes(i.domain)) : summary.risky_items
             return (
               <ul className="overview-risk-list">
-                {gapItems.map((item) => (
-                  <li key={item.id} className="overview-risk overview-risk--high">
-                    <span className="overview-risk-level">GAP</span>
-                    <div>
-                      <strong>{item.id} — {item.requirement}</strong>
-                      {item.description && <> {item.description}</>}
-                    </div>
-                  </li>
-                ))}
-                {riskyItems.map((item) => (
-                  <li key={item.id} className="overview-risk overview-risk--med">
-                    <span className="overview-risk-level">RISK</span>
-                    <div>
-                      <strong>{item.id} — {item.requirement}</strong>
-                      {item.description && <> {item.description}</>}
-                    </div>
-                  </li>
-                ))}
+                {[...gapItems.map(i => ({ ...i, kind: 'gap' as const })), ...riskyItems.map(i => ({ ...i, kind: 'risk' as const }))].map((item) => {
+                  const resp = buyerResponses[item.id] ?? { option: '', comment: '' }
+                  const preparedOptions = item.options ? item.options.split('|') : []
+                  const isGap = item.kind === 'gap'
+                  const accentColor = isGap ? 'var(--color-danger, #c0392b)' : 'var(--color-warn, #856404)'
+                  const sourceItem = items.find(i => i.id === item.id)
+                  const refLabel = sourceItem?.references?.split(';').map(s => s.trim()).filter(Boolean)[0] ?? null
+                  return (
+                    <li key={item.id} className={`overview-risk ${isGap ? 'overview-risk--high' : 'overview-risk--med'}`}>
+                      <span className="overview-risk-level">{isGap ? 'GAP' : 'RISK'}</span>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5em', flexWrap: 'wrap' }}>
+                          <strong>{item.id} — {item.requirement}</strong>
+                          {sourceItem && (
+                            <button
+                              type="button"
+                              onClick={() => onOpenSource?.(sourceItem)}
+                              title="Open source document"
+                              style={{ fontSize: '11px', fontWeight: 500, color: accentColor, background: 'none', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline dotted', whiteSpace: 'nowrap' }}
+                            >
+                              {refLabel ?? 'View source'}
+                            </button>
+                          )}
+                        </div>
+                        {item.description && <div style={{ marginTop: '0.15em', opacity: 0.85 }}>{item.description}</div>}
+                        <div style={{ marginTop: '0.6em', borderTop: '1px solid var(--color-border, #e0e0e0)', paddingTop: '0.5em' }}>
+                          <div style={{ fontWeight: 700, fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.06em', color: accentColor, marginBottom: '0.4em' }}>Your response</div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25em' }}>
+                            {preparedOptions.map((opt) => (
+                              <label key={opt} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5em', cursor: 'pointer', fontSize: '12px' }}>
+                                <input
+                                  type="radio"
+                                  name={`resp-${item.id}`}
+                                  value={opt}
+                                  checked={resp.option === opt}
+                                  onChange={() => setBuyerResponse(item.id, 'option', opt)}
+                                  style={{ marginTop: '2px', accentColor }}
+                                />
+                                {opt}
+                              </label>
+                            ))}
+                            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5em', cursor: 'pointer', fontSize: '12px', fontStyle: 'italic' }}>
+                              <input
+                                type="radio"
+                                name={`resp-${item.id}`}
+                                value="__custom__"
+                                checked={resp.option === '__custom__'}
+                                onChange={() => setBuyerResponse(item.id, 'option', '__custom__')}
+                                style={{ marginTop: '2px', accentColor }}
+                              />
+                              I'll define my own terms
+                            </label>
+                          </div>
+                          <textarea
+                            placeholder="Add your comment or position…"
+                            value={resp.comment}
+                            onChange={(e) => setBuyerResponse(item.id, 'comment', e.target.value)}
+                            rows={2}
+                            style={{ marginTop: '0.4em', width: '100%', fontSize: '12px', padding: '0.3em 0.5em', borderRadius: '4px', border: `1px solid ${resp.option === '__custom__' ? accentColor : 'var(--color-border, #ccc)'}`, background: 'var(--color-bg, #fff)', color: 'inherit', resize: 'vertical', boxSizing: 'border-box' }}
+                          />
+                        </div>
+                      </div>
+                    </li>
+                  )
+                })}
                 {gapItems.length === 0 && riskyItems.length === 0 && (
                   <li style={{ color: 'var(--color-muted)' }}>
                     {gapRiskLabel ? `No gaps or risks for "${gapRiskLabel}".` : 'No gaps or risks identified.'}
