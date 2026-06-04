@@ -1,4 +1,4 @@
-import type { FileContent, FileInfo, FRAnnotation, FRAnnotations, FRItem } from './types'
+import type { FileContent, FileInfo, FRAnnotation, FRAnnotations, FRItem, RequirementsSummary } from './types'
 
 const BASE = '/api'
 
@@ -13,6 +13,12 @@ export async function fetchFile(filename: string): Promise<FileContent> {
   const res = await fetch(`${BASE}/files/${encodeURIComponent(filename)}`)
   if (!res.ok) throw new Error(`Failed to fetch file: ${res.statusText}`)
   return res.json() as Promise<FileContent>
+}
+
+export async function fetchRequirementsSummary(): Promise<RequirementsSummary | null> {
+  const res = await fetch(`${BASE}/requirements-summary`)
+  if (!res.ok) return null
+  return res.json() as Promise<RequirementsSummary>
 }
 
 async function fetchReqStatus(): Promise<Record<string, { status: string; description: string }>> {

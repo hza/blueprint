@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { fetchFile, fetchFiles, fetchFR, fetchFL } from './api'
+import { fetchFile, fetchFiles, fetchFR, fetchFL, fetchRequirementsSummary } from './api'
 import { CodeViewer } from './components/CodeViewer'
 import { EmptyState } from './components/EmptyState'
 import { FileBoxHeader } from './components/FileBoxHeader'
@@ -22,7 +22,7 @@ import { RequirementsCoverage } from './components/RequirementsCoverage'
 import { SolutionArchitecture } from './components/SolutionArchitecture'
 import { RightPanel } from './components/RightPanel'
 import { Sidebar } from './components/Sidebar'
-import type { FileContent, FileView, FileInfo, FRAnnotations, FRItem, ViewTab } from './types'
+import type { FileContent, FileView, FileInfo, FRAnnotations, FRItem, RequirementsSummary, ViewTab } from './types'
 
 const SIDEBAR_MIN = 160
 const SIDEBAR_MAX = 600
@@ -48,6 +48,7 @@ export default function App() {
   const [rightPanelWidth, setRightPanelWidth] = useState(RIGHT_PANEL_DEFAULT)
   const [draggingRightPanel, setDraggingRightPanel] = useState(false)
   const [flItems, setFlItems] = useState<FRItem[]>([])
+  const [reqSummary, setReqSummary] = useState<RequirementsSummary | null>(null)
   const [rightPanelItem, setRightPanelItem] = useState<FRItem | null>(null)
   const [domainFilter, setDomainFilter] = useState('')
   const [requirementEdits, setRequirementEdits] = useState<Record<string, string>>({})
@@ -140,6 +141,10 @@ export default function App() {
 
   useEffect(() => {
     fetchFL().then(setFlItems).catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    fetchRequirementsSummary().then(setReqSummary).catch(() => {})
   }, [])
 
 
@@ -381,7 +386,7 @@ export default function App() {
             </nav>
             <div className="file-box">
               <div className="file-box-body">
-                <RequirementsCoverage subsection={activeSection ?? undefined} />
+                <RequirementsCoverage subsection={activeSection ?? undefined} summary={reqSummary} />
               </div>
             </div>
           </>

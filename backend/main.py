@@ -106,6 +106,62 @@ def get_req_status():
     return {"statuses": statuses}
 
 
+@app.get("/api/requirements-summary")
+def get_requirements_summary():
+    """Return aggregated requirements summary: domain breakdown + gap/risky lists."""
+    statuses: dict[str, dict] = {}
+    if REQ_STATUS_FILE.exists():
+        with REQ_STATUS_FILE.open(encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f):
+                req_id = row.get("id", "").strip()
+                status = row.get("status", "").strip()
+                description = row.get("description", "").strip()
+                if req_id and status:
+                    statuses[req_id] = {"status": status, "description": description}
+
+    domain_map: dict[str, dict] = {}
+    gaps: list[dict] = []
+    risky_items: list[dict] = []
+
+    if FL_FILE.exists():
+        for row in FL_FILE.read_text(encoding="utf-8").splitlines():
+            parsed = _parse_fr_row(row)
+            if parsed is None:
+                continue
+            fr_id, requirement, category, _, _, _ = parsed
+            s = statuses.get(fr_id)
+            domain = category or "Uncategorized"
+            if domain not in domain_map:
+                domain_map[domain] = {"domain": domain, "total": 0, "met": 0, "risky": 0, "gap": 0}
+            domain_map[domain]["total"] += 1
+            if s and s["status"] == "gap":
+                domain_map[domain]["gap"] += 1
+                gaps.append({"id": fr_id, "requirement": requirement, "domain": domain, "description": s["description"]})
+            elif s and s["status"] == "risky":
+                domain_map[domain]["risky"] += 1
+                risky_items.append({"id": fr_id, "requirement": requirement, "domain": domain, "description": s["description"]})
+            else:
+                domain_map[domain]["met"] += 1
+
+    domains = sorted(domain_map.values(), key=lambda d: d["total"], reverse=True)
+    total = sum(d["total"] for d in domains)
+    gap_count = len(gaps)
+    risky_count = len(risky_items)
+    met_count = total - gap_count - risky_count
+    coverage_pct = round((met_count / total * 100), 1) if total > 0 else 0.0
+
+    return {
+        "total": total,
+        "met": met_count,
+        "risky": risky_count,
+        "gaps": gap_count,
+        "coverage_pct": coverage_pct,
+        "domains": domains,
+        "gap_items": gaps,
+        "risky_items": risky_items,
+    }
+
+
 @app.get("/api/fl")
 def get_all_fr():
     """Return all FR rows from FL.md as a flat list."""

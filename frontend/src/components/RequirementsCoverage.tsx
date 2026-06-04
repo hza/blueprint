@@ -1,41 +1,54 @@
-export function RequirementsCoverage({ subsection }: { subsection?: string }) {
+import type { RequirementsSummary } from '../types'
+
+export function RequirementsCoverage({
+  subsection,
+  summary,
+}: {
+  subsection?: string
+  summary?: RequirementsSummary | null
+}) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
+  const gapCount = summary?.gaps ?? 0
+
   return (
     <div className="overview">
       <div className="overview-banner">
         <div className="overview-banner-header">
           <div className="overview-banner-main">
             <div className="overview-banner-title">2. Requirements Coverage</div>
-            <div className="overview-banner-client">Meridian Public Services · ERP Modernisation · RFP-2025-0042</div>
+            <div className="overview-banner-client">Customer Portal — RFP</div>
           </div>
-          <span className="overview-badge overview-badge--warn">2 GAPS</span>
+          <span className={`overview-badge ${gapCount > 0 ? 'overview-badge--danger' : 'overview-badge--ok'}`}>
+            {gapCount} {gapCount === 1 ? 'GAP' : 'GAPS'}
+          </span>
         </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Total Requirements</span>
-            <span className="overview-stat-value">87</span>
+            <span className="overview-stat-value">{summary?.total ?? '—'}</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Fully Met</span>
-            <span className="overview-stat-value overview-stat-score--ok">79</span>
+            <span className="overview-stat-value overview-stat-score--ok">{summary?.met ?? '—'}</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Partially Met</span>
-            <span className="overview-stat-value overview-stat-score--warn">6</span>
+            <span className="overview-stat-label">Risky</span>
+            <span className="overview-stat-value overview-stat-score--warn">{summary?.risky ?? '—'}</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Not Met</span>
-            <span className="overview-stat-value overview-val--danger">2</span>
+            <span className="overview-stat-value overview-val--danger">{summary?.gaps ?? '—'}</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Coverage</span>
-            <span className="overview-stat-value overview-stat-score--ok">97.7%</span>
+            <span className="overview-stat-value overview-stat-score--ok">
+              {summary != null ? `${summary.coverage_pct}%` : '—'}
+            </span>
           </div>
         </div>
       </div>
 
       {show('2.1') && (<>
-      {/* 2.1 Requirements Summary */}
       <div className="rfp-section-heading" id="2.1">Requirements Summary</div>
       <div className="overview-grid">
         <div className="overview-card">
@@ -48,77 +61,40 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
               <tr>
                 <th>Domain</th>
                 <th>Total</th>
-                <th>Mandatory</th>
-                <th>Fully Met</th>
-                <th>Partial</th>
+                <th>Met</th>
+                <th>Risky</th>
                 <th>Gap</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="overview-table-label">Finance &amp; Accounting</td>
-                <td>22</td>
-                <td>18</td>
-                <td><span className="overview-badge overview-badge--ok">22</span></td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Human Resources</td>
-                <td>18</td>
-                <td>14</td>
-                <td><span className="overview-badge overview-badge--ok">16</span></td>
-                <td>2</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Procurement</td>
-                <td>15</td>
-                <td>12</td>
-                <td><span className="overview-badge overview-badge--ok">14</span></td>
-                <td>1</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Asset Management</td>
-                <td>12</td>
-                <td>9</td>
-                <td><span className="overview-badge overview-badge--ok">11</span></td>
-                <td>1</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Reporting &amp; Analytics</td>
-                <td>10</td>
-                <td>8</td>
-                <td><span className="overview-badge overview-badge--ok">9</span></td>
-                <td>1</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Security &amp; Compliance</td>
-                <td>6</td>
-                <td>6</td>
-                <td><span className="overview-badge overview-badge--warn">4</span></td>
-                <td>1</td>
-                <td className="overview-val--danger">1</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Integration &amp; Interoperability</td>
-                <td>4</td>
-                <td>4</td>
-                <td><span className="overview-badge overview-badge--warn">3</span></td>
-                <td>0</td>
-                <td className="overview-val--danger">1</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label overview-val--strong">Total</td>
-                <td><strong>87</strong></td>
-                <td><strong>71</strong></td>
-                <td className="overview-val--strong">79</td>
-                <td><strong>6</strong></td>
-                <td className="overview-val--danger"><strong>2</strong></td>
-              </tr>
+              {!summary ? (
+                <tr><td colSpan={5} style={{ textAlign: 'center', color: 'var(--color-muted)' }}>Loading…</td></tr>
+              ) : summary.domains.map((d) => (
+                <tr key={d.domain}>
+                  <td className="overview-table-label">{d.domain}</td>
+                  <td>{d.total}</td>
+                  <td>{d.met}</td>
+                  <td>
+                    {d.risky > 0
+                      ? <span className="overview-badge overview-badge--warn">{d.risky}</span>
+                      : 0}
+                  </td>
+                  <td>
+                    {d.gap > 0
+                      ? <span className="overview-badge overview-badge--danger">{d.gap}</span>
+                      : 0}
+                  </td>
+                </tr>
+              ))}
+              {summary && (
+                <tr>
+                  <td className="overview-table-label overview-val--strong">Total</td>
+                  <td><strong>{summary.total}</strong></td>
+                  <td>{summary.met}</td>
+                  <td><strong>{summary.risky}</strong></td>
+                  <td><span className="overview-badge overview-badge--danger">{summary.gaps}</span></td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -126,37 +102,37 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">!</span>
-            Requirement Gaps — Action Required
+            Requirement Gaps &amp; Risks — Action Required
           </div>
-          <ul className="overview-risk-list">
-            <li className="overview-risk overview-risk--high">
-              <span className="overview-risk-level">GAP</span>
-              <div>
-                <strong>REQ-SEC-04 — ISO 27001 at contract execution.</strong> Section 4.3 mandates certification at contract signature. Certification will be in place by April 30 — before any Meridian data enters the production environment. <em>Mitigation: interim controls letter + contractual condition precedent. See Section 4.2.</em>
-              </div>
-            </li>
-            <li className="overview-risk overview-risk--high">
-              <span className="overview-risk-level">GAP</span>
-              <div>
-                <strong>REQ-INT-03 — Pre-built TechCore v4 connector.</strong> RFP requires a pre-built connector for "TechCore v4 framework." A custom TechCore v4 adapter will be built in Phase 3 — fully included in your fixed price with no impact on your go-live date. <em>Estimated effort: 3 weeks, included in fixed price. No additional cost to Meridian.</em>
-              </div>
-            </li>
-            <li className="overview-risk overview-risk--med">
-              <span className="overview-risk-level">PARTIAL</span>
-              <div>
-                <strong>REQ-HR-11 — Union collective agreement rules engine.</strong> Standard Meridian HR module handles 14 of 17 collective agreement rule types. The remaining 3 (penalty rate escalation, rostering overrides, shift-swap arbitration) require configuration. Fully addressed by end of Phase 2.
-              </div>
-            </li>
-            <li className="overview-risk overview-risk--med">
-              <span className="overview-risk-level">PARTIAL</span>
-              <div>
-                <strong>REQ-HR-14 — Mobile timesheet approval for field supervisors.</strong> Desktop and responsive web fully supported. Native mobile app approval push notifications require iOS/Android release (scheduled Phase 4). Interim browser-based mobile workflow available from Phase 2.
-              </div>
-            </li>
-          </ul>
+          {!summary ? (
+            <p style={{ color: 'var(--color-muted)', padding: '0.5rem 0' }}>Loading…</p>
+          ) : (
+            <ul className="overview-risk-list">
+              {summary.gap_items.map((item) => (
+                <li key={item.id} className="overview-risk overview-risk--high">
+                  <span className="overview-risk-level">GAP</span>
+                  <div>
+                    <strong>{item.id} — {item.requirement}</strong>
+                    {item.description && <> {item.description}</>}
+                  </div>
+                </li>
+              ))}
+              {summary.risky_items.map((item) => (
+                <li key={item.id} className="overview-risk overview-risk--med">
+                  <span className="overview-risk-level">RISKY</span>
+                  <div>
+                    <strong>{item.id} — {item.requirement}</strong>
+                    {item.description && <> {item.description}</>}
+                  </div>
+                </li>
+              ))}
+              {summary.gap_items.length === 0 && summary.risky_items.length === 0 && (
+                <li style={{ color: 'var(--color-muted)' }}>No gaps or risks identified.</li>
+              )}
+            </ul>
+          )}
         </div>
       </div>
-
       </>)}
 
       {show('2.2') && (<>
@@ -179,131 +155,106 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
             </thead>
             <tbody>
               <tr>
-                <td>REQ-FIN-01</td>
-                <td>General Ledger with AASB-compliant chart of accounts</td>
+                <td>FR-001</td>
+                <td>Employees can upload client RFP documents (PDF up to 200 MB)</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>Meridian Finance GL module ships with pre-configured AASB chart. Fully customisable.</td>
+                <td>File upload with size validation; stored in object storage with virus scan on ingest.</td>
               </tr>
               <tr>
-                <td>REQ-FIN-05</td>
-                <td>Automated bank reconciliation (ANZ, NAB, WBC feeds)</td>
+                <td>NFR-001</td>
+                <td>Reduce proposal time from days to hours</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>Native bank feed connectors for all 3 banks via Basiq API. Daily automated reconciliation with exception dashboard.</td>
+                <td>AI-assisted extraction and drafting pipeline; benchmark shows 80%+ reduction in manual effort.</td>
               </tr>
               <tr>
-                <td>REQ-FIN-09</td>
-                <td>Budget vs. actuals reporting with drill-down</td>
+                <td>BR-001</td>
+                <td>Role-based access control enforced system-wide</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>Power BI embedded dashboards. Real-time budget tracking by cost centre, project, and fund. Export to Excel/PDF.</td>
+                <td>RBAC middleware on all API routes; fine-grained permissions per resource type.</td>
               </tr>
               <tr>
-                <td>REQ-HR-01</td>
-                <td>Employee lifecycle management (hire to retire)</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>Full HRIS including onboarding workflows, role changes, performance, and offboarding checklists.</td>
-              </tr>
-              <tr>
-                <td>REQ-HR-03</td>
-                <td>Payroll integration with ADP</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>Pre-built ADP WorkforceNow connector. Bi-directional sync. Tested in 3 prior engagements.</td>
-              </tr>
-              <tr>
-                <td>REQ-PRO-02</td>
-                <td>Purchase order workflow with configurable approval tiers</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>Configurable approval matrices by value, category, and cost centre. Delegation of authority rules engine. Full audit trail.</td>
-              </tr>
-              <tr>
-                <td>REQ-PRO-07</td>
-                <td>Supplier portal for invoice submission</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>Self-service supplier portal. E-invoicing via PEPPOL/ATO eInvoicing standard. Automated 3-way match.</td>
-              </tr>
-              <tr>
-                <td>REQ-SEC-01</td>
-                <td>Multi-Factor Authentication for all users</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>MFA enforced by default. Azure AD Conditional Access integration. Hardware token support for privileged accounts.</td>
-              </tr>
-              <tr>
-                <td>REQ-SEC-02</td>
-                <td>Data encrypted at rest and in transit (AES-256 / TLS 1.3)</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>TDE on all databases. TLS 1.3 enforced. Customer-managed keys in Azure Key Vault.</td>
-              </tr>
-              <tr>
-                <td>REQ-SEC-04</td>
-                <td>ISO 27001 certification at contract execution</td>
+                <td>CR-009</td>
+                <td>SOC 2 Type II certification at go-live</td>
                 <td><span className="overview-badge overview-badge--danger">Gap</span></td>
-                <td>Certification pending (Stage 2 audit Mar 28). Interim controls letter provided. See Section 4.2.</td>
+                <td>Certification process takes 6–12 months post-launch. Controls are built; certificate cannot be delivered at go-live.</td>
               </tr>
               <tr>
-                <td>REQ-INT-01</td>
-                <td>REST API for all core modules with OpenAPI 3.0 specification</td>
-                <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>All modules expose fully documented REST APIs. OpenAPI 3.0 spec published to Meridian Confluence on contract execution.</td>
-              </tr>
-              <tr>
-                <td>REQ-INT-03</td>
-                <td>Pre-built TechCore v4 framework connector</td>
+                <td>TC-029</td>
+                <td>SAML SSO integration with enterprise IdP</td>
                 <td><span className="overview-badge overview-badge--danger">Gap</span></td>
-                <td>Custom adapter built in Phase 3. 3 weeks effort, no additional cost. Go-live not impacted.</td>
+                <td>Included in scope; delivery depends on client's IdP readiness and configuration timeline.</td>
+              </tr>
+              <tr>
+                <td>NFR-002</td>
+                <td>95% OCR accuracy on uploaded documents</td>
+                <td><span className="overview-badge overview-badge--danger">Gap</span></td>
+                <td>Standard OCR engines reach 90–93% on mixed-quality scans. 95% is achievable only with high-quality source documents.</td>
+              </tr>
+              <tr>
+                <td>TC-009</td>
+                <td>CQRS + Outbox Pattern + BFF architecture</td>
+                <td><span className="overview-badge overview-badge--warn">Risky</span></td>
+                <td>Significant architectural complexity; increases implementation time. Team familiarity review required before Phase 1.</td>
+              </tr>
+              <tr>
+                <td>FR-090</td>
+                <td>Real-time collaborative editing with conflict resolution</td>
+                <td><span className="overview-badge overview-badge--warn">Risky</span></td>
+                <td>Last-write-wins is implementable; full conflict indicators require careful state synchronisation and load testing.</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-
       </>)}
 
       {show('2.3') && (<>
       {/* 2.3 Gaps & Questions */}
-      <div className="rfp-section-heading" id="2.3">Gaps &amp; Questions</div>
+      <div className="rfp-section-heading" id="2.3">Outstanding Questions</div>
       <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">❓</span>
-            Outstanding Questions to Meridian
+            Outstanding Questions to Client
           </div>
           <table className="overview-table">
             <thead>
               <tr>
                 <th>Ref</th>
                 <th>Question</th>
-                <th>Section</th>
+                <th>Req</th>
                 <th>Urgency</th>
-                <th>Meridian's Answer</th>
+                <th>Client's Answer</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>OQ-01</td>
-                <td>Will an interim controls letter from the SCNSoft CISO (with SOC 2 + IRAP evidence) satisfy the ISO 27001 mandatory requirement (REQ-SEC-04) pending certification?</td>
-                <td>4.3</td>
+                <td>Will interim security controls evidence (SOC 2 Type II + documented GDPR/PII controls) satisfy the SOC 2 Type II requirement (CR-009) at go-live, with certification to follow post-launch?</td>
+                <td>CR-009</td>
                 <td><span className="overview-badge overview-badge--danger">Critical</span></td>
-                <td><span className="overview-badge overview-badge--ok">Confirmed</span> Yes — an interim controls letter is acceptable provided SOC 2 Type II + IRAP evidence is submitted at contract execution. ISO 27001 certification must be in place before Meridian data enters the production environment.</td>
+                <td><span className="overview-badge overview-badge--warn">Pending</span></td>
               </tr>
               <tr>
                 <td>OQ-02</td>
-                <td>How many concurrent users should the performance test target? RFP §6.2 cites "500 users" but the user register provided indicates 380 active users.</td>
-                <td>6.2</td>
+                <td>Which enterprise IdP provider is in use (Okta, Azure AD, ADFS)? Timeline for IdP configuration sign-off to unblock SAML SSO delivery.</td>
+                <td>TC-029</td>
                 <td><span className="overview-badge overview-badge--warn">High</span></td>
-                <td><span className="overview-badge overview-badge--ok">Confirmed</span> Performance tests must target 500 concurrent users — the figure reflects peak projected load at end of contract term, not current headcount.</td>
+                <td><span className="overview-badge overview-badge--warn">Pending</span></td>
               </tr>
               <tr>
                 <td>OQ-03</td>
-                <td>Is the TechCore v4 framework connector requirement (REQ-INT-03) driven by an existing system integration, or is it an evaluation differentiator? A custom adapter delivers the same outcome — is this acceptable?</td>
-                <td>5.4</td>
+                <td>What is the expected quality (DPI, scan resolution) of RFP documents uploaded? This directly determines achievable OCR accuracy against the 95% target.</td>
+                <td>NFR-002</td>
                 <td><span className="overview-badge overview-badge--warn">High</span></td>
-                <td><span className="overview-badge overview-badge--ok">Confirmed</span> Driven by the existing HR legacy system integration. A custom adapter is acceptable, subject to sign-off by Meridian's IT Architecture Review Board prior to Phase 3 build.</td>
+                <td><span className="overview-badge overview-badge--warn">Pending</span></td>
               </tr>
               <tr>
                 <td>OQ-04</td>
-                <td>Does Meridian have an existing data classification scheme to adopt, or should a four-tier framework be proposed?</td>
-                <td>4.1</td>
+                <td>Is the Salesforce webhook integration (FR-133) required at go-live or can it be deferred to Phase 2? Depends on your SF edition and API access tier.</td>
+                <td>FR-133</td>
                 <td><span className="overview-badge">Medium</span></td>
-                <td><span className="overview-badge overview-badge--ok">Confirmed</span> No existing scheme. Please propose a four-tier framework aligned with the Australian Government Information Security Manual (ISM).</td>
+                <td><span className="overview-badge overview-badge--warn">Pending</span></td>
               </tr>
             </tbody>
           </table>
@@ -312,7 +263,7 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">→</span>
-            Partial Requirements — Resolution Plan
+            High-Risk Items — Resolution Plan
           </div>
           <table className="overview-table">
             <thead>
@@ -325,40 +276,34 @@ export function RequirementsCoverage({ subsection }: { subsection?: string }) {
             </thead>
             <tbody>
               <tr>
-                <td>REQ-HR-11</td>
-                <td>3 of 17 union collective agreement rule types not pre-built</td>
-                <td>Configuration sprint in Phase 2, sprint 7–8. Rules validated with Meridian HR lead.</td>
-                <td>Phase 2 (Sprint 8)</td>
-              </tr>
-              <tr>
-                <td>REQ-HR-14</td>
-                <td>Native mobile push notifications for timesheet approval not in base release</td>
-                <td>Interim: browser-based mobile workflow Phase 2. Native app: Phase 4.</td>
-                <td>Phase 4 (full)</td>
-              </tr>
-              <tr>
-                <td>REQ-PRO-11</td>
-                <td>Punch-out catalogue integration (Ariba) not in base module</td>
-                <td>Ariba Punch-out connector available as licensed add-on ($18k/yr). Included in managed services proposal.</td>
-                <td>Phase 3</td>
-              </tr>
-              <tr>
-                <td>REQ-AST-09</td>
-                <td>GIS map layer integration requires Esri ArcGIS licence (to be provided by you)</td>
-                <td>Open-source MapLibre used for map visualisation. ArcGIS REST service calls supported. Meridian to provide ArcGIS API key.</td>
-                <td>Phase 3</td>
-              </tr>
-              <tr>
-                <td>REQ-RPT-08</td>
-                <td>Crystal Reports migration — legacy reports in Crystal format</td>
-                <td>You receive migration of your top 20 legacy reports to Power BI (Phase 2). Remaining reports: self-service migration toolkit + 2-day training session included.</td>
-                <td>Phase 2 / Phase 4</td>
-              </tr>
-              <tr>
-                <td>REQ-SEC-05</td>
-                <td>Privileged Access Management (PAM) — Meridian requires CyberArk integration</td>
-                <td>CyberArk API integration for privileged session recording. Meridian to provide CyberArk instance access. Effort: 5 days, included in Phase 1.</td>
+                <td>TC-013</td>
+                <td>RAG pipeline with 512-token chunking and Qdrant requires ML infrastructure setup and iterative prompt tuning</td>
+                <td>Dedicated ML infrastructure sprint in Phase 1; retrieval quality benchmarked before Phase 2 feature build.</td>
                 <td>Phase 1</td>
+              </tr>
+              <tr>
+                <td>NFR-011</td>
+                <td>500 ms real-time collaboration propagation under concurrent load</td>
+                <td>WebSocket infrastructure with horizontal scaling; load test milestone gating Phase 2 go/no-go.</td>
+                <td>Phase 2</td>
+              </tr>
+              <tr>
+                <td>NFR-019</td>
+                <td>RTO 1 hour / RPO 15 minutes requires active standby and continuous replication</td>
+                <td>DR architecture scoped in Phase 1; DR test run before production launch.</td>
+                <td>Phase 1 / Launch</td>
+              </tr>
+              <tr>
+                <td>CR-015</td>
+                <td>PII anonymisation before LLM dispatch — entity detection accuracy affects downstream output quality</td>
+                <td>NLP-based PII detection with reversible mapping; accuracy threshold validated on representative dataset before go-live.</td>
+                <td>Phase 1</td>
+              </tr>
+              <tr>
+                <td>FR-016</td>
+                <td>Audio/video calling requires third-party SDK (Twilio/Daily.co); not in base scope</td>
+                <td>Scoped and priced separately. Can be added to Phase 3 if confirmed. No impact on core portal delivery.</td>
+                <td>Phase 3 (optional)</td>
               </tr>
             </tbody>
           </table>

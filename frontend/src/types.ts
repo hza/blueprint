@@ -38,3 +38,29 @@ export interface FRAnnotation {
 
 // keyed by 1-based line number
 export type FRAnnotations = Record<number, FRAnnotation[]>
+
+export interface RequirementsDomainRow {
+  domain: string
+  total: number
+  met: number
+  risky: number
+  gap: number
+}
+
+export interface RequirementsSummaryItem {
+  id: string
+  requirement: string
+  domain: string
+  description: string
+}
+
+export interface RequirementsSummary {
+  total: number
+  met: number
+  risky: number
+  gaps: number
+  coverage_pct: number
+  domains: RequirementsDomainRow[]
+  gap_items: RequirementsSummaryItem[]
+  risky_items: RequirementsSummaryItem[]
+}
