@@ -233,6 +233,20 @@
   font-weight: 500;
 }
 
+.sidebar-badge {
+  flex-shrink: 0;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #e53935;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 15px;
+  text-align: center;
+}
+
 /* ── RFP Documents ───────────────────────────────────────────────────────── */
 .sidebar-docs {
   border-top: 1px solid var(--border);

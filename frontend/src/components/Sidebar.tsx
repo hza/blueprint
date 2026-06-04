@@ -17,6 +17,7 @@ interface NavSubsection {
   id: string
   title: string
   path: string
+  badge?: number
 }
 
 interface NavSection {
@@ -34,7 +35,7 @@ const NAV_SECTIONS: NavSection[] = [
     subsections: [
       { id: '1.1', title: 'Proposal Summary',                path: '/executive-overview/proposal-summary' },
 { id: '1.3', title: 'Key Assumptions', path: '/executive-overview/key-assumptions' },
-{ id: '1.4', title: 'Clarifications', path: '/executive-overview/clarifications' },
+{ id: '1.4', title: 'Clarifications', path: '/executive-overview/clarifications', badge: 4 },
     ],
   },
   {
@@ -44,7 +45,7 @@ const NAV_SECTIONS: NavSection[] = [
     subsections: [
       { id: '2.1', title: 'Requirements Summary',        path: '/requirements-coverage/requirements-summary' },
       { id: '2.2', title: 'Coverage & Compliance Matrix', path: '/requirements-coverage/coverage-matrix' },
-      { id: '2.3', title: 'Outstanding Questions', path: '/requirements-coverage/gaps-questions' },
+      { id: '2.3', title: 'Outstanding Questions', path: '/requirements-coverage/gaps-questions', badge: 4 },
     ],
   },
   {
@@ -54,7 +55,7 @@ const NAV_SECTIONS: NavSection[] = [
     subsections: [
       { id: '3.1', title: 'Architecture Overview',        path: '/solution-architecture/architecture-overview' },
       { id: '3.2', title: 'Functional Scope',             path: '/solution-architecture/functional-scope' },
-      { id: '3.3', title: 'Integration & Data',           path: '/solution-architecture/integration-data' },
+      { id: '3.3', title: 'Roles & Integrations',          path: '/solution-architecture/integration-data' },
       { id: '3.4', title: 'Non-Functional Requirements',  path: '/solution-architecture/non-functional-requirements' },
       { id: '3.5', title: 'Acceptance Criteria',           path: '/solution-architecture/acceptance-criteria' },
     ],
@@ -230,6 +231,9 @@ export function Sidebar({
                           <line x1="5.5" y1="10.5" x2="8.5" y2="10.5" />
                         </svg>
                         <span className="sidebar-sub-title">{sub.title}</span>
+                        {sub.badge !== undefined && sub.badge > 0 && (
+                          <span className="sidebar-badge">{sub.badge}</span>
+                        )}
                       </button>
                     ))}
                   </div>

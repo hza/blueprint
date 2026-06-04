@@ -242,8 +242,199 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
       </>)}
 
       {show('3.3') && (<>
-      {/* 3.3 Integration & Data */}
-      <div className="rfp-section-heading" id="3.3">Integration &amp; Data</div>
+      {/* 3.3 Roles & Integrations */}
+      <div className="rfp-section-heading" id="3.3">Roles &amp; Integrations</div>
+
+      {/* C4 Level 1 — Context Diagram */}
+      <div className="overview-grid">
+        <div className="overview-card" style={{gridColumn: '1 / -1'}}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🗺</span>
+            C4 Level 1 — System Context
+          </div>
+          <div style={{overflowX: 'auto', padding: '1rem 0'}}>
+            <svg viewBox="0 0 900 460" style={{width: '100%', minWidth: 700, fontFamily: 'inherit'}} aria-label="C4 Level 1 System Context diagram">
+              {/* styles */}
+              <defs>
+                <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L8,3 z" fill="#6b7280"/>
+                </marker>
+              </defs>
+              {/* Central system box */}
+              <rect x="340" y="175" width="220" height="110" rx="6" fill="#1d4ed8" stroke="#1e40af" strokeWidth="2"/>
+              <text x="450" y="220" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="bold">Meridian ERP</text>
+              <text x="450" y="238" textAnchor="middle" fill="#bfdbfe" fontSize="10">[Software System]</text>
+              <text x="450" y="256" textAnchor="middle" fill="#bfdbfe" fontSize="10">Custom ERP on Azure</text>
+              <text x="450" y="272" textAnchor="middle" fill="#bfdbfe" fontSize="10">(AKS · Azure SQL · Service Bus)</text>
+
+              {/* Users */}
+              {/* Finance Officer */}
+              <circle cx="90" cy="80" r="22" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="102" x2="90" y2="140" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="115" x2="65" y2="130" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="115" x2="115" y2="130" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="140" x2="70" y2="165" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="140" x2="110" y2="165" stroke="#374151" strokeWidth="1.5"/>
+              <text x="90" y="185" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Finance Officer</text>
+              <text x="90" y="198" textAnchor="middle" fill="#6b7280" fontSize="10">[Person]</text>
+              <line x1="130" y1="130" x2="335" y2="218" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="215" y="162" textAnchor="middle" fill="#6b7280" fontSize="9">GL · AP · AR</text>
+
+              {/* HR Manager */}
+              <circle cx="90" cy="280" r="22" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="302" x2="90" y2="340" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="315" x2="65" y2="330" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="315" x2="115" y2="330" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="340" x2="70" y2="365" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="90" y1="340" x2="110" y2="365" stroke="#374151" strokeWidth="1.5"/>
+              <text x="90" y="385" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">HR Manager</text>
+              <text x="90" y="398" textAnchor="middle" fill="#6b7280" fontSize="10">[Person]</text>
+              <line x1="130" y1="330" x2="335" y2="265" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="215" y="305" textAnchor="middle" fill="#6b7280" fontSize="9">HR · Leave · Timesheets</text>
+
+              {/* Procurement Officer */}
+              <circle cx="810" cy="80" r="22" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="102" x2="810" y2="140" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="115" x2="785" y2="130" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="115" x2="835" y2="130" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="140" x2="790" y2="165" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="140" x2="830" y2="165" stroke="#374151" strokeWidth="1.5"/>
+              <text x="810" y="185" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Procurement Officer</text>
+              <text x="810" y="198" textAnchor="middle" fill="#6b7280" fontSize="10">[Person]</text>
+              <line x1="770" y1="130" x2="565" y2="218" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="685" y="162" textAnchor="middle" fill="#6b7280" fontSize="9">PO · Supplier Portal</text>
+
+              {/* IT Admin */}
+              <circle cx="810" cy="280" r="22" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="302" x2="810" y2="340" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="315" x2="785" y2="330" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="315" x2="835" y2="330" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="340" x2="790" y2="365" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="810" y1="340" x2="830" y2="365" stroke="#374151" strokeWidth="1.5"/>
+              <text x="810" y="385" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">IT Admin</text>
+              <text x="810" y="398" textAnchor="middle" fill="#6b7280" fontSize="10">[Person]</text>
+              <line x1="770" y1="330" x2="565" y2="265" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="685" y="305" textAnchor="middle" fill="#6b7280" fontSize="9">Config · Audit logs</text>
+
+              {/* External systems row */}
+              {/* Azure AD */}
+              <rect x="20" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="85" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Azure AD</text>
+              <text x="85" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="85" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">SSO / OIDC</text>
+              <line x1="150" y1="416" x2="338" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+
+              {/* ADP */}
+              <rect x="185" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="250" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">ADP</text>
+              <text x="250" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="250" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">Payroll sync</text>
+              <line x1="315" y1="416" x2="380" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+
+              {/* Banking */}
+              <rect x="350" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="415" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Banks (Basiq)</text>
+              <text x="415" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="415" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">Open Banking API</text>
+              <line x1="415" y1="390" x2="430" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+
+              {/* Power BI */}
+              <rect x="515" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="580" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Power BI</text>
+              <text x="580" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="580" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">Embedded reporting</text>
+              <line x1="565" y1="390" x2="520" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+
+              {/* SharePoint */}
+              <rect x="680" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="745" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">SharePoint</text>
+              <text x="745" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="745" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">Documents · Graph API</text>
+              <line x1="745" y1="390" x2="560" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+            </svg>
+          </div>
+          <p style={{fontSize: '0.8rem', color: 'var(--text-secondary, #6b7280)', marginTop: '0.5rem'}}>
+            C4 Model — Level 1 (System Context). Dashed lines show data flows between people, the ERP, and key external systems.
+          </p>
+        </div>
+      </div>
+
+      {/* Roles table */}
+      <div className="overview-grid">
+        <div className="overview-card" style={{gridColumn: '1 / -1'}}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">👥</span>
+            User Roles &amp; Access Model
+          </div>
+          <table className="overview-table">
+            <thead>
+              <tr>
+                <th>Role</th>
+                <th>Who holds it</th>
+                <th>Modules accessed</th>
+                <th>Permission level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Finance Officer</td>
+                <td>Accounts payable / receivable staff</td>
+                <td>GL, AP, AR, Bank Reconciliation, Reporting</td>
+                <td>Create · Edit · Approve (own cost centre)</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Finance Manager</td>
+                <td>CFO direct reports, budget owners</td>
+                <td>GL, AP, AR, Budget Management, Reporting, Audit Trail</td>
+                <td>Full Finance module + cross–cost-centre approval</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">HR Officer</td>
+                <td>HR generalists, payroll coordinators</td>
+                <td>Employee Lifecycle, Leave, Timesheets, ADP sync</td>
+                <td>Create · Edit employee records (no salary data)</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">HR Manager</td>
+                <td>HR Director, HR BPs</td>
+                <td>All HR modules including salary bands and performance</td>
+                <td>Full HR module + workforce analytics read</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Procurement Officer</td>
+                <td>Buyers, category managers</td>
+                <td>Requisitions, PO Workflow, Supplier Portal, eInvoicing</td>
+                <td>Create POs up to delegated authority threshold</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Asset Officer</td>
+                <td>Infrastructure, facilities, fleet staff</td>
+                <td>Asset Register, Maintenance Scheduling, GIS View</td>
+                <td>Create · Edit · Close work orders</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Report Viewer</td>
+                <td>Executive leadership, board members</td>
+                <td>Power BI dashboards, Financial Close Pack</td>
+                <td>Read-only — no transactional access</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">System Administrator</td>
+                <td>Meridian IT team (2–3 staff)</td>
+                <td>All modules + config, audit log, user management</td>
+                <td>Full admin — MFA enforced, all actions logged</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Read-Only Auditor</td>
+                <td>Internal audit, external auditors (time-limited)</td>
+                <td>GL, AP, AR, Procurement, Audit Trail</td>
+                <td>Read-only — time-boxed access provisioned per engagement</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
