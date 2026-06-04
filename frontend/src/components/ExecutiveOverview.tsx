@@ -202,21 +202,27 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td>Q1</td>
-                <td>Does Section 4.3 (ISO 27001 requirement) allow an interim controls letter in lieu of full certification at contract execution?</td>
+                <td>Do you require integration with any existing systems (e.g. ERP, CRM, HR, identity provider)? If so, are sandbox or staging environments available for integration testing from day one?</td>
                 <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
-                <td>No formal response received. Treating as a risk — see Section 4.2 mitigation plan.</td>
+                <td>Awaiting confirmation. Answer will determine integration scope, API discovery work, and Phase 1 timeline.</td>
               </tr>
               <tr>
                 <td>Q2</td>
-                <td>Will the existing Aurion HR API be available for integration testing in a sandbox environment from Phase 1?</td>
-                <td><span className="overview-badge overview-badge--ok">Answered</span></td>
-                <td>"Yes — sandbox credentials will be provided within 10 business days of contract execution." (J. Matthews, Mar 9)</td>
+                <td>Do you have a preferred cloud platform (AWS, Azure, GCP) or an existing cloud contract we should deploy into? Are there on-premises or data-residency constraints?</td>
+                <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
+                <td>Awaiting confirmation. Answer will shape infrastructure design, licensing assumptions, and cost estimates.</td>
               </tr>
               <tr>
                 <td>Q3</td>
-                <td>Can the payment terms be amended to Net 30 from milestone approval rather than Net 60?</td>
-                <td><span className="overview-badge overview-badge--ok">Answered</span></td>
-                <td>"Net 60 is standard government policy and cannot be changed. Vendors may factor this into pricing." (J. Matthews, Mar 9)</td>
+                <td>Who are the key stakeholders and decision-makers on your side, and what does the approval process look like for milestone sign-offs and change requests?</td>
+                <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
+                <td>Awaiting confirmation. Governance structure will be reflected in the RACI and escalation path.</td>
+              </tr>
+              <tr>
+                <td>Q4</td>
+                <td>What are your standard payment terms (e.g. Net 15, Net 30, Net 60)? Are payments tied to milestone delivery or issued on a fixed calendar schedule?</td>
+                <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
+                <td>Awaiting confirmation. Payment cadence affects project cash flow planning and will be reflected in the commercial terms.</td>
               </tr>
             </tbody>
           </table>
