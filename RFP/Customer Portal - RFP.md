@@ -52,8 +52,7 @@ for internal use by a single outsourcing software company. The portal enables
 company employees — Business Analysts, Solution Architects, Sales Managers, and
 Account Managers — to upload client RFP (Request for Proposal) documents and
 receive automated, AI-generated deliverables including business model analysis,
-feature breakdowns with effort estimates, architectural requirement extractions,
-and strategic canvases. External clients receive a dedicated, access-controlled
+feature breakdowns with effort estimates, and strategic canvases. External clients receive a dedicated, access-controlled
 view to review and comment on the deliverables prepared for them.
 
 The system reduces time-to-proposal from days to hours, standardizes analysis
@@ -110,20 +109,13 @@ engagement.
 - RFP document ingestion pipeline (PDF, DOCX, MD, TXT, email body)
 - AI analysis engine (parsing, extraction, generation)
 - Deal Go/No-Go AI Advisor
-- Ambiguity Heatmap & Q&A Report generator
-- Executive Alignment Board generator (consolidated strategic view)
 - Feature list extractor with basic effort estimation
 - Risk Register generator with heatmap visualization
 - RFP Health Score / maturity indicator per project
 - C4 architecture views generator (Context, Application, Infrastructure)
 - Integration Sequence Diagram generator per external integration
-- ASR extractor
-- Architecture Fitness Functions suggestion engine
-- ADR suggestion engine with configurable ADR Checklist
 - Technology stack recommendation based on requirements
 - Client-facing project view with role-based access control
-- Proposal Summary document auto-generator
-- Deal outcome feedback loop and pipeline analytics
 - Collaboration tools (comments, annotations, approvals, in-app chat)
 - Audio/video call integration for client-team meetings within the portal
 - Export to PDF, DOCX, Confluence
@@ -194,10 +186,7 @@ design, accessibility considerations, and potential offline support — and
 surfaces those separately.
 
 If the AI spots ambiguous, conflicting, or contradictory requirements, it flags
-them with an explanation and generates an **Ambiguity Heatmap & Q&A Report**.
-This report turns the RFP's weaknesses into a sales advantage by automatically
-drafting smart, probing questions that the Sales team can submit to the client
-during the Q&A phase. It also runs a completeness check and raises gap alerts
+them with an explanation. It also runs a completeness check and raises gap alerts
 when critical areas appear to be missing from the RFP entirely, such as no
 mention of security requirements or no SLA defined.
 
@@ -220,28 +209,6 @@ example, if the stated budget looks too small for the described scope, or a
 Reviewers can accept, reject, edit, split, or merge any extracted requirement
 directly in the UI, and can trigger re-analysis of individual sections after
 making manual corrections to the source document.
-
-#### Executive Alignment Board
-
-Instead of generating disparate academic canvases, the system auto-generates a
-single, consolidated **Executive Alignment Board** from the RFP content. This is
-rendered as an interactive, editable visual board designed to be presented
-directly to client executives.
-
-The board consists of five critical sections:
-1. **Core Problem:** The primary business challenge the client is trying to
-solve.
-2. **Proposed Solution:** The high-level approach the vendor recommends.
-3. **Architecture Vision:** A high-level representation of the technical
-approach.
-4. **Timeline:** The phased delivery approach.
-5. **Investment Estimate:** The budget requirement and potential ROI.
-
-Each section is pre-filled with extracted or inferred points, traceable back to
-the source document. The board supports real-time collaborative editing. The
-goal is to provide a single, punchy dashboard that aligns the client's business
-goals with the vendor's proposed solution. It can be shared as a standalone
-read-only link with optional PIN protection or exported as a branded PDF.
 
 #### Feature List and Estimation
 
@@ -287,59 +254,10 @@ The system flags conflicts where a recommended technology clashes with a stated
 constraint (e.g., cloud-native stack recommended but the RFP requires on-premise
 deployment).
 
-#### ASR and ADR Generation
+#### Architecture Views
 
-Architecturally Significant Requirements are extracted and classified by quality
-attribute — Performance, Scalability, Availability/Reliability, Security,
-Maintainability, Modifiability, Testability, Interoperability, Portability,
-Usability, Compliance. Each ASR is described as a Quality Attribute Scenario
-(following the SEI ADD methodology) with stimulus, response, and a quantitative
-response measure where possible, plus a source reference in the RFP. Every ASR
-is scored by Architectural Impact (1–5) and Business Criticality (1–5),
-producing a priority matrix. Missing or vague quality attributes are flagged
-with gap recommendations. Each ASR is also mapped to the architectural patterns
-or tactics that address it (e.g., load balancing for scalability, circuit
-breaker for availability). The full ASR catalog is exportable as XLSX or a
-Confluence-compatible page.
-
-For every ASR that carries a quantitative response measure, the system auto-
-generates an **Architecture Fitness Function** — a measurable acceptance
-criterion expressed as a verifiable test or monitoring rule (e.g., "p95 API
-response time < 300 ms — verified by k6 load test with 100 VUs" or "Availability
-≥ 99.9% — verified by uptime monitor over 30-day rolling window"). Fitness
-functions are listed alongside their parent ASR, can be edited by the Solution
-Architect, and are included in the ASR export so they can be handed directly to
-the QA and DevOps teams as acceptance gates.
-
-Architecture Decision Records are auto-generated as drafts for the most
-significant decisions implied by the requirements and ASRs. **Crucially, ADRs
-are strictly internal tools for the Solution Architect.** They exist to de-risk
-the project internally and are *never* exposed to the Customer view or included
-in the pre-sales client portal. Every ADR follows the MADR template (Title,
-Status, Context, Decision, Rationale, Consequences, Alternatives Considered,
-Related Decisions) and includes at least three alternatives with pros and cons,
-a recommended decision, and anticipated consequences. ADR status can be
-progressed through Proposed → Accepted → Deprecated → Superseded. Conflicts
-between ADRs recommending incompatible choices are detected and flagged. ADR
-relationships ("supersedes", "related to", "conflicts with") are tracked and
-visualised as a graph. ADRs are exportable as individual Markdown files
-compatible with adr-tools and log4brains, or as a Confluence page bundle.
-
-Each project has a configurable **ADR Checklist** — a list of decision
-categories the Solution Architect is expected to produce an ADR for before the
-internal architecture deliverable can be marked complete. The default checklist
-covers: data storage strategy, API design style (REST vs. GraphQL vs. gRPC),
-authentication and authorisation approach, deployment model (cloud / on-prem /
-hybrid), frontend architecture (SPA vs. SSR vs. micro-frontends), caching
-strategy, message broker selection, observability approach, and data residency /
-compliance model. Admins can add, remove, or rename checklist items system-wide;
-SAs can suppress an item on a per-project basis with a written justification.
-The checklist is shown as a completion indicator on the Architecture tab, giving
-Sales Managers immediate visibility into whether the SA's work is done.
-
-On top of the ASRs and ADRs, the system generates two pre-sales architecture
-views from the C4 Model, intended to show technical competence without giving
-away deep consulting for free:
+The system generates pre-sales architecture views from the C4 Model, intended
+to show technical competence without giving away deep consulting for free:
 
 The **Context View** (C4 Level 1) shows the system in its environment — the
 target application as a black box surrounded by the users and external systems
@@ -361,11 +279,9 @@ Discovery Phase to monetize deep architectural work.)*
 The **Infrastructure View** shows the deployment topology: Kubernetes namespaces
 and node groups, network zones (public / private / data), CDN edge, load
 balancers, managed services (RDS, ElastiCache, S3, Qdrant), and CI/CD pipeline
-entry points. It is inferred from the deployment model ADR, the selected cloud
-provider, and the non-functional requirements. Delivered as a rendered diagram
-and editable PlantUML/Mermaid source. Where the deployment model is undecided
-(no accepted ADR), the view is generated in a placeholder state and the SA is
-prompted to accept the relevant ADR first.
+entry points. It is inferred from the selected cloud provider and the
+non-functional requirements. Delivered as a rendered diagram and editable
+PlantUML/Mermaid source.
 
 For each named external integration extracted from the RFP (CRM, SSO provider,
 Confluence, JIRA, etc.), the system generates an **Integration Sequence
@@ -376,8 +292,8 @@ source. The SA can add, remove, or reorder steps inline. Sequence diagrams are
 listed under each integration point in the Architecture tab and included in the
 full export bundle.
 
-All architecture views — Context, Application, Component, Infrastructure, and
-Sequence Diagrams — are editable inline by a Solution Architect, versioned, and
+All architecture views — Context, Application, Infrastructure, and Sequence
+Diagrams — are editable inline by a Solution Architect, versioned, and
 exportable as PNG, SVG, or embedded Confluence page.
 
 #### Risk Register
@@ -457,7 +373,7 @@ they spent on each, and whether they downloaded anything.
 
 #### Collaboration
 
-Any artifact — a BMC cell, a requirement, a feature, an ASR, an ADR — supports
+Any artifact — a requirement, a feature, a canvas cell — supports
 threaded inline comments with @mention support. Canvases and feature lists
 support real-time collaborative editing (last-write-wins with conflict
 indicators). Each project has a live activity feed showing all changes,
@@ -488,15 +404,6 @@ of, or all of, a specified user group. Automated reminders go out for approvals
 that are overdue past a configured SLA. All approval decisions are recorded in
 the audit log with timestamps and approver identity. Workflow templates can be
 saved and applied per project type or client tier.
-
-The **Architecture deliverable** (ASR catalog, ADR set, and all architecture
-views) has a mandatory SA approval gate built into the default workflow: it
-cannot advance past In Review to Approved unless the assigned Solution Architect
-has explicitly approved it. This gate is enforced at the data layer — no other
-role can bypass it, including Admin. If no SA is assigned to the project, the
-workflow is blocked and the Sales Manager is notified to assign one. The SA
-approval gate can be suppressed only by an Admin on a per-project basis, with a
-written justification recorded in the audit log.
 
 #### Requirements Review Workflow
 
@@ -544,59 +451,16 @@ before/after content where applicable.
 Any deliverable can be exported individually or as a full project bundle.
 Supported formats are PDF (branded, print-ready), DOCX (editable), XLSX (for
 estimation data), Markdown, and JSON. A single-click ZIP export packages all
-deliverables together. ADRs export as a log4brains-compatible numbered Markdown
-directory, and the feature list exports as a JIRA-compatible CSV/JSON or as an
-Azure DevOps work item import file. The system can push content directly to
+deliverables together. The feature list exports as a JIRA-compatible CSV/JSON
+or as an Azure DevOps work item import file. The system can push content directly to
 Confluence (creating or updating a page tree) and Google Drive (uploading to a
 specified folder). Exported PDFs use the company's brand template — logo, fonts,
 colors, cover page, and footer.
-
-#### Proposal Summary Auto-Generator
-
-A client-ready **Proposal Summary** document is auto-generated once the AI
-analysis is complete. The document combines: an executive summary of the
-client's stated goals and pain points; key highlights from all generated
-canvases; a feature list summary grouped by MVP and Phase 2 scope; the estimated
-investment range with a confidence interval; a recommended delivery approach
-(phased vs. fixed-price vs. T&M); and a configurable "Recommended Next Steps"
-call-to-action section.
-
-The summary is fully editable before sending. Sections can be reordered, toggled
-on or off, and supplemented with free-text annotations. A Brand Template
-configured by the Admin controls the cover page logo, fonts, colours, and
-footer. Admins can define multiple named templates (e.g., "Enterprise Client",
-"Startup Client") and analysts select the appropriate one at export time. The
-document is exportable as a branded PDF or editable DOCX.
 
 Admins and Sales Managers have access to an analytics dashboard covering
 proposals created per period, average processing time, feature count
 distributions, common industry verticals, and analyst productivity. Scheduled
 report digests (daily, weekly, or monthly) can be sent by email.
-
-#### Deal Outcome Feedback Loop
-
-Each project has a **Deal Outcome** field that a Sales Manager sets once the
-sales cycle closes: **Won**, **Lost**, or **No Decision**. For Lost or No
-Decision outcomes, a structured loss-reason form captures one or more reasons
-from a configurable list (Price too high, Timeline too long, Competitor chosen,
-Requirements misunderstood, Client budget cut, Other) plus a free-text notes
-field.
-
-This outcome data feeds an **Outcome Analytics Report** in the analytics
-dashboard showing:
-
-- Success rate overall and segmented by industry vertical, project size
-  (estimated hours), client tier, and lead analyst.
-- Loss-reason distribution (Pareto chart) with trend over time.
-- Standard correlations of proposal characteristics with outcomes — for example,
-  segmenting won/lost rates by estimated project size (hours) or RFP Health
-  Score bands.
-- Average time-to-close segmented by project type.
-
-The report is viewable only by Admins and Sales Managers. Outcome data is never
-exposed to the Customer view. CRM integrations (Salesforce) can optionally sync
-deal stage changes to auto-update the Deal Outcome field, configurable by the
-Admin.
 
 #### Notifications and Audit
 
@@ -757,8 +621,7 @@ Pulumi. A single `docker compose up` brings up a complete local development
 environment. Centralised logging goes to an ELK stack or cloud-equivalent;
 metrics and alerting use Prometheus + Grafana or cloud-equivalent. Production
 deployments use blue/green or canary strategy with automatic rollback on failed
-health checks. Business logic targets ≥ 80% unit test coverage. Architectural
-decisions are recorded as ADRs in `/docs/adr`. A feature flag system allows
+health checks. Business logic targets ≥ 80% unit test coverage. A feature flag system allows
 gradual rollout of new AI models or analysis capabilities.
 
 ---
@@ -775,7 +638,7 @@ into functional roles.
 | --- | --- | --- |
 | **Admin** | Manages the application: users, system settings, branding, LLM configuration, audit log | All system permissions; user management; system configuration; view all projects and analytics |
 | **Sales Manager** | Owns the pre-sales pipeline; assigns projects to team members | View all projects; create/archive projects; assign employees; access management analytics; send deliverables to client |
-| **Solution Architect (SA)** | Leads architectural analysis; owns ASR/ADR artifacts and tech stack recommendation | Edit all artifacts on assigned projects; approve architectural deliverables; manage ADR status |
+| **Solution Architect (SA)** | Leads architectural analysis; owns architecture views and tech stack recommendation | Edit all artifacts on assigned projects; approve architectural deliverables |
 | **Business Analyst (BA)** | Primary analyst; drives requirement extraction and canvas review | Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review |
 | **Estimator** | Owns effort estimation for features | Edit feature list estimates on assigned projects; read-only access to all other artifacts |
 | **Account Manager** | Client relationship owner; coordinates review and approval flow | Read/comment on all artifacts on assigned projects; invite and manage Customer access; send deliverables to client |
@@ -795,7 +658,6 @@ into functional roles.
 | Upload RFP document | ✓ | ✓ | ✓ | ✓ | — | — | — |
 | Edit requirements & canvases | ✓ | — | ✓ | ✓ | — | — | — |
 | Edit feature estimations | ✓ | — | ✓ | ✓ | ✓ | — | — |
-| Edit ASRs / ADRs | ✓ | — | ✓ | — | — | — | — |
 | Raise / resolve Clarification Request | ✓ | — | ✓ | ✓ | — | — | — |
 | Escalate CR to client | ✓ | ✓ | — | ✓ | — | ✓ | — |
 | Sign off Requirements (BA gate) | ✓ | — | — | ✓ | — | — | — |
@@ -826,26 +688,12 @@ hours.
 - **Given** a document is in the processing queue, **When** processing
   completes, **Then** I receive an in-app notification and email.
 - **Given** processing completes, **When** I open the project, **Then** I see
-  all deliverables (requirements, Executive Alignment Board, feature list, ASRs,
-  ADRs) populated with confidence scores.
+  all deliverables (requirements, feature list, architecture views) populated
+  with confidence scores.
 - **Given** processing fails, **When** the system retries 3 times and fails,
   **Then** I receive an error notification with a support reference ID.
 
-### US-002: Edit Executive Alignment Board
-
-**As a** Business Analyst,  
-**I want to** edit the auto-generated Executive Alignment Board inline in the browser,  
-**so that** I can refine AI output before sharing with the client.
-
-**Acceptance Criteria:**
-- **Given** an Executive Alignment Board is generated, **When** I click any
-  section, **Then** the section enters edit mode with a rich text editor.
-- **Given** I edit a section, **When** I click outside or press Escape, **Then**
-  changes are auto-saved within 2 seconds.
-- **Given** I save changes, **When** I open version history, **Then** the
-  previous AI-generated version is preserved.
-
-### US-003: Review Feature Estimations
+### US-002: Review Feature Estimations
 
 **As a** Solution Architect,  
 **I want to** adjust individual feature estimates and see the total update in real time,  
@@ -859,7 +707,7 @@ hours.
 - **Given** I apply a bulk multiplier (e.g., +15%), **When** the change is
   applied, **Then** each affected estimate is individually recorded in history.
 
-### US-004: Client Reviews Deliverables
+### US-003: Client Reviews Deliverables
 
 **As a** Client (Guest User),  
 **I want to** review the generated deliverables and leave comments,  
@@ -868,8 +716,8 @@ hours.
 **Acceptance Criteria:**
 - **Given** my account manager shares a client portal link, **When** I visit the
   link, **Then** I can view deliverables without creating an account (PIN auth).
-- **Given** I am viewing the Executive Alignment Board, **When** I click a
-  section, **Then** I can add a comment that notifies my account manager.
+- **Given** I am viewing a shared deliverable, **When** I click a section,
+  **Then** I can add a comment that notifies my account manager.
 - **Given** I review a deliverable, **When** I click "Approve", **Then** the
   status updates and the internal team is notified.
 
@@ -880,8 +728,7 @@ hours.
 - The primary navigation must be a persistent left sidebar with project list,
   plus a top header with user menu and global search.
 - The project view must use a tab-based layout: Overview | Requirements |
-  Executive Alignment Board | Features & Estimates | Architecture (ASR/ADR) |
-  Risk Register | Export.
+  Features & Estimates | Architecture | Risk Register | Export.
 - Canvas views must offer both a visual canvas mode and a structured table/list
   mode, toggled by the user.
 - All AI-generated content must be visually distinguished from user-edited
@@ -912,17 +759,12 @@ hours.
 - Document upload (PDF, DOCX, MD) and OCR pipeline
 - Anonymisation worker for PII redaction
 - Deal Go/No-Go AI Advisor (ICP & Capability alignment)
-- Requirement extraction (FR, NFR, BR) and Ambiguity Heatmap
+- Requirement extraction (FR, NFR, BR)
 - Feature list extraction with basic effort estimation
-- Executive Alignment Board generation (editable)
-- ASR extraction
-- Architecture Fitness Functions generation
-- ADR generation (internal SA use only) with configurable ADR Checklist
 - C4 Context, Application, and Infrastructure views
 - Integration Sequence Diagrams per named external integration
 - Risk Register generation (AI-extracted, editable heatmap)
 - RFP Health Score with actionable recommendations
-- Proposal Summary auto-generator (PDF/DOCX export)
 - PDF and DOCX export
 - Basic client portal (view-only)
 - MS Teams notifications
@@ -933,7 +775,6 @@ hours.
 - Advanced estimation scenarios and comparison
 - Real-time collaboration (WebSockets)
 - Approval workflow engine
-- Deal outcome feedback loop and analytics dashboard
 - Confluence export
 - JIRA issue export
 - Email notifications
@@ -944,7 +785,6 @@ hours.
 - SSO (SAML)
 - CRM webhook integration (Salesforce)
 - Analytics dashboard for management
-- Deal outcome analytics
 - Custom canvas configuration via Admin panel
 - LLM provider switching and prompt A/B testing
 - Self-hosted LLM support (Ollama) for data-sensitive clients
@@ -1035,8 +875,6 @@ lowest-cost bid.
 
 | Term | Definition |
 | --- | --- |
-| **ADR** | Architecture Decision Record — a document capturing an important architectural decision, its context, and consequences |
-| **ASR** | Architecturally Significant Requirement — a requirement that has a measurable impact on the system's architecture |
 | **BMC** | Business Model Canvas — a strategic management template for developing or documenting business models |
 | **BFF** | Backend for Frontend — a dedicated backend service tailored to the needs of a specific frontend |
 | **CQRS** | Command Query Responsibility Segregation — a pattern separating read and write operations |
@@ -1052,4 +890,3 @@ lowest-cost bid.
 | **SharedDeliverable** | An artifact explicitly shared by an Account Manager or Sales Manager with a Customer user |
 | **RFP Health Score** | An AI-computed 0–100 maturity score assessing the completeness and clarity of an uploaded RFP document |
 | **Risk Register** | A structured catalog of identified project risks with likelihood, impact, and mitigation actions |
-| **Outcome Analytics Report** | An analytics report correlating proposal characteristics with recorded deal outcomes |
