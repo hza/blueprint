@@ -32,7 +32,7 @@
   --sem-q-dot-bg:      #0052CC;
   --sem-a-dot-bg:      #00875A;
 
-  --fg:             #3d4b59;
+  --fg:             #4d5966;
   --fg-muted:       #67788A;
   --fg-subtle:      #9EB0C0;
   --fg-dark:        #1A2B3A;
@@ -128,7 +128,7 @@
 
 /* ── Confluence ──────────────────────────────────────────────────────────── */
 [data-theme="confluence"] {
-  --fg:             #172B4D;
+  --fg:             #4d5966;
   --fg-muted:       #5E6C84;
   --fg-subtle:      #8993A4;
   --fg-dark:        #091E42;
@@ -166,7 +166,7 @@
 
 /* ── Notion ──────────────────────────────────────────────────────────────── */
 [data-theme="notion"] {
-  --fg:             #37352F;
+  --fg:             #4d5966;
   --fg-muted:       #787774;
   --fg-subtle:      #AEAAA5;
   --fg-dark:        #1C1B1A;
