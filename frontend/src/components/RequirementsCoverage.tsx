@@ -174,7 +174,7 @@ export function RequirementsCoverage({
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">✓</span>
-            Mandatory Requirements Compliance (Selected)
+             Requirements Compliance Matrix — Detailed view of coverage status
           </div>
           <table className="overview-table">
             <thead>
