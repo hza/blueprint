@@ -15,11 +15,25 @@ export async function fetchFile(filename: string): Promise<FileContent> {
   return res.json() as Promise<FileContent>
 }
 
+async function fetchReqStatus(): Promise<Record<string, { status: string; description: string }>> {
+  const res = await fetch(`${BASE}/req-status`)
+  if (!res.ok) return {}
+  const data = await res.json() as { statuses: Record<string, { status: string; description: string }> }
+  return data.statuses
+}
+
 export async function fetchFL(): Promise<FRItem[]> {
-  const res = await fetch(`${BASE}/fl`)
-  if (!res.ok) return []
-  const data = await res.json() as { items: FRItem[] }
-  return data.items
+  const [flRes, statuses] = await Promise.all([
+    fetch(`${BASE}/fl`),
+    fetchReqStatus(),
+  ])
+  if (!flRes.ok) return []
+  const data = await flRes.json() as { items: FRItem[] }
+  return data.items.map((item) => {
+    const s = statuses[item.id]
+    if (!s) return item
+    return { ...item, status: s.status as FRItem['status'], statusDescription: s.description }
+  })
 }
 
 export async function fetchFR(filename: string): Promise<FRAnnotations> {

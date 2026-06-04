@@ -157,8 +157,8 @@ export function FLTable({
 
   const sorted = useMemo(() => {
     return [...filtered].sort((a, b) => {
-      const av = a[sortKey]
-      const bv = b[sortKey]
+      const av = a[sortKey] ?? ''
+      const bv = b[sortKey] ?? ''
       const cmp = av < bv ? -1 : av > bv ? 1 : 0
       return sortDir === 'asc' ? cmp : -cmp
     })
@@ -257,7 +257,7 @@ export function FLTable({
                   ['id', 'ID'],
                   ['domain', 'Domain'],
                   ['requirement', 'Requirement'],
-
+                  ['status', 'Status'],
                 ] as [SortKey, string][]
               ).map(([key, label]) => (
                 <th key={key} onClick={() => handleSort(key)} className="fl-th">
@@ -288,11 +288,14 @@ export function FLTable({
                   </button>
                 </td>
                 <td className="fl-td fl-req">{item.requirement}</td>
+                <td className="fl-td fl-status-cell">
+                  <span className={`fl-status-badge fl-status-${item.status ?? 'met'}`}>{item.status ?? 'met'}</span>
+                </td>
               </tr>
             ))}
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={3} className="fl-empty">No matching requirements</td>
+                <td colSpan={4} className="fl-empty">No matching requirements</td>
               </tr>
             )}
           </tbody>

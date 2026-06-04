@@ -25,6 +25,8 @@ export interface FRItem {
   original_text: string
   references: string
   line: string
+  status?: 'met' | 'gap' | 'risky'
+  statusDescription?: string
 }
 
 export interface FRAnnotation {

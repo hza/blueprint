@@ -1,0 +1,16 @@
+id,status,description
+NFR-002,gap,95% OCR accuracy is a high bar that depends heavily on scan quality; standard engines typically reach 90-93% on mixed-quality documents
+FR-016,gap,Audio/video calling requires a third-party SDK (Twilio/Daily.co); not included in base scope — quoted separately
+CR-009,gap,SOC 2 Type II is a certification process that takes 6–12 months post-launch; we can build compliant controls but cannot deliver the certificate at go-live
+TC-029,gap,SAML SSO requires enterprise IdP configuration per client; included in scope but delivery depends on client's IdP readiness
+FR-133,gap,Salesforce webhook integration is contingent on client's SF edition and API access; scoped as a conditional deliverable
+TC-030,gap,CRM webhook sync within 60 s is achievable but depends on Salesforce API rate limits and client org configuration
+FR-090,risky,Real-time collaborative editing with conflict resolution is a high-complexity feature; last-write-wins is implementable but conflict indicators require careful state synchronisation
+TC-013,risky,RAG pipeline with 512-token chunking and Qdrant requires ML infrastructure setup and tuning; retrieval quality depends on prompt engineering iteration
+FR-062,risky,Go/No-Go Advisor match percentage requires calibrated scoring against the company's actual ICP and capability matrix — data quality drives accuracy
+CR-015,risky,PII anonymisation before LLM dispatch with reversible mapping is a novel pipeline component; accuracy of entity detection affects downstream output quality
+NFR-011,risky,500 ms real-time collaboration propagation under concurrent load requires WebSocket infrastructure and careful horizontal scaling
+NFR-019,risky,RTO 1 hour and RPO 15 minutes require active standby and continuous replication; infrastructure cost and DR testing must be planned explicitly
+TC-009,risky,CQRS + Outbox Pattern + BFF is significant architectural complexity; adds implementation time and requires team familiarity with the patterns
+NFR-015,risky,"1,000 reads/s and 200 writes/s at data layer requires load testing and potentially read replicas; needs to be validated in staging before go-live"
+FR-109,risky,Graceful degradation activating within 30 s when AI is down requires health-check infrastructure and thorough failover testing

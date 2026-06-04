@@ -195,3 +195,14 @@
 
 .right-panel-ref-file { font-weight: 600; }
 .right-panel-ref-line { color: var(--fg-muted); font-size: 11px; }
+
+.right-panel-status-row {
+  margin-bottom: 6px;
+}
+
+.right-panel-status-desc {
+  color: var(--fg-muted, #57606a);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}

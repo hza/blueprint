@@ -1,3 +1,4 @@
+import csv
 import mimetypes
 import re
 from pathlib import Path
@@ -48,6 +49,7 @@ if WEBROOT_DIR.exists():
 
 RFP_DIR = (Path(__file__).parent.parent / "RFP").resolve()
 FL_FILE = (Path(__file__).parent.parent / "output" / "FL.md").resolve()
+REQ_STATUS_FILE = (Path(__file__).parent.parent / "output" / "req-status.csv").resolve()
 
 
 def _parse_fr_row(line: str):
@@ -85,6 +87,23 @@ def _parse_line_numbers(s: str) -> list[int]:
             except ValueError:
                 pass
     return nums
+
+
+@app.get("/api/req-status")
+def get_req_status():
+    """Return requirement statuses from req-status.csv keyed by requirement ID."""
+    statuses: dict[str, dict] = {}
+    if not REQ_STATUS_FILE.exists():
+        return {"statuses": statuses}
+    with REQ_STATUS_FILE.open(encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            req_id = row.get("id", "").strip()
+            status = row.get("status", "").strip()
+            description = row.get("description", "").strip()
+            if req_id and status:
+                statuses[req_id] = {"status": status, "description": description}
+    return {"statuses": statuses}
 
 
 @app.get("/api/fl")

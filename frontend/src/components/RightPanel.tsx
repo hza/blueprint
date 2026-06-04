@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { FRItem } from '../types'
 import './RightPanel.css'
+import './FLTable.css'
 
 interface Props {
   item: FRItem | null
@@ -66,6 +67,17 @@ export function RightPanel({ item, width, onClose, onOpenSource, onDomainClick, 
       </div>
 
       <div className="right-panel-body">
+        {item.status && (
+          <section className="right-panel-section">
+            <h4 className="right-panel-label">Status</h4>
+            <div className="right-panel-status-row">
+              <span className={`fl-status-badge fl-status-${item.status}`}>{item.status}</span>
+            </div>
+            {item.statusDescription && (
+              <p className="right-panel-text right-panel-status-desc">{item.statusDescription}</p>
+            )}
+          </section>
+        )}
         <section className="right-panel-section">
           <h4 className="right-panel-label">Requirement</h4>
           <textarea

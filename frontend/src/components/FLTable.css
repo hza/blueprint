@@ -111,19 +111,15 @@
   background: var(--canvas-inset, #eaeef2);
 }
 
-/* Column widths */
+/* Column widths: ID | Domain | Requirement | Status */
 .fl-table th:nth-child(1),
 .fl-table td:nth-child(1) { width: 6%; }
 .fl-table th:nth-child(2),
-.fl-table td:nth-child(2) { width: 22%; }
+.fl-table td:nth-child(2) { width: 18%; }
 .fl-table th:nth-child(3),
-.fl-table td:nth-child(3) { width: 57%; }
+.fl-table td:nth-child(3) { width: 62%; }
 .fl-table th:nth-child(4),
-.fl-table td:nth-child(4) { width: 28%; }
-.fl-table th:nth-child(5),
-.fl-table td:nth-child(5) { width: 14%; }
-.fl-table th:nth-child(6),
-.fl-table td:nth-child(6) { width: 6%; }
+.fl-table td:nth-child(4) { width: 14%; }
 
 .fl-sort-icon {
   margin-left: 4px;
@@ -267,7 +263,7 @@
   display: inline-block;
   padding: 2px 8px;
   border-radius: 3px;
-  font-size: 11px;
+  font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -319,4 +315,39 @@
   gap: 8px;
   padding: 24px;
   color: var(--fg-muted, #57606a);
+}
+
+.fl-status-cell {
+  white-space: nowrap;
+}
+
+.fl-status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.fl-status-met {
+  background: #e3fcef;
+  color: #006644;
+}
+
+.fl-status-gap {
+  background: #fffae6;
+  color: #974f0c;
+}
+
+.fl-status-risky {
+  background: #ffebe6;
+  color: #bf2600;
+}
+
+.fl-status-none {
+  color: var(--fg-muted, #57606a);
+  font-size: 13px;
 }
