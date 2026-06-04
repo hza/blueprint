@@ -133,8 +133,8 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
 
 
       {show('1.3') && (<>
-      {/* 1.3 Key Assumptions & Clarifications */}
-      <div className="rfp-section-heading" id="1.3">Key Assumptions &amp; Clarifications</div>
+      {/* 1.3 Key Assumptions */}
+      <div className="rfp-section-heading" id="1.3">Key Assumptions</div>
       <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
@@ -178,7 +178,13 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             </tbody>
           </table>
         </div>
+      </div>
+      </>)}
 
+      {show('1.4') && (<>
+      {/* 1.4 Clarifications Submitted */}
+      <div className="rfp-section-heading" id="1.4">Clarifications Submitted</div>
+      <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">❓</span>
