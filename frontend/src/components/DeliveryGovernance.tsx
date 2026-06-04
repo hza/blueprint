@@ -403,6 +403,66 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
         </div>
       </div>
       </>)}
+
+      {show('5.7') && (<>
+      {/* 5.7 Transition & Handover */}
+      <div className="rfp-section-heading" id="5.7">Transition &amp; Handover</div>
+      <div className="overview-grid">
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🔄</span>
+            Handover Plan
+          </div>
+          <table className="overview-table">
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Ownership Transfer</td>
+                <td>Full source code, infrastructure-as-code, CI/CD pipelines, and secrets handed to Meridian's designated team at end of Phase 3. All assets committed to your Git organisation.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Documentation Package</td>
+                <td>Architecture Decision Records (ADRs), runbooks, API reference (OpenAPI 3.1), data dictionary, and operational playbooks delivered in Confluence before go-live of each phase.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Knowledge Transfer Sessions</td>
+                <td>Four structured sessions (2 hrs each) covering system architecture, deployment pipeline, monitoring and alerting, and admin/configuration. Recordings and slide decks provided.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Hypercare Period</td>
+                <td>4-week hypercare window post-Phase 3 go-live: daily check-ins, same-day hotfixes, dedicated Slack channel. Transitions to standard SLA support at week 5.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">✅</span>
+            Acceptance &amp; Exit Criteria
+          </div>
+          <table className="overview-table">
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Acceptance Testing</td>
+                <td>User Acceptance Testing (UAT) conducted jointly with Meridian stakeholders at the end of each phase. Signed-off test report required before phase closure.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Definition of Done — Project</td>
+                <td>All RFP functional requirements met, performance benchmarks verified, security scan clean, documentation complete, and Meridian team independently able to operate the system.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">IP &amp; Data Return</td>
+                <td>All Meridian data and configurations returned or deleted from SCNSoft systems within 30 days of project closure. Certificate of deletion provided on request.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Ongoing Retainer (Optional)</td>
+                <td>Optional managed-service retainer available post-handover: L3 engineering support, quarterly architectural reviews, and LLM model refresh. Priced separately on request.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </>)}
     </div>
   )
 }
