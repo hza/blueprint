@@ -274,98 +274,156 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               <span style={{fontSize: '0.75rem', minWidth: '2.5rem', textAlign: 'center', color: 'var(--text-secondary, #6b7280)'}}>{diagramScale}%</span>
               <button onClick={() => setDiagramScale(s => Math.min(scaleMax, s + scaleStep))} style={{border: 'none', background: 'none', cursor: 'pointer', fontSize: '1rem', lineHeight: 1, padding: '2px 4px', color: 'var(--text, #374151)'}}>+</button>
             </div>
-            <svg viewBox="0 0 900 480" style={{width: `${diagramScale}%`, minWidth: 320, fontFamily: 'inherit'}} aria-label="C4 Level 1 System Context diagram for AI-Powered Customer Facing Portal">
+            {/*
+              Layout:
+                Top row   (cy=75):  Business Analyst (cx=200), Sales Manager (cx=480), Admin (cx=760)
+                Mid left  (cy=255): Solution Architect (cx=75)
+                Mid right (cy=255): Customer (cx=905) [external]
+                Bot row   (cy=435): Account Manager (cx=200), Estimator (cx=480), [right space for ext sys arrow landing]
+                External systems: y=505, spread 20..870
+                Central box: x=370 y=185 w=220 h=120, center=(480,245)
+            */}
+            <svg viewBox="0 0 1000 590" style={{width: `${diagramScale}%`, minWidth: 360, fontFamily: 'inherit'}} aria-label="C4 Level 1 System Context diagram for AI-Powered Customer Facing Portal">
               <defs>
                 <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L0,6 L8,3 z" fill="#6b7280"/>
                 </marker>
               </defs>
-              {/* Central system box */}
-              <rect x="320" y="175" width="260" height="120" rx="6" fill="#1d4ed8" stroke="#1e40af" strokeWidth="2"/>
-              <text x="450" y="220" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="bold">AI-Powered Customer</text>
-              <text x="450" y="236" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="bold">Facing Portal</text>
-              <text x="450" y="256" textAnchor="middle" fill="#bfdbfe" fontSize="10">[Software System]</text>
-              <text x="450" y="272" textAnchor="middle" fill="#bfdbfe" fontSize="10">(React 18 · FastAPI · K8s · Qdrant)</text>
 
-              {/* Internal users — left */}
-              {/* Business Analyst */}
-              <circle cx="80" cy="70" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="90" x2="80" y2="125" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="105" x2="58" y2="118" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="105" x2="102" y2="118" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="125" x2="62" y2="148" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="125" x2="98" y2="148" stroke="#374151" strokeWidth="1.5"/>
-              <text x="80" y="165" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Business Analyst</text>
-              <text x="80" y="178" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
-              <line x1="118" y1="115" x2="316" y2="220" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="195" y="158" textAnchor="middle" fill="#6b7280" fontSize="9">Upload RFP · Edit requirements</text>
+              {/* ── Central system box  center=(480,245) ── */}
+              <rect x="370" y="185" width="220" height="120" rx="6" fill="#1d4ed8" stroke="#1e40af" strokeWidth="2"/>
+              <text x="480" y="230" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="bold">AI-Powered Customer</text>
+              <text x="480" y="246" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="bold">Facing Portal</text>
+              <text x="480" y="265" textAnchor="middle" fill="#bfdbfe" fontSize="10">[Software System]</text>
+              <text x="480" y="279" textAnchor="middle" fill="#bfdbfe" fontSize="10">React 18 · FastAPI · K8s · Qdrant</text>
 
-              {/* Solution Architect */}
-              <circle cx="80" cy="290" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="310" x2="80" y2="345" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="325" x2="58" y2="338" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="325" x2="102" y2="338" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="345" x2="62" y2="368" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="345" x2="98" y2="368" stroke="#374151" strokeWidth="1.5"/>
-              <text x="80" y="385" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Solution Architect</text>
-              <text x="80" y="398" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
-              <line x1="118" y1="328" x2="316" y2="268" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="195" y="308" textAnchor="middle" fill="#6b7280" fontSize="9">Edit architecture views</text>
+              {/* ── TOP ROW ── */}
 
-              {/* Sales Manager */}
-              <circle cx="80" cy="430" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="80" y1="450" x2="80" y2="462" stroke="#374151" strokeWidth="1.5"/>
-              <text x="80" y="475" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Sales Manager</text>
-              <text x="80" y="488" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
-              <line x1="112" y1="440" x2="316" y2="288" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              {/* Business Analyst  cx=200 cy=75 */}
+              <circle cx="200" cy="75" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="95"  x2="200" y2="130" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="110" x2="178" y2="123" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="110" x2="222" y2="123" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="130" x2="182" y2="153" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="130" x2="218" y2="153" stroke="#374151" strokeWidth="1.5"/>
+              <text x="200" y="170" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Business Analyst</text>
+              <text x="200" y="183" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
+              <line x1="200" y1="153" x2="400" y2="183" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="283" y="161" textAnchor="middle" fill="#6b7280" fontSize="9">Upload RFP · Edit requirements</text>
 
-              {/* Customer — right */}
-              <circle cx="820" cy="240" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="820" y1="260" x2="820" y2="295" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="820" y1="275" x2="798" y2="288" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="820" y1="275" x2="842" y2="288" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="820" y1="295" x2="802" y2="318" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="820" y1="295" x2="838" y2="318" stroke="#374151" strokeWidth="1.5"/>
-              <text x="820" y="335" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Customer</text>
-              <text x="820" y="348" textAnchor="middle" fill="#6b7280" fontSize="10">[External Client]</text>
-              <line x1="784" y1="270" x2="584" y2="248" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="700" y="252" textAnchor="middle" fill="#6b7280" fontSize="9">View deliverables · Comment · Approve</text>
+              {/* Sales Manager  cx=480 cy=75 */}
+              <circle cx="480" cy="75" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="95"  x2="480" y2="130" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="110" x2="458" y2="123" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="110" x2="502" y2="123" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="130" x2="462" y2="153" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="130" x2="498" y2="153" stroke="#374151" strokeWidth="1.5"/>
+              <text x="480" y="170" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Sales Manager</text>
+              <text x="480" y="183" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
+              <line x1="480" y1="153" x2="480" y2="183" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="520" y="172" textAnchor="middle" fill="#6b7280" fontSize="9">Manage projects</text>
 
-              {/* External systems row */}
+              {/* Admin  cx=760 cy=75 */}
+              <circle cx="760" cy="75" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="760" y1="95"  x2="760" y2="130" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="760" y1="110" x2="738" y2="123" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="760" y1="110" x2="782" y2="123" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="760" y1="130" x2="742" y2="153" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="760" y1="130" x2="778" y2="153" stroke="#374151" strokeWidth="1.5"/>
+              <text x="760" y="170" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Admin</text>
+              <text x="760" y="183" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
+              <line x1="760" y1="153" x2="592" y2="183" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="693" y="160" textAnchor="middle" fill="#6b7280" fontSize="9">Configure system · Manage users</text>
+
+              {/* ── LEFT ── */}
+
+              {/* Solution Architect  cx=75 cy=255 */}
+              <circle cx="75" cy="255" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="75" y1="275" x2="75" y2="310" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="75" y1="290" x2="53"  y2="303" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="75" y1="290" x2="97"  y2="303" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="75" y1="310" x2="57"  y2="333" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="75" y1="310" x2="93"  y2="333" stroke="#374151" strokeWidth="1.5"/>
+              <text x="75" y="350" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Solution Architect</text>
+              <text x="75" y="363" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
+              <line x1="97" y1="275" x2="368" y2="220" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="210" y="233" textAnchor="middle" fill="#6b7280" fontSize="9">Edit architecture views</text>
+
+              {/* ── RIGHT ── */}
+
+              {/* Customer  cx=905 cy=255 */}
+              <circle cx="905" cy="255" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="905" y1="275" x2="905" y2="310" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="905" y1="290" x2="883" y2="303" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="905" y1="290" x2="927" y2="303" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="905" y1="310" x2="887" y2="333" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="905" y1="310" x2="923" y2="333" stroke="#374151" strokeWidth="1.5"/>
+              <text x="905" y="350" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Customer</text>
+              <text x="905" y="363" textAnchor="middle" fill="#6b7280" fontSize="10">[External Client]</text>
+              <line x1="883" y1="268" x2="592" y2="252" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="750" y="253" textAnchor="middle" fill="#6b7280" fontSize="9">View · Comment · Approve</text>
+
+              {/* ── BOTTOM ROW ── */}
+
+              {/* Account Manager  cx=200 cy=435 */}
+              <circle cx="200" cy="435" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="455" x2="200" y2="490" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="470" x2="178" y2="483" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="470" x2="222" y2="483" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="490" x2="182" y2="513" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="200" y1="490" x2="218" y2="513" stroke="#374151" strokeWidth="1.5"/>
+              <text x="200" y="530" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Account Manager</text>
+              <text x="200" y="543" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
+              <line x1="200" y1="433" x2="390" y2="307" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="272" y="388" textAnchor="middle" fill="#6b7280" fontSize="9">Share deliverables · Manage client</text>
+
+              {/* Estimator  cx=480 cy=435 */}
+              <circle cx="480" cy="435" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="455" x2="480" y2="490" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="470" x2="458" y2="483" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="470" x2="502" y2="483" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="490" x2="462" y2="513" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="480" y1="490" x2="498" y2="513" stroke="#374151" strokeWidth="1.5"/>
+              <text x="480" y="530" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Estimator</text>
+              <text x="480" y="543" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
+              <line x1="480" y1="413" x2="480" y2="307" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="519" y="366" textAnchor="middle" fill="#6b7280" fontSize="9">Edit effort estimates</text>
+
+              {/* ── External systems — bottom strip ── */}
               {/* LLM Providers */}
-              <rect x="20" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="92" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">LLM Providers</text>
-              <text x="92" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="92" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">OpenAI · Anthropic · Azure OAI</text>
-              <line x1="165" y1="432" x2="318" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <rect x="20"  y="430" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="85"  y="450" textAnchor="middle" fill="#111827" fontSize="10" fontWeight="bold">LLM Providers</text>
+              <text x="85"  y="463" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="85"  y="475" textAnchor="middle" fill="#6b7280" fontSize="9">OpenAI · Anthropic · Azure OAI</text>
+              <line x1="85" y1="430" x2="390" y2="305" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
 
               {/* SSO */}
-              <rect x="195" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="267" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">SSO Providers</text>
-              <text x="267" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="267" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">Google WS · Azure AD · Okta · SAML</text>
-              <line x1="340" y1="405" x2="390" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <rect x="600" y="340" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="665" y="360" textAnchor="middle" fill="#111827" fontSize="10" fontWeight="bold">SSO Providers</text>
+              <text x="665" y="373" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="665" y="385" textAnchor="middle" fill="#6b7280" fontSize="9">Google WS · Azure AD · Okta</text>
+              <line x1="665" y1="340" x2="575" y2="305" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
 
               {/* Salesforce */}
-              <rect x="370" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="442" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Salesforce</text>
-              <text x="442" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="442" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">CRM webhooks (Phase 3)</text>
-              <line x1="442" y1="405" x2="445" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <rect x="600" y="420" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="665" y="440" textAnchor="middle" fill="#111827" fontSize="10" fontWeight="bold">Salesforce</text>
+              <text x="665" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="665" y="465" textAnchor="middle" fill="#6b7280" fontSize="9">CRM webhooks (Phase 3)</text>
+              <line x1="665" y1="420" x2="580" y2="305" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
 
               {/* Confluence */}
-              <rect x="545" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="617" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Confluence</text>
-              <text x="617" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="617" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">Page publishing (Phase 2)</text>
-              <line x1="590" y1="405" x2="530" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <rect x="750" y="340" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="815" y="360" textAnchor="middle" fill="#111827" fontSize="10" fontWeight="bold">Confluence</text>
+              <text x="815" y="373" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="815" y="385" textAnchor="middle" fill="#6b7280" fontSize="9">Page publishing (Phase 2)</text>
+              <line x1="815" y1="340" x2="586" y2="305" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
 
               {/* Slack / Teams */}
-              <rect x="720" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="792" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Slack / Teams</text>
-              <text x="792" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="792" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">Incoming webhooks</text>
-              <line x1="760" y1="405" x2="582" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <rect x="750" y="420" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="815" y="440" textAnchor="middle" fill="#111827" fontSize="10" fontWeight="bold">Slack / Teams</text>
+              <text x="815" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="815" y="465" textAnchor="middle" fill="#6b7280" fontSize="9">Incoming webhooks</text>
+              <line x1="815" y1="420" x2="588" y2="305" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
             </svg>
           </div>
           <p style={{fontSize: '0.8rem', color: 'var(--text-secondary, #6b7280)', marginTop: '0.5rem'}}>
