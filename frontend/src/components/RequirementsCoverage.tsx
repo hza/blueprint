@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import type { RequirementsSummary } from '../types'
+
+const MAX_DOMAIN_ROWS = 7
 
 export function RequirementsCoverage({
   subsection,
@@ -9,6 +12,7 @@ export function RequirementsCoverage({
 }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
   const gapCount = summary?.gaps ?? 0
+  const [showAllDomains, setShowAllDomains] = useState(false)
 
   return (
     <div className="overview">
@@ -69,23 +73,51 @@ export function RequirementsCoverage({
             <tbody>
               {!summary ? (
                 <tr><td colSpan={5} style={{ textAlign: 'center', color: 'var(--color-muted)' }}>Loading…</td></tr>
-              ) : summary.domains.map((d) => (
-                <tr key={d.domain}>
-                  <td className="overview-table-label">{d.domain}</td>
-                  <td>{d.total}</td>
-                  <td>{d.met}</td>
-                  <td>
-                    {d.risky > 0
-                      ? <span className="overview-badge overview-badge--warn">{d.risky}</span>
-                      : 0}
-                  </td>
-                  <td>
-                    {d.gap > 0
-                      ? <span className="overview-badge overview-badge--danger">{d.gap}</span>
-                      : 0}
+              ) : (() => {
+                const MAX_ROWS = MAX_DOMAIN_ROWS
+                const sorted = [...summary.domains].sort((a, b) =>
+                  b.gap !== a.gap ? b.gap - a.gap : b.risky - a.risky
+                )
+                const shown = sorted.slice(0, MAX_ROWS)
+                const rest = sorted.slice(MAX_ROWS)
+                const other = rest.length > 0 ? rest.reduce(
+                  (acc, d) => ({ domain: 'Other', total: acc.total + d.total, met: acc.met + d.met, risky: acc.risky + d.risky, gap: acc.gap + d.gap }),
+                  { domain: 'Other', total: 0, met: 0, risky: 0, gap: 0 }
+                ) : null
+                const rows = showAllDomains ? sorted : [...shown, ...(other ? [other] : [])]
+                return rows.map((d) => (
+                  <tr key={d.domain}>
+                    <td className="overview-table-label">{d.domain === 'Other'
+                      ? <span
+                          style={{ color: 'var(--color-muted)', cursor: 'pointer', textDecoration: 'underline dotted' }}
+                          onClick={() => setShowAllDomains(true)}
+                        >Other ({rest.length} domains) ▸</span>
+                      : d.domain}</td>
+                    <td>{d.total}</td>
+                    <td>{d.met}</td>
+                    <td>
+                      {d.risky > 0
+                        ? <span className="overview-badge overview-badge--warn">{d.risky}</span>
+                        : 0}
+                    </td>
+                    <td>
+                      {d.gap > 0
+                        ? <span className="overview-badge overview-badge--danger">{d.gap}</span>
+                        : 0}
+                    </td>
+                  </tr>
+                ))
+              })()}
+              {summary && showAllDomains && summary.domains.length > MAX_DOMAIN_ROWS && (
+                <tr>
+                  <td colSpan={5} style={{ textAlign: 'center', padding: '0.25rem 0' }}>
+                    <span
+                      style={{ color: 'var(--color-muted)', cursor: 'pointer', textDecoration: 'underline dotted', fontSize: '0.85em' }}
+                      onClick={() => setShowAllDomains(false)}
+                    >▴ Show less</span>
                   </td>
                 </tr>
-              ))}
+              )}
               {summary && (
                 <tr>
                   <td className="overview-table-label overview-val--strong">Total</td>
