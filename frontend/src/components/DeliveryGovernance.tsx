@@ -417,6 +417,109 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
         </div>
       </div>
       </>)}
+
+      {show('5.7') && (<>
+      {/* 5.7 SLA & Support Post-Go-Live */}
+      <div className="rfp-section-heading" id="5.7">SLA &amp; Support Post-Go-Live</div>
+      <div className="overview-grid">
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🛡</span>
+            Response &amp; Resolution SLAs
+          </div>
+          <table className="overview-table">
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Definition</th>
+                <th>First Response</th>
+                <th>Resolution Target</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="overview-table-label">P1 — Critical</td>
+                <td>System down or data loss; no workaround</td>
+                <td>30 minutes</td>
+                <td>4 hours</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">P2 — High</td>
+                <td>Core function impaired; workaround exists</td>
+                <td>2 hours</td>
+                <td>1 business day</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">P3 — Medium</td>
+                <td>Non-critical feature degraded</td>
+                <td>4 business hours</td>
+                <td>5 business days</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">P4 — Low</td>
+                <td>Cosmetic issue or enhancement request</td>
+                <td>1 business day</td>
+                <td>Next release cycle</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">📞</span>
+            Support Model &amp; Coverage
+          </div>
+          <table className="overview-table">
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Support Hours</td>
+                <td>Business hours (08:00–18:00 local, Mon–Fri) as standard. 24/7 on-call for P1/P2 incidents included at no extra charge for the first 12 months.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Channels</td>
+                <td>Dedicated support portal (ticket tracking + SLA dashboard), direct Slack channel to your named support engineer, and emergency phone line for P1 incidents.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Named Support Engineer</td>
+                <td>A single engineer with full project context assigned to your account — no explaining your system from scratch on every call.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Escalation Path</td>
+                <td>Support engineer → Technical Lead → Delivery Director. Escalation automatically triggered if P1 is not resolved within 2 hours.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">📊</span>
+            Service Reporting &amp; Continuous Improvement
+          </div>
+          <table className="overview-table">
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Monthly SLA Report</td>
+                <td>Ticket volume by priority, SLA adherence rate, mean time to resolution, recurring issue trends — delivered to your IT and programme lead.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Quarterly Service Review</td>
+                <td>30-minute review call with your Delivery Director to assess support performance, review the release roadmap, and reprioritise the backlog.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Proactive Monitoring</td>
+                <td>Automated alerting on system health, error rates, and performance thresholds. Issues identified and triaged before you report them.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">SLA Penalty Regime</td>
+                <td>Missed P1 SLA: service credit applied automatically. Repeated breaches trigger a remediation plan review. Full terms in the managed services SOW.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </>)}
     </div>
   )
 }

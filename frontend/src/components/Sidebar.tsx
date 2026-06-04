@@ -78,6 +78,7 @@ const NAV_SECTIONS: NavSection[] = [
       { id: '5.4', title: 'Risks & Mitigation',             path: '/delivery-governance/risks-mitigation' },
       { id: '5.5', title: 'Training & Change Enablement',   path: '/delivery-governance/training-change-enablement' },
       { id: '5.6', title: 'Transition & Handover',          path: '/delivery-governance/transition-handover' },
+      { id: '5.7', title: 'SLA & Support Post-Go-Live',    path: '/delivery-governance/sla-support' },
     ],
   },
   {
@@ -137,7 +138,6 @@ export function Sidebar({
   )
   const [userOpen, setUserOpen] = useState(false)
   const [docsOpen, setDocsOpen] = useState(false)
-  const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set())
   const userRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -152,15 +152,6 @@ export function Sidebar({
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
   }, [])
-
-  const toggleSection = (id: string) => {
-    setCollapsedSections((prev) => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
-      return next
-    })
-  }
 
   const isActive = (id: string) => {
     if (activeSection === id) return true
@@ -216,54 +207,39 @@ export function Sidebar({
       {/* Proposal Navigation */}
       <nav className="sidebar-nav">
         {NAV_SECTIONS.map((section) => {
-          const collapsed = collapsedSections.has(section.id)
           const hasChildren = section.subsections.length > 0
           const sectionActive = isActive(section.id)
 
           return (
             <div key={section.id} className="sidebar-section">
-              <button
-                className={`sidebar-section-header${sectionActive && !hasChildren ? ' active' : ''}${sectionActive && hasChildren ? ' parent-active' : ''}`}
-                onClick={() => {
-                  if (hasChildren) {
-                    toggleSection(section.id)
-                    onSectionChange?.(section.id, section.path)
-                  } else {
-                    onSectionChange?.(section.id, section.path)
-                  }
-                }}
-              >
-                <span className="sidebar-section-id">{section.id}</span>
-                <span className="sidebar-section-title">{section.title}</span>
-                {hasChildren && (
-                  <svg
-                    className={`sidebar-chevron${collapsed ? '' : ' open'}`}
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
-                    <path d="M6 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                )}
-              </button>
-
-              {hasChildren && !collapsed && (
-                <div className="sidebar-subsections">
-                  {section.subsections.map((sub) => (
-                    <button
-                      key={sub.id}
-                      className={`sidebar-sub-item${activeSection === sub.id ? ' active' : ''}`}
-                      onClick={() => onSectionChange?.(sub.id, sub.path)}
-                    >
-                      <svg className="sidebar-sub-icon" viewBox="0 0 8 8" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="4" cy="4" r="2.5" />
-                      </svg>
-                      <span className="sidebar-sub-id">{sub.id}</span>
-                      <span className="sidebar-sub-title">{sub.title}</span>
-                    </button>
-                  ))}
-                </div>
+              {hasChildren ? (
+                <>
+                  <div className="sidebar-group-label">{section.title}</div>
+                  <div className="sidebar-subsections">
+                    {section.subsections.map((sub) => (
+                      <button
+                        key={sub.id}
+                        className={`sidebar-sub-item${activeSection === sub.id ? ' active' : ''}`}
+                        onClick={() => onSectionChange?.(sub.id, sub.path)}
+                      >
+                        <svg className="sidebar-sub-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="3" y="2" width="10" height="12" rx="1.5" />
+                          <line x1="5.5" y1="5.5" x2="10.5" y2="5.5" />
+                          <line x1="5.5" y1="8" x2="10.5" y2="8" />
+                          <line x1="5.5" y1="10.5" x2="8.5" y2="10.5" />
+                        </svg>
+                        <span className="sidebar-sub-title">{sub.title}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <button
+                  className={`sidebar-sub-item${sectionActive ? ' active' : ''}`}
+                  onClick={() => onSectionChange?.(section.id, section.path)}
+                >
+                  <span className="sidebar-sub-title">{section.title}</span>
+                </button>
               )}
             </div>
           )
