@@ -1,5 +1,11 @@
+import { useState } from 'react'
+
 export function SolutionArchitecture({ subsection }: { subsection?: string }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
+  const [diagramScale, setDiagramScale] = useState(70)
+  const scaleStep = 10
+  const scaleMin = 30
+  const scaleMax = 100
   return (
     <div className="overview">
       <div className="overview-banner">
@@ -252,8 +258,13 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">🗺</span>
             C4 Level 1 — System Context
           </div>
-          <div style={{overflowX: 'auto', padding: '1rem 0', display: 'flex', justifyContent: 'center'}}>
-            <svg viewBox="0 0 900 460" style={{width: '60%', minWidth: 490, fontFamily: 'inherit'}} aria-label="C4 Level 1 System Context diagram">
+          <div style={{position: 'relative', overflowX: 'auto', padding: '1rem 0', display: 'flex', justifyContent: 'center'}}>
+            <div style={{position: 'absolute', top: '0.75rem', right: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.25rem', background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #e5e7eb)', borderRadius: '6px', padding: '2px 6px', boxShadow: '0 1px 4px rgba(0,0,0,0.1)', zIndex: 1}}>
+              <button onClick={() => setDiagramScale(s => Math.max(scaleMin, s - scaleStep))} style={{border: 'none', background: 'none', cursor: 'pointer', fontSize: '1rem', lineHeight: 1, padding: '2px 4px', color: 'var(--text, #374151)'}}>−</button>
+              <span style={{fontSize: '0.75rem', minWidth: '2.5rem', textAlign: 'center', color: 'var(--text-secondary, #6b7280)'}}>{diagramScale}%</span>
+              <button onClick={() => setDiagramScale(s => Math.min(scaleMax, s + scaleStep))} style={{border: 'none', background: 'none', cursor: 'pointer', fontSize: '1rem', lineHeight: 1, padding: '2px 4px', color: 'var(--text, #374151)'}}>+</button>
+            </div>
+            <svg viewBox="0 0 900 460" style={{width: `${diagramScale}%`, minWidth: 320, fontFamily: 'inherit'}} aria-label="C4 Level 1 System Context diagram">
               {/* styles */}
               <defs>
                 <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
