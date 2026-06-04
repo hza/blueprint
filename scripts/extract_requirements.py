@@ -1,6 +1,12 @@
 """
-Extract functional (FR) and non-functional (NFR) requirements from an RFP markdown file
-and write them to output/FL.md in the format expected by the backend.
+Extract requirements from an RFP markdown file and write them to output/FL.md.
+
+Requirement types extracted:
+  FR  - Functional Requirements
+  NFR - Non-Functional Requirements
+  BR  - Business Requirements
+  TC  - Technical Constraints
+  CR  - Compliance/Regulatory Requirements
 
 Usage:
     python scripts/extract_requirements.py
@@ -16,12 +22,19 @@ from pathlib import Path
 
 SYSTEM_PROMPT = """You are an expert business analyst. You will receive a section of an RFP document.
 
-Extract every functional requirement (FR) and non-functional requirement (NFR) from this section. A requirement is a concrete, testable statement of what the system must do or how it must behave. Skip narrative context, background paragraphs, and general goals that are not testable requirements.
+Extract every requirement from this section. A requirement is a concrete, testable statement of what the system must do, how it must behave, or a constraint it must satisfy. Skip narrative context, background paragraphs, and general goals that are not testable requirements.
+
+Classify each requirement as one of:
+- "FR"  — Functional Requirement: a specific feature or behavior the system must perform
+- "NFR" — Non-Functional Requirement: quality attributes (performance, scalability, reliability, usability)
+- "BR"  — Business Requirement: a business rule, process, or goal the solution must satisfy
+- "TC"  — Technical Constraint: a mandated technology, platform, integration, or architectural constraint
+- "CR"  — Compliance/Regulatory Requirement: a legal, regulatory, security standard, or audit obligation
 
 For each requirement return:
-- "type": "FR" (functional) or "NFR" (non-functional)
+- "type": one of "FR", "NFR", "BR", "TC", "CR"
 - "requirement": concise one-line label, 12 words or fewer
-- "category": the feature domain (e.g. "Document Ingestion", "AI Analysis", "Security", "Performance", "User Management", "Portal & Collaboration")
+- "category": the feature domain (e.g. "Document Ingestion", "AI Analysis", "Security", "Performance", "User Management", "Portal & Collaboration", "GDPR", "Accessibility")
 - "original_text": the verbatim sentence(s) from the RFP that express this requirement (exact wording, no paraphrase)
 
 Return a JSON object with a single key "requirements" containing an array of the above objects. If there are no requirements in this section, return {"requirements": []}.
@@ -105,21 +118,19 @@ def extract_from_chunk(model: str, chunk_text: str, system_prompt: str = SYSTEM_
 def escape_pipes(text: str) -> str:
     return text.replace("|", "\\|")
 
+VALID_TYPES = {"FR", "NFR", "BR", "TC", "CR"}
 
 def write_fl_md(items: list[dict], rfp_path: str, output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    fr_counter = 0
-    nfr_counter = 0
+    counters: dict[str, int] = {t: 0 for t in VALID_TYPES}
     rows: list[str] = []
 
     for item in items:
         req_type = item.get("type", "FR").upper()
-        if req_type == "NFR":
-            nfr_counter += 1
-            req_id = f"NFR-{nfr_counter:03d}"
-        else:
-            fr_counter += 1
-            req_id = f"FR-{fr_counter:03d}"
+        if req_type not in VALID_TYPES:
+            req_type = "FR"
+        counters[req_type] += 1
+        req_id = f"{req_type}-{counters[req_type]:03d}"
 
         requirement = escape_pipes(item.get("requirement", ""))
         category = escape_pipes(item.get("category", ""))
@@ -133,12 +144,13 @@ def write_fl_md(items: list[dict], rfp_path: str, output_path: Path) -> None:
     content = "\n".join([header, separator] + rows) + "\n"
     output_path.write_text(content, encoding="utf-8")
     print(f"Wrote {len(rows)} requirements to {output_path}")
-    print(f"  FR: {fr_counter}  NFR: {nfr_counter}")
+    summary = "  " + "  ".join(f"{t}: {counters[t]}" for t in VALID_TYPES if counters[t])
+    print(summary)
 
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Extract FR/NFR requirements from an RFP markdown file.")
+    parser = argparse.ArgumentParser(description="Extract FR/NFR/BR/TC/CR requirements from an RFP markdown file.")
     parser.add_argument("--rfp", default="RFP/Customer Portal - RFP.md", help="Path to RFP markdown file")
     parser.add_argument("--output", default="output/FL.md", help="Path to output FL.md")
     parser.add_argument("--model", default="claude-haiku-4-5-20251001", help="Claude model to use")
@@ -167,17 +179,16 @@ def main() -> None:
 
     for idx, (start_line, numbered_lines) in enumerate(sections, start=1):
         heading = numbered_lines[0][1] if numbered_lines else "(empty)"
-        print(f"[{idx}/{len(sections)}] line {start_line}: {heading[:60]}")
+        print(f"[{idx}/{len(sections)}] line {start_line}: {heading[:60]}", flush=True)
         chunk_text = format_chunk(numbered_lines)
         requirements = extract_from_chunk(args.model, chunk_text)
-        print(f"  → {len(requirements)} requirements found")
+        print(f"  → {len(requirements)} requirements found", flush=True)
+        for req in requirements:
+            req["line_number"] = find_line_number(file_lines, req.get("original_text", ""))
         all_requirements.extend(requirements)
-
-    for req in all_requirements:
-        req["line_number"] = find_line_number(file_lines, req.get("original_text", ""))
+        write_fl_md(all_requirements, rfp_relative, output_path)
 
     all_requirements.sort(key=lambda r: r.get("line_number", 0))
-
     write_fl_md(all_requirements, rfp_relative, output_path)
 
 
