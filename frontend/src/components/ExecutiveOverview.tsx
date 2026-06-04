@@ -6,7 +6,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
         <div className="overview-banner-header">
           <div className="overview-banner-main">
             <div className="overview-banner-title">1. Executive Overview</div>
-            <div className="overview-banner-client">Meridian Software · Customer Facing Portal — RFP</div>
+            <div className="overview-banner-client">Meridian Software · AI-Powered Customer Facing Portal — RFP</div>
           </div>
           <span className="overview-badge overview-badge--ok">SUBMITTED</span>
         </div>
@@ -41,7 +41,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
           </div>
           <div style={{ lineHeight: '1.7', fontSize: '14px', color: 'var(--fg)', padding: '14px' }}>
             <p style={{ marginBottom: '0.85rem' }}>
-              Your pre-sales team currently spends <strong>8–40 hours parsing each RFP manually</strong>, analysis quality varies by analyst experience, and clients have no professional workspace to review deliverables. SCNSoft proposes an <strong>AI-powered Customer Facing Portal</strong> that reduces proposal turnaround from 5–7 business days to under 24 hours, standardises output quality across your team, and gives every client a dedicated, access-controlled view of the deliverables prepared for them.
+              Your pre-sales team currently spends <strong>8–40 hours parsing each RFP manually</strong>, analysis quality varies by analyst experience, and clients have no professional workspace to review deliverables. SCNSoft proposes an <strong>AI-Powered Customer Facing Portal</strong> that reduces proposal turnaround from 5–7 business days to under 24 hours, standardises output quality across your team, and gives every client a dedicated, access-controlled view of the deliverables prepared for them.
             </p>
             <p style={{ marginBottom: '0.85rem' }}>
               The portal ingests RFP documents (PDF, DOCX, MD, TXT), runs them through a multi-stage AI pipeline — OCR, semantic segmentation, PII anonymisation, LLM analysis — and produces a full suite of pre-sales artefacts: classified requirement lists, feature estimates, C4 architecture views, risk registers, a Go/No-Go recommendation, and an RFP Health Score. Clients review and approve deliverables through a branded portal with threaded comments and formal approval workflows.

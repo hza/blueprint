@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$SCRIPT_DIR/.."
 
 # Optional overrides via env or positional args
-RFP="${1:-RFP/Customer Facing Portal - RFP.md}"
+RFP="${1:-RFP/AI-Powered Customer Facing Portal - RFP.md}"
 OUTPUT="${2:-output/FL.md}"
 MODEL="${3:-claude-haiku-4-5-20251001}"
 

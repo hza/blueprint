@@ -27,7 +27,7 @@
 
 ## 1. Executive Summary
 
-This document defines requirements for an **AI-powered Customer Facing Portal** built for internal use by a single outsourcing software company. The portal enables company employees — Business Analysts, Solution Architects, Sales Managers, and Account Managers — to upload client RFP documents and receive automated, AI-generated deliverables including business model analysis, feature breakdowns with effort estimates, and strategic canvases. External clients receive a dedicated, access-controlled view to review and comment on the deliverables prepared for them.
+This document defines requirements for an **AI-Powered Customer Facing Portal** built for internal use by a single outsourcing software company. The portal enables company employees — Business Analysts, Solution Architects, Sales Managers, and Account Managers — to upload client RFP documents and receive automated, AI-generated deliverables including business model analysis, feature breakdowns with effort estimates, and strategic canvases. External clients receive a dedicated, access-controlled view to review and comment on the deliverables prepared for them.
 
 The system reduces time-to-proposal from days to hours, standardizes analysis quality across the team, and gives clients a professional workspace for reviewing pre-sales artifacts.
 

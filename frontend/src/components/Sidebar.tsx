@@ -130,7 +130,7 @@ export function Sidebar({
   onSectionChange,
   userName = 'Hans Zimmer',
   clientName = 'Meridian Software',
-  projectName = 'Customer Facing Portal',
+  projectName = 'AI-Powered Customer Facing Portal',
   collapsed = false,
   onCollapse,
   reqSummaryTotal,
