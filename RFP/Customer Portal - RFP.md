@@ -41,7 +41,6 @@ document is strictly prohibited and may result in legal action.
 8. [Estimation & Delivery Requirements](#8-estimation--delivery-requirements)
 9. [Submission Timeline](#9-submission-timeline)
 10. [Evaluation Criteria](#10-evaluation-criteria)
-11. [Glossary](#11-glossary)
 
 ---
 
@@ -543,86 +542,91 @@ documents.
 
 ### 4.5 Technical Stack and Infrastructure
 
-The system is built as a cloud-native, containerised application deployable on
-AWS, GCP, or Azure. The document processing pipeline is event-driven, using a
-durable message queue (RabbitMQ, Kafka, or SQS) with each processing stage —
-OCR, segmentation, anonymisation, extraction, canvas generation — running as an
-independent worker.
+#### Platform
 
-Before any content is dispatched to an external LLM provider, a dedicated
-**anonymisation worker** scrubs the segmented document of sensitive entities.
-Named individuals (persons, email addresses, phone numbers), precise financial
-figures, and any data fields flagged as personal under GDPR are replaced with
-typed placeholders (e.g., `[PERSON_1]`, `[EMAIL_1]`, `[AMOUNT_EUR_1]`). A
-reversible mapping of placeholder → original value is stored encrypted in the
-database and is never sent to the LLM. AI-generated outputs referencing
-placeholders are re-hydrated with the original values before being shown in the
-portal UI or included in exports. The anonymisation step can be configured by
-the Admin to apply one of three sensitivity levels — Standard (PII only), Strict
-(PII + company names + financial figures), or Off (for self-hosted LLM
-deployments where data stays on-premise). The active sensitivity level and the
-placeholder count are recorded per document version in the audit log. Analysts
-can review the detected entities and manually promote or demote individual items
-before the AI analysis stage begins. CQRS separates read and write paths, and
-the Outbox Pattern ensures reliable event publishing. Caching is layered: CDN
-for static assets, Redis for sessions and API responses, and application-level
-caching for AI results. The backend exposes a BFF layer tailored to the portal's
-data needs.
+| Concern | Requirement |
+| --- | --- |
+| Deployment targets | AWS, GCP, or Azure (cloud-native, containerised) |
+| Processing pipeline | Event-driven; each stage (OCR, segmentation, anonymisation, extraction) runs as an independent worker via RabbitMQ, Kafka, or SQS |
+| Architecture patterns | CQRS (read/write separation), Outbox Pattern (reliable event publishing), BFF layer |
+| Caching | CDN for static assets · Redis for sessions and API responses · application-level cache for AI results |
 
-The AI engine connects to a configurable LLM provider — OpenAI GPT-4-class,
-Anthropic Claude Sonnet/Opus, or Azure OpenAI — through an abstraction layer
-that allows swapping providers without code changes. For organisations that need
-to keep client documents on-premise, self-hosted LLM deployment via Ollama or
-vLLM is supported with graceful feature degradation. Large documents are handled
-through a RAG pipeline: documents are chunked (512 tokens, 10% overlap),
-embedded, and stored in a vector database (Qdrant); at analysis time, relevant
-chunks are retrieved and injected into prompts. All LLM outputs are parsed
-against JSON schemas to ensure structured, reliable downstream processing. LLM
-costs are tracked per project and in aggregate, with budget alerts visible to
-the Admin. All LLM inputs and outputs are logged (with PII redacted) for
-debugging and quality review. Analysts can rate AI outputs with a thumbs up/down
-and comment, feeding a continuous improvement loop. Prompt configurations are
-versioned and stored as config rather than code, so prompt tuning doesn't
-require a deployment.
+#### PII Anonymisation
 
-The frontend is a React 18+ or Next.js 14+ SPA written in strict TypeScript.
-Canvas components use a diagramming library such as React Flow or Konva.js for
-drag-and-drop, zoom, and pan. Real-time features use WebSockets. The initial
-bundle is kept under 500 KB (gzipped) through code splitting and lazy loading,
-and Core Web Vitals targets are LCP < 2.5s, FID < 100ms, CLS < 0.1.
+Before any content reaches an external LLM, a dedicated anonymisation worker replaces sensitive entities with typed placeholders (e.g. `[PERSON_1]`, `[EMAIL_1]`, `[AMOUNT_EUR_1]`). The placeholder → original mapping is stored encrypted and never sent to the LLM; outputs are re-hydrated before display or export.
 
-The backend API is built in Node.js (NestJS) or Python (FastAPI) with a clear
-service layer, following OpenAPI 3.1. Requests are validated with Zod, Joi, or
-Pydantic. Background jobs use BullMQ or Celery backed by a queue, with job
-status persisted. Structured JSON logs carry trace IDs throughout all processing
-stages, and distributed tracing is implemented with OpenTelemetry.
+| Sensitivity level | What is scrubbed |
+| --- | --- |
+| Standard (default) | PII only |
+| Strict | PII + company names + financial figures |
+| Off | No scrubbing (self-hosted LLM deployments only) |
 
-Primary data lives in PostgreSQL 15+. Raw document files are in S3-compatible
-object storage with server-side encryption and versioning. Redis handles
-sessions and short-lived cache. Qdrant stores vector embeddings. Database
-schemas are managed through versioned migration files, daily backups run with
-30-day retention and point-in-time recovery enabled, and sensitive fields use
-column-level encryption.
+Analysts can review and adjust detected entities before AI analysis begins. The active level and placeholder count are recorded in the audit log per document version.
 
-Integrations include a REST API with API key auth for Salesforce, an OAuth 2.0
-SSO layer supporting Google Workspace, Azure AD, Okta, and SAML 2.0, Confluence
-REST API for page publishing, Slack and Teams via incoming webhooks, JIRA Cloud
-for bulk issue import, and Azure DevOps for work item import. A webhook endpoint
-or Zapier/Make app enables no-code automation for teams that need it. CRM
-webhooks (Salesforce) must result in a new project being created or updated
-within 60 seconds end-to-end — slow or dropped integrations erode team trust in
-the system quickly.
+#### AI / LLM
 
-All services run as Docker containers built with multi-stage builds. Production
-deployments use Kubernetes (Helm charts provided). CI/CD runs on GitHub Actions
-or GitLab CI covering linting, unit tests, integration tests, container build,
-security scan, and deployment. Infrastructure is defined as code in Terraform or
-Pulumi. A single `docker compose up` brings up a complete local development
-environment. Centralised logging goes to an ELK stack or cloud-equivalent;
-metrics and alerting use Prometheus + Grafana or cloud-equivalent. Production
-deployments use blue/green or canary strategy with automatic rollback on failed
-health checks. Business logic targets ≥ 80% unit test coverage. A feature flag system allows
-gradual rollout of new AI models or analysis capabilities.
+| Concern | Requirement |
+| --- | --- |
+| Providers | OpenAI GPT-4-class, Anthropic Claude Sonnet/Opus, or Azure OpenAI — swappable via abstraction layer |
+| Self-hosted option | Ollama or vLLM for on-premise deployments (graceful feature degradation) |
+| Document handling | RAG pipeline: 512-token chunks (10% overlap), embedded into Qdrant, retrieved at analysis time |
+| Output parsing | All LLM outputs validated against JSON schemas |
+| Observability | Costs tracked per project; inputs/outputs logged with PII redacted; thumbs up/down feedback from analysts |
+| Prompt management | Versioned config (not code) — prompt tuning requires no deployment |
+
+#### Frontend
+
+| Concern | Requirement |
+| --- | --- |
+| Framework | React 18+ or Next.js 14+, strict TypeScript |
+| Diagramming | React Flow or Konva.js (drag-and-drop, zoom, pan) |
+| Real-time | WebSockets |
+| Performance | Bundle < 500 KB gzipped · LCP < 2.5s · FID < 100ms · CLS < 0.1 |
+
+#### Backend
+
+| Concern | Requirement |
+| --- | --- |
+| Framework | Node.js (NestJS) or Python (FastAPI), OpenAPI 3.1 |
+| Validation | Zod, Joi, or Pydantic |
+| Background jobs | BullMQ or Celery; job status persisted |
+| Observability | Structured JSON logs with trace IDs; distributed tracing via OpenTelemetry |
+
+#### Data
+
+| Store | Purpose |
+| --- | --- |
+| PostgreSQL 15+ | Primary relational data; versioned migrations; column-level encryption for sensitive fields |
+| S3-compatible object storage | Raw document files (server-side encryption, versioning) |
+| Redis | Sessions and short-lived cache |
+| Qdrant | Vector embeddings |
+
+Backups run daily with 30-day retention and point-in-time recovery enabled.
+
+#### Integrations
+
+| System | Integration method |
+| --- | --- |
+| Salesforce | REST API, API key auth; CRM webhooks create/update projects within 60 s |
+| SSO | OAuth 2.0 — Google Workspace, Azure AD, Okta, SAML 2.0 |
+| Confluence | REST API (page publishing) |
+| Slack / Teams | Incoming webhooks |
+| JIRA Cloud | Bulk issue import |
+| Azure DevOps | Work item import |
+| No-code automation | Webhook endpoint or Zapier/Make app |
+
+#### DevOps & Infrastructure
+
+| Concern | Requirement |
+| --- | --- |
+| Containers | Docker multi-stage builds; single `docker compose up` for local dev |
+| Orchestration | Kubernetes with Helm charts |
+| CI/CD | GitHub Actions or GitLab CI (lint, test, build, security scan, deploy) |
+| Infrastructure as code | Terraform or Pulumi |
+| Logging / metrics | ELK stack or cloud-equivalent; Prometheus + Grafana or cloud-equivalent |
+| Deployments | Blue/green or canary with automatic rollback on failed health checks |
+| Test coverage | ≥ 80% unit test coverage for business logic |
+| Feature flags | Gradual rollout for new AI models and analysis capabilities |
 
 ---
 
@@ -868,25 +872,3 @@ lowest-cost bid.
   Frontend engineer for the duration of Phase 1.
 - Willingness to work within the client's preferred cloud region (EU or US, to
   be confirmed at award).
-
----
-
-## 11. Glossary
-
-| Term | Definition |
-| --- | --- |
-| **BMC** | Business Model Canvas — a strategic management template for developing or documenting business models |
-| **BFF** | Backend for Frontend — a dedicated backend service tailored to the needs of a specific frontend |
-| **CQRS** | Command Query Responsibility Segregation — a pattern separating read and write operations |
-| **LLM** | Large Language Model — an AI model trained on text data capable of understanding and generating natural language |
-| **MoSCoW** | Must Have, Should Have, Could Have, Won't Have — a prioritization framework |
-| **OCR** | Optical Character Recognition — technology to convert images of text into machine-readable text |
-| **RAG** | Retrieval-Augmented Generation — an AI technique combining document retrieval with generative AI |
-| **RFP** | Request for Proposal — a formal document from a client soliciting bids from vendors |
-| **SLA** | Service Level Agreement — a commitment between a service provider and client about service quality |
-| **VPC** | Value Proposition Canvas — a tool for ensuring a product/service fits the customer's needs and pains |
-| **Employee** | Any internal company staff member with a role in the portal (Admin, Sales Manager, SA, BA, Estimator, Account Manager) |
-| **Customer** | An external client invited to view and comment on deliverables prepared for their project |
-| **SharedDeliverable** | An artifact explicitly shared by an Account Manager or Sales Manager with a Customer user |
-| **RFP Health Score** | An AI-computed 0–100 maturity score assessing the completeness and clarity of an uploaded RFP document |
-| **Risk Register** | A structured catalog of identified project risks with likelihood, impact, and mitigation actions |
