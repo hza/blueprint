@@ -231,7 +231,6 @@ export default function App() {
         selectedFile={selectedFile}
         error={error}
         onSelectFile={(filename) => openFile(filename)}
-        onSelectRoot={showListView}
         width={sidebarCollapsed ? undefined : sidebarWidth}
         activeSection={activeSection}
         onSectionChange={(id, path) => {

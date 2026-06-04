@@ -110,7 +110,6 @@ interface SidebarProps {
   selectedFile: string | null
   error: string | null
   onSelectFile: (filename: string) => void
-  onSelectRoot: () => void
   width?: number
   activeSection?: string | null
   onSectionChange?: (id: string, path: string) => void
@@ -127,7 +126,6 @@ export function Sidebar({
   selectedFile,
   error,
   onSelectFile,
-  onSelectRoot,
   width,
   activeSection,
   onSectionChange,
@@ -284,7 +282,6 @@ export function Sidebar({
                 files={files}
                 selectedFile={selectedFile}
                 onSelectFile={onSelectFile}
-                onSelectRoot={onSelectRoot}
               />
             )}
           </div>
