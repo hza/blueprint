@@ -64,6 +64,7 @@ export default function App() {
     return '1'
   })
   const flScrollTopRef = useRef(0)
+  const rcScrollTopRef = useRef(0)
   const sidebarDragRef = useRef<{ x: number; width: number } | null>(null)
   const rightPanelDragRef = useRef<{ x: number; width: number } | null>(null)
 
@@ -399,7 +400,7 @@ export default function App() {
             </nav>
             <div className="file-box">
               <div className="file-box-body">
-                <RequirementsCoverage subsection={activeSection ?? undefined} summary={reqSummary} items={flItems} selectedItemId={selectedListItemId} onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }} onOpenSource={(item) => { setSelectedListItemId(item.id); openFRSource(item) }} />
+                <RequirementsCoverage subsection={activeSection ?? undefined} summary={reqSummary} items={flItems} selectedItemId={selectedListItemId} initialScrollTop={rcScrollTopRef.current} onScrollTopChange={(top) => { rcScrollTopRef.current = top }} onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }} onOpenSource={(item) => { setSelectedListItemId(item.id); openFRSource(item) }} />
               </div>
             </div>
           </>
