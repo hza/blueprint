@@ -304,7 +304,7 @@ export function RequirementsCoverage({
                         </div>
                         {item.description && <div style={{ marginTop: '0.15em', opacity: 0.85 }}>{item.description}</div>}
                         <div style={{ marginTop: '0.6em', borderTop: '1px solid var(--color-border, #e0e0e0)', paddingTop: '0.5em' }}>
-                          <div style={{ fontWeight: 700, fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.06em', color: accentColor, marginBottom: '0.4em' }}>Your response</div>
+                          <div style={{ fontWeight: 700, fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.06em', color: accentColor, marginBottom: '0.4em' }}>Your decision</div>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25em' }}>
                             {preparedOptions.map((opt) => (
                               <label key={opt} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5em', cursor: 'pointer', fontSize: '12px' }}>

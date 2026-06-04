@@ -10,7 +10,6 @@ import { TechnicalSolution } from './components/TechnicalSolution'
 import { CostOfOwnership } from './components/CostOfOwnership'
 import { Timeline } from './components/Timeline'
 import { Team } from './components/Team'
-import { UXDesign } from './components/UXDesign'
 import { Overview } from './components/Overview'
 import { SecurityCompliance } from './components/SecurityCompliance'
 import { DeliveryGovernance } from './components/DeliveryGovernance'
@@ -118,7 +117,6 @@ export default function App() {
     p === '/cost' ? 'cost' :
     p === '/timeline' ? 'timeline' :
     p === '/team' ? 'team' :
-    p === '/uxdesign' ? 'uxdesign' :
     p === '/security' || p.startsWith('/security-compliance') ? 'security' :
     p === '/delivery' || p.startsWith('/delivery-governance') ? 'delivery' :
     p === '/pricing' || p.startsWith('/pricing-commercials') ? 'pricing' :
@@ -133,7 +131,7 @@ export default function App() {
       navigate(`/list${location.search}${location.hash}`, { replace: true })
       return
     }
-    const knownPrefixes = ['/requirements', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/uxdesign', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility']
+    const knownPrefixes = ['/requirements', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility']
     if (!knownPrefixes.some((prefix) => location.pathname === prefix || location.pathname.startsWith(prefix + '/'))) {
       navigate('/requirements', { replace: true })
     }
@@ -296,19 +294,6 @@ export default function App() {
               </div>
             </div>
           </>
-          ) : activeTab === 'uxdesign' ? (
-          <>
-            <nav className="breadcrumb">
-              <span className="breadcrumb-file">UI/UX Design</span>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
-            <div className="file-box">
-              <div className="file-box-body">
-                <UXDesign />
-              </div>
-            </div>
-          </>
-
         ) : activeTab === 'team' ? (
           <>
             <nav className="breadcrumb">
