@@ -180,59 +180,59 @@ export function RequirementsCoverage({
             <thead>
               <tr>
                 <th>Req ID</th>
+                <th>Domain</th>
                 <th>Requirement (Summary)</th>
                 <th>Status</th>
-                <th>How You Get It</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>FR-001</td>
+                <td>Functional</td>
                 <td>Employees can upload client RFP documents (PDF up to 200 MB)</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>File upload with size validation; stored in object storage with virus scan on ingest.</td>
               </tr>
               <tr>
                 <td>NFR-001</td>
+                <td>Non-Functional</td>
                 <td>Reduce proposal time from days to hours</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>AI-assisted extraction and drafting pipeline; benchmark shows 80%+ reduction in manual effort.</td>
               </tr>
               <tr>
                 <td>BR-001</td>
+                <td>Business</td>
                 <td>Role-based access control enforced system-wide</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
-                <td>RBAC middleware on all API routes; fine-grained permissions per resource type.</td>
               </tr>
               <tr>
                 <td>CR-009</td>
+                <td>Compliance</td>
                 <td>SOC 2 Type II certification at go-live</td>
                 <td><span className="overview-badge overview-badge--danger">Gap</span></td>
-                <td>Certification process takes 6–12 months post-launch. Controls are built; certificate cannot be delivered at go-live.</td>
               </tr>
               <tr>
                 <td>TC-029</td>
+                <td>Technical</td>
                 <td>SAML SSO integration with enterprise IdP</td>
                 <td><span className="overview-badge overview-badge--danger">Gap</span></td>
-                <td>Included in scope; delivery depends on client's IdP readiness and configuration timeline.</td>
               </tr>
               <tr>
                 <td>NFR-002</td>
+                <td>Non-Functional</td>
                 <td>95% OCR accuracy on uploaded documents</td>
                 <td><span className="overview-badge overview-badge--danger">Gap</span></td>
-                <td>Standard OCR engines reach 90–93% on mixed-quality scans. 95% is achievable only with high-quality source documents.</td>
               </tr>
               <tr>
                 <td>TC-009</td>
+                <td>Technical</td>
                 <td>CQRS + Outbox Pattern + BFF architecture</td>
                 <td><span className="overview-badge overview-badge--warn">Risky</span></td>
-                <td>Significant architectural complexity; increases implementation time. Team familiarity review required before Phase 1.</td>
               </tr>
               <tr>
                 <td>FR-090</td>
+                <td>Functional</td>
                 <td>Real-time collaborative editing with conflict resolution</td>
                 <td><span className="overview-badge overview-badge--warn">Risky</span></td>
-                <td>Last-write-wins is implementable; full conflict indicators require careful state synchronisation and load testing.</td>
               </tr>
             </tbody>
           </table>
