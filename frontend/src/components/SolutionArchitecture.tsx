@@ -252,8 +252,8 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">🗺</span>
             C4 Level 1 — System Context
           </div>
-          <div style={{overflowX: 'auto', padding: '1rem 0'}}>
-            <svg viewBox="0 0 900 460" style={{width: '100%', minWidth: 700, fontFamily: 'inherit'}} aria-label="C4 Level 1 System Context diagram">
+          <div style={{overflowX: 'auto', padding: '1rem 0', display: 'flex', justifyContent: 'center'}}>
+            <svg viewBox="0 0 900 460" style={{width: '60%', minWidth: 490, fontFamily: 'inherit'}} aria-label="C4 Level 1 System Context diagram">
               {/* styles */}
               <defs>
                 <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
