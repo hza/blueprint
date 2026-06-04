@@ -231,7 +231,7 @@ export function RequirementsCoverage({
               Requirement Gaps &amp; Risks — Action Required
             </span>
             {gapRiskLabel && (
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4em', fontSize: '0.82rem' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4em', fontSize: '11px' }}>
                 <span style={{ background: 'var(--color-warn-bg, #fff3cd)', color: 'var(--color-warn, #856404)', borderRadius: '3px', padding: '0.1em 0.5em', fontWeight: 500 }}>{gapRiskLabel}</span>
                 <button
                   type="button"
