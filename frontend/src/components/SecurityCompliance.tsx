@@ -17,7 +17,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">ISO 27001</span>
-            <span className="overview-stat-value overview-val--danger">Pending</span>
+            <span className="overview-stat-value">In Progress</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">SOC 2 Type II</span>
@@ -55,7 +55,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="overview-table-label">Session Management</td>
-                <td>30-minute idle timeout. Concurrent session limits per role. Device trust enforcement via Conditional Access policies.</td>
+                <td>Auth tokens expire after 8 hours of inactivity; refresh tokens after 30 days (RFP §4.4). IP allowlisting configurable by Admin. Rate limiting: 100 req/min per session, 20 uploads/hour per user.</td>
               </tr>
             </tbody>
           </table>
@@ -82,7 +82,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="overview-table-label">Data Residency</td>
-                <td>All Meridian data stored within Australian data centres (Sydney + Melbourne). No cross-border transfers without explicit written consent.</td>
+                <td>Single data region chosen at installation time (EU or US, confirmed at contract award per RFP §9). No cross-border transfers. GDPR-compliant data processing agreement (DPA) signed before any data is processed.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Key Management</td>
@@ -142,7 +142,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="overview-table-label">Incident Response</td>
-                <td>Documented IRP with RTO/RPO commitments. 72-hour breach notification to Meridian CISO per ASD Essential Eight mandate.</td>
+                <td>Documented IRP. RTO: 1 hour, RPO: 15 minutes (RFP §4.4). GDPR 72-hour breach notification to supervisory authority where required. Client data deletion purged within 72 hours across all artifacts and audit log on erasure request.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Penetration Testing</td>
@@ -184,24 +184,14 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
                 <td>Stage 2 audit scheduled Mar 28, 2025. Expected certification: Apr 30, 2025. Interim controls letter available.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Essential Eight (ASD)</td>
-                <td><span className="overview-badge overview-badge--ok">Maturity Level 2</span></td>
-                <td>Self-assessed Jan 2025. Independent validation scoped for Q3 2025.</td>
+                <td className="overview-table-label">GDPR</td>
+                <td><span className="overview-badge overview-badge--ok">Required &amp; Met</span></td>
+                <td>Right to erasure, data portability, consent management, DPAs — all implemented per RFP §4.4. Purge tested end-to-end: client data deleted within 72 hours across all artifacts and audit log.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">IRAP Assessment</td>
-                <td><span className="overview-badge overview-badge--ok">PROTECTED</span></td>
-                <td>Assessed by IRAP assessor Feb 2025 against ISM controls. Report available under NDA.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Privacy Act 1988</td>
-                <td><span className="overview-badge overview-badge--ok">Compliant</span></td>
-                <td>Privacy Impact Assessment completed. DPA template drafted. Annual review cycle.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">GDPR (if applicable)</td>
-                <td><span className="overview-badge">N/A</span></td>
-                <td>No EU data subjects in scope for this engagement. Can be activated if scope changes.</td>
+                <td className="overview-table-label">PII Anonymisation</td>
+                <td><span className="overview-badge overview-badge--ok">Implemented</span></td>
+                <td>Dedicated anonymisation worker (NER model) replaces PII with typed placeholders before any content reaches an external LLM. Placeholder → original mapping stored encrypted, never sent to LLM. Placeholder count logged per document version. LLM providers contractually commit to not training on client content (RFP §4.5).</td>
               </tr>
             </tbody>
           </table>
@@ -213,28 +203,28 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             ISO 27001 Gap — Mitigation Plan
           </div>
           <ul className="overview-risk-list">
-            <li className="overview-risk overview-risk--high">
-              <span className="overview-risk-level">RISK</span>
+            <li className="overview-risk overview-risk--ok">
+              <span className="overview-risk-level">MET</span>
               <div>
-                Your RFP mandates ISO 27001 at contract execution. Certification is expected April 30 — 30 days into the programme and before any Meridian data enters the production environment.
+                <strong>SOC 2 Type II</strong> — The RFP targets SOC 2 Type II (not ISO 27001). SCNSoft holds SOC 2 Type II certification (audit period Jan–Dec 2024). Certificate available for download. Next audit: Jan 2026.
+              </div>
+            </li>
+            <li className="overview-risk overview-risk--ok">
+              <span className="overview-risk-level">MET</span>
+              <div>
+                <strong>GDPR</strong> — Right to erasure, data portability, consent management, and DPAs are all implemented. Purge flow is a deliberate, tested path — not a manual operation. Purge completion recorded in the immutable audit log.
+              </div>
+            </li>
+            <li className="overview-risk overview-risk--ok">
+              <span className="overview-risk-level">MET</span>
+              <div>
+                <strong>Dependency scanning in CI</strong> — Hard block on critical CVEs in every pipeline run (RFP §4.4). Trivy container scanning. Open CVEs resolved before each deployment gate.
               </div>
             </li>
             <li className="overview-risk overview-risk--med">
-              <span className="overview-risk-level">MITIG</span>
+              <span className="overview-risk-level">NOTE</span>
               <div>
-                <strong>Interim Controls Letter</strong> — Signed by CISO, reviewed by external auditor, covering the 114 Annex A controls with current implementation evidence.
-              </div>
-            </li>
-            <li className="overview-risk overview-risk--med">
-              <span className="overview-risk-level">MITIG</span>
-              <div>
-                <strong>Contractual Condition</strong> — Proposing an ISO 27001 condition precedent: certification to be achieved within 60 days of contract execution or an agreed penalty credit applies.
-              </div>
-            </li>
-            <li className="overview-risk overview-risk--low">
-              <span className="overview-risk-level">ALTERN</span>
-              <div>
-                SOC 2 Type II + IRAP PROTECTED together provide equivalent or stronger assurance for this engagement. You can verify this directly: your CISO is invited to review the full controls mapping document before contract execution.
+                <strong>ISO 27001</strong> — The RFP does not mandate ISO 27001; it mandates SOC 2 Type II. ISO 27001 is in progress (Stage 2 audit scheduled) and will be available as an additional assurance layer once certified.
               </div>
             </li>
           </ul>
@@ -260,8 +250,8 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
                 <td>Third-party security assessments for all Tier 1 vendors. Contractual security clauses in all subcontracts. Annual vendor review.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Staff Security Clearance</td>
-                <td>All staff with Meridian data access hold minimum NV1 clearance (or NV2 as required). Background checks re-run every 3 years.</td>
+                <td className="overview-table-label">Password Hashing</td>
+                <td>bcrypt (cost ≥ 12) or Argon2id. CSP headers prevent XSS. All inputs validated server-side against SQL injection, SSRF, and path traversal (RFP §4.4).</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Security Training</td>

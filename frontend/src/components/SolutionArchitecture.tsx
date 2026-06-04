@@ -19,18 +19,18 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Platform</span>
-            <span className="overview-stat-value">Meridian ERP v5.2</span>
+            <span className="overview-stat-value">AI-Powered Portal</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Cloud</span>
-            <span className="overview-stat-value">Azure (AU East + SE)</span>
+            <span className="overview-stat-value">AWS / GCP / Azure</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Integrations</span>
-            <span className="overview-stat-value">11 systems</span>
+            <span className="overview-stat-value">5 systems</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Availability SLA</span>
+            <span className="overview-stat-label">Portal Uptime SLA</span>
             <span className="overview-stat-value overview-stat-score--ok">99.9%</span>
           </div>
         </div>
@@ -56,43 +56,43 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Presentation</td>
-                <td>React 18 + TypeScript · Progressive Web App</td>
-                <td>WCAG 2.1 AA. Responsive. Works offline (service workers). Native mobile apps (iOS/Android) via React Native.</td>
+                <td>React 18 + TypeScript · shadcn/ui or Ant Design</td>
+                <td>WCAG 2.1 AA. Desktop-optimised (1280–2560 px). React Flow / Konva.js for diagrams. WebSockets for real-time collaboration. Bundle &lt; 500 KB gzipped.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">API Gateway</td>
-                <td>Azure API Management</td>
-                <td>Rate limiting, OAuth 2.0 / OIDC token validation, request logging, versioning. OpenAPI 3.0 published spec.</td>
+                <td className="overview-table-label">BFF / API Gateway</td>
+                <td>FastAPI (Python) — OpenAPI 3.1</td>
+                <td>BFF layer per RFP §4.5. Rate limiting: 100 req/min per session, 20 uploads/hour per user. OAuth 2.0 token validation. Request logging with trace IDs.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Application Services</td>
-                <td>.NET 8 microservices on AKS (Kubernetes)</td>
-                <td>Domain-aligned services: Finance, HR, Procurement, Assets, Reporting. Event-driven via Azure Service Bus.</td>
+                <td>FastAPI microservices on Kubernetes (Helm)</td>
+                <td>CQRS + Outbox Pattern. Event-driven pipeline via Kafka (or RabbitMQ / SQS). Independent workers for OCR, segmentation, anonymisation, AI analysis.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Integration Bus</td>
-                <td>Azure Integration Services (Logic Apps + Service Bus)</td>
-                <td>Adapter pattern for all external system connectors. Retry, dead-letter, and circuit-breaker policies.</td>
+                <td className="overview-table-label">AI / LLM Layer</td>
+                <td>OpenAI GPT-4-class · Anthropic Claude · Azure OpenAI (swappable)</td>
+                <td>Abstraction layer allows provider switching with no code change. RAG pipeline: 512-token chunks (10% overlap) embedded into Qdrant. All LLM outputs validated against JSON schemas. Costs tracked per project.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Data</td>
-                <td>Azure SQL (OLTP) + Azure Synapse (Analytics)</td>
-                <td>Row-level security. TDE. Geo-redundant. Point-in-time restore. OLAP layer for reporting without impacting OLTP.</td>
+                <td>PostgreSQL 15+ · S3-compatible storage · Redis · Qdrant</td>
+                <td>Column-level encryption for sensitive fields. Versioned migrations. 1,000 read queries/s, 200 writes/s. Backups daily, 30-day retention, point-in-time recovery.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Identity</td>
-                <td>Azure Active Directory B2C + Entra ID</td>
-                <td>SSO with Meridian AAD. SAML 2.0 / OIDC. MFA enforced. Conditional Access policies.</td>
+                <td className="overview-table-label">Background Jobs</td>
+                <td>Celery (Python) / BullMQ · job status persisted</td>
+                <td>Auto-retry ×3 with exponential backoff. Workers scale horizontally when queue depth &gt; 5. Job cancellable before AI Analysis stage.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Infrastructure</td>
-                <td>Infrastructure-as-Code (Terraform + Azure Bicep)</td>
-                <td>Full IaC. Environments (dev/staging/prod) provisioned identically. DR failover tested quarterly.</td>
+                <td>Terraform or Pulumi · Docker multi-stage builds</td>
+                <td>Single `docker compose up` for local dev. Blue/green deployments with automatic rollback on health check failure. GitHub Actions or GitLab CI.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Observability</td>
-                <td>Azure Monitor + Application Insights + Prometheus/Grafana</td>
-                <td>Distributed tracing, real-time dashboards, automated alerting, SLA monitoring. Dashboard read-access for Meridian IT.</td>
+                <td>OpenTelemetry · ELK stack · Prometheus + Grafana</td>
+                <td>Structured JSON logs with trace IDs. Distributed tracing. LLM inputs/outputs logged with PII redacted. `/healthz` endpoint for all subsystems.</td>
               </tr>
             </tbody>
           </table>
@@ -101,33 +101,33 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">⚡</span>
-            Non-Functional Targets (SLA)
+            Non-Functional Targets (RFP §4.4)
           </div>
           <table className="overview-table">
             <tbody>
               <tr>
-                <td className="overview-table-label">Availability</td>
-                <td><span className="overview-badge overview-badge--ok">99.9% / month</span> — Planned maintenance windows excluded. Maximum 43 minutes/month unplanned downtime.</td>
+                <td className="overview-table-label">API Read Latency</td>
+                <td><span className="overview-badge overview-badge--ok">&lt; 300 ms p95</span> — RFP requirement met. Achieved via Redis caching and read-path optimisation.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Response Time</td>
-                <td>p95 ≤ 2s for all read operations under peak load (500 concurrent users). p99 ≤ 5s. Batch operations excluded.</td>
+                <td className="overview-table-label">RFP Analysis Time</td>
+                <td>Standard 30-page RFP: complete within 120 s. Stages shown in real time: Uploaded → Queued → OCR → Segmentation → Anonymisation → AI Analysis → Complete.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Throughput</td>
-                <td>500 concurrent users sustained. Burst to 800 for up to 30 minutes (e.g., payroll run day). Auto-scaling responds within 90 seconds.</td>
+                <td className="overview-table-label">Concurrent Users</td>
+                <td>~100 concurrent users without degradation. ≥ 20 concurrent analysis jobs. System handles 2× users/projects within SLA without infrastructure reconfiguration.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Uptime</td>
+                <td>Portal: 99.9%/month. AI pipeline: 99.5%. Graceful degradation: if AI service is down, upload and manual editing remain available within 30 s.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">RTO / RPO</td>
-                <td>RTO: 4 hours (P1 outage). RPO: 1 hour (maximum data loss). Geo-redundant active-passive configuration (Sydney primary, Melbourne DR).</td>
+                <td>RTO: 1 hour. RPO: 15 minutes. Geo-redundant within chosen data region.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Data Retention</td>
-                <td>7 years (financial records, per FMA). Configurable per data class. Automated purge policies with approval gate.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Scalability</td>
-                <td>Horizontal pod autoscaling in AKS. Database elastic pools. Designed for 3× current user load without re-architecture.</td>
+                <td className="overview-table-label">Data Scale</td>
+                <td>Up to 5,000 projects and 500,000 artifacts. 1,000 read/s, 200 writes/s at data layer.</td>
               </tr>
             </tbody>
           </table>
@@ -142,23 +142,23 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Source Control</td>
-                <td>Azure DevOps Git. Trunk-based development. Feature branch model. Meridian gets read access to repository throughout.</td>
+                <td>GitHub / GitLab. Trunk-based development. Meridian gets read access to repository throughout.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">CI Pipeline</td>
-                <td>Build → Unit Tests → Integration Tests → SAST (SonarQube) → DAST (OWASP ZAP) → Container scan (Trivy) → Staging deploy. Runs on every PR merge. Failure blocks deployment.</td>
+                <td>Lint → Unit Tests (≥ 80% coverage gate) → Integration Tests → SAST → Dependency scan (hard block on critical CVEs) → Container scan → Staging deploy. Runs on every PR merge.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">CD Pipeline</td>
-                <td>Blue/green deployments to production. Zero-downtime releases. Automatic rollback on overview-check failure. CAB approval gate before prod deploy.</td>
+                <td>Blue/green deployments to production. Automatic rollback on failed health checks. Feature flags for gradual rollout of new AI models and analysis capabilities.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Environments</td>
-                <td>Dev / Test / UAT / Staging / Production — all provisioned via IaC with identical configuration. UAT environment handed to Meridian for independent testing.</td>
+                <td>Dev / Test / Staging / Production — all provisioned via IaC with identical configuration.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Release Cadence</td>
-                <td>Production releases quarterly (or as agreed with CAB). Hot-fix releases: emergency patch within 24 hours for P1 security vulnerabilities.</td>
+                <td>Production-ready build every sprint. Canary or blue/green releases. Hot-fix within 24 hours for P1 security vulnerabilities.</td>
               </tr>
             </tbody>
           </table>
@@ -186,34 +186,44 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Finance &amp; Accounting</td>
-                <td>GL, AP, AR, bank reconciliation (ANZ/NAB/WBC), budget management, AASB reporting, financial statements, cost centre allocation</td>
+                <td className="overview-table-label">Document Ingestion</td>
+                <td>PDF, DOCX, MD, TXT upload (up to 200 MB); OCR (≥ 95% accuracy); semantic segmentation; PII anonymisation worker; processing pipeline with real-time status; versioning</td>
+                <td>Phase 1</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">AI Analysis Engine</td>
+                <td>Requirement extraction (FR, NFR, BR, TC, CR) with confidence scores; MoSCoW prioritisation; gap alerts; RAG pipeline (Qdrant); JSON schema validation of all LLM outputs</td>
+                <td>Phase 1</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Feature List &amp; Estimation</td>
+                <td>Epic → Feature → User Story → Acceptance Criteria (Gherkin); effort estimates by role (Frontend, Backend, QA, UX, DevOps, BA, PM); confidence interval; real-time recalculation</td>
+                <td>Phase 1</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Architecture Views</td>
+                <td>C4 Level 1 (Context) and Level 2 (Application) views; rendered diagrams + editable PlantUML/Mermaid source; exportable PNG, SVG, Confluence page</td>
+                <td>Phase 1</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Risk Register &amp; Go/No-Go</td>
+                <td>AI-generated risk register (Technical, Financial, Timeline, Scope, Compliance, People); colour-coded heatmap; Go/No-Go Advisor with match %; RFP Health Score (0–100)</td>
+                <td>Phase 1</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Client Portal &amp; Collaboration</td>
+                <td>Role-based access (Admin, Sales Manager, SA, BA, Estimator, Account Manager, Customer); threaded comments; approval workflow (Draft → In Review → Approved → Sent); PDF/DOCX/XLSX export</td>
+                <td>Phase 1–2</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Real-Time Collaboration</td>
+                <td>WebSockets; concurrent editing on canvases and feature lists; per-project live activity feed; full audit trail with diff view and one-click rollback</td>
                 <td>Phase 2</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Human Resources</td>
-                <td>Employee lifecycle, onboarding workflows, leave management, timesheets, workforce planning, performance reviews, ADP payroll integration</td>
-                <td>Phase 2</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Procurement</td>
-                <td>Requisitions, PO workflow, supplier portal, 3-way invoice match, contract repository, PEPPOL eInvoicing, spend analytics</td>
-                <td>Phase 2</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Asset Management</td>
-                <td>Asset register, lifecycle tracking, maintenance scheduling, depreciation (AASB 116), disposal workflows, mobile field inspections, GIS map view</td>
-                <td style={{whiteSpace: 'nowrap'}}>Phase 3</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Reporting &amp; Analytics</td>
-                <td>Power BI embedded dashboards, self-service report builder, scheduled distribution, financial close pack automation, Crystal Reports migration toolkit</td>
-                <td>Phase 2 + Phase 4</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Document Management</td>
-                <td>SharePoint Online integration, document linking to transactions, e-signature (DocuSign), version control, retention tagging</td>
-                <td style={{whiteSpace: 'nowrap'}}>Phase 3</td>
+                <td className="overview-table-label">Platform &amp; Ecosystem</td>
+                <td>SSO (SAML); Salesforce CRM webhooks; analytics dashboard; LLM provider switching; self-hosted LLM (Ollama); Confluence export; API key management</td>
+                <td>Phase 3</td>
               </tr>
             </tbody>
           </table>
@@ -227,19 +237,19 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
           <ul className="overview-checklist">
             <li className="overview-check overview-check--fail">
               <span className="overview-check-icon" />
-              <strong>CRM / Customer Management</strong> — Not included in RFP scope. Meridian's existing Salesforce instance will be retained.
+              <strong>Automated proposal writing</strong> — Deferred to Phase 2 per RFP Section 3.
             </li>
             <li className="overview-check overview-check--fail">
               <span className="overview-check-icon" />
-              <strong>Project Portfolio Management (PPM)</strong> — Meridian uses MS Project Online. ERP will integrate (read financial actuals) but not replace PPM.
+              <strong>Contract generation</strong> — Deferred to Phase 2 per RFP Section 3.
             </li>
             <li className="overview-check overview-check--fail">
               <span className="overview-check-icon" />
-              <strong>Payroll Processing Engine</strong> — ADP retained as payroll system of record. ERP manages HR data and syncs to ADP; payroll calculations remain in ADP.
+              <strong>Audio/video calling integration</strong> — Deferred to Phase 2 per RFP Section 3.
             </li>
             <li className="overview-check overview-check--fail">
               <span className="overview-check-icon" />
-              <strong>Legacy Archive Migration</strong> — Historical data older than 7 years will be archived but not migrated to the active system. Read-only archive access via existing tools.
+              <strong>Post-deal project management</strong> — Deferred to Phase 3 per RFP Section 3.
             </li>
           </ul>
         </div>
@@ -264,108 +274,102 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               <span style={{fontSize: '0.75rem', minWidth: '2.5rem', textAlign: 'center', color: 'var(--text-secondary, #6b7280)'}}>{diagramScale}%</span>
               <button onClick={() => setDiagramScale(s => Math.min(scaleMax, s + scaleStep))} style={{border: 'none', background: 'none', cursor: 'pointer', fontSize: '1rem', lineHeight: 1, padding: '2px 4px', color: 'var(--text, #374151)'}}>+</button>
             </div>
-            <svg viewBox="0 0 900 460" style={{width: `${diagramScale}%`, minWidth: 320, fontFamily: 'inherit'}} aria-label="C4 Level 1 System Context diagram">
-              {/* styles */}
+            <svg viewBox="0 0 900 480" style={{width: `${diagramScale}%`, minWidth: 320, fontFamily: 'inherit'}} aria-label="C4 Level 1 System Context diagram for AI-Powered Customer Facing Portal">
               <defs>
                 <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L0,6 L8,3 z" fill="#6b7280"/>
                 </marker>
               </defs>
               {/* Central system box */}
-              <rect x="340" y="175" width="220" height="110" rx="6" fill="#1d4ed8" stroke="#1e40af" strokeWidth="2"/>
-              <text x="450" y="220" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="bold">Meridian ERP</text>
-              <text x="450" y="238" textAnchor="middle" fill="#bfdbfe" fontSize="10">[Software System]</text>
-              <text x="450" y="256" textAnchor="middle" fill="#bfdbfe" fontSize="10">Custom ERP on Azure</text>
-              <text x="450" y="272" textAnchor="middle" fill="#bfdbfe" fontSize="10">(AKS · Azure SQL · Service Bus)</text>
+              <rect x="320" y="175" width="260" height="120" rx="6" fill="#1d4ed8" stroke="#1e40af" strokeWidth="2"/>
+              <text x="450" y="220" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="bold">AI-Powered Customer</text>
+              <text x="450" y="236" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="bold">Facing Portal</text>
+              <text x="450" y="256" textAnchor="middle" fill="#bfdbfe" fontSize="10">[Software System]</text>
+              <text x="450" y="272" textAnchor="middle" fill="#bfdbfe" fontSize="10">(React 18 · FastAPI · K8s · Qdrant)</text>
 
-              {/* Users */}
-              {/* Finance Officer */}
-              <circle cx="90" cy="80" r="22" fill="none" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="102" x2="90" y2="140" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="115" x2="65" y2="130" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="115" x2="115" y2="130" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="140" x2="70" y2="165" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="140" x2="110" y2="165" stroke="#374151" strokeWidth="1.5"/>
-              <text x="90" y="185" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Finance Officer</text>
-              <text x="90" y="198" textAnchor="middle" fill="#6b7280" fontSize="10">[Person]</text>
-              <line x1="130" y1="130" x2="335" y2="218" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="215" y="162" textAnchor="middle" fill="#6b7280" fontSize="9">GL · AP · AR</text>
+              {/* Internal users — left */}
+              {/* Business Analyst */}
+              <circle cx="80" cy="70" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="90" x2="80" y2="125" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="105" x2="58" y2="118" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="105" x2="102" y2="118" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="125" x2="62" y2="148" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="125" x2="98" y2="148" stroke="#374151" strokeWidth="1.5"/>
+              <text x="80" y="165" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Business Analyst</text>
+              <text x="80" y="178" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
+              <line x1="118" y1="115" x2="316" y2="220" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="195" y="158" textAnchor="middle" fill="#6b7280" fontSize="9">Upload RFP · Edit requirements</text>
 
-              {/* HR Manager */}
-              <circle cx="90" cy="280" r="22" fill="none" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="302" x2="90" y2="340" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="315" x2="65" y2="330" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="315" x2="115" y2="330" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="340" x2="70" y2="365" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="90" y1="340" x2="110" y2="365" stroke="#374151" strokeWidth="1.5"/>
-              <text x="90" y="385" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">HR Manager</text>
-              <text x="90" y="398" textAnchor="middle" fill="#6b7280" fontSize="10">[Person]</text>
-              <line x1="130" y1="330" x2="335" y2="265" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="215" y="305" textAnchor="middle" fill="#6b7280" fontSize="9">HR · Leave · Timesheets</text>
+              {/* Solution Architect */}
+              <circle cx="80" cy="290" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="310" x2="80" y2="345" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="325" x2="58" y2="338" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="325" x2="102" y2="338" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="345" x2="62" y2="368" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="345" x2="98" y2="368" stroke="#374151" strokeWidth="1.5"/>
+              <text x="80" y="385" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Solution Architect</text>
+              <text x="80" y="398" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
+              <line x1="118" y1="328" x2="316" y2="268" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="195" y="308" textAnchor="middle" fill="#6b7280" fontSize="9">Edit architecture views</text>
 
-              {/* Procurement Officer */}
-              <circle cx="810" cy="80" r="22" fill="none" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="102" x2="810" y2="140" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="115" x2="785" y2="130" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="115" x2="835" y2="130" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="140" x2="790" y2="165" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="140" x2="830" y2="165" stroke="#374151" strokeWidth="1.5"/>
-              <text x="810" y="185" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Procurement Officer</text>
-              <text x="810" y="198" textAnchor="middle" fill="#6b7280" fontSize="10">[Person]</text>
-              <line x1="770" y1="130" x2="565" y2="218" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="685" y="162" textAnchor="middle" fill="#6b7280" fontSize="9">PO · Supplier Portal</text>
+              {/* Sales Manager */}
+              <circle cx="80" cy="430" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="80" y1="450" x2="80" y2="462" stroke="#374151" strokeWidth="1.5"/>
+              <text x="80" y="475" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Sales Manager</text>
+              <text x="80" y="488" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
+              <line x1="112" y1="440" x2="316" y2="288" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
 
-              {/* IT Admin */}
-              <circle cx="810" cy="280" r="22" fill="none" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="302" x2="810" y2="340" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="315" x2="785" y2="330" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="315" x2="835" y2="330" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="340" x2="790" y2="365" stroke="#374151" strokeWidth="1.5"/>
-              <line x1="810" y1="340" x2="830" y2="365" stroke="#374151" strokeWidth="1.5"/>
-              <text x="810" y="385" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">IT Admin</text>
-              <text x="810" y="398" textAnchor="middle" fill="#6b7280" fontSize="10">[Person]</text>
-              <line x1="770" y1="330" x2="565" y2="265" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="685" y="305" textAnchor="middle" fill="#6b7280" fontSize="9">Config · Audit logs</text>
+              {/* Customer — right */}
+              <circle cx="820" cy="240" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="820" y1="260" x2="820" y2="295" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="820" y1="275" x2="798" y2="288" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="820" y1="275" x2="842" y2="288" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="820" y1="295" x2="802" y2="318" stroke="#374151" strokeWidth="1.5"/>
+              <line x1="820" y1="295" x2="838" y2="318" stroke="#374151" strokeWidth="1.5"/>
+              <text x="820" y="335" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Customer</text>
+              <text x="820" y="348" textAnchor="middle" fill="#6b7280" fontSize="10">[External Client]</text>
+              <line x1="784" y1="270" x2="584" y2="248" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              <text x="700" y="252" textAnchor="middle" fill="#6b7280" fontSize="9">View deliverables · Comment · Approve</text>
 
               {/* External systems row */}
-              {/* Azure AD */}
-              <rect x="20" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="85" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Azure AD</text>
-              <text x="85" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="85" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">SSO / OIDC</text>
-              <line x1="150" y1="416" x2="338" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              {/* LLM Providers */}
+              <rect x="20" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="92" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">LLM Providers</text>
+              <text x="92" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="92" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">OpenAI · Anthropic · Azure OAI</text>
+              <line x1="165" y1="432" x2="318" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
 
-              {/* ADP */}
-              <rect x="185" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="250" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">ADP</text>
-              <text x="250" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="250" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">Payroll sync</text>
-              <line x1="315" y1="416" x2="380" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              {/* SSO */}
+              <rect x="195" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="267" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">SSO Providers</text>
+              <text x="267" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="267" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">Google WS · Azure AD · Okta · SAML</text>
+              <line x1="340" y1="405" x2="390" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
 
-              {/* Banking */}
-              <rect x="350" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="415" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Banks (Basiq)</text>
-              <text x="415" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="415" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">Open Banking API</text>
-              <line x1="415" y1="390" x2="430" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              {/* Salesforce */}
+              <rect x="370" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="442" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Salesforce</text>
+              <text x="442" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="442" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">CRM webhooks (Phase 3)</text>
+              <line x1="442" y1="405" x2="445" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
 
-              {/* Power BI */}
-              <rect x="515" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="580" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Power BI</text>
-              <text x="580" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="580" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">Embedded reporting</text>
-              <line x1="565" y1="390" x2="520" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              {/* Confluence */}
+              <rect x="545" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="617" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Confluence</text>
+              <text x="617" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="617" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">Page publishing (Phase 2)</text>
+              <line x1="590" y1="405" x2="530" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
 
-              {/* SharePoint */}
-              <rect x="680" y="390" width="130" height="52" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="745" y="413" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">SharePoint</text>
-              <text x="745" y="428" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
-              <text x="745" y="440" textAnchor="middle" fill="#6b7280" fontSize="9">Documents · Graph API</text>
-              <line x1="745" y1="390" x2="560" y2="285" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
+              {/* Slack / Teams */}
+              <rect x="720" y="405" width="145" height="55" rx="4" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1.5"/>
+              <text x="792" y="426" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Slack / Teams</text>
+              <text x="792" y="441" textAnchor="middle" fill="#6b7280" fontSize="9">[External System]</text>
+              <text x="792" y="453" textAnchor="middle" fill="#6b7280" fontSize="9">Incoming webhooks</text>
+              <line x1="760" y1="405" x2="582" y2="295" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
             </svg>
           </div>
           <p style={{fontSize: '0.8rem', color: 'var(--text-secondary, #6b7280)', marginTop: '0.5rem'}}>
-            C4 Model — Level 1 (System Context). Dashed lines show data flows between people, the ERP, and key external systems.
+            C4 Model — Level 1 (System Context). Dashed lines show data flows between users, the portal, and external systems.
           </p>
         </div>
       </div>
@@ -375,71 +379,51 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
         <div className="overview-card" style={{gridColumn: '1 / -1'}}>
           <div className="overview-card-header">
             <span className="overview-card-icon">👥</span>
-            User Roles &amp; Access Model
+            User Roles &amp; Access Model (RFP §5)
           </div>
           <table className="overview-table">
             <thead>
               <tr>
                 <th>Role</th>
                 <th>Who holds it</th>
-                <th>Modules accessed</th>
-                <th>Permission level</th>
+                <th>Key permissions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Finance Officer</td>
-                <td>Accounts payable / receivable staff</td>
-                <td>GL, AP, AR, Bank Reconciliation, Reporting</td>
-                <td>Create · Edit · Approve (own cost centre)</td>
+                <td className="overview-table-label">Admin</td>
+                <td>System administrator</td>
+                <td>All system permissions; user management; LLM configuration; audit log; view all projects and analytics</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Finance Manager</td>
-                <td>CFO direct reports, budget owners</td>
-                <td>GL, AP, AR, Budget Management, Reporting, Audit Trail</td>
-                <td>Full Finance module + cross–cost-centre approval</td>
+                <td className="overview-table-label">Sales Manager</td>
+                <td>Pre-sales pipeline owner</td>
+                <td>View all projects; create/archive projects; assign employees; send deliverables to client; access analytics</td>
               </tr>
               <tr>
-                <td className="overview-table-label">HR Officer</td>
-                <td>HR generalists, payroll coordinators</td>
-                <td>Employee Lifecycle, Leave, Timesheets, ADP sync</td>
-                <td>Create · Edit employee records (no salary data)</td>
+                <td className="overview-table-label">Solution Architect</td>
+                <td>Architecture analysis lead</td>
+                <td>Edit all artifacts on assigned projects; approve architectural deliverables</td>
               </tr>
               <tr>
-                <td className="overview-table-label">HR Manager</td>
-                <td>HR Director, HR BPs</td>
-                <td>All HR modules including salary bands and performance</td>
-                <td>Full HR module + workforce analytics read</td>
+                <td className="overview-table-label">Business Analyst</td>
+                <td>Primary analyst</td>
+                <td>Full edit on requirements, canvases, feature list, risk register on assigned projects; submit deliverables for review</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Procurement Officer</td>
-                <td>Buyers, category managers</td>
-                <td>Requisitions, PO Workflow, Supplier Portal, eInvoicing</td>
-                <td>Create POs up to delegated authority threshold</td>
+                <td className="overview-table-label">Estimator</td>
+                <td>Effort estimation owner</td>
+                <td>Edit feature list estimates on assigned projects; read-only on all other artifacts</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Asset Officer</td>
-                <td>Infrastructure, facilities, fleet staff</td>
-                <td>Asset Register, Maintenance Scheduling, GIS View</td>
-                <td>Create · Edit · Close work orders</td>
+                <td className="overview-table-label">Account Manager</td>
+                <td>Client relationship owner</td>
+                <td>Read/comment on all artifacts; invite and manage Customer access; send deliverables to client</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Report Viewer</td>
-                <td>Executive leadership, board members</td>
-                <td>Power BI dashboards, Financial Close Pack</td>
-                <td>Read-only — no transactional access</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">System Administrator</td>
-                <td>Meridian IT team (2–3 staff)</td>
-                <td>All modules + config, audit log, user management</td>
-                <td>Full admin — MFA enforced, all actions logged</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Read-Only Auditor</td>
-                <td>Internal audit, external auditors (time-limited)</td>
-                <td>GL, AP, AR, Procurement, Audit Trail</td>
-                <td>Read-only — time-boxed access provisioned per engagement</td>
+                <td className="overview-table-label">Customer</td>
+                <td>External client</td>
+                <td>View shared deliverables; threaded comments; approve or request revision; download exports granted by Account Manager</td>
               </tr>
             </tbody>
           </table>
@@ -450,7 +434,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">🔗</span>
-            Integration Map
+            Integration Map (RFP §4.5)
           </div>
           <table className="overview-table">
             <thead>
@@ -458,75 +442,45 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
                 <th>System</th>
                 <th>Direction</th>
                 <th>Method</th>
-                <th>Status</th>
+                <th>Phase</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Azure Active Directory</td>
-                <td>↔ Bi-directional</td>
-                <td>SAML 2.0 / OIDC SSO</td>
-                <td><span className="overview-badge overview-badge--ok">Pre-built</span></td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">ADP WorkforceNow (Payroll)</td>
-                <td>↔ Bi-directional</td>
-                <td>ADP API v2.0</td>
-                <td><span className="overview-badge overview-badge--ok">Pre-built</span></td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">ANZ / NAB / WBC (Banking)</td>
-                <td>← Inbound</td>
-                <td>Basiq Open Banking API</td>
-                <td><span className="overview-badge overview-badge--ok">Pre-built</span></td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">ATO eInvoicing (PEPPOL)</td>
-                <td>↔ Bi-directional</td>
-                <td>PEPPOL Access Point</td>
-                <td><span className="overview-badge overview-badge--ok">Pre-built</span></td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">SharePoint Online</td>
-                <td>↔ Bi-directional</td>
-                <td>Microsoft Graph API</td>
-                <td><span className="overview-badge overview-badge--ok">Pre-built</span></td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Power BI (Reporting)</td>
+                <td className="overview-table-label">OpenAI / Anthropic / Azure OpenAI</td>
                 <td>→ Outbound</td>
-                <td>Power BI Embedded SDK</td>
-                <td><span className="overview-badge overview-badge--ok">Pre-built</span></td>
+                <td>REST API via LLM abstraction layer; PII anonymised before dispatch</td>
+                <td><span className="overview-badge overview-badge--ok">Phase 1</span></td>
               </tr>
               <tr>
-                <td className="overview-table-label">DocuSign (eSignature)</td>
+                <td className="overview-table-label">SSO (Google WS / Azure AD / Okta / SAML)</td>
                 <td>↔ Bi-directional</td>
-                <td>DocuSign eSignature REST API</td>
-                <td><span className="overview-badge overview-badge--ok">Pre-built</span></td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Esri ArcGIS (GIS / Maps)</td>
-                <td>← Inbound</td>
-                <td>ArcGIS REST Services</td>
-                <td><span className="overview-badge overview-badge--ok">Pre-built</span></td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">MS Project Online (PPM)</td>
-                <td>→ Outbound</td>
-                <td>Graph API — read financial actuals</td>
+                <td>OAuth 2.0 / SAML 2.0</td>
                 <td><span className="overview-badge overview-badge--warn">Phase 3</span></td>
               </tr>
               <tr>
-                <td className="overview-table-label">Aurion HR (Legacy)</td>
-                <td>← Inbound (migration only)</td>
-                <td>Direct DB extract + API</td>
-                <td><span className="overview-badge overview-badge--warn">Phase 1 + 3</span></td>
+                <td className="overview-table-label">MS Teams</td>
+                <td>→ Outbound</td>
+                <td>Incoming webhook</td>
+                <td><span className="overview-badge overview-badge--ok">Phase 1</span></td>
               </tr>
               <tr>
-                <td className="overview-table-label">TechCore v4 Framework</td>
+                <td className="overview-table-label">Confluence</td>
+                <td>→ Outbound</td>
+                <td>REST API — page create/update</td>
+                <td><span className="overview-badge overview-badge--warn">Phase 2</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Salesforce</td>
                 <td>↔ Bi-directional</td>
-                <td>Custom adapter (REST)</td>
-                <td><span className="overview-badge overview-badge--warn">Phase 3 (custom)</span></td>
+                <td>REST API + webhooks; creates/updates projects within 60 s</td>
+                <td><span className="overview-badge overview-badge--warn">Phase 3</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Slack</td>
+                <td>→ Outbound</td>
+                <td>Incoming webhook</td>
+                <td><span className="overview-badge overview-badge--warn">Phase 2</span></td>
               </tr>
             </tbody>
           </table>
@@ -542,58 +496,58 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">📊</span>
-            NFR Compliance Matrix
+            NFR Compliance Matrix (RFP §4.4)
           </div>
           <table className="overview-table">
             <thead>
               <tr>
                 <th>Category</th>
-                <th>Requirement</th>
+                <th>RFP Requirement</th>
                 <th>What You're Guaranteed</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Performance</td>
-                <td>p95 response ≤ 3 seconds at 500 concurrent users</td>
-                <td>p95 ≤ 2s target (better than required). Validated by load test at Phase 2 gate.</td>
-                <td><span className="overview-badge overview-badge--ok">Exceeded</span></td>
+                <td className="overview-table-label">API Latency</td>
+                <td>API reads: &lt; 300 ms at p95</td>
+                <td>Redis caching on read paths. Validated by load test at Phase 1 gate.</td>
+                <td><span className="overview-badge overview-badge--ok">Met</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Analysis Time</td>
+                <td>Standard 30-page RFP: complete within 120 s</td>
+                <td>Parallel worker pipeline with horizontal autoscaling when queue depth &gt; 5.</td>
+                <td><span className="overview-badge overview-badge--ok">Met</span></td>
               </tr>
               <tr>
                 <td className="overview-table-label">Availability</td>
-                <td>99.5% monthly availability during business hours</td>
-                <td>99.9% SLA (better than required). Geo-redundant failover.</td>
-                <td><span className="overview-badge overview-badge--ok">Exceeded</span></td>
+                <td>Portal: 99.9%/month · AI pipeline: 99.5%</td>
+                <td>Kubernetes self-healing. Blue/green deploy. Graceful degradation if AI service fails.</td>
+                <td><span className="overview-badge overview-badge--ok">Met</span></td>
               </tr>
               <tr>
                 <td className="overview-table-label">Scalability</td>
-                <td>Support 100% user growth without re-architecture</td>
-                <td>Designed for 3× current load. Kubernetes autoscaling. Elastic database pools.</td>
-                <td><span className="overview-badge overview-badge--ok">Exceeded</span></td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Maintainability</td>
-                <td>System documentation must be maintained and current</td>
-                <td>Automated API docs (Swagger), ADRs in Confluence, IaC in version control. All updated within 10 days of any change.</td>
+                <td>~100 concurrent users; ≥ 20 concurrent analysis jobs</td>
+                <td>Horizontal pod autoscaling. AI workers independent of web tier.</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
               </tr>
               <tr>
                 <td className="overview-table-label">Accessibility</td>
-                <td>WCAG 2.1 AA compliance</td>
-                <td>axe-core automated checks in CI. Manual screen-reader testing per phase. WCAG 2.1 AA certified before each go-live.</td>
+                <td>WCAG 2.1 Level AA; full keyboard navigation</td>
+                <td>axe-core automated checks in CI. Manual screen-reader testing per phase.</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
               </tr>
               <tr>
-                <td className="overview-table-label">Browser Support</td>
-                <td>Chrome, Edge, Firefox, Safari (last 2 versions)</td>
-                <td>Full support for all 4 browsers, last 2 versions. Automated cross-browser testing via Playwright.</td>
+                <td className="overview-table-label">Security</td>
+                <td>TLS 1.3 · AES-256 · GDPR · SOC 2 Type II target · PII anonymisation</td>
+                <td>Dedicated anonymisation worker. CSP headers. Dependency scanning in CI (hard block on critical CVEs). Auth tokens expire after 8 h inactivity.</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
               </tr>
               <tr>
-                <td className="overview-table-label">Localisation</td>
-                <td>Australian date, currency, and number formats</td>
-                <td>All formatting uses Australian locale (en-AU). Configurable per user profile. GST-aware calculations throughout.</td>
+                <td className="overview-table-label">i18n</td>
+                <td>English, German, French, Spanish, Ukrainian; locale-formatted dates/numbers</td>
+                <td>All strings externalised to locale files. Date/time/currency formatted per locale in UI and exports.</td>
                 <td><span className="overview-badge overview-badge--ok">Met</span></td>
               </tr>
             </tbody>
@@ -616,35 +570,29 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
             <thead>
               <tr>
                 <th>Phase</th>
-                <th>Criterion</th>
-                <th>Measurement</th>
-                <th>Approver</th>
+                <th>Deliverables</th>
+                <th>Acceptance Criterion</th>
+                <th>Target Date</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Phase 1 — Foundation</td>
-                <td>Infrastructure provisioned and environments stable</td>
-                <td>All CI pipelines green for 5 consecutive business days; dev, test, and UAT environments accessible to Meridian team</td>
-                <td>Meridian IT Director</td>
+                <td className="overview-table-label">Phase 1 — MVP (12 wks)</td>
+                <td>Document ingestion, PII anonymisation, AI analysis, feature list, C4 views, risk register, Go/No-Go, RFP Health Score, basic client portal, MS Teams notifications, PDF/DOCX export</td>
+                <td>≥ 95% of agreed user stories accepted in UAT; zero open P1/P2 defects; load test confirms API p95 &lt; 300 ms at 100 concurrent users</td>
+                <td>~2026-10-27</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Phase 2 — Core ERP</td>
-                <td>All in-scope functional requirements delivered and UAT-passed</td>
-                <td>≥ 95% of agreed user stories accepted in UAT; zero open P1/P2 defects; load test confirms p95 ≤ 2s at 500 concurrent users</td>
-                <td>Meridian Project Sponsor</td>
+                <td className="overview-table-label">Phase 2 — Enhanced Analytics (+8 wks)</td>
+                <td>C4 Level 3 views, real-time collaboration (WebSockets), approval workflow, Confluence export, email notifications, full audit trail UI</td>
+                <td>WebSocket latency &lt; 500 ms for collaboration updates; approval workflow passes end-to-end UAT; Confluence push verified against a live instance</td>
+                <td>~2026-12-22</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Phase 3 — Extended Modules</td>
-                <td>Asset Management and Document Management live with data migrated</td>
-                <td>Asset register reconciled to legacy data (≤ 0.1% variance); all documents accessible; GIS map view verified by field team</td>
-                <td>Meridian Operations Lead</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Phase 4 — Analytics</td>
-                <td>All contracted Power BI dashboards delivered and signed off</td>
-                <td>Each dashboard reviewed in UAT and approved by named business owner; financial close pack automation reduces manual effort by ≥ 50%</td>
-                <td>Meridian CFO</td>
+                <td className="overview-table-label">Phase 3 — Platform &amp; Ecosystem (+8 wks)</td>
+                <td>SSO (SAML), Salesforce CRM webhooks, analytics dashboard, LLM provider switching, Ollama self-hosted option, API key management</td>
+                <td>SSO login verified with at least one provider (Google Workspace or Azure AD); Salesforce webhook creates project within 60 s; LLM provider switch tested with no functionality regression</td>
+                <td>~2027-02-16</td>
               </tr>
             </tbody>
           </table>
@@ -658,27 +606,23 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
           <ul className="overview-checklist">
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>Security sign-off</strong> — Independent penetration test completed with no critical or high findings unresolved. IRAP assessment report provided to Meridian before go-live.
+              <strong>Security sign-off</strong> — OWASP Top 10 scan completed per sprint. Dependency scan with hard block on critical CVEs in CI. SOC 2 Type II certification path documented.
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>Data integrity</strong> — Migrated data reconciliation report accepted by Meridian Finance team. Row counts, totals, and spot-check samples within agreed tolerances.
+              <strong>GDPR compliance</strong> — Right to erasure flow tested: client data purged within 72 hours across all artifacts and audit log. Purge completion recorded. DPA signed before data processing begins.
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>Disaster recovery rehearsal</strong> — Full DR failover test executed and RTO ≤ 4 hours confirmed. Test results and sign-off documented.
+              <strong>PII anonymisation</strong> — Verified that no PII reaches external LLM. Placeholder count recorded in audit log per document version. Reversible mapping never leaves company infrastructure.
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>Training completion</strong> — ≥ 90% of nominated end-users complete role-based training before go-live. Completion report provided to Meridian HR.
+              <strong>Test coverage</strong> — ≥ 80% unit test coverage for all business logic. Integration tests green on every merge.
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>Documentation handover</strong> — System administration guide, user manuals, API documentation, and runbooks delivered and acknowledged by Meridian IT.
-            </li>
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              <strong>Hypercare sign-off</strong> — 30-day hypercare period completed with no open P1 defects. Formal transition to BAU support acknowledged in writing by both parties.
+              <strong>Documentation handover</strong> — API reference (OpenAPI 3.1), runbooks, architecture decision records, and operations manual delivered and acknowledged before each phase sign-off.
             </li>
           </ul>
         </div>

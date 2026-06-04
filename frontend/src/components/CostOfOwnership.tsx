@@ -6,14 +6,14 @@ export function CostOfOwnership() {
         <div className="overview-banner-header">
           <div className="overview-banner-main">
             <div className="overview-banner-title">Your Investment &amp; Return</div>
-            <div className="overview-banner-client">Projected ROI break-even at Month 28 · 5-year net benefit $4.6M</div>
+            <div className="overview-banner-client">Projected ROI break-even at Month 28 · 5-year TCO $4.6M</div>
           </div>
           <span className="overview-badge overview-badge--ok overview-banner-status">WITHIN BUDGET</span>
         </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">5-Year TCO</span>
-            <span className="overview-stat-value overview-stat-score--warn">$4.1M</span>
+            <span className="overview-stat-value overview-stat-score--warn">$4.6M</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Engagement Model</span>
@@ -52,10 +52,10 @@ export function CostOfOwnership() {
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Implementation (fixed)</td>
-                <td className="overview-table-value overview-val--strong">$1 200 000</td>
+                <td className="overview-table-label">Implementation (fixed — 3 phases)</td>
+                <td className="overview-table-value overview-val--strong">$2 280 000</td>
                 <td className="overview-table-value">—</td>
-                <td className="overview-table-value overview-val--strong">$1 200 000</td>
+                <td className="overview-table-value overview-val--strong">$2 280 000</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Cloud infrastructure</td>
@@ -64,10 +64,10 @@ export function CostOfOwnership() {
                 <td className="overview-table-value">$760 000</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Licences &amp; SaaS tools</td>
-                <td className="overview-table-value">$65 000</td>
-                <td className="overview-table-value">$70 000</td>
-                <td className="overview-table-value">$345 000</td>
+                <td className="overview-table-label">LLM API costs (est.)</td>
+                <td className="overview-table-value">$48 000</td>
+                <td className="overview-table-value">$55 000</td>
+                <td className="overview-table-value">$268 000</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Managed support (T&amp;M)</td>
@@ -83,15 +83,15 @@ export function CostOfOwnership() {
               </tr>
               <tr>
                 <td className="overview-table-label">Contingency (10%)</td>
-                <td className="overview-table-value overview-val--warn">$153 000</td>
-                <td className="overview-table-value overview-val--warn">$41 500</td>
-                <td className="overview-table-value overview-val--warn">$319 000</td>
+                <td className="overview-table-value overview-val--warn">$259 300</td>
+                <td className="overview-table-value overview-val--warn">$40 000</td>
+                <td className="overview-table-value overview-val--warn">$419 300</td>
               </tr>
               <tr>
                 <td className="overview-table-label overview-val--strong">Total</td>
-                <td className="overview-table-value overview-val--strong">$1 683 000</td>
-                <td className="overview-table-value overview-val--strong">$456 500</td>
-                <td className="overview-table-value overview-val--strong">$4 109 000</td>
+                <td className="overview-table-value overview-val--strong">$2 852 300</td>
+                <td className="overview-table-value overview-val--strong">$440 000</td>
+                <td className="overview-table-value overview-val--strong">$4 612 300</td>
               </tr>
             </tbody>
           </table>
@@ -184,42 +184,35 @@ export function CostOfOwnership() {
               <span className="overview-tl-dot" />
               <div>
                 <span className="overview-tl-date">Contract signature</span>
-                <span className="overview-tl-event">20% mobilisation payment — $240 000</span>
+                <span className="overview-tl-event">10% mobilisation payment — $228,000</span>
               </div>
             </li>
             <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">Month 3 — Environment Ready</span>
-                <span className="overview-tl-event">15% milestone — $180 000</span>
+                <span className="overview-tl-date">Week 4 — Architecture &amp; Design Approved</span>
+                <span className="overview-tl-event">10% milestone — $228,000</span>
               </div>
             </li>
             <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">Month 6 — Core Platform Delivered</span>
-                <span className="overview-tl-event">25% milestone — $300 000</span>
+                <span className="overview-tl-date">Week 12 — Phase 1 MVP UAT Sign-off (~2026-10-27)</span>
+                <span className="overview-tl-event">20% milestone — $456,000</span>
               </div>
             </li>
             <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">Month 9 — UAT Sign-off</span>
-                <span className="overview-tl-event">25% milestone — $300 000</span>
+                <span className="overview-tl-date">Week 20 — Phase 2 UAT Sign-off (~2026-12-22)</span>
+                <span className="overview-tl-event">15% milestone — $342,000</span>
               </div>
             </li>
             <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">Month 12 — Go-live</span>
-                <span className="overview-tl-event">15% milestone — $180 000</span>
-              </div>
-            </li>
-            <li className="overview-tl-item overview-tl--future">
-              <span className="overview-tl-dot" />
-              <div>
-                <span className="overview-tl-date">Month 13 — Hypercare Close</span>
-                <span className="overview-tl-event">Final 0% retention release — held 30 days post go-live</span>
+                <span className="overview-tl-date">Week 28 — Phase 3 UAT Sign-off (~2027-02-16)</span>
+                <span className="overview-tl-event">15% milestone — $342,000</span>
               </div>
             </li>
           </ul>
@@ -239,19 +232,19 @@ export function CostOfOwnership() {
               </tr>
               <tr>
                 <td className="overview-table-label">Cloud provider</td>
-                <td className="overview-table-value">AWS · us-east-1 on-demand + 1-yr reserved mix</td>
+                <td className="overview-table-value">AWS, GCP, or Azure — region (EU or US) confirmed at award (RFP §9)</td>
               </tr>
               <tr>
                 <td className="overview-table-label">User base modelled</td>
-                <td className="overview-table-value">500 named users · peak 200 concurrent</td>
+                <td className="overview-table-value">~100 concurrent users · up to 5,000 projects · 500,000 artifacts (RFP §4.4)</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Data volume</td>
-                <td className="overview-table-value">2 TB Year 1 · 15% annual growth</td>
+                <td className="overview-table-value">Sized for 500,000 artifacts + vector embeddings in Qdrant · daily backups, 30-day retention (RFP §4.5)</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Support tier</td>
-                <td className="overview-table-value">Business hours SLA (P1: 4 hr, P2: 8 hr)</td>
+                <td className="overview-table-value">Business hours SLA (P1: 30 min response / 1 hr RTO, P2: 2 hr response / 1 business day — RFP §4.4)</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Inflation / escalation</td>

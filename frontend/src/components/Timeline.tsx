@@ -1,45 +1,61 @@
 import { Fragment } from 'react'
 import './Timeline.css'
 
-const TOTAL_WEEKS = 14
+const TOTAL_WEEKS = 28
 
 interface GanttRow {
   label: string
   start: number  // 1-based week
   end: number    // 1-based week, inclusive
   color: string
-  phase: 'discovery' | 'build' | 'integration' | 'testing' | 'delivery'
+  phase: 'mvp' | 'analytics' | 'platform' | 'cross'
   milestone?: string
 }
 
 const ROWS: GanttRow[] = [
-  { label: 'Discovery & Requirements',      start: 1,  end: 2,  color: '#6cb6ff', phase: 'discovery' },
-  { label: 'ISO 27001 Security Controls',   start: 1,  end: 10, color: '#f78166', phase: 'build' },
-  { label: 'Data Migration (DataBridge)',   start: 2,  end: 8,  color: '#ffa657', phase: 'build' },
-  { label: 'Core Case Management Module',   start: 3,  end: 10, color: '#3fb950', phase: 'build',       milestone: 'Go-live (core) — Wk 10' },
-  { label: 'RBAC & Access Controls',        start: 4,  end: 8,  color: '#3fb950', phase: 'build' },
-  { label: 'Regulatory Reporting Module',   start: 5,  end: 11, color: '#a5d6ff', phase: 'integration' },
-  { label: 'API Gateway (3 systems)',        start: 6,  end: 12, color: '#ffa657', phase: 'integration' },
-  { label: 'Executive Dashboard / KPIs',    start: 7,  end: 12, color: '#a5d6ff', phase: 'integration' },
-  { label: 'UAT & Acceptance Testing',      start: 9,  end: 12, color: '#d2a8ff', phase: 'testing' },
-  { label: 'Staff Training',                start: 11, end: 13, color: '#d2a8ff', phase: 'testing' },
-  { label: 'Go-live & Hypercare',           start: 14, end: 14, color: '#ff7b72', phase: 'delivery',    milestone: 'Full Go-live — Wk 14' },
+  // Phase 1 — MVP (weeks 1–12)
+  { label: 'User Management & RBAC',           start: 1,  end: 3,  color: '#6cb6ff', phase: 'mvp' },
+  { label: 'Document Ingestion Pipeline',      start: 1,  end: 5,  color: '#6cb6ff', phase: 'mvp' },
+  { label: 'PII Anonymisation Worker',         start: 3,  end: 6,  color: '#6cb6ff', phase: 'mvp' },
+  { label: 'AI Analysis Engine (RAG/Qdrant)',  start: 4,  end: 9,  color: '#6cb6ff', phase: 'mvp' },
+  { label: 'Feature List & Effort Estimates',  start: 6,  end: 10, color: '#6cb6ff', phase: 'mvp' },
+  { label: 'C4 Context & Application Views',   start: 6,  end: 10, color: '#6cb6ff', phase: 'mvp' },
+  { label: 'Risk Register & Go/No-Go Advisor', start: 7,  end: 10, color: '#6cb6ff', phase: 'mvp' },
+  { label: 'RFP Health Score',                 start: 8,  end: 11, color: '#6cb6ff', phase: 'mvp' },
+  { label: 'Client Portal (view-only)',        start: 9,  end: 11, color: '#6cb6ff', phase: 'mvp' },
+  { label: 'PDF / DOCX Export + MS Teams',     start: 10, end: 12, color: '#6cb6ff', phase: 'mvp',      milestone: 'Phase 1 MVP — Wk 12' },
+
+  // Phase 2 — Enhanced Analytics (weeks 13–20)
+  { label: 'Real-Time Collaboration (WS)',     start: 13, end: 17, color: '#3fb950', phase: 'analytics' },
+  { label: 'Approval Workflow Engine',         start: 14, end: 18, color: '#3fb950', phase: 'analytics' },
+  { label: 'C4 Level 3 Component Views',       start: 15, end: 18, color: '#3fb950', phase: 'analytics' },
+  { label: 'Confluence Export',                start: 16, end: 19, color: '#3fb950', phase: 'analytics' },
+  { label: 'Email Notifications & Audit Trail',start: 17, end: 20, color: '#3fb950', phase: 'analytics', milestone: 'Phase 2 — Wk 20' },
+
+  // Phase 3 — Platform & Ecosystem (weeks 21–28)
+  { label: 'SSO (SAML / OAuth 2.0)',           start: 21, end: 24, color: '#ffa657', phase: 'platform' },
+  { label: 'Salesforce CRM Webhooks',          start: 22, end: 25, color: '#ffa657', phase: 'platform' },
+  { label: 'Analytics Dashboard',             start: 23, end: 26, color: '#ffa657', phase: 'platform' },
+  { label: 'LLM Provider Switching & A/B',    start: 24, end: 27, color: '#ffa657', phase: 'platform' },
+  { label: 'Ollama Self-Hosted LLM',           start: 25, end: 28, color: '#ffa657', phase: 'platform', milestone: 'Phase 3 Full Delivery — Wk 28' },
+
+  // Cross-cutting
+  { label: 'Security (GDPR, SOC 2, OWASP)',   start: 1,  end: 28, color: '#d2a8ff', phase: 'cross' },
+  { label: 'WCAG 2.1 AA Accessibility',        start: 1,  end: 28, color: '#d2a8ff', phase: 'cross' },
 ]
 
 const PHASE_LABELS: Record<GanttRow['phase'], string> = {
-  discovery:   'Discovery',
-  build:       'Build',
-  integration: 'Integration',
-  testing:     'Testing',
-  delivery:    'Delivery',
+  mvp:       'Phase 1 — MVP',
+  analytics: 'Phase 2 — Enhanced Analytics',
+  platform:  'Phase 3 — Platform & Ecosystem',
+  cross:     'Cross-cutting',
 }
 
 const PHASE_COLORS: Record<GanttRow['phase'], string> = {
-  discovery:   '#6cb6ff',
-  build:       '#3fb950',
-  integration: '#ffa657',
-  testing:     '#d2a8ff',
-  delivery:    '#ff7b72',
+  mvp:       '#6cb6ff',
+  analytics: '#3fb950',
+  platform:  '#ffa657',
+  cross:     '#d2a8ff',
 }
 
 export function Timeline() {
@@ -48,7 +64,7 @@ export function Timeline() {
   return (
     <div className="timeline-wrap">
       <div className="timeline-header-row">
-        <div className="timeline-title">Your Implementation Timeline — 14 Weeks to Go-Live</div>
+        <div className="timeline-title">Your Implementation Timeline — 28 Weeks · 3 Phases</div>
         <div className="timeline-legend">
           {Object.entries(PHASE_LABELS).map(([key, label]) => (
             <span key={key} className="timeline-legend-item">
@@ -117,24 +133,24 @@ export function Timeline() {
       {/* Summary cards */}
       <div className="timeline-summary">
         <div className="tl-card">
-          <div className="tl-card-value">14 wks</div>
+          <div className="tl-card-value">28 wks</div>
           <div className="tl-card-label">Total Duration</div>
         </div>
         <div className="tl-card">
-          <div className="tl-card-value">Wk 10</div>
-          <div className="tl-card-label">Core Go-live</div>
+          <div className="tl-card-value">2026-08-04</div>
+          <div className="tl-card-label">Kick-off</div>
         </div>
         <div className="tl-card">
-          <div className="tl-card-value">Wk 14</div>
-          <div className="tl-card-label">Full Go-live</div>
+          <div className="tl-card-value">2026-10-27</div>
+          <div className="tl-card-label">Phase 1 MVP</div>
         </div>
         <div className="tl-card">
-          <div className="tl-card-value">Jan 2026</div>
-          <div className="tl-card-label">Compliance Deadline</div>
+          <div className="tl-card-value">2026-12-22</div>
+          <div className="tl-card-label">Phase 2 Complete</div>
         </div>
         <div className="tl-card">
-          <div className="tl-card-value">6.75 FTE</div>
-          <div className="tl-card-label">Delivery Team</div>
+          <div className="tl-card-value">2027-02-16</div>
+          <div className="tl-card-label">Full Delivery</div>
         </div>
       </div>
     </div>

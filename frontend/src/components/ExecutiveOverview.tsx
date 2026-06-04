@@ -16,16 +16,16 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <span className="overview-stat-value">SCNSoft</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Your Go-Live In</span>
-            <span className="overview-stat-value overview-stat-score--warn">6 months</span>
+            <span className="overview-stat-label">Phase 1 MVP</span>
+            <span className="overview-stat-value overview-stat-score--warn">12 weeks</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Fixed Price</span>
-            <span className="overview-stat-value">$2.68M</span>
+            <span className="overview-stat-label">Full Delivery</span>
+            <span className="overview-stat-value">28 weeks</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Warranty Time</span>
-            <span className="overview-stat-value">12 months</span>
+            <span className="overview-stat-label">Kick-off</span>
+            <span className="overview-stat-value">2026-08-04</span>
           </div>
         </div>
       </div>
@@ -41,13 +41,13 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
           </div>
           <div style={{ lineHeight: '1.7', fontSize: '14px', color: 'var(--fg)', padding: '14px' }}>
             <p style={{ marginBottom: '0.85rem' }}>
-              Meridian's four ageing back-office platforms — spanning finance, HR, procurement, and asset management — will be replaced by a single unified, <strong>cloud-native ERP, live by April 2026</strong>. You gain real-time operational visibility, automated reporting, and complete elimination of manual inter-system reconciliation from day one of go-live.
+              Your pre-sales team currently spends <strong>8–40 hours parsing each RFP manually</strong>, analysis quality varies by analyst experience, and clients have no professional workspace to review deliverables. SCNSoft proposes an <strong>AI-powered Customer Facing Portal</strong> that reduces proposal turnaround from 5–7 business days to under 24 hours, standardises output quality across your team, and gives every client a dedicated, access-controlled view of the deliverables prepared for them.
             </p>
             <p style={{ marginBottom: '0.85rem' }}>
-              <strong>Seven public-sector organisations with comparable complexity</strong> have gone live on this platform since 2018, every one on time and within budget. The most recent — Queensland Department of Infrastructure (2023, 1,200 users) — went live 3 days early with a 99.3% UAT pass rate at sign-off. Their CIO is available as a direct reference; contact details are in Section 7.
+              The portal ingests RFP documents (PDF, DOCX, MD, TXT), runs them through a multi-stage AI pipeline — OCR, semantic segmentation, PII anonymisation, LLM analysis — and produces a full suite of pre-sales artefacts: classified requirement lists, feature estimates, C4 architecture views, risk registers, a Go/No-Go recommendation, and an RFP Health Score. Clients review and approve deliverables through a branded portal with threaded comments and formal approval workflows.
             </p>
             <p style={{ marginBottom: 0 }}>
-              Your fixed price is <strong>$2,680,000</strong> for the full 6-month delivery — no budget surprises, no overrun risk. Your 5-year total cost of ownership is estimated at <strong>$4,260,000</strong> — approximately 35% lower than SAP S/4HANA at comparable scale. Legacy licence savings begin from the date your old systems are decommissioned.
+              SCNSoft has delivered AI-powered SaaS applications with LLM integration in production. Our proposed stack (React 18, FastAPI, PostgreSQL, Qdrant, Kafka, Kubernetes) maps directly to your technical requirements. We commit to the <strong>3-phase delivery schedule</strong>: Phase 1 MVP in 12 weeks, Enhanced Analytics in a further 8 weeks, and Platform &amp; Ecosystem in the final 8 weeks — 28 weeks total from kick-off on 2026-08-04.
             </p>
           </div>
         </div>
@@ -61,35 +61,35 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Vendor</td>
-                <td>SCNSoft Pty Ltd · ABN 42 601 882 345 · Sydney, NSW</td>
+                <td>SCNSoft</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Solution Name</td>
-                <td>Meridian ERP — Public Sector Edition</td>
+                <td className="overview-table-label">Solution</td>
+                <td>AI-Powered Customer Facing Portal (greenfield build)</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Deployment Model</td>
-                <td>Cloud-native SaaS on Microsoft Azure (Australian regions)</td>
+                <td>Cloud-native, containerised — AWS, GCP, or Azure (region confirmed at award)</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Implementation Model</td>
-                <td>Fixed-price, 5-phase delivery · 6 months</td>
+                <td>Fixed-price, 3-phase delivery · 28 weeks</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Contract Value</td>
-                <td>$2,680,000 AUD (excl. GST) + $220,000/yr managed services</td>
+                <td className="overview-table-label">Submission Deadline</td>
+                <td>2026-06-20</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Programme Start</td>
-                <td>May 1, 2025 (subject to contract execution)</td>
+                <td className="overview-table-label">Contract Signing Target</td>
+                <td>2026-07-25</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Go-Live Target</td>
-                <td>April 1, 2026 (Wave 1 — Finance &amp; Procurement)</td>
+                <td className="overview-table-label">Kick-off / Project Start</td>
+                <td>2026-08-04</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Warranty</td>
-                <td>90 days post go-live per phase</td>
+                <td className="overview-table-label">Phase 1 MVP Go-Live</td>
+                <td>~2026-10-27 (12 weeks from kick-off)</td>
               </tr>
             </tbody>
           </table>
@@ -98,31 +98,31 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">🏆</span>
-            Why This Proposal Delivers for Meridian
+            Why This Proposal Delivers for You
           </div>
           <ul className="overview-risk-list">
             <li className="overview-risk" style={{ borderLeft: '3px solid var(--accent, #2563EB)' }}>
               <span className="overview-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>1</span>
               <div>
-                <strong>Deep public-sector ERP track record</strong> — 7 completed government ERP engagements since 2018. Meridian's procurement requirements, governance obligations, and change-management challenges are not new to us.
+                <strong>AI automation reduces pre-sales effort by ≥ 70%</strong> — The portal's LLM pipeline (OpenAI GPT-4-class or Anthropic Claude, swappable via abstraction layer) turns an 8–40 hour manual RFP parse into an automated analysis completing in under 2 minutes for a standard 30-page document.
               </div>
             </li>
             <li className="overview-risk" style={{ borderLeft: '3px solid var(--accent, #2563EB)' }}>
               <span className="overview-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>2</span>
               <div>
-                <strong>Fixed price eliminates budget risk</strong> — All 7 public-sector ERP engagements delivered within the fixed contract price. Because 60% of the build is pre-existing, battle-tested code, your schedule and quality risk is materially lower than any custom build approach.
+                <strong>Proposal turnaround: 5–7 days → &lt; 24 hours</strong> — Standardised AI analysis, editable feature estimates with real-time recalculation, and a one-click export to PDF/DOCX/Confluence mean your team can respond to RFPs the same day they arrive.
               </div>
             </li>
             <li className="overview-risk" style={{ borderLeft: '3px solid var(--accent, #2563EB)' }}>
               <span className="overview-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>3</span>
               <div>
-                <strong>Azure-native, data-sovereign</strong> — System hosted exclusively in Australian Azure regions. IRAP PROTECTED assessed. All data remains within Australian jurisdiction with customer-managed encryption keys.
+                <strong>PII-safe LLM pipeline</strong> — A dedicated anonymisation worker replaces PII with typed placeholders before any content reaches an external LLM. The mapping is stored encrypted and never leaves your infrastructure, satisfying GDPR requirements and LLM provider data-use restrictions.
               </div>
             </li>
             <li className="overview-risk" style={{ borderLeft: '3px solid var(--accent, #2563EB)' }}>
               <span className="overview-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>4</span>
               <div>
-                <strong>Permanent staff, not contractors</strong> — The team you meet during evaluation is the team assigned to your programme — permanent employees, average 6+ years on this platform. You will not face contractor substitution mid-delivery.
+                <strong>Production LLM experience</strong> — SCNSoft meets both mandatory qualification thresholds: at least one delivered AI-powered web application with a live reference customer, and demonstrated LLM integration (OpenAI / Anthropic) in production.
               </div>
             </li>
           </ul>
@@ -152,28 +152,28 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td>A1</td>
-                <td>Meridian provides named SME representatives (min. 2 per department) available ≥ 60% during discovery and UAT phases.</td>
-                <td>Schedule delay of up to 4 weeks. Change Request required if availability falls below threshold.</td>
+                <td>Cloud data region (EU or US) is confirmed at contract award. Infrastructure design and GDPR DPA drafting begin immediately after.</td>
+                <td>Region choice affects infrastructure cost estimates by up to 15%. Pricing assumes a standard cloud region; sovereign or restricted regions may carry a surcharge.</td>
               </tr>
               <tr>
                 <td>A2</td>
-                <td>Existing Aurion HR and TechOne Finance systems will remain operational in read-only mode for 6 months post-migration for parallel-run validation.</td>
-                <td>Data migration risk increases if legacy systems are decommissioned before parallel-run completes.</td>
+                <td>LLM provider (OpenAI, Anthropic, or Azure OpenAI) is agreed before Phase 1 kick-off. The abstraction layer supports swapping providers post-launch with no code changes.</td>
+                <td>Provider-specific prompt tuning is scoped per the agreed provider. Switching providers post-launch requires a regression test cycle (estimated 1 sprint).</td>
               </tr>
               <tr>
                 <td>A3</td>
-                <td>Meridian's Azure Active Directory will be available for SSO integration and will not undergo major restructuring during the programme.</td>
-                <td>IAM integration rework estimated at $40–80k and 3–5 week delay.</td>
+                <td>Meridian nominates a Product Owner with authority to accept deliverables and raise change requests within 2 business days of submission.</td>
+                <td>Delayed sign-offs push UAT gates and can cascade into Phase 2 and 3 start dates.</td>
               </tr>
               <tr>
                 <td>A4</td>
-                <td>Third-party payroll provider (ADP) maintains their API at the current version for the programme duration (or provides 90 days' notice of breaking changes).</td>
-                <td>Adapter rework required; covered under pre-agreed rate card.</td>
+                <td>SSO provider (Google Workspace, Azure AD, Okta, or SAML 2.0) and Salesforce sandbox credentials are available for integration testing from Phase 1 week 4.</td>
+                <td>Integration testing deferred to Phase 3 if credentials are not available, potentially delaying CRM webhook and SSO delivery.</td>
               </tr>
               <tr>
                 <td>A5</td>
-                <td>All change requests raised by Meridian will receive written approval or rejection within 5 business days of submission.</td>
-                <td>Pending CRs not approved within this window will be treated as approved for planning purposes.</td>
+                <td>All change requests will receive written approval or rejection within 5 business days of submission.</td>
+                <td>Pending CRs not actioned within this window will be treated as approved for planning purposes, per standard contract terms.</td>
               </tr>
             </tbody>
           </table>
@@ -188,7 +188,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">❓</span>
-            Clarifications
+            Clarifications Raised with Meridian
           </div>
           <table className="overview-table">
             <thead>
@@ -196,33 +196,33 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                 <th>Ref</th>
                 <th>Question</th>
                 <th>Status</th>
-                <th>Meridian Response</th>
+                <th>Notes</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Q1</td>
-                <td>Do you require integration with any existing systems (e.g. ERP, CRM, HR, identity provider)? If so, are sandbox or staging environments available for integration testing from day one?</td>
+                <td>Which cloud region (EU or US) does Meridian prefer for the single data region at installation? Are there any data-residency constraints beyond the stated GDPR requirement?</td>
                 <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
-                <td>Awaiting confirmation. Answer will determine integration scope, API discovery work, and Phase 1 timeline.</td>
+                <td>RFP Section 4.4 states "Single data region chosen at installation time." Region confirmed at award per Section 9. Pricing is region-neutral; finalised at contract.</td>
               </tr>
               <tr>
                 <td>Q2</td>
-                <td>Do you have a preferred cloud platform (AWS, Azure, GCP) or an existing cloud contract we should deploy into? Are there on-premises or data-residency constraints?</td>
+                <td>Which SSO provider(s) does Meridian currently use — Google Workspace, Azure AD, Okta, or SAML 2.0? Will sandbox credentials be available before Phase 1 week 4?</td>
                 <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
-                <td>Awaiting confirmation. Answer will shape infrastructure design, licensing assumptions, and cost estimates.</td>
+                <td>All four providers are supported via OAuth 2.0. Answer determines which integration is tested first in Phase 1 vs deferred to Phase 3.</td>
               </tr>
               <tr>
                 <td>Q3</td>
-                <td>Who are the key stakeholders and decision-makers on your side, and what does the approval process look like for milestone sign-offs and change requests?</td>
+                <td>Is there a preferred LLM provider (OpenAI, Anthropic Claude, Azure OpenAI), or should we propose based on cost/performance optimisation?</td>
                 <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
-                <td>Awaiting confirmation. Governance structure will be reflected in the RACI and escalation path.</td>
+                <td>The abstraction layer (Section 4.5) allows switching providers post-launch. Our default recommendation is Anthropic Claude Sonnet for analysis and GPT-4o for structured extraction, subject to Meridian preference.</td>
               </tr>
               <tr>
                 <td>Q4</td>
-                <td>What are your standard payment terms (e.g. Net 15, Net 30, Net 60)? Are payments tied to milestone delivery or issued on a fixed calendar schedule?</td>
+                <td>Does Meridian have an existing Salesforce instance with a CRM webhook target, or is the Salesforce integration a future-state requirement?</td>
                 <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
-                <td>Awaiting confirmation. Payment cadence affects project cash flow planning and will be reflected in the commercial terms.</td>
+                <td>RFP Section 4.5 specifies Salesforce REST API integration in Phase 3. Scoped as CRM webhook creating/updating projects within 60 s.</td>
               </tr>
             </tbody>
           </table>

@@ -13,15 +13,15 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Methodology</span>
-            <span className="overview-stat-value">Scaled Agile</span>
+            <span className="overview-stat-value">Agile (Scrum)</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Duration</span>
-            <span className="overview-stat-value">6 months</span>
+            <span className="overview-stat-value">28 weeks</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Phases</span>
-            <span className="overview-stat-value">5</span>
+            <span className="overview-stat-value">3</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Sprint Length</span>
@@ -41,42 +41,28 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">◎</span>
-            Programme Phases
+            Programme Phases (RFP §7)
           </div>
           <ul className="overview-timeline">
-            <li className="overview-tl-item overview-tl--done">
+            <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">May 1 – Jun 15, 2025</span>
-                <span className="overview-tl-event"><strong>Phase 1: Discovery &amp; Design</strong> — Workshops, current-state analysis, finalised architecture blueprint, confirmed data migration strategy, approved UX wireframes.</span>
+                <span className="overview-tl-date">2026-08-04 – 2026-10-27 (12 weeks)</span>
+                <span className="overview-tl-event"><strong>Phase 1 — MVP:</strong> User management (all roles), document upload (PDF, DOCX, MD) + OCR pipeline, PII anonymisation worker, Deal Go/No-Go AI Advisor, requirement extraction (FR, NFR, BR), feature list with basic effort estimation, C4 Context &amp; Application views, Risk Register (AI-extracted, editable heatmap), RFP Health Score, PDF &amp; DOCX export, basic client portal (view-only), MS Teams notifications.</span>
               </div>
             </li>
             <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">Jun 16 – Oct 31, 2025</span>
-                <span className="overview-tl-event"><strong>Phase 2: Core Build</strong> — Foundation modules: finance, HR, procurement. 10 sprints. UAT gate at sprint 8. Internal load test at sprint 10.</span>
+                <span className="overview-tl-date">2026-10-28 – 2026-12-22 (+8 weeks)</span>
+                <span className="overview-tl-event"><strong>Phase 2 — Enhanced Analytics:</strong> C4 Component View (Level 3) for Paid Discovery, real-time collaboration (WebSockets), approval workflow engine, in-app persistent chat, audio/video calling integration, Confluence export, email notifications, full audit trail UI.</span>
               </div>
             </li>
             <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">Nov 1 – Jan 31, 2026</span>
-                <span className="overview-tl-event"><strong>Phase 3: Integration &amp; Data Migration</strong> — Legacy system connectors, ETL pipeline execution, parallel-run validation, user acceptance sign-off.</span>
-              </div>
-            </li>
-            <li className="overview-tl-item overview-tl--future">
-              <span className="overview-tl-dot" />
-              <div>
-                <span className="overview-tl-date">Feb 1 – Mar 31, 2026</span>
-                <span className="overview-tl-event"><strong>Phase 4: Training &amp; Pilot</strong> — Super-user training, department pilot (Finance first), defect remediation, go/no-go review.</span>
-              </div>
-            </li>
-            <li className="overview-tl-item overview-tl--future">
-              <span className="overview-tl-dot" />
-              <div>
-                <span className="overview-tl-date">Apr 1 – Oct 31, 2026</span>
-                <span className="overview-tl-event"><strong>Phase 5: Go-Live &amp; Hypercare</strong> — Phased department rollout (4 waves), hypercare support (4 weeks per wave), knowledge transfer, transition to BAU.</span>
+                <span className="overview-tl-date">2026-12-23 – 2027-02-16 (+8 weeks)</span>
+                <span className="overview-tl-event"><strong>Phase 3 — Platform &amp; Ecosystem:</strong> SSO (SAML), CRM webhook integration (Salesforce), analytics dashboard for management, custom canvas configuration via Admin panel, LLM provider switching &amp; prompt A/B testing, self-hosted LLM support (Ollama), API key management for external integrations.</span>
               </div>
             </li>
           </ul>
@@ -91,23 +77,23 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Methodology</td>
-                <td>SAFe 6.0 (Scaled Agile Framework). Programme Increment (PI) planning every 10 weeks. Feature-team model with 3 squads.</td>
+                <td>Scrum. 2-week sprints. Feature-team model. Dedicated Product Owner from Meridian required for sprint sign-offs.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Sprint Ceremonies</td>
-                <td>Daily stand-up (15 min), Sprint Planning (4 hrs), Sprint Review + Demo (2 hrs), Retrospective (1.5 hrs). Meridian product owner attends Sprint Review.</td>
+                <td>Daily stand-up (15 min), Sprint Planning (4 hrs), Sprint Review + Demo (2 hrs), Retrospective (1.5 hrs). Meridian Product Owner attends Sprint Review.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Definition of Done</td>
-                <td>Code reviewed, unit tests ≥ 80% coverage, integration tests green, documented in Confluence, demo'd to PO, approved security scan, deployed to staging.</td>
+                <td>Code reviewed, unit tests ≥ 80% coverage, integration tests green, documented, demo'd to PO, security scan passed, deployed to staging.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Release Cadence</td>
-                <td>Production-ready build every sprint. Controlled releases to production quarterly (or as agreed) with change advisory board (CAB) approval.</td>
+                <td>Production-ready build every sprint. Blue/green or canary releases. Feature flags for gradual rollout of new AI models.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Tooling</td>
-                <td>Jira (backlog &amp; tracking), Confluence (documentation), Azure DevOps (CI/CD pipelines), MS Teams (communication), Power BI (progress dashboards).</td>
+                <td>Jira (backlog &amp; tracking), Confluence (documentation), GitHub Actions (CI/CD), Slack or MS Teams (communication).</td>
               </tr>
             </tbody>
           </table>
@@ -131,69 +117,57 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
                 <th>Role</th>
                 <th>Name</th>
                 <th>Allocation</th>
-                <th>Location</th>
+                <th>Notes</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Programme Director</td>
+                <td className="overview-table-label">Engagement Manager / PM</td>
                 <td>Sarah Chen</td>
                 <td>50%</td>
-                <td>Sydney (on-site Tues–Thurs)</td>
+                <td>Single point of accountability. Weekly RAG status report.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Solution Architect</td>
                 <td>Mark Okonkwo</td>
                 <td>100%</td>
-                <td>Sydney (on-site)</td>
+                <td>Owns architecture views, tech stack recommendation, and NFR sign-off. Meets RFP minimum qualification (dedicated SA for Phase 1).</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Tech Lead / Squad Lead</td>
+                <td className="overview-table-label">Senior Frontend Engineer</td>
                 <td>Priya Ramaswamy</td>
                 <td>100%</td>
-                <td>Sydney</td>
+                <td>React 18, TypeScript, React Flow / Konva.js. Meets RFP minimum qualification (senior Frontend for Phase 1).</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Senior Developers (×3)</td>
-                <td>Nominated in Annex D</td>
+                <td className="overview-table-label">Senior Backend Engineers (×2)</td>
+                <td>Named in Annex D</td>
                 <td>100%</td>
-                <td>Sydney + Canberra</td>
+                <td>FastAPI, PostgreSQL, Kafka, Celery. AI/ML integration and RAG pipeline ownership.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">AI/ML Engineer</td>
+                <td>Named in Annex D</td>
+                <td>100%</td>
+                <td>LLM abstraction layer, prompt engineering, Qdrant RAG pipeline, PII anonymisation worker, output schema validation.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">QA Lead</td>
                 <td>James Obi</td>
                 <td>100%</td>
-                <td>Melbourne</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Business Analyst (×2)</td>
-                <td>Nominated in Annex D</td>
-                <td>100%</td>
-                <td>Canberra (on-site Mon–Wed)</td>
+                <td>≥ 80% unit coverage gate, BDD (Gherkin/Pytest-BDD), OWASP ZAP DAST per sprint.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">UX Designer</td>
                 <td>Lena Vogel</td>
                 <td>75%</td>
-                <td>Sydney</td>
+                <td>shadcn/ui or Ant Design. WCAG 2.1 AA. Onboarding guided tour and contextual tooltips.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Data Migration Lead</td>
-                <td>Adrian Bose</td>
-                <td>100% (Phases 1 &amp; 3)</td>
-                <td>Canberra</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Change Manager</td>
-                <td>Fatima Hassan</td>
-                <td>75% (Phases 4 &amp; 5)</td>
-                <td>Canberra (on-site)</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Security Engineer</td>
-                <td>Tom Vu</td>
-                <td>50%</td>
-                <td>Sydney</td>
+                <td className="overview-table-label">DevOps / Cloud Engineer</td>
+                <td>Named in Annex D</td>
+                <td>100%</td>
+                <td>Kubernetes (Helm), Terraform / Pulumi, GitHub Actions CI/CD, Prometheus + Grafana, blue/green deployments.</td>
               </tr>
             </tbody>
           </table>
@@ -207,24 +181,24 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
           <table className="overview-table">
             <tbody>
               <tr>
-                <td className="overview-table-label">Programme Board</td>
-                <td>Monthly. Meridian VP Operations + CFO, SCNSoft Programme Director + Account Executive. Scope/budget/schedule decisions.</td>
+                <td className="overview-table-label">Steering Committee</td>
+                <td>Monthly. Meridian stakeholder (Sales Manager / CTO) + SCNSoft Engagement Manager. Scope, budget, and schedule decisions.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Delivery Steering</td>
-                <td>Bi-weekly. Meridian Programme Manager + SCNSoft Programme Director. Status, risks, blockers.</td>
+                <td className="overview-table-label">Delivery Sync</td>
+                <td>Bi-weekly. Meridian Product Owner + SCNSoft PM. Status, risks, blockers.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Technical Review</td>
-                <td>Weekly. Meridian IT Architect + SCNSoft Solution Architect. Architecture decisions, integration issues, security findings.</td>
+                <td>Weekly. Meridian technical lead + SCNSoft Solution Architect. Architecture decisions, integration issues, AI pipeline findings.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Change Control</td>
-                <td>All scope changes &gt;8 hours assessed via formal Change Request (CR). Meridian PM approves CRs up to $25k; above to Programme Board.</td>
+                <td>All scope changes &gt; 8 hours assessed via formal Change Request (CR). Meridian PM approves CRs up to agreed threshold; larger to Steering Committee.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Reporting</td>
-                <td>Weekly RAG status report (auto-generated from Jira). Monthly executive dashboard. Real-time Power BI programme tracker (read access for Meridian stakeholders).</td>
+                <td>Weekly RAG status report (auto-generated from Jira). Real-time programme tracker with read access for Meridian stakeholders.</td>
               </tr>
             </tbody>
           </table>
@@ -246,31 +220,31 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Unit Testing</td>
-                <td>≥ 80% branch coverage enforced in CI gate. Jest (frontend) + xUnit (backend). Zero-tolerance for coverage regression.</td>
+                <td>≥ 80% branch coverage enforced in CI gate. Zero-tolerance for coverage regression on business logic.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Integration Testing</td>
-                <td>Contract testing via Pact. API integration suite runs on every merge to main. External integrations tested against live sandboxes.</td>
+                <td>Contract testing. API integration suite runs on every merge to main. LLM output schema validation (Pydantic / Zod).</td>
               </tr>
               <tr>
                 <td className="overview-table-label">System Testing</td>
-                <td>Full regression suite executed before each sprint demo. BDD scenarios written with Meridian BAs (Cucumber / SpecFlow).</td>
+                <td>Full regression suite before each sprint demo. BDD scenarios written with Meridian's team (Gherkin / Pytest-BDD). Acceptance criteria in Given/When/Then format.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Performance Testing</td>
-                <td>Load testing (k6) at end of Phase 2 and Phase 3. Targets: 500 concurrent users, p95 response ≤ 2s, p99 ≤ 5s under peak load.</td>
+                <td>Load testing (k6) at Phase 1 gate. Targets: 100 concurrent users, API p95 &lt; 300 ms, 30-page RFP analysis &lt; 120 s.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">UAT</td>
-                <td>Meridian-led UAT in a dedicated UAT environment. You receive a dedicated UAT coordinator, pre-populated test data, and a committed defect SLA (Critical 24h, High 72h).</td>
+                <td>Meridian-led UAT in dedicated environment. Pre-populated test data. Defect SLA: Critical 24 h, High 72 h.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Security Testing</td>
-                <td>OWASP ZAP DAST scan each sprint. SonarQube SAST in CI. Pre-go-live penetration test by CREST-accredited firm.</td>
+                <td>OWASP ZAP DAST scan each sprint. Dependency scanning in CI — hard block on critical CVEs. Pre-go-live penetration test by accredited firm.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Accessibility</td>
-                <td>WCAG 2.1 AA compliance. Automated axe-core checks in CI. Manual screen-reader testing before each phase release.</td>
+                <td>WCAG 2.1 AA. Automated axe-core checks in CI. Manual screen-reader testing before each phase release.</td>
               </tr>
             </tbody>
           </table>
@@ -293,25 +267,25 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             <li className="overview-risk overview-risk--high">
               <span className="overview-risk-level">HIGH</span>
               <div>
-                <strong>Legacy data quality</strong> — Legacy HR / Finance systems have inconsistent data formats, estimated 15–20% record quality issues from initial profiling. <em>Mitigation:</em> Dedicated data cleansing sprint in Phase 1. Data steward assignment from Meridian required. Go/no-go gate before full migration.
+                <strong>LLM API reliability</strong> — External LLM providers (OpenAI, Anthropic) may have outages or rate-limit spikes affecting analysis pipeline throughput. <em>Mitigation:</em> Abstraction layer allows automatic failover between providers. Graceful degradation mode activates within 30 s if AI service goes down — upload and manual editing remain functional with a visible user banner.
               </div>
             </li>
             <li className="overview-risk overview-risk--high">
               <span className="overview-risk-level">HIGH</span>
               <div>
-                <strong>Key stakeholder availability</strong> — Programme depends on active Meridian business SME input for requirements sign-off and UAT. Competing BAU priorities may cause delays. <em>Mitigation:</em> Named SME commitments required in programme charter. Escalation path to Programme Board if availability drops below 60%.
+                <strong>PII anonymisation accuracy</strong> — Missed PII in complex or unusual RFP documents could reach an external LLM. <em>Mitigation:</em> Named-entity recognition (NER) model with ≥ 99% recall target on standard PII classes. Audit log records placeholder count per document version. Reviewed as a Phase 1 acceptance criterion before client data is processed.
               </div>
             </li>
             <li className="overview-risk overview-risk--med">
               <span className="overview-risk-level">MED</span>
               <div>
-                <strong>Third-party API changes</strong> — Payroll and finance integrations depend on third-party APIs that may change without notice. <em>Mitigation:</em> Versioned API contracts. 90-day notice clause negotiated with key vendors. Adapter pattern allows connector replacement without core system changes.
+                <strong>OCR quality on poor-quality scanned PDFs</strong> — Scanned documents with low resolution or unusual fonts may fall below the 95% OCR accuracy target. <em>Mitigation:</em> Integrity check on arrival; corrupted or low-quality files rejected with a clear error before processing. Analysts can manually correct segmentation output.
               </div>
             </li>
             <li className="overview-risk overview-risk--med">
               <span className="overview-risk-level">MED</span>
               <div>
-                <strong>Scope creep</strong> — Public sector engagements historically experience 25–40% scope growth during discovery. <em>Mitigation:</em> Formal CR process with impact assessment. Monthly scope review in Programme Board. Fixed-price core scope ring-fenced; additional scope priced via pre-agreed rate card.
+                <strong>Scope creep in AI feature requests</strong> — AI capabilities (prompt tuning, new output types) are easy to request but expensive to validate safely. <em>Mitigation:</em> Prompt management via versioned config (not code — no deployment required). New AI capabilities scoped via formal CR. Feature flags allow gradual rollout with A/B testing before full release.
               </div>
             </li>
           </ul>
@@ -322,57 +296,30 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
 
       {show('5.5') && (<>
       {/* 5.5 Training & Change */}
-      <div className="rfp-section-heading" id="5.5">Training &amp; Change Enablement</div>
+      <div className="rfp-section-heading" id="5.5">Training &amp; Onboarding</div>
       <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">🎓</span>
-            Training Programme
+            User Onboarding (RFP §4.4)
           </div>
           <table className="overview-table">
             <tbody>
               <tr>
-                <td className="overview-table-label">Super-User Training</td>
-                <td>3-day intensive workshop per department module. 2 super-users per department minimum. Certification on completion. Delivered Phase 4.</td>
+                <td className="overview-table-label">In-App Guided Tour</td>
+                <td>Interactive onboarding checklist for new employees: first upload, team invite, first export. Contextual tooltips on key actions. Activated on first login.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">End-User Training</td>
-                <td>Role-based eLearning modules (Articulate 360). Average 4–6 hours per user. Available in LMS from 4 weeks before go-live. Video walkthroughs for each key workflow.</td>
+                <td className="overview-table-label">Role-Based Docs</td>
+                <td>Short-form help articles per role (BA, SA, Sales Manager, Account Manager, Customer). Linked from contextual tooltips.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Administrator Training</td>
-                <td>5-day technical training for Meridian IT administrators. Covers system configuration, user management, monitoring, backup/restore procedures.</td>
+                <td className="overview-table-label">Admin Handover</td>
+                <td>Admin panel walkthrough with Meridian IT. System configuration, user management, LLM configuration, audit log access. Included in Phase 1 sign-off.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Training Materials</td>
-                <td>All materials delivered in Meridian-branded format. Editable source files provided. Updated within 10 business days of any system change.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="overview-card">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">🔄</span>
-            Change Management
-          </div>
-          <table className="overview-table">
-            <tbody>
-              <tr>
-                <td className="overview-table-label">Change Impact Assessment</td>
-                <td>ADKAR model applied. Stakeholder impact analysis completed in Phase 1. Change readiness surveys at 60 days and 30 days pre-go-live.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Communication Plan</td>
-                <td>Fortnightly all-staff updates from Month 3. Department-specific briefings at each phase milestone. Executive communication toolkit provided.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Resistance Management</td>
-                <td>Identified risk departments receive dedicated change champion. Individual coaching sessions for senior staff with low change readiness scores.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Adoption Measurement</td>
-                <td>System adoption KPIs tracked for 90 days post-go-live. Monthly adoption report to Programme Board. Intervention plan triggered if adoption &lt; 80%.</td>
+                <td className="overview-table-label">Documentation Package</td>
+                <td>API reference (OpenAPI 3.1), operations runbook, architecture decision records, data dictionary — delivered at each phase sign-off and maintained in Confluence.</td>
               </tr>
             </tbody>
           </table>
@@ -402,9 +349,9 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">P1 — Critical</td>
-                <td>System down or data loss; no workaround</td>
+                <td>Portal down or data loss; no workaround</td>
                 <td>30 minutes</td>
-                <td>4 hours</td>
+                <td>1 hour (RFP RTO)</td>
               </tr>
               <tr>
                 <td className="overview-table-label">P2 — High</td>
@@ -437,83 +384,19 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Support Hours</td>
-                <td>Business hours (08:00–18:00 local, Mon–Fri) as standard. 24/7 on-call for P1/P2 incidents included at no extra charge for the first 12 months.</td>
+                <td>Business hours standard. 24/7 on-call for P1/P2 incidents included at no extra charge for the first 12 months post-Phase 1 go-live.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Channels</td>
-                <td>Dedicated support portal (ticket tracking + SLA dashboard), direct Slack channel to your named support engineer, and emergency phone line for P1 incidents.</td>
+                <td>Dedicated support portal (ticket tracking + SLA dashboard), Slack or MS Teams channel to named support engineer, emergency phone line for P1 incidents.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Named Support Engineer</td>
-                <td>A single engineer with full project context assigned to your account — no explaining your system from scratch on every call.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Escalation Path</td>
-                <td>Support engineer → Technical Lead → Delivery Director. Escalation automatically triggered if P1 is not resolved within 2 hours.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="overview-card">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">📊</span>
-            Service Reporting &amp; Continuous Improvement
-          </div>
-          <table className="overview-table">
-            <tbody>
-              <tr>
-                <td className="overview-table-label">Monthly SLA Report</td>
-                <td>Ticket volume by priority, SLA adherence rate, mean time to resolution, recurring issue trends — delivered to your IT and programme lead.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Quarterly Service Review</td>
-                <td>30-minute review call with your Delivery Director to assess support performance, review the release roadmap, and reprioritise the backlog.</td>
+                <td className="overview-table-label">Ops Team Alerts</td>
+                <td>Failed jobs alert ops team within 5 min (RFP §4.4). `/healthz` endpoint exposes structured status for all subsystems. Automated alerting on error rates and performance thresholds.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Proactive Monitoring</td>
-                <td>Automated alerting on system health, error rates, and performance thresholds. Issues identified and triaged before you report them.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">SLA Penalty Regime</td>
-                <td>Missed P1 SLA: service credit applied automatically. Repeated breaches trigger a remediation plan review. Full terms in the managed services SOW.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      </>)}
-
-      {show('5.7') && (<>
-      {/* 5.7 Transition & Handover */}
-      <div className="rfp-section-heading" id="5.7">Transition &amp; Handover</div>
-      <div className="overview-grid">
-        <div className="overview-card">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">→</span>
-            Hypercare &amp; BAU Transition
-          </div>
-          <table className="overview-table">
-            <tbody>
-              <tr>
-                <td className="overview-table-label">Hypercare Period</td>
-                <td>4 weeks per go-live wave. Dedicated support team on-site or on-call. P1 response SLA: 30 minutes. Daily operational call with Meridian IT.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Knowledge Transfer</td>
-                <td>Pair-programming and handover sessions with Meridian internal team. Architecture decision records (ADRs) maintained throughout. Runbook and SOP library delivered.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Documentation Package</td>
-                <td>System Architecture Document, Operations Manual, Disaster Recovery Playbook, API Reference, Data Dictionary, Security Policies. All in Meridian Confluence.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">BAU Support Model</td>
-                <td>Post-hypercare: 12-month managed service option (separate SOW) or full handover to Meridian IT + nominated third-party support partner.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Warranty Period</td>
-                <td>90-day warranty on all delivered code. Critical defects fixed within 24 hours at no charge. High defects within 5 business days.</td>
+                <td>Prometheus + Grafana dashboards. Issues identified and triaged before you report them. Monthly SLA report to Meridian IT lead.</td>
               </tr>
             </tbody>
           </table>

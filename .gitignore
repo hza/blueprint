@@ -9,3 +9,4 @@ backend/__pycache__
 backend/.venv
 
 .vscode/PythonImportHelper-v2-Completion.json
+.claude/scheduled_tasks.lock

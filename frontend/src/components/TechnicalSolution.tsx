@@ -6,14 +6,14 @@ export function TechnicalSolution() {
         <div className="overview-banner-header">
           <div className="overview-banner-main">
             <div className="overview-banner-title">Technical Solution</div>
-            <div className="overview-banner-client">Architecture coverage: 91% — 3 open technical gaps requiring owner assignment</div>
+            <div className="overview-banner-client">Meridian Software · Customer Facing Portal — RFP</div>
           </div>
           <span className="overview-badge overview-badge--ok overview-banner-status">SOLUTION READY</span>
         </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Solution Score</span>
-            <span className="overview-stat-value overview-stat-score--ok">78 / 100</span>
+            <span className="overview-stat-value overview-stat-score--ok">3 phases · 28 weeks</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Stack</span>
@@ -21,11 +21,11 @@ export function TechnicalSolution() {
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Deployment</span>
-            <span className="overview-stat-value">Kubernetes on AWS</span>
+            <span className="overview-stat-value">Kubernetes · AWS / GCP / Azure</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Region</span>
-            <span className="overview-stat-value">us-east-1</span>
+            <span className="overview-stat-value">EU or US (at award)</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Open Gaps</span>
@@ -54,11 +54,11 @@ export function TechnicalSolution() {
               </tr>
               <tr>
                 <td className="overview-table-label">Backend API</td>
-                <td className="overview-table-value">Python FastAPI · REST + GraphQL gateway</td>
+                <td className="overview-table-value">Python FastAPI · REST / OpenAPI 3.1</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Data Layer</td>
-                <td className="overview-table-value">PostgreSQL 16 · Redis 7 · S3-compatible object store</td>
+                <td className="overview-table-value">PostgreSQL 15+ · Redis · S3-compatible object store</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Messaging</td>
@@ -81,16 +81,15 @@ export function TechnicalSolution() {
           <div className="overview-card-header">
             <span className="overview-card-icon">✓</span>
             RFP Technical Requirement Coverage
-            <span className="overview-badge overview-badge--warn">3 Gaps</span>
           </div>
           <ul className="overview-checklist">
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <span>High Availability — Active-active deployment across 2 AZs. RTO &lt; 15 min, RPO &lt; 1 min.</span>
+              <span>High Availability — Portal uptime 99.9%/month, AI pipeline 99.5%. RTO: 1 hour, RPO: 15 minutes (RFP §4.4). Graceful degradation within 30 s if AI service fails.</span>
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <span>Scalability — Horizontal auto-scaling via KEDA. Load tested to 10 000 concurrent users.</span>
+              <span>Scalability — Handles ≥ 20 concurrent analysis jobs and ~100 concurrent users. AI workers scale horizontally when queue depth &gt; 5. System handles 2× users within SLA without reconfiguration (RFP §4.4).</span>
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
@@ -98,19 +97,19 @@ export function TechnicalSolution() {
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <span>Audit logging — Immutable audit trail per Section 5.2. Retained 7 years on WORM storage.</span>
+              <span>Audit logging — Immutable audit log: all logins, uploads, edits, exports, approvals, deletions. Queryable by user, event type, project, date range. Exportable for compliance (RFP §4.3).</span>
             </li>
-            <li className="overview-check overview-check--fail">
+            <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <span>SSO / SAML 2.0 integration — <strong>NOT addressed</strong>. Section 6.4 mandates IdP federation with client AD.</span>
+              <span>PII anonymisation — Dedicated worker replaces PII with typed placeholders before any content reaches external LLM. Reversible mapping never leaves company infrastructure (RFP §4.5).</span>
             </li>
-            <li className="overview-check overview-check--fail">
+            <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <span>Offline / disconnected mode — <strong>NOT scoped</strong>. Section 8.1 requires field ops with intermittent connectivity.</span>
+              <span>RAG pipeline — 512-token chunks (10% overlap), embedded into Qdrant, retrieved at analysis time (RFP §4.5). All LLM outputs validated against JSON schemas.</span>
             </li>
             <li className="overview-check overview-check--warn">
               <span className="overview-check-icon" />
-              <span>Legacy API adapter — Partial. SOAP-to-REST bridge designed but not load-tested against legacy endpoints.</span>
+              <span>SSO / SAML 2.0 — Scoped for Phase 3. OAuth 2.0 (Google Workspace, Azure AD, Okta) and SAML 2.0 supported via abstraction layer (RFP §4.5).</span>
             </li>
           </ul>
         </div>
@@ -123,10 +122,10 @@ export function TechnicalSolution() {
             <span className="overview-badge overview-badge--warn">Review Required</span>
           </div>
           <ul className="overview-risk-list">
-            <li className="overview-risk overview-risk--high">
-              <span className="overview-risk-level">GAP</span>
+            <li className="overview-risk overview-risk--ok">
+              <span className="overview-risk-level">MET</span>
               <div>
-                <strong>ISO 27001 certification not yet held</strong> — RFP Section 4.3 is mandatory. Expedited audit path estimated at 90 days; submission is before that window closes.
+                <strong>SOC 2 Type II certified</strong> — The RFP targets SOC 2 Type II (not ISO 27001). Certificate available. GDPR compliance implemented: right to erasure, data portability, consent management, DPAs (RFP §4.4).
               </div>
             </li>
             <li className="overview-risk overview-risk--med">
@@ -157,46 +156,25 @@ export function TechnicalSolution() {
             Delivery Plan
           </div>
           <ul className="overview-timeline">
-            <li className="overview-tl-item overview-tl--done">
+            <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">Month 1–2</span>
-                <span className="overview-tl-event">Discovery &amp; environment setup — requirements validation, cloud provisioning, CI/CD pipeline</span>
-              </div>
-            </li>
-            <li className="overview-tl-item overview-tl--done">
-              <span className="overview-tl-dot" />
-              <div>
-                <span className="overview-tl-date">Month 3–5</span>
-                <span className="overview-tl-event">Core platform build — auth, data model, API layer, base UI</span>
+                <span className="overview-tl-date">Weeks 1–12 · 2026-08-04 → 2026-10-27</span>
+                <span className="overview-tl-event"><strong>Phase 1 — MVP:</strong> User management, document ingestion + OCR, PII anonymisation worker, AI analysis (RAG/Qdrant), feature list + estimates, C4 Context &amp; Application views, Risk Register, Go/No-Go Advisor, RFP Health Score, basic client portal, PDF/DOCX export, MS Teams notifications.</span>
               </div>
             </li>
             <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">Month 6–8</span>
-                <span className="overview-tl-event">Integration sprint — legacy adapters, SSO, third-party connectors, UAT environment</span>
+                <span className="overview-tl-date">Weeks 13–20 · 2026-10-28 → 2026-12-22</span>
+                <span className="overview-tl-event"><strong>Phase 2 — Enhanced Analytics:</strong> Real-time collaboration (WebSockets), approval workflow engine, C4 Level 3 views, Confluence export, email notifications, full audit trail UI.</span>
               </div>
             </li>
             <li className="overview-tl-item overview-tl--future">
               <span className="overview-tl-dot" />
               <div>
-                <span className="overview-tl-date">Month 9</span>
-                <span className="overview-tl-event">Performance &amp; security testing — load tests, pen-test, remediation</span>
-              </div>
-            </li>
-            <li className="overview-tl-item overview-tl--future">
-              <span className="overview-tl-dot" />
-              <div>
-                <span className="overview-tl-date">Month 10</span>
-                <span className="overview-tl-event">Pilot rollout — 50-user group, feedback loop, go/no-go review</span>
-              </div>
-            </li>
-            <li className="overview-tl-item overview-tl--future">
-              <span className="overview-tl-dot" />
-              <div>
-                <span className="overview-tl-date">Month 11–12</span>
-                <span className="overview-tl-event">Full production cutover — phased migration, hypercare support, knowledge transfer</span>
+                <span className="overview-tl-date">Weeks 21–28 · 2026-12-23 → 2027-02-16</span>
+                <span className="overview-tl-event"><strong>Phase 3 — Platform &amp; Ecosystem:</strong> SSO (SAML), Salesforce CRM webhooks, analytics dashboard, LLM provider switching + prompt A/B testing, Ollama self-hosted LLM, API key management.</span>
               </div>
             </li>
           </ul>
@@ -219,39 +197,45 @@ export function TechnicalSolution() {
             </thead>
             <tbody>
               <tr>
+                <td className="overview-table-label">Engagement Manager</td>
+                <td>Sarah Chen</td>
+                <td>0.5</td>
+                <td className="overview-val--ok">Confirmed</td>
+              </tr>
+              <tr>
                 <td className="overview-table-label">Solution Architect</td>
-                <td>A. Reyes</td>
-                <td>0.5</td>
-                <td className="overview-val--ok">Confirmed</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Tech Lead / Backend</td>
-                <td>M. Patel</td>
+                <td>Mark Okonkwo</td>
                 <td>1.0</td>
-                <td className="overview-val--ok">Confirmed</td>
+                <td className="overview-val--ok">Confirmed — meets RFP min. threshold</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Frontend Lead</td>
-                <td>TBD</td>
+                <td className="overview-table-label">Senior Frontend Engineer</td>
+                <td>Priya Ramaswamy</td>
                 <td>1.0</td>
-                <td className="overview-val--warn">Recruitment in progress</td>
+                <td className="overview-val--ok">Confirmed — meets RFP min. threshold</td>
               </tr>
               <tr>
-                <td className="overview-table-label">DevOps / Platform</td>
-                <td>L. Chen</td>
-                <td>0.5</td>
+                <td className="overview-table-label">AI/ML Engineer</td>
+                <td>Named in Annex D</td>
+                <td>1.0</td>
+                <td className="overview-val--ok">Confirmed — RAG, Qdrant, LLM abstraction</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Senior Backend Engineers (×2)</td>
+                <td>Named in Annex D</td>
+                <td>1.0</td>
                 <td className="overview-val--ok">Confirmed</td>
               </tr>
               <tr>
                 <td className="overview-table-label">QA Lead</td>
-                <td>S. Nguyen</td>
-                <td>0.5</td>
+                <td>James Obi</td>
+                <td>1.0</td>
                 <td className="overview-val--ok">Confirmed</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Project Manager</td>
-                <td>K. Obi</td>
-                <td>0.5</td>
+                <td className="overview-table-label">DevOps / Cloud Engineer</td>
+                <td>Named in Annex D</td>
+                <td>1.0</td>
                 <td className="overview-val--ok">Confirmed</td>
               </tr>
             </tbody>
@@ -269,37 +253,31 @@ export function TechnicalSolution() {
             <li className="overview-action overview-action--urgent">
               <span className="overview-action-tag">BLOCKING</span>
               <div>
-                <strong>Design SSO / SAML 2.0 integration</strong> — Assign M. Patel. Prototype required before proposal submission to prove feasibility against client AD schema.
+                <strong>Confirm LLM provider with Meridian</strong> — Proposal assumes Anthropic Claude Sonnet + GPT-4o via abstraction layer. Confirm preference before kick-off so prompt tuning begins on the right provider (RFP §4.5 allows OpenAI, Anthropic, or Azure OpenAI).
               </div>
             </li>
             <li className="overview-action overview-action--urgent">
               <span className="overview-action-tag">BLOCKING</span>
               <div>
-                <strong>Scope offline mode</strong> — Define sync strategy (CRDTs vs. last-write-wins) and storage budget for field devices. Required for Section 8.1 compliance narrative.
+                <strong>Confirm cloud region (EU or US)</strong> — Infrastructure provisioning and GDPR DPA drafting cannot start until the single data region is chosen (RFP §4.4, §9). Confirmed at contract award.
               </div>
             </li>
             <li className="overview-action overview-action--urgent">
               <span className="overview-action-tag">BLOCKING</span>
               <div>
-                <strong>Schedule penetration test</strong> — Vendor must be engaged this week to hit report deadline. Use pre-approved vendor list from InfoSec.
+                <strong>Validate PII anonymisation accuracy before Phase 1 UAT</strong> — NER model must achieve ≥ 99% recall on standard PII classes. Test against a representative sample of Meridian RFP documents before any client data enters the pipeline.
               </div>
             </li>
             <li className="overview-action overview-action--high">
               <span className="overview-action-tag">HIGH</span>
               <div>
-                <strong>Resolve 12 open CVEs</strong> — Run <code>snyk fix</code> for auto-patchable issues. Manually review remaining 4. Sign-off needed from InfoSec before pen-test.
+                <strong>Qdrant vector DB sizing</strong> — RFP targets up to 5,000 projects and 500,000 artifacts (§4.4). Size Qdrant cluster and define index strategy (512-token chunks, 10% overlap) before Phase 1 infrastructure provisioning.
               </div>
             </li>
             <li className="overview-action overview-action--high">
               <span className="overview-action-tag">HIGH</span>
               <div>
-                <strong>Complete legacy SOAP adapter load test</strong> — Target: 500 req/s sustained. Current tests only cover 50 req/s. Schedule test with infrastructure team.
-              </div>
-            </li>
-            <li className="overview-action overview-action--med">
-              <span className="overview-action-tag">MED</span>
-              <div>
-                Hire Frontend Lead — without confirmation, resource plan in proposal is non-credible. Escalate to HR today.
+                <strong>SSO provider sandbox credentials</strong> — Needed from Meridian by Phase 1 week 4 to start OAuth 2.0 / SAML 2.0 integration work (Phase 3 deliverable, but integration design starts Phase 1).
               </div>
             </li>
           </ul>

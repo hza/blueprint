@@ -13,49 +13,56 @@ const TEAM: TeamMember[] = [
     name: 'Sarah Chen',
     role: 'Engagement Manager',
     allocation: '50%',
-    skills: ['Stakeholder Management', 'Risk & Governance', 'Agile Delivery'],
+    skills: ['Stakeholder Management', 'Risk & Governance', 'Agile Delivery', 'Scrum'],
     phase: 'management',
   },
   {
-    name: 'Marcus Rivera',
+    name: 'Mark Okonkwo',
     role: 'Solution Architect',
     allocation: '100%',
-    skills: ['System Design', 'API Gateway', 'Cloud Infrastructure'],
+    skills: ['System Design', 'C4 Architecture', 'Cloud Infrastructure', 'API Design'],
     phase: 'infrastructure',
   },
   {
-    name: 'Priya Nair',
-    role: 'Lead Backend Engineer',
+    name: 'Priya Ramaswamy',
+    role: 'Senior Frontend Engineer',
     allocation: '100%',
-    skills: ['Node.js', 'PostgreSQL', 'ISO 27001', 'RBAC'],
+    skills: ['React 18', 'TypeScript', 'React Flow', 'WebSockets', 'WCAG 2.1 AA'],
     phase: 'delivery',
   },
   {
-    name: 'David Kim',
-    role: 'Full-Stack Engineer',
+    name: 'AI/ML Engineer',
+    role: 'AI/ML Engineer',
     allocation: '100%',
-    skills: ['React', 'TypeScript', 'REST APIs', 'Data Migration'],
+    skills: ['LLM Integration', 'RAG / Qdrant', 'PII Anonymisation', 'Prompt Engineering'],
     phase: 'delivery',
   },
   {
-    name: 'Amara Osei',
+    name: 'Backend Engineers ×2',
+    role: 'Senior Backend Engineers',
+    allocation: '100%',
+    skills: ['FastAPI', 'PostgreSQL', 'Kafka', 'Celery', 'CQRS / Outbox'],
+    phase: 'delivery',
+  },
+  {
+    name: 'James Obi',
     role: 'QA Lead',
-    allocation: '75%',
-    skills: ['Test Automation', 'UAT', 'Regression Testing', 'Playwright'],
+    allocation: '100%',
+    skills: ['BDD / Gherkin', 'k6 Load Testing', 'OWASP ZAP', 'Playwright', 'UAT'],
     phase: 'qa',
   },
   {
-    name: 'Lena Müller',
-    role: 'Data Engineer',
+    name: 'Lena Vogel',
+    role: 'UX Designer',
     allocation: '75%',
-    skills: ['DataBridge', 'ETL Pipelines', 'SQL', 'Data Quality'],
+    skills: ['shadcn/ui', 'Figma', 'WCAG 2.1 AA', 'Onboarding UX'],
     phase: 'delivery',
   },
   {
-    name: 'James Thornton',
+    name: 'DevOps Engineer',
     role: 'DevOps / Cloud Engineer',
-    allocation: '50%',
-    skills: ['AWS', 'CI/CD', 'Docker', 'Security Hardening'],
+    allocation: '100%',
+    skills: ['Kubernetes', 'Helm', 'Terraform', 'GitHub Actions', 'Prometheus'],
     phase: 'infrastructure',
   },
 ]
@@ -85,7 +92,7 @@ export function Team() {
   return (
     <div className="team-wrap">
       <div className="team-header-row">
-        <div className="team-title">Project Team — 7 Members · 6.75 FTE</div>
+        <div className="team-title">Project Team — 8 Members · 7.5 FTE · 28-Week Engagement</div>
         <div className="team-legend">
           {Object.entries(PHASE_LABELS).map(([key, label]) => (
             <span key={key} className="team-legend-item">
@@ -143,11 +150,11 @@ export function Team() {
 
       <div className="team-summary">
         {[
-          { value: '7', label: 'Team Members' },
-          { value: '6.75', label: 'Total FTE' },
-          { value: '4', label: 'Full-Time' },
-          { value: '3', label: 'Part-Time' },
-          { value: '14 wks', label: 'Engagement' },
+          { value: '8', label: 'Team Members' },
+          { value: '7.5', label: 'Total FTE' },
+          { value: '6', label: 'Full-Time' },
+          { value: '2', label: 'Part-Time' },
+          { value: '28 wks', label: 'Engagement' },
         ].map(({ value, label }) => (
           <div key={label} className="tl-card">
             <div className="tl-card-value">{value}</div>

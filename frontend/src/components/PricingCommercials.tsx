@@ -13,7 +13,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Fixed-Price Total</span>
-            <span className="overview-stat-value overview-stat-score--ok">$2,680,000</span>
+            <span className="overview-stat-value overview-stat-score--ok">$2,280,000</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Annual SaaS / Managed</span>
@@ -21,7 +21,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">5-Year TCO</span>
-            <span className="overview-stat-value">$3,560,000</span>
+            <span className="overview-stat-value">$4,612,300</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Price Model</span>
@@ -57,7 +57,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Implementation (Fixed)</td>
-                <td className="overview-val--strong">$2,680,000</td>
+                <td className="overview-val--strong">$2,280,000</td>
                 <td>—</td>
                 <td>—</td>
                 <td>—</td>
@@ -98,7 +98,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             </tbody>
           </table>
           <div style={{ marginTop: '0.75rem', fontSize: '0.8rem', color: 'var(--text-muted, #666)' }}>
-            5-Year TCO: <strong>$4,260,000</strong>. All figures AUD, exclusive of GST. Change requests estimated at market average for similar engagements; actuals billed at agreed rate card.
+            5-Year TCO: <strong>$4,612,300</strong>. All figures USD. Change requests estimated at market average for similar engagements; actuals billed at agreed rate card.
           </div>
         </div>
 
@@ -110,20 +110,20 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
           <table className="overview-table">
             <tbody>
               <tr>
-                <td className="overview-table-label">vs. SAP S/4HANA</td>
-                <td className="overview-val--ok">Est. 35–45% lower 5-year TCO. SAP licences alone typically exceed $800k/yr for 500-user deployment.</td>
+                <td className="overview-table-label">vs. Off-the-shelf AI tools</td>
+                <td className="overview-val--ok">Generic AI document tools lack the RFP-specific pipeline (Go/No-Go Advisor, RFP Health Score, C4 views, Risk Register). A custom build is tuned to your ICP and capability matrix — not a generic summariser.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">vs. Oracle ERP Cloud</td>
-                <td className="overview-val--ok">Est. 30–40% lower. Oracle subscription model locks in escalating costs; a fixed implementation price plus flat managed fee caps your exposure.</td>
+                <td className="overview-table-label">vs. Other custom dev agencies</td>
+                <td className="overview-val--ok">SCNSoft brings two production LLM deployments as references, satisfying both RFP §9 mandatory thresholds out of the box. Most custom agencies will be building their first AI-in-production system on your contract.</td>
               </tr>
               <tr>
-                <td className="overview-table-label">vs. Build-in-House</td>
-                <td className="overview-val--ok">Est. 50% lower. Internal builds historically overrun by 80% (Standish Chaos Report 2024). Your fixed price eliminates this risk.</td>
+                <td className="overview-table-label">vs. Build-in-house</td>
+                <td className="overview-val--ok">Internal builds of comparable scope historically overrun by 60–80%. A fixed-price contract with milestone-based payment eliminates that risk and gives you a committed go-live date.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">ROI Projection</td>
-                <td>Automation of 4 FTE manual processes + reduced reconciliation errors estimated to deliver $480k/yr operational savings. Payback period: ~5.5 years.</td>
+                <td>RFP §1 targets ≥ 70% reduction in pre-sales effort and turnaround from 5–7 days to &lt; 24 hours. For a team handling 20 RFPs/month at 8–40 hrs each, that frees 1,000–4,000 analyst hours/year — redeployable to higher-value work.</td>
               </tr>
             </tbody>
           </table>
@@ -152,40 +152,28 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Phase 1</td>
-                <td>Discovery &amp; Design</td>
-                <td>6 weeks</td>
-                <td>$280,000</td>
+                <td className="overview-table-label">Phase 1 — MVP</td>
+                <td>Document ingestion, PII anonymisation, AI analysis, feature list, C4 views, risk register, Go/No-Go, RFP Health Score, basic client portal, PDF/DOCX export, MS Teams notifications</td>
+                <td>12 weeks</td>
+                <td>$980,000</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Phase 2</td>
-                <td>Core Build (Finance, HR, Procurement)</td>
-                <td>20 weeks</td>
-                <td>$1,120,000</td>
+                <td className="overview-table-label">Phase 2 — Enhanced Analytics</td>
+                <td>Real-time collaboration (WebSockets), approval workflow, C4 Level 3 views, Confluence export, email notifications, full audit trail UI</td>
+                <td>+8 weeks</td>
+                <td>$720,000</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Phase 3</td>
-                <td>Integration &amp; Data Migration</td>
-                <td>14 weeks</td>
-                <td>$560,000</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Phase 4</td>
-                <td>Training &amp; Pilot</td>
-                <td>8 weeks</td>
-                <td>$320,000</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Phase 5</td>
-                <td>Go-Live, Hypercare &amp; Handover</td>
-                <td>26 weeks</td>
-                <td>$400,000</td>
+                <td className="overview-table-label">Phase 3 — Platform &amp; Ecosystem</td>
+                <td>SSO (SAML), Salesforce CRM webhooks, analytics dashboard, LLM provider switching, Ollama self-hosted option, API key management</td>
+                <td>+8 weeks</td>
+                <td>$580,000</td>
               </tr>
               <tr>
                 <td className="overview-table-label overview-val--strong">Total Fixed Price</td>
                 <td></td>
-                <td><strong>6 months</strong></td>
-                <td className="overview-val--strong">$2,680,000</td>
+                <td><strong>28 weeks</strong></td>
+                <td className="overview-val--strong">$2,280,000</td>
               </tr>
             </tbody>
           </table>
@@ -219,34 +207,28 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
                 <td>10%</td>
               </tr>
               <tr>
-                <td className="overview-table-label">M3 — Phase 2 Mid-Point</td>
-                <td>Sprint 5 demo accepted</td>
-                <td>$402,000</td>
-                <td>15%</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">M4 — Core Build Complete</td>
-                <td>UAT sign-off Phase 2</td>
-                <td>$536,000</td>
+                <td className="overview-table-label">M3 — Phase 1 MVP UAT Sign-off</td>
+                <td>UAT accepted: document ingestion, AI analysis, feature list, C4 views, risk register, Go/No-Go, client portal, PDF/DOCX export (~2026-10-27)</td>
+                <td>$456,000</td>
                 <td>20%</td>
               </tr>
               <tr>
-                <td className="overview-table-label">M5 — Integration Complete</td>
-                <td>Migration validation &amp; UAT Phase 3</td>
-                <td>$402,000</td>
+                <td className="overview-table-label">M4 — Phase 2 UAT Sign-off</td>
+                <td>UAT accepted: real-time collaboration, approval workflow, Confluence export, audit trail (~2026-12-22)</td>
+                <td>$342,000</td>
                 <td>15%</td>
               </tr>
               <tr>
-                <td className="overview-table-label">M6 — Go-Live Wave 1</td>
-                <td>First department live</td>
-                <td>$402,000</td>
+                <td className="overview-table-label">M5 — Phase 3 UAT Sign-off</td>
+                <td>UAT accepted: SSO, Salesforce webhooks, analytics dashboard, LLM switching (~2027-02-16)</td>
+                <td>$342,000</td>
                 <td>15%</td>
               </tr>
               <tr>
-                <td className="overview-table-label">M7 — Programme Close</td>
-                <td>All departments live, handover complete</td>
-                <td>$402,000</td>
-                <td>15%</td>
+                <td className="overview-table-label">M6 — Programme Close</td>
+                <td>Hypercare complete, documentation delivered, knowledge transfer sign-off</td>
+                <td>$684,000</td>
+                <td>30%</td>
               </tr>
             </tbody>
           </table>
@@ -261,7 +243,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             <thead>
               <tr>
                 <th>Role</th>
-                <th>Day Rate (AUD)</th>
+                <th>Day Rate (USD)</th>
                 <th>Valid Until</th>
               </tr>
             </thead>
@@ -292,8 +274,8 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
                 <td>Dec 31, 2026</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Change Manager</td>
-                <td>$1,400</td>
+                <td className="overview-table-label">AI/ML Engineer</td>
+                <td>$1,700</td>
                 <td>Dec 31, 2026</td>
               </tr>
             </tbody>
@@ -316,7 +298,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Contract Type</td>
-                <td>Fixed-price delivery contract for Phases 1–5. Separate managed services agreement for ongoing support (optional, 12-month rolling).</td>
+                <td>Fixed-price delivery contract for all 3 phases (MVP, Enhanced Analytics, Platform &amp; Ecosystem). Separate managed services agreement for ongoing support (optional, 12-month rolling).</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Payment Terms</td>
