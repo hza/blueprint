@@ -1,9 +1,11 @@
+import mimetypes
 import re
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(title="RFP Viewer API")
 
@@ -14,6 +16,35 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
+
+BASE_DIR = Path(__file__).parent
+
+# Serve static files from backend/webroot at /webroot
+WEBROOT_DIR = BASE_DIR / "webroot"
+if WEBROOT_DIR.exists():
+    app.mount("/webroot", StaticFiles(directory=str(WEBROOT_DIR)), name="webroot")
+    # Mount subdirectories and register routes for root-level files
+    for p in WEBROOT_DIR.iterdir():
+        if p.is_dir():
+            try:
+                app.mount(f"/{p.name}", StaticFiles(directory=str(p)), name=p.name)
+            except Exception:
+                pass
+        elif p.is_file() and p.name != "index.html":
+            def _make_file_route(fp=p, fn=p.name):
+                media_type = mimetypes.guess_type(fn)[0] or "application/octet-stream"
+                @app.get(f"/{fn}", include_in_schema=False)
+                def _serve():
+                    return FileResponse(path=str(fp), media_type=media_type, content_disposition_type="inline")
+            _make_file_route()
+    # optional: serve index at root of mounted path
+    @app.get("/", response_class=HTMLResponse)
+    def root_index():
+        index = WEBROOT_DIR / "index.html"
+        if index.exists():
+            return HTMLResponse(index.read_text(encoding="utf-8"))
+        return JSONResponse({"status": "ok"})
+
 
 RFP_DIR = (Path(__file__).parent.parent / "RFP").resolve()
 FL_FILE = (Path(__file__).parent.parent / "output" / "FL.md").resolve()
