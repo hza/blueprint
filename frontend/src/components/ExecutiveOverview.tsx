@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const REPLY_ICON = (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -56,8 +56,8 @@ function ClarificationsTable() {
           const answered = !!answers[ref]
           const isOpen = openRef === ref
           return (
-            <>
-              <tr key={ref}>
+            <React.Fragment key={ref}>
+              <tr>
                 <td>{ref}</td>
                 <td>{question}</td>
                 <td>
@@ -114,7 +114,7 @@ function ClarificationsTable() {
                   </td>
                 </tr>
               )}
-            </>
+            </React.Fragment>
           )
         })}
       </tbody>
