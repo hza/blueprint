@@ -12,9 +12,9 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
   const colHeaders = ['Access Control', 'Encryption', 'Incident Resp.', 'Audit Logs', 'Data Residency']
 
   const coverageStyle = (c: Coverage): React.CSSProperties => {
-    if (c === 'covered') return { background: '#D1FAE5', color: '#065F46' }
-    if (c === 'partial') return { background: '#FEF3C7', color: '#92400E' }
-    return { background: '#F3F4F6', color: '#6B7280' }
+    if (c === 'covered') return { background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)' }
+    if (c === 'partial') return { background: 'var(--sem-warn-bg)', color: 'var(--sem-warn-fg)' }
+    return { background: 'var(--canvas-inset)', color: 'var(--fg-muted)' }
   }
   const coverageLabel = (c: Coverage) => c === 'covered' ? '✓' : c === 'partial' ? 'Partial' : 'N/A'
 
@@ -191,32 +191,47 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">🛡</span>
             Infrastructure &amp; Network Security
           </div>
-          <ul className="overview-checklist">
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              Web Application Firewall (WAF) — Azure Front Door WAF with OWASP Top 10 ruleset and custom Meridian rules.
-            </li>
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              DDoS Protection — Azure DDoS Protection Standard with automatic attack mitigation and $1M SLA-backed availability guarantee.
-            </li>
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              Network Segmentation — Private subnets per tier (web / app / data). No direct public internet access to database layer. NSGs with allowlist-only rules.
-            </li>
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              Intrusion Detection — Microsoft Sentinel SIEM with 24/7 SOC monitoring. Alert SLA: Critical ≤ 15 min, High ≤ 1 hr.
-            </li>
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              Vulnerability Management — Weekly automated scans (Qualys). Critical CVEs patched within 24 hours, High within 72 hours.
-            </li>
-            <li className="overview-check overview-check--warn">
-              <span className="overview-check-icon" />
-              Container Security — Trivy image scanning integrated in CI/CD. Runtime protection via Defender for Containers (pilot in progress).
-            </li>
-          </ul>
+          <table className="overview-table">
+            <thead>
+              <tr>
+                <th>Control</th>
+                <th>Implementation</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Web Application Firewall</td>
+                <td>Azure Front Door WAF with OWASP Top 10 ruleset and custom Meridian rules.</td>
+                <td><span className="overview-badge overview-badge--ok">Active</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">DDoS Protection</td>
+                <td>Azure DDoS Protection Standard — automatic attack mitigation, $1M SLA-backed availability guarantee.</td>
+                <td><span className="overview-badge overview-badge--ok">Active</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Network Segmentation</td>
+                <td>Private subnets per tier (web / app / data). No public internet access to database layer. NSGs with allowlist-only rules.</td>
+                <td><span className="overview-badge overview-badge--ok">Active</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Intrusion Detection</td>
+                <td>Microsoft Sentinel SIEM with 24/7 SOC monitoring. Alert SLA: Critical ≤ 15 min, High ≤ 1 hr.</td>
+                <td><span className="overview-badge overview-badge--ok">Active</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Vulnerability Management</td>
+                <td>Weekly automated scans (Qualys). Critical CVEs patched within 24 hours, High within 72 hours.</td>
+                <td><span className="overview-badge overview-badge--ok">Active</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Container Security</td>
+                <td>Trivy image scanning in CI/CD. Runtime protection via Defender for Containers.</td>
+                <td><span className="overview-badge overview-badge--warn">Pilot</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div className="overview-card">
@@ -262,18 +277,18 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
           <table style={{ width: '100%', fontSize: '12px', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
-                <th style={{ padding: '6px', border: '1px solid #E5E7EB', textAlign: 'left', background: '#F9FAFB', fontSize: '11px' }}></th>
+                <th style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'left', background: 'var(--canvas-subtle)', color: 'var(--fg)', fontSize: '11px' }}></th>
                 {colHeaders.map(h => (
-                  <th key={h} style={{ padding: '6px', border: '1px solid #E5E7EB', textAlign: 'center', background: '#F9FAFB', fontSize: '11px', fontWeight: 600 }}>{h}</th>
+                  <th key={h} style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'center', background: 'var(--canvas-subtle)', color: 'var(--fg)', fontSize: '11px', fontWeight: 600 }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {certRows.map(row => (
                 <tr key={row.cert}>
-                  <td style={{ padding: '6px', border: '1px solid #E5E7EB', fontWeight: 600, whiteSpace: 'nowrap', fontSize: '11px' }}>{row.cert}</td>
+                  <td style={{ padding: '6px', border: '1px solid var(--border)', fontWeight: 600, whiteSpace: 'nowrap', fontSize: '11px', color: 'var(--fg)' }}>{row.cert}</td>
                   {row.cells.map((c, ci) => (
-                    <td key={ci} style={{ padding: '6px', border: '1px solid #E5E7EB', textAlign: 'center', ...coverageStyle(c) }}>
+                    <td key={ci} style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'center', ...coverageStyle(c) }}>
                       {coverageLabel(c)}
                     </td>
                   ))}
@@ -282,9 +297,9 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             </tbody>
           </table>
           <div style={{ display: 'flex', gap: '12px', marginTop: '10px', fontSize: '11px' }}>
-            <span style={{ background: '#D1FAE5', color: '#065F46', padding: '2px 8px', borderRadius: '4px' }}>✓ Covered</span>
-            <span style={{ background: '#FEF3C7', color: '#92400E', padding: '2px 8px', borderRadius: '4px' }}>Partial</span>
-            <span style={{ background: '#F3F4F6', color: '#6B7280', padding: '2px 8px', borderRadius: '4px' }}>N/A</span>
+            <span style={{ background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)', padding: '2px 8px', borderRadius: '4px' }}>✓ Covered</span>
+            <span style={{ background: 'var(--sem-warn-bg)', color: 'var(--sem-warn-fg)', padding: '2px 8px', borderRadius: '4px' }}>Partial</span>
+            <span style={{ background: 'var(--canvas-inset)', color: 'var(--fg-muted)', padding: '2px 8px', borderRadius: '4px' }}>N/A</span>
           </div>
         </div>
 

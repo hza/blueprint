@@ -288,24 +288,32 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">→</span>
             How to Contact These References
           </div>
-          <ul className="overview-checklist">
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              All three reference contacts are aware of this proposal and available for direct calls with Meridian's evaluation panel.
-            </li>
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              Reference letters for all three engagements will be submitted as a separate attachment (Annex E) prior to the 2026-06-20 proposal deadline.
-            </li>
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              If your evaluation panel would like to schedule reference calls, contact your SCNSoft engagement lead and a 30-minute slot will be arranged within 3 business days.
-            </li>
-            <li className="overview-check overview-check--ok">
-              <span className="overview-check-icon" />
-              Direct contact details (email and phone) for each reference are included in Annex E.
-            </li>
-          </ul>
+          <table className="overview-table">
+            <thead>
+              <tr>
+                <th>Topic</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Reference availability</td>
+                <td>All three contacts are aware of this proposal and available for direct calls with Meridian's evaluation panel.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Reference letters</td>
+                <td>Submitted as Annex E prior to the 2026-06-20 proposal deadline.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Scheduling a call</td>
+                <td>Contact your SCNSoft engagement lead — a 30-minute slot will be arranged within 3 business days.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Direct contact details</td>
+                <td>Email and phone for each reference are included in Annex E.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div className="overview-card">

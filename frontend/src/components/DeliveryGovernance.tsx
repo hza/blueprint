@@ -165,19 +165,19 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '4px' }}>
             {([
-              { day: 'Mon', week: 1, ceremonies: [{ label: 'Sprint Planning', bg: '#DBEAFE', color: '#1E40AF' }, { label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }] },
-              { day: 'Tue', week: 1, ceremonies: [{ label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }] },
-              { day: 'Wed', week: 1, ceremonies: [{ label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }] },
-              { day: 'Thu', week: 1, ceremonies: [{ label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }] },
-              { day: 'Fri', week: 1, ceremonies: [{ label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }, { label: 'Backlog Refinement', bg: '#FEF3C7', color: '#92400E' }] },
-              { day: 'Mon', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }] },
-              { day: 'Tue', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }] },
-              { day: 'Wed', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }] },
-              { day: 'Thu', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }, { label: 'Sprint Review', bg: '#D1FAE5', color: '#065F46' }] },
-              { day: 'Fri', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: '#F3F4F6', color: '#6B7280', small: true }, { label: 'Retrospective', bg: '#FCE7F3', color: '#9D174D' }] },
+              { day: 'Mon', week: 1, ceremonies: [{ label: 'Sprint Planning', bg: 'var(--sem-info-bg)', color: 'var(--sem-info-fg)' }, { label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }] },
+              { day: 'Tue', week: 1, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }] },
+              { day: 'Wed', week: 1, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }] },
+              { day: 'Thu', week: 1, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }] },
+              { day: 'Fri', week: 1, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }, { label: 'Backlog Refinement', bg: 'var(--sem-warn-bg)', color: 'var(--sem-warn-fg)' }] },
+              { day: 'Mon', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }] },
+              { day: 'Tue', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }] },
+              { day: 'Wed', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }] },
+              { day: 'Thu', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }, { label: 'Sprint Review', bg: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)' }] },
+              { day: 'Fri', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }, { label: 'Retrospective', bg: 'var(--sem-purple-bg)', color: 'var(--sem-purple-fg)' }] },
             ] as { day: string; week: number; ceremonies: { label: string; bg: string; color: string; small?: boolean }[] }[]).map((cell, idx) => (
-              <div key={idx} style={{ minHeight: '80px', border: '1px solid #E5E7EB', borderRadius: '4px', padding: '6px', fontSize: '11px' }}>
-                <div style={{ fontWeight: 'bold', marginBottom: '4px', color: '#374151' }}>Wk{cell.week} {cell.day}</div>
+              <div key={idx} style={{ minHeight: '80px', border: '1px solid var(--border)', borderRadius: '4px', padding: '6px', fontSize: '11px' }}>
+                <div style={{ fontWeight: 'bold', marginBottom: '4px', color: 'var(--fg-muted)' }}>Wk{cell.week} {cell.day}</div>
                 {cell.ceremonies.map((c, ci) => (
                   <div key={ci} style={{ background: c.bg, color: c.color, borderRadius: '2px', padding: '2px 4px', marginBottom: '2px', fontSize: c.small ? '10px' : '11px' }}>{c.label}</div>
                 ))}
@@ -336,9 +336,9 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             <table style={{ width: '100%', fontSize: '12px', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: 'left', padding: '5px 8px', border: '1px solid #E5E7EB', background: '#F9FAFB' }}>Activity</th>
+                  <th style={{ textAlign: 'left', padding: '5px 8px', border: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>Activity</th>
                   {['PM', 'Tech Lead', 'Dev Team', 'QA', 'BA', 'Your Team'].map(col => (
-                    <th key={col} style={{ textAlign: 'center', padding: '5px 8px', border: '1px solid #E5E7EB', background: '#F9FAFB' }}>{col}</th>
+                    <th key={col} style={{ textAlign: 'center', padding: '5px 8px', border: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>{col}</th>
                   ))}
                 </tr>
               </thead>
@@ -356,16 +356,16 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
                   ['Invoice Approval',       'I','I','I','I','I','R'],
                 ] as [string, string, string, string, string, string, string][]).map(([activity, ...cells]) => {
                   const cellStyle = (v: string): React.CSSProperties => {
-                    if (v === 'R') return { background: '#DBEAFE', color: '#1E40AF', fontWeight: 'bold' }
-                    if (v === 'A') return { background: '#D1FAE5', color: '#065F46', fontWeight: 'bold' }
-                    if (v === 'C') return { background: '#FEF3C7', color: '#92400E' }
-                    return { background: '#F3F4F6', color: '#6B7280' }
+                    if (v === 'R') return { background: 'var(--sem-info-bg)', color: 'var(--sem-info-fg)', fontWeight: 'bold' }
+                    if (v === 'A') return { background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)', fontWeight: 'bold' }
+                    if (v === 'C') return { background: 'var(--sem-warn-bg)', color: 'var(--sem-warn-fg)' }
+                    return { background: 'var(--canvas-inset)', color: 'var(--fg-muted)' }
                   }
                   return (
                     <tr key={activity}>
-                      <td style={{ textAlign: 'left', padding: '5px 8px', border: '1px solid #E5E7EB' }}>{activity}</td>
+                      <td style={{ textAlign: 'left', padding: '5px 8px', border: '1px solid var(--border)', color: 'var(--fg)' }}>{activity}</td>
                       {cells.map((v, i) => (
-                        <td key={i} style={{ textAlign: 'center', padding: '5px 8px', border: '1px solid #E5E7EB', ...cellStyle(v) }}>{v}</td>
+                        <td key={i} style={{ textAlign: 'center', padding: '5px 8px', border: '1px solid var(--border)', ...cellStyle(v) }}>{v}</td>
                       ))}
                     </tr>
                   )
@@ -374,10 +374,10 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             </table>
           </div>
           <div style={{ marginTop: '8px', fontSize: '11px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-            <span style={{ background: '#DBEAFE', color: '#1E40AF', fontWeight: 'bold', padding: '2px 6px', borderRadius: '3px' }}>R = Responsible</span>
-            <span style={{ background: '#D1FAE5', color: '#065F46', fontWeight: 'bold', padding: '2px 6px', borderRadius: '3px' }}>A = Accountable</span>
-            <span style={{ background: '#FEF3C7', color: '#92400E', padding: '2px 6px', borderRadius: '3px' }}>C = Consulted</span>
-            <span style={{ background: '#F3F4F6', color: '#6B7280', padding: '2px 6px', borderRadius: '3px' }}>I = Informed</span>
+            <span style={{ background: 'var(--sem-info-bg)', color: 'var(--sem-info-fg)', fontWeight: 'bold', padding: '2px 6px', borderRadius: '3px' }}>R = Responsible</span>
+            <span style={{ background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)', fontWeight: 'bold', padding: '2px 6px', borderRadius: '3px' }}>A = Accountable</span>
+            <span style={{ background: 'var(--sem-warn-bg)', color: 'var(--sem-warn-fg)', padding: '2px 6px', borderRadius: '3px' }}>C = Consulted</span>
+            <span style={{ background: 'var(--canvas-inset)', color: 'var(--fg-muted)', padding: '2px 6px', borderRadius: '3px' }}>I = Informed</span>
           </div>
         </div>
       </div>

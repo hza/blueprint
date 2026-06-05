@@ -407,19 +407,23 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
           <ul className="overview-checklist">
             <li className="overview-check overview-check--fail">
               <span className="overview-check-icon" />
-              <strong>Automated proposal writing</strong> — Deferred to Phase 2 per RFP Section 3.
+              <span className="overview-check-label">Automated proposal writing</span>
+              <span className="overview-check-desc">Deferred to Phase 2 per RFP Section 3.</span>
             </li>
             <li className="overview-check overview-check--fail">
               <span className="overview-check-icon" />
-              <strong>Contract generation</strong> — Deferred to Phase 2 per RFP Section 3.
+              <span className="overview-check-label">Contract generation</span>
+              <span className="overview-check-desc">Deferred to Phase 2 per RFP Section 3.</span>
             </li>
             <li className="overview-check overview-check--fail">
               <span className="overview-check-icon" />
-              <strong>Audio/video calling integration</strong> — Deferred to Phase 2 per RFP Section 3.
+              <span className="overview-check-label">Audio/video calling integration</span>
+              <span className="overview-check-desc">Deferred to Phase 2 per RFP Section 3.</span>
             </li>
             <li className="overview-check overview-check--fail">
               <span className="overview-check-icon" />
-              <strong>Post-deal project management</strong> — Deferred to Phase 3 per RFP Section 3.
+              <span className="overview-check-label">Post-deal project management</span>
+              <span className="overview-check-desc">Deferred to Phase 3 per RFP Section 3.</span>
             </li>
           </ul>
         </div>

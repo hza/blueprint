@@ -430,7 +430,7 @@
 }
 .overview-check {
   display: grid;
-  grid-template-columns: 16px minmax(120px, 180px) 1fr;
+  grid-template-columns: 16px minmax(120px, max-content) 1fr;
   gap: 10px;
   align-items: start;
   padding: 7px 14px;
