@@ -160,29 +160,29 @@
 /* ── Summary cards ──────────────────────────────────────────────────────── */
 .timeline-summary {
   display: flex;
-  gap: 16px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .tl-card {
   background: var(--canvas-subtle);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 14px 20px;
-  min-width: 110px;
+  border-radius: 6px;
+  padding: 6px 12px;
+  min-width: 90px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .tl-card-value {
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--fg);
   line-height: 1;
 }
 
 .tl-card-label {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--fg-muted);
 }
