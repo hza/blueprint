@@ -44,7 +44,6 @@
 }
 .overview-banner-stats {
   display: flex;
-  border-top: 1px solid var(--border);
 }
 .overview-stat {
   display: flex;
