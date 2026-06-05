@@ -1,3 +1,127 @@
+import { useState } from 'react'
+
+const REPLY_ICON = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="9 17 4 12 9 7"/>
+    <path d="M20 18v-2a4 4 0 0 0-4-4H4"/>
+  </svg>
+)
+
+const CLARIFICATIONS = [
+  { ref: 'Q1', question: 'Which cloud region (EU or US) does Meridian prefer for the single data region at installation? Are there any data-residency constraints beyond the stated GDPR requirement?', notes: 'RFP Section 4.4 states "Single data region chosen at installation time." Region confirmed at award per Section 9. Pricing is region-neutral; finalised at contract.' },
+  { ref: 'Q2', question: 'Which SSO provider(s) does Meridian currently use — Google Workspace, Azure AD, Okta, or SAML 2.0? Will sandbox credentials be available before Phase 1 week 4?', notes: 'All four providers are supported via OAuth 2.0. Answer determines which integration is tested first in Phase 1 vs deferred to Phase 3.' },
+  { ref: 'Q3', question: 'Is there a preferred LLM provider (OpenAI, Anthropic Claude, Azure OpenAI), or should we propose based on cost/performance optimisation?', notes: 'The abstraction layer (Section 4.5) allows switching providers post-launch. Our default recommendation is Anthropic Claude Sonnet for analysis and GPT-4o for structured extraction, subject to Meridian preference.' },
+  { ref: 'Q4', question: 'Does Meridian have an existing Salesforce instance with a CRM webhook target, or is the Salesforce integration a future-state requirement?', notes: 'RFP Section 4.5 specifies Salesforce REST API integration in Phase 3. Scoped as CRM webhook creating/updating projects within 60 s.' },
+]
+
+const LS_KEY = 'clarifications_answers'
+
+function loadAnswers(): Record<string, string> {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) ?? '{}') } catch { return {} }
+}
+
+function ClarificationsTable() {
+  const [openRef, setOpenRef] = useState<string | null>(null)
+  const [drafts, setDrafts] = useState<Record<string, string>>({})
+  const [answers, setAnswers] = useState<Record<string, string>>(loadAnswers)
+
+  const handleDiscard = (ref: string) => {
+    setDrafts(d => ({ ...d, [ref]: '' }))
+    setOpenRef(null)
+  }
+
+  const handleSubmit = (ref: string) => {
+    const text = (drafts[ref] ?? '').trim()
+    if (!text) return
+    const next = { ...answers, [ref]: text }
+    setAnswers(next)
+    localStorage.setItem(LS_KEY, JSON.stringify(next))
+    setDrafts(d => ({ ...d, [ref]: '' }))
+    setOpenRef(null)
+  }
+
+  return (
+    <table className="overview-table">
+      <thead>
+        <tr>
+          <th>Ref</th>
+          <th>Question</th>
+          <th>Status</th>
+          <th>Notes</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {CLARIFICATIONS.map(({ ref, question, notes }) => {
+          const answered = !!answers[ref]
+          const isOpen = openRef === ref
+          return (
+            <>
+              <tr key={ref}>
+                <td>{ref}</td>
+                <td>{question}</td>
+                <td>
+                  {answered
+                    ? <span className="overview-badge overview-badge--ok">Answered</span>
+                    : <span className="overview-badge overview-badge--warn">Unanswered</span>}
+                </td>
+                <td>{notes}</td>
+                <td className="td-action">
+                  <button
+                    className={`btn-provide-answer${isOpen ? ' btn-provide-answer--active' : ''}`}
+                    title={answered ? 'Edit Answer' : 'Provide Answer'}
+                    onClick={() => setOpenRef(isOpen ? null : ref)}
+                  >
+                    {REPLY_ICON}
+                  </button>
+                </td>
+              </tr>
+              {answered && !isOpen && (
+                <tr key={`${ref}-recorded`}>
+                  <td colSpan={5} className="td-answer td-answer--recorded">
+                    <div className="answer-recorded">
+                      <span className="answer-recorded-label">Answer:</span>
+                      <span className="answer-recorded-text">{answers[ref]}</span>
+                    </div>
+                  </td>
+                </tr>
+              )}
+              {isOpen && (
+                <tr key={`${ref}-edit`}>
+                  <td colSpan={5} className="td-answer">
+                    <div className="answer-panel">
+                      <div className="answer-panel-header">
+                        <span className="answer-panel-label">{answered ? 'Edit answer for' : 'Answer for'} {ref}</span>
+                        <span className="answer-panel-hint">Your response will be recorded against this clarification</span>
+                      </div>
+                      <textarea
+                        className="answer-textarea"
+                        placeholder="Type your answer here…"
+                        autoFocus
+                        rows={4}
+                        value={drafts[ref] ?? answers[ref] ?? ''}
+                        onChange={e => setDrafts(d => ({ ...d, [ref]: e.target.value }))}
+                      />
+                      <div className="answer-panel-actions">
+                        <button className="answer-btn answer-btn--submit" onClick={() => handleSubmit(ref)}>
+                          Record Answer
+                        </button>
+                        <button className="answer-btn answer-btn--discard" onClick={() => handleDiscard(ref)}>
+                          Discard
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </>
+          )
+        })}
+      </tbody>
+    </table>
+  )
+}
+
 export function ExecutiveOverview({ subsection }: { subsection?: string }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
   return (
@@ -190,42 +314,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">❓</span>
             Clarifications Raised with Meridian
           </div>
-          <table className="overview-table">
-            <thead>
-              <tr>
-                <th>Ref</th>
-                <th>Question</th>
-                <th>Status</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Q1</td>
-                <td>Which cloud region (EU or US) does Meridian prefer for the single data region at installation? Are there any data-residency constraints beyond the stated GDPR requirement?</td>
-                <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
-                <td>RFP Section 4.4 states "Single data region chosen at installation time." Region confirmed at award per Section 9. Pricing is region-neutral; finalised at contract.</td>
-              </tr>
-              <tr>
-                <td>Q2</td>
-                <td>Which SSO provider(s) does Meridian currently use — Google Workspace, Azure AD, Okta, or SAML 2.0? Will sandbox credentials be available before Phase 1 week 4?</td>
-                <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
-                <td>All four providers are supported via OAuth 2.0. Answer determines which integration is tested first in Phase 1 vs deferred to Phase 3.</td>
-              </tr>
-              <tr>
-                <td>Q3</td>
-                <td>Is there a preferred LLM provider (OpenAI, Anthropic Claude, Azure OpenAI), or should we propose based on cost/performance optimisation?</td>
-                <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
-                <td>The abstraction layer (Section 4.5) allows switching providers post-launch. Our default recommendation is Anthropic Claude Sonnet for analysis and GPT-4o for structured extraction, subject to Meridian preference.</td>
-              </tr>
-              <tr>
-                <td>Q4</td>
-                <td>Does Meridian have an existing Salesforce instance with a CRM webhook target, or is the Salesforce integration a future-state requirement?</td>
-                <td><span className="overview-badge overview-badge--warn">Unanswered</span></td>
-                <td>RFP Section 4.5 specifies Salesforce REST API integration in Phase 3. Scoped as CRM webhook creating/updating projects within 60 s.</td>
-              </tr>
-            </tbody>
-          </table>
+          <ClarificationsTable />
         </div>
       </div>
       </>)}
