@@ -12,6 +12,7 @@
 /* ── Day (default light) ─────────────────────────────────────────────────── */
 :root,
 [data-theme="day"] {
+  color-scheme: light;
   /* semantic status colors */
   --sem-danger-bg:     #FFEBE6;
   --sem-danger-fg:     #DE350B;
@@ -70,6 +71,7 @@
 
 /* ── Night (dark) ────────────────────────────────────────────────────────── */
 [data-theme="night"] {
+  color-scheme: dark;
   /* semantic status colors */
   --sem-danger-bg:     rgba(222,53,11,0.20);
   --sem-danger-fg:     #FF8A70;
@@ -128,6 +130,7 @@
 
 /* ── Confluence ──────────────────────────────────────────────────────────── */
 [data-theme="confluence"] {
+  color-scheme: light;
   --fg:             #4d5966;
   --fg-muted:       #5E6C84;
   --fg-subtle:      #8993A4;
@@ -166,6 +169,7 @@
 
 /* ── Notion ──────────────────────────────────────────────────────────────── */
 [data-theme="notion"] {
+  color-scheme: light;
   --fg:             #4d5966;
   --fg-muted:       #787774;
   --fg-subtle:      #AEAAA5;
@@ -205,6 +209,7 @@
 /* ── Freshworks ──────────────────────────────────────────────────────────── */
 /* ── Gray ────────────────────────────────────────────────────────────────── */
 [data-theme="gray"] {
+  color-scheme: light;
   /* semantic status colors (gray is a dark-ish topbar but light canvas — keep light sematics) */
   --sem-danger-bg:     #FFEBE6;
   --sem-danger-fg:     #DE350B;
@@ -263,6 +268,7 @@
 
 /* ── Fantasy ─────────────────────────────────────────────────────────────── */
 [data-theme="fantasy"] {
+  color-scheme: dark;
   /* semantic status colors */
   --sem-danger-bg:     rgba(255,68,68,0.18);
   --sem-danger-fg:     #FF8A70;
