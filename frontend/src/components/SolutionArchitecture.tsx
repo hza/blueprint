@@ -451,7 +451,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               <text x="185" y="163" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Business Analyst</text>
               <text x="185" y="176" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
               <line x1="205" y1="143" x2="415" y2="193" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="290" y="158" textAnchor="middle" fill="#6b7280" fontSize="9">Upload RFP · Edit requirements</text>
+              <text x="320" y="178" textAnchor="middle" fill="#6b7280" fontSize="9">Upload RFP · Edit requirements</text>
 
               {/* Sales Manager  cx=500 cy=55 */}
               <circle cx="500" cy="55" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
@@ -463,7 +463,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               <text x="500" y="150" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Sales Manager</text>
               <text x="500" y="163" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
               <line x1="500" y1="133" x2="500" y2="193" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="534" y="169" textAnchor="middle" fill="#6b7280" fontSize="9">Manage projects · Assign team</text>
+              <text x="504" y="179" textAnchor="middle" fill="#6b7280" fontSize="9">Manage projects · Assign team</text>
 
               {/* Admin  cx=815 cy=68 */}
               <circle cx="815" cy="68" r="20" fill="none" stroke="#374151" strokeWidth="1.5"/>
@@ -475,7 +475,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               <text x="815" y="163" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Estimator</text>
               <text x="815" y="176" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
               <line x1="795" y1="143" x2="585" y2="193" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="712" y="158" textAnchor="middle" fill="#6b7280" fontSize="9">Edit effort estimates</text>
+              <text x="672" y="178" textAnchor="middle" fill="#6b7280" fontSize="9">Edit effort estimates</text>
 
               {/* ══ LEFT — 2 actors ══ */}
 
