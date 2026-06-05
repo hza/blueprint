@@ -13,6 +13,10 @@ const THEMES = [
 ] as const
 type Theme = (typeof THEMES)[number]['key']
 
+const PROJECTS = [
+  { company: 'Meridian Software', name: 'AI-Powered Customer Facing Portal' },
+]
+
 interface NavSubsection {
   id: string
   title: string
@@ -113,8 +117,6 @@ interface SidebarProps {
   activeSection?: string | null
   onSectionChange?: (id: string, path: string) => void
   userName?: string
-  clientName?: string
-  projectName?: string
   collapsed?: boolean
   onCollapse?: (collapsed: boolean) => void
   reqSummaryTotal?: number | null
@@ -129,8 +131,6 @@ export function Sidebar({
   activeSection,
   onSectionChange,
   userName = 'Hans Zimmer',
-  clientName = 'Meridian Software',
-  projectName = 'AI-Powered Customer Facing Portal',
   collapsed = false,
   onCollapse,
   reqSummaryTotal,
@@ -140,7 +140,10 @@ export function Sidebar({
   )
   const [userOpen, setUserOpen] = useState(false)
   const [docsOpen, setDocsOpen] = useState(false)
+  const [projectOpen, setProjectOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(PROJECTS[0])
   const userRef = useRef<HTMLDivElement>(null)
+  const projectRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -150,6 +153,7 @@ export function Sidebar({
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (userRef.current && !userRef.current.contains(e.target as Node)) setUserOpen(false)
+      if (projectRef.current && !projectRef.current.contains(e.target as Node)) setProjectOpen(false)
     }
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
@@ -198,12 +202,35 @@ export function Sidebar({
       </div>
 
       {/* Client / Project */}
-      <div className="sidebar-client">
+      <div className="sidebar-client" ref={projectRef}>
         <img src="/rfp-icon.svg" className="sidebar-client-icon" alt="RFP" />
         <div className="sidebar-client-text">
-          <span className="sidebar-client-name">{clientName}</span>
-          <span className="sidebar-client-project">{projectName}</span>
+          <span className="sidebar-client-name">{selectedProject.company}</span>
+          <span className="sidebar-client-project">{selectedProject.name}</span>
         </div>
+        <button
+          className={`sidebar-project-chevron${projectOpen ? ' open' : ''}`}
+          onClick={() => setProjectOpen(o => !o)}
+          aria-label="Switch project"
+        >
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 6l4 4 4-4" />
+          </svg>
+        </button>
+        {projectOpen && (
+          <div className="sidebar-project-dropdown">
+            {PROJECTS.map(p => (
+              <button
+                key={p.name}
+                className={`sidebar-project-option${p.name === selectedProject.name ? ' active' : ''}`}
+                onClick={() => { setSelectedProject(p); setProjectOpen(false) }}
+              >
+                <span className="sidebar-project-option-company">{p.company}</span>
+                <span className="sidebar-project-option-name">{p.name}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Proposal Navigation */}
@@ -305,7 +332,7 @@ export function Sidebar({
               <span className="sidebar-avatar sidebar-avatar-lg">{initials}</span>
               <div>
                 <div className="sidebar-popup-name">{userName}</div>
-                <div className="sidebar-popup-role">Buyer</div>
+                <div className="sidebar-popup-role">Dear Customer</div>
               </div>
             </div>
             <div className="sidebar-popup-sep" />
