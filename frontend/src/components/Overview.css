@@ -232,6 +232,7 @@
   letter-spacing: 0.04em;
   background: var(--neutral-muted);
   color: var(--fg-muted);
+  white-space: nowrap;
 }
 .overview-badge--danger, .qa-badge--overdue  { background: var(--sem-danger-bg); color: var(--sem-danger-fg); }
 .overview-badge--warn,   .qa-badge--pending  { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
