@@ -232,6 +232,18 @@ export function Sidebar({
                 </div>
               </button>
             ))}
+            <div className="sidebar-project-sep" />
+            <a
+              href="mailto:sales@scnsoft.com?subject=New%20Project%20Inquiry"
+              className="sidebar-project-new"
+              onClick={() => setProjectOpen(false)}
+            >
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="8" cy="8" r="6.25" />
+                <path d="M8 5.5v5M5.5 8h5" />
+              </svg>
+              Start a New Project with SCNSoft
+            </a>
           </div>
         )}
       </div>
