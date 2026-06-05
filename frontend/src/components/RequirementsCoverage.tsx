@@ -332,11 +332,12 @@ export function RequirementsCoverage({
                             </label>
                           </div>
                           <textarea
+                            className="fl-comment-textarea"
                             placeholder="Add your comment or position…"
                             value={resp.comment}
                             onChange={(e) => setBuyerResponse(item.id, 'comment', e.target.value)}
                             rows={2}
-                            style={{ marginTop: '0.4em', width: '100%', fontSize: '12px', padding: '0.3em 0.5em', borderRadius: '4px', border: `1px solid ${resp.option === '__custom__' ? accentColor : 'var(--color-border, #ccc)'}`, background: 'var(--color-bg, #fff)', color: 'inherit', resize: 'vertical', boxSizing: 'border-box' }}
+                            style={{ border: `1px solid ${resp.option === '__custom__' ? accentColor : 'var(--border)'}` }}
                           />
                         </div>
                       </div>

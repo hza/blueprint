@@ -288,3 +288,16 @@
   font-size: 12px;
   color: var(--fg-muted, #57606a);
 }
+
+.fl-comment-textarea {
+  margin-top: 0.4em;
+  width: 100%;
+  font-size: 12px;
+  padding: 0.3em 0.5em;
+  border-radius: 4px;
+  background: var(--canvas);
+  color: var(--fg);
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+}
