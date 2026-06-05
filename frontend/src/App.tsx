@@ -261,7 +261,10 @@ export default function App() {
         ) : activeTab === 'technical' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">Technical Solution</span>
+              <div className="breadcrumb-title-block">
+                <span className="breadcrumb-file">Technical Solution</span>
+                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+              </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">
@@ -309,7 +312,10 @@ export default function App() {
         ) : activeTab === 'security' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">Security &amp; Compliance</span>
+              <div className="breadcrumb-title-block">
+                <span className="breadcrumb-file">Security &amp; Compliance</span>
+                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+              </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">
@@ -321,7 +327,10 @@ export default function App() {
         ) : activeTab === 'delivery' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">Delivery &amp; Governance</span>
+              <div className="breadcrumb-title-block">
+                <span className="breadcrumb-file">Delivery &amp; Governance</span>
+                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+              </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">
@@ -333,7 +342,10 @@ export default function App() {
         ) : activeTab === 'pricing' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">Pricing &amp; Commercials</span>
+              <div className="breadcrumb-title-block">
+                <span className="breadcrumb-file">Pricing &amp; Commercials</span>
+                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+              </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">
@@ -345,7 +357,10 @@ export default function App() {
         ) : activeTab === 'proof' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">References &amp; Track Record</span>
+              <div className="breadcrumb-title-block">
+                <span className="breadcrumb-file">References &amp; Track Record</span>
+                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+              </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">
@@ -357,7 +372,10 @@ export default function App() {
         ) : activeTab === 'executive-overview' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">Executive Overview</span>
+              <div className="breadcrumb-title-block">
+                <span className="breadcrumb-file">Executive Overview</span>
+                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+              </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">
@@ -369,7 +387,10 @@ export default function App() {
         ) : activeTab === 'requirements-coverage' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">Requirements Coverage</span>
+              <div className="breadcrumb-title-block">
+                <span className="breadcrumb-file">Requirements Coverage</span>
+                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+              </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">
@@ -381,7 +402,10 @@ export default function App() {
         ) : activeTab === 'solution-architecture' ? (
           <>
             <nav className="breadcrumb">
-              <span className="breadcrumb-file">Solution Architecture</span>
+              <div className="breadcrumb-title-block">
+                <span className="breadcrumb-file">Solution Architecture</span>
+                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+              </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
             <div className="file-box">

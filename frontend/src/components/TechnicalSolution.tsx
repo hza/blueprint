@@ -6,7 +6,6 @@ export function TechnicalSolution() {
         <div className="overview-banner-header">
           <div className="overview-banner-main">
             <div className="overview-banner-title">Technical Solution</div>
-            <div className="overview-banner-client">Meridian Software · AI-Powered Customer Facing Portal — RFP</div>
           </div>
           <span className="overview-badge overview-badge--ok overview-banner-status">SOLUTION READY</span>
         </div>
