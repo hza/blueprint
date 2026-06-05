@@ -327,6 +327,7 @@
 
 /* ── Base ────────────────────────────────────────────────────────────────── */
 html, body, #root { height: 100%; overflow: hidden; }
+html { background: var(--canvas); }
 body {
   font-family: var(--font-ui);
   font-size: 14px;
