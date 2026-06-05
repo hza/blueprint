@@ -250,49 +250,49 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Engagement Manager / PM</td>
-                <td>Sarah Chen</td>
+                <td><span className="team-name-cell"><span className="team-avatar">SC</span>Sarah Chen</span></td>
                 <td>50%</td>
                 <td>Single point of accountability. Weekly RAG status report.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Solution Architect</td>
-                <td>Mark Okonkwo</td>
+                <td><span className="team-name-cell"><span className="team-avatar">MO</span>Mark Okonkwo</span></td>
                 <td>100%</td>
                 <td>Owns architecture views, tech stack recommendation, and NFR sign-off. Meets RFP minimum qualification (dedicated SA for Phase 1).</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Senior Frontend Engineer</td>
-                <td>Priya Ramaswamy</td>
+                <td><span className="team-name-cell"><span className="team-avatar">PR</span>Priya Ramaswamy</span></td>
                 <td>100%</td>
                 <td>React 18, TypeScript, React Flow / Konva.js. Meets RFP minimum qualification (senior Frontend for Phase 1).</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Senior Backend Engineers (×2)</td>
-                <td>Named in Annex D</td>
+                <td><span className="team-name-cell"><span className="team-avatar team-avatar--tbd">?</span>Named in Annex D</span></td>
                 <td>100%</td>
                 <td>FastAPI, PostgreSQL, Kafka, Celery. AI/ML integration and RAG pipeline ownership.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">AI/ML Engineer</td>
-                <td>Named in Annex D</td>
+                <td><span className="team-name-cell"><span className="team-avatar team-avatar--tbd">?</span>Named in Annex D</span></td>
                 <td>100%</td>
                 <td>LLM abstraction layer, prompt engineering, Qdrant RAG pipeline, PII anonymisation worker, output schema validation.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">QA Lead</td>
-                <td>James Obi</td>
+                <td><span className="team-name-cell"><span className="team-avatar">JO</span>James Obi</span></td>
                 <td>100%</td>
                 <td>≥ 80% unit coverage gate, BDD (Gherkin/Pytest-BDD), OWASP ZAP DAST per sprint.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">UX Designer</td>
-                <td>Lena Vogel</td>
+                <td><span className="team-name-cell"><span className="team-avatar">LV</span>Lena Vogel</span></td>
                 <td>75%</td>
                 <td>shadcn/ui or Ant Design. WCAG 2.1 AA. Onboarding guided tour and contextual tooltips.</td>
               </tr>
               <tr>
                 <td className="overview-table-label">DevOps / Cloud Engineer</td>
-                <td>Named in Annex D</td>
+                <td><span className="team-name-cell"><span className="team-avatar team-avatar--tbd">?</span>Named in Annex D</span></td>
                 <td>100%</td>
                 <td>Kubernetes (Helm), Terraform / Pulumi, GitHub Actions CI/CD, Prometheus + Grafana, blue/green deployments.</td>
               </tr>

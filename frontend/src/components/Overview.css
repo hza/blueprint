@@ -559,3 +559,30 @@
 .overview-action--urgent .overview-action-tag { background: var(--sem-danger-bg); color: var(--sem-danger-fg); }
 .overview-action--high   .overview-action-tag { background: var(--sem-warn-bg);   color: var(--sem-warn-fg); }
 .overview-action--med    .overview-action-tag { background: var(--sem-ok-bg);     color: var(--sem-ok-fg); }
+
+/* Team member name cell with avatar */
+.team-name-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.team-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+.team-avatar--tbd {
+  background: var(--border);
+  color: var(--fg-muted, var(--fg));
+  font-size: 13px;
+}
