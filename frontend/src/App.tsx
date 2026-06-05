@@ -20,6 +20,7 @@ import { RequirementsCoverage } from './components/RequirementsCoverage'
 import { SolutionArchitecture } from './components/SolutionArchitecture'
 import { RightPanel } from './components/RightPanel'
 import { Sidebar, NAV_SECTIONS } from './components/Sidebar'
+import { ChatPopup } from './components/ChatPopup'
 import type { FileContent, FileView, FileInfo, FRAnnotations, FRItem, RequirementsSummary, ViewTab } from './types'
 
 const SIDEBAR_MIN = 160
@@ -518,6 +519,7 @@ export default function App() {
         onRequirementEdit={(id, text) => setRequirementEdits((prev) => ({ ...prev, [id]: text }))}
         onRequirementCancel={(id) => setRequirementEdits((prev) => { const next = { ...prev }; delete next[id]; return next })}
       />}
+      <ChatPopup />
     </div>
     </div>
   )
