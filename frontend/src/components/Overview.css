@@ -656,3 +656,30 @@
   color: var(--fg-muted, var(--fg));
   font-size: 13px;
 }
+
+/* ── Notion theme overrides ──────────────────────────────────────────────── */
+[data-theme="notion"] .overview-banner {
+  border: none;
+  box-shadow: none;
+}
+[data-theme="notion"] .overview-stat {
+  border-right: none;
+}
+[data-theme="notion"] .overview-stat:last-child {
+  border-right: none;
+}
+[data-theme="notion"] .overview-stat--highlight {
+  background: var(--accent, #2563EB);
+  border-right-color: transparent;
+}
+[data-theme="notion"] .overview-stat--highlight .overview-stat-label {
+  color: rgba(255,255,255,0.75);
+}
+[data-theme="notion"] .overview-stat--highlight .overview-stat-value {
+  color: #fff;
+  font-weight: 700;
+}
+[data-theme="notion"] .overview-card {
+  border: none;
+  box-shadow: none;
+}

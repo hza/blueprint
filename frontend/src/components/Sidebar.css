@@ -626,3 +626,30 @@
 [data-theme="confluence"] .sidebar-collapse-btn {
   color: #FFFFFF;
 }
+
+/* ── Notion theme overrides ──────────────────────────────────────────────── */
+[data-theme="notion"] .sidebar { border-right: none; }
+[data-theme="notion"] .sidebar-brand { border-bottom: none; }
+[data-theme="notion"] .sidebar-client { border-bottom: none; }
+[data-theme="notion"] .sidebar-docs { border-top: none; }
+[data-theme="notion"] .sidebar-footer { border-top: none; }
+
+[data-theme="notion"] .sidebar-nav {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+[data-theme="notion"] .sidebar-nav:hover { scrollbar-color: var(--border) transparent; }
+[data-theme="notion"] .sidebar-nav::-webkit-scrollbar { width: 4px; }
+[data-theme="notion"] .sidebar-nav::-webkit-scrollbar-thumb { background: transparent; border-radius: 2px; }
+[data-theme="notion"] .sidebar-nav:hover::-webkit-scrollbar-thumb { background: var(--border); }
+
+[data-theme="notion"] .sidebar-docs-tree {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+[data-theme="notion"] .sidebar-docs-tree:hover { scrollbar-color: var(--border) transparent; }
+[data-theme="notion"] .sidebar-docs-tree::-webkit-scrollbar { width: 4px; }
+[data-theme="notion"] .sidebar-docs-tree::-webkit-scrollbar-thumb { background: transparent; border-radius: 2px; }
+[data-theme="notion"] .sidebar-docs-tree:hover::-webkit-scrollbar-thumb { background: var(--border); }
