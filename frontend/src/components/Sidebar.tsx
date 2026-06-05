@@ -225,8 +225,11 @@ export function Sidebar({
                 className={`sidebar-project-option${p.name === selectedProject.name ? ' active' : ''}`}
                 onClick={() => { setSelectedProject(p); setProjectOpen(false) }}
               >
-                <span className="sidebar-project-option-company">{p.company}</span>
-                <span className="sidebar-project-option-name">{p.name}</span>
+                <img src="/rfp-icon.svg" className="sidebar-project-option-icon" alt="" />
+                <div className="sidebar-project-option-text">
+                  <span className="sidebar-project-option-company">{p.company}</span>
+                  <span className="sidebar-project-option-name">{p.name}</span>
+                </div>
               </button>
             ))}
           </div>
