@@ -51,6 +51,81 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
       {show('4.1') && (<>
       {/* 4.1 Security Model */}
       <div className="rfp-section-heading" id="4.1">Security Model</div>
+
+      {/* Defense-in-Depth layered diagram */}
+      <div className="overview-grid">
+      <div className="overview-card">
+        <div className="overview-card-header">
+          <span className="overview-card-icon">🛡</span>
+          Defense-in-Depth — Five Security Layers
+        </div>
+        <svg viewBox="0 0 560 178" style={{ width: '100%', display: 'block', margin: '12px auto 0' }}>
+          {/* Circles: cx=200 cy=89, radii ~0.8× previous */}
+          {[
+            { label: 'Perimeter',   fill: '#FEF2F2', stroke: '#FCA5A5', text: '#991B1B', r: 83 },
+            { label: 'Network',     fill: '#FFF7ED', stroke: '#FCD34D', text: '#92400E', r: 66 },
+            { label: 'Application', fill: '#EFF6FF', stroke: '#93C5FD', text: '#1E40AF', r: 49 },
+            { label: 'Data',        fill: '#F0FDF4', stroke: '#86EFAC', text: '#065F46', r: 32 },
+            { label: 'Monitoring',  fill: '#F5F3FF', stroke: '#C4B5FD', text: '#5B21B6', r: 15 },
+          ].map(layer => (
+            <circle key={layer.label} cx={200} cy={89} r={layer.r} fill={layer.fill} stroke={layer.stroke} strokeWidth="1.5" />
+          ))}
+
+          {/* Ring labels at −30° */}
+          {[
+            { label: 'Perimeter',   text: '#991B1B', r: 83 },
+            { label: 'Network',     text: '#92400E', r: 66 },
+            { label: 'Application', text: '#1E40AF', r: 49 },
+            { label: 'Data',        text: '#065F46', r: 32 },
+          ].map(layer => {
+            const rad = (-30 * Math.PI) / 180
+            const lx = 200 + layer.r * Math.cos(rad)
+            const ly = 89  + layer.r * Math.sin(rad)
+            return (
+              <text key={layer.label} x={lx} y={ly} textAnchor="middle" fontSize="7" fontWeight="700" fill={layer.text}>
+                {layer.label}
+              </text>
+            )
+          })}
+
+          {/* Centre label */}
+          <text x={200} y={86} textAnchor="middle" fontSize="6" fontWeight="700" fill="#5B21B6">Monitoring</text>
+          <text x={200} y={94} textAnchor="middle" fontSize="6" fill="#5B21B6">SOC 24/7</text>
+
+          {/* Legend — 5 rows, step 26px, rect height 21px */}
+          {[
+            { label: 'Perimeter',   sub: 'WAF · DDoS · Front Door',           fill: '#FEF2F2', stroke: '#FCA5A5', text: '#991B1B' },
+            { label: 'Network',     sub: 'Private Subnets · NSGs · IDS',       fill: '#FFF7ED', stroke: '#FCD34D', text: '#92400E' },
+            { label: 'Application', sub: 'MFA · RBAC · Input Validation',      fill: '#EFF6FF', stroke: '#93C5FD', text: '#1E40AF' },
+            { label: 'Data',        sub: 'AES-256 · TLS 1.3 · PII Anon.',      fill: '#F0FDF4', stroke: '#86EFAC', text: '#065F46' },
+            { label: 'Monitoring',  sub: 'SIEM · Audit Logs · SOC 24/7',       fill: '#F5F3FF', stroke: '#C4B5FD', text: '#5B21B6' },
+          ].map((item, i) => {
+            const lx = 360, ly = 21 + i * 26
+            return (
+              <g key={item.label}>
+                <rect x={lx} y={ly} width={168} height={21} rx="4" fill={item.fill} stroke={item.stroke} strokeWidth="1.5" />
+                <text x={lx + 8} y={ly + 9}  fontSize="8" fontWeight="700" fill={item.text}>{item.label}</text>
+                <text x={lx + 8} y={ly + 18} fontSize="7" fill={item.text} opacity="0.85">{item.sub}</text>
+              </g>
+            )
+          })}
+
+          {/* Connecting lines */}
+          {[83, 66, 49, 32, 15].map((r, i) => (
+            <line
+              key={i}
+              x1={360}     y1={21 + i * 26 + 10}
+              x2={200 + r} y2={89}
+              stroke="#D1D5DB" strokeWidth="1" strokeDasharray="3 3"
+            />
+          ))}
+        </svg>
+        <div style={{ fontSize: '11px', color: 'var(--text-muted, #6B7280)', textAlign: 'center', marginTop: '4px', marginBottom: '8px' }}>
+          Every layer is independently verified — outer breach does not compromise inner assets.
+        </div>
+      </div>
+      </div>
+
       <div className="overview-grid">
 
         <div className="overview-card">
