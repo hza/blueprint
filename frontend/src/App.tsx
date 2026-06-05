@@ -109,7 +109,7 @@ export default function App() {
 
   const p = location.pathname
   const activeTab: ViewTab =
-    p === '/requirements' ? 'requirements' :
+    p === '/requirements-coverage/document' ? 'requirements' :
     p === '/overview' ? 'overview' :
     p === '/qa' ? 'qa' :
     p === '/analytics' ? 'analytics' :
@@ -131,9 +131,9 @@ export default function App() {
       navigate(`/list${location.search}${location.hash}`, { replace: true })
       return
     }
-    const knownPrefixes = ['/requirements', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility']
+    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility']
     if (!knownPrefixes.some((prefix) => location.pathname === prefix || location.pathname.startsWith(prefix + '/'))) {
-      navigate('/requirements', { replace: true })
+      navigate('/requirements-coverage/document', { replace: true })
     }
   }, [location.pathname, location.search, location.hash, navigate])
 
@@ -160,7 +160,8 @@ export default function App() {
     options?: { preserveCurrentTab?: boolean },
   ) => {
     const fileViewingTabs = new Set<ViewTab>(['requirements', 'qa'])
-    const targetPath = options?.preserveCurrentTab && fileViewingTabs.has(activeTab) ? `/${activeTab}` : '/requirements'
+    const tabToPath: Partial<Record<ViewTab, string>> = { requirements: '/requirements-coverage/document', qa: '/qa' }
+    const targetPath = options?.preserveCurrentTab && fileViewingTabs.has(activeTab) ? (tabToPath[activeTab] ?? '/requirements-coverage/document') : '/requirements-coverage/document'
     const fileChanged = filename !== selectedFile
     setSelectedFile(filename)
     navigate({ pathname: targetPath, hash: line ? `#L${line}` : '' })
@@ -462,7 +463,7 @@ export default function App() {
                 outlineReturnPath.current = null
                 setSelectedFile(null)
                 setFileContent(null)
-                navigate(returnTo ?? '/requirements')
+                navigate(returnTo ?? '/requirements-coverage/document')
               }} />
             </nav>
 
@@ -511,7 +512,7 @@ export default function App() {
           setSelectedFile(null)
           setFileContent(null)
           setFrAnnotations({})
-          navigate('/requirements')
+          navigate('/requirements-coverage/document')
         }}
         requirementEdits={requirementEdits}
         onRequirementEdit={(id, text) => setRequirementEdits((prev) => ({ ...prev, [id]: text }))}
