@@ -94,6 +94,26 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
 
         <div className="overview-card">
           <div className="overview-card-header">
+            <span className="overview-card-icon">🗂</span>
+            Tech Stack at a Glance
+          </div>
+          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.25rem 1rem'}}>
+            {[
+              { label: 'Presentation', tech: 'React 18 + TypeScript · shadcn/ui', color: '#3B82F6', width: '40%' },
+              { label: 'API / BFF', tech: 'FastAPI (Python) · OpenAPI 3.1', color: '#8B5CF6', width: '55%' },
+              { label: 'Data & Messaging', tech: 'PostgreSQL · Redis · Qdrant · Kafka', color: '#10B981', width: '70%' },
+              { label: 'Infrastructure', tech: 'Kubernetes · Terraform · Docker · AWS/GCP/Azure', color: '#F59E0B', width: '85%' },
+            ].map(layer => (
+              <div key={layer.label} style={{backgroundColor: layer.color, color: '#fff', padding: '8px 16px', borderRadius: 4, margin: '0 auto 4px', textAlign: 'center', width: layer.width}}>
+                <div style={{fontWeight: 700, fontSize: '0.85rem'}}>{layer.label}</div>
+                <div style={{fontSize: '0.75rem', opacity: 0.9}}>{layer.tech}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="overview-card">
+          <div className="overview-card-header">
             <span className="overview-card-icon">⚡</span>
             Non-Functional Targets (RFP §4.4)
           </div>
@@ -406,6 +426,142 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
       </div>
 
 
+      </>)}
+
+      {show('3.6') && (<>
+      {/* 3.6 Deployment Topology */}
+      <div className="rfp-section-heading" id="3.6">Deployment Topology</div>
+      <div className="overview-grid">
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🌐</span>
+            Cloud Deployment — Single Region
+          </div>
+          <div style={{overflowX: 'auto', display: 'flex', justifyContent: 'center', padding: '0.5rem 0'}}>
+            <svg viewBox="0 0 600 380" style={{width: '100%', maxWidth: 600, fontFamily: 'inherit'}} aria-label="Cloud deployment topology diagram">
+              <defs>
+                <marker id="arrowTopo" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L8,3 z" fill="#6B7280"/>
+                </marker>
+              </defs>
+              {/* Cloud region border */}
+              <rect x="10" y="10" width="580" height="360" rx="6" fill="none" stroke="#6B7280" strokeWidth="1.5" strokeDasharray="6,3"/>
+              <text x="18" y="26" fill="#6B7280" fontSize="10" fontStyle="italic">AWS / GCP / Azure Region</text>
+              {/* VPC border */}
+              <rect x="30" y="40" width="540" height="310" rx="4" fill="none" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="5,3"/>
+              <text x="38" y="54" fill="#3B82F6" fontSize="9" fontStyle="italic">VPC</text>
+              {/* Public subnet */}
+              <rect x="50" y="70" width="200" height="80" rx="3" fill="#EFF6FF" stroke="#93C5FD" strokeWidth="1"/>
+              <text x="58" y="83" fill="#3B82F6" fontSize="9">Public Subnet</text>
+              {/* ALB box */}
+              <rect x="90" y="90" width="120" height="40" rx="3" fill="#3B82F6"/>
+              <text x="150" y="115" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="bold">ALB / CDN</text>
+              {/* Private subnet */}
+              <rect x="50" y="175" width="490" height="80" rx="3" fill="#F5F3FF" stroke="#C4B5FD" strokeWidth="1"/>
+              <text x="58" y="188" fill="#8B5CF6" fontSize="9">Private Subnet</text>
+              {/* ECS box */}
+              <rect x="70" y="195" width="90" height="40" rx="3" fill="#8B5CF6"/>
+              <text x="115" y="220" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">ECS/K8s</text>
+              {/* Redis box */}
+              <rect x="180" y="195" width="70" height="40" rx="3" fill="#EC4899"/>
+              <text x="215" y="220" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">Redis</text>
+              {/* Queue box */}
+              <rect x="270" y="195" width="80" height="40" rx="3" fill="#F59E0B"/>
+              <text x="310" y="220" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">Kafka/SQS</text>
+              {/* Workers box */}
+              <rect x="370" y="195" width="80" height="40" rx="3" fill="#10B981"/>
+              <text x="410" y="220" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">Workers</text>
+              {/* Data subnet */}
+              <rect x="50" y="280" width="490" height="50" rx="3" fill="#F0FDF4" stroke="#86EFAC" strokeWidth="1"/>
+              <text x="58" y="293" fill="#10B981" fontSize="9">Data Layer</text>
+              {/* PG box */}
+              <rect x="70" y="290" width="70" height="30" rx="3" fill="#10B981"/>
+              <text x="105" y="310" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">PG 15</text>
+              {/* S3 box */}
+              <rect x="160" y="290" width="60" height="30" rx="3" fill="#F59E0B"/>
+              <text x="190" y="310" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">S3</text>
+              {/* Qdrant box */}
+              <rect x="240" y="290" width="70" height="30" rx="3" fill="#3B82F6"/>
+              <text x="275" y="310" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">Qdrant</text>
+              {/* Arrows */}
+              {/* ALB → ECS */}
+              <line x1="150" y1="130" x2="115" y2="195" stroke="#6B7280" strokeWidth="1.5" markerEnd="url(#arrowTopo)"/>
+              {/* ECS → Redis */}
+              <line x1="160" y1="215" x2="180" y2="215" stroke="#6B7280" strokeWidth="1.5" markerEnd="url(#arrowTopo)"/>
+              {/* ECS → Queue */}
+              <line x1="160" y1="220" x2="270" y2="220" stroke="#6B7280" strokeWidth="1.5" markerEnd="url(#arrowTopo)"/>
+              {/* Queue → Workers */}
+              <line x1="350" y1="215" x2="370" y2="215" stroke="#6B7280" strokeWidth="1.5" markerEnd="url(#arrowTopo)"/>
+              {/* ECS → PG */}
+              <line x1="115" y1="235" x2="105" y2="290" stroke="#6B7280" strokeWidth="1.5" markerEnd="url(#arrowTopo)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      </>)}
+
+      {show('3.7') && (<>
+      {/* 3.7 Key Request Flow */}
+      <div className="rfp-section-heading" id="3.7">Key Request Flow</div>
+      <div className="overview-grid">
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">⇨</span>
+            RFP Upload → Analysis → Response
+          </div>
+          <div style={{overflowX: 'auto', display: 'flex', justifyContent: 'center', padding: '0.5rem 0'}}>
+            <svg viewBox="0 0 600 340" style={{width: '100%', maxWidth: 600, fontFamily: 'inherit'}} aria-label="Sequence diagram: RFP upload to analysis to response">
+              <defs>
+                <marker id="arrowSeqFwd" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L8,3 z" fill="#3B82F6"/>
+                </marker>
+                <marker id="arrowSeqBck" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L8,3 z" fill="#10B981"/>
+                </marker>
+              </defs>
+              {/* Participant boxes */}
+              {[
+                { label: 'Browser', x: 60 },
+                { label: 'API Gateway', x: 180 },
+                { label: 'Queue', x: 300 },
+                { label: 'Worker', x: 420 },
+                { label: 'LLM', x: 540 },
+              ].map(p => (
+                <g key={p.label}>
+                  <rect x={p.x - 40} y="20" width="80" height="30" rx="3" fill="#F3F4F6" stroke="#D1D5DB" strokeWidth="1"/>
+                  <text x={p.x} y="40" textAnchor="middle" fill="#111827" fontSize="10" fontWeight="bold">{p.label}</text>
+                  <line x1={p.x} y1="50" x2={p.x} y2="320" stroke="#D1D5DB" strokeWidth="1" strokeDasharray="4,3"/>
+                </g>
+              ))}
+              {/* Messages */}
+              {/* 1 Browser → API (fwd) */}
+              <line x1="62" y1="80" x2="178" y2="80" stroke="#3B82F6" strokeWidth="1.5" markerEnd="url(#arrowSeqFwd)"/>
+              <text x="120" y="75" textAnchor="middle" fill="#3B82F6" fontSize="9">POST /upload (PDF)</text>
+              {/* 2 API → Queue (fwd) */}
+              <line x1="182" y1="110" x2="298" y2="110" stroke="#3B82F6" strokeWidth="1.5" markerEnd="url(#arrowSeqFwd)"/>
+              <text x="240" y="105" textAnchor="middle" fill="#3B82F6" fontSize="9">enqueue job</text>
+              {/* 3 Queue → Worker (fwd) */}
+              <line x1="302" y1="140" x2="418" y2="140" stroke="#3B82F6" strokeWidth="1.5" markerEnd="url(#arrowSeqFwd)"/>
+              <text x="360" y="135" textAnchor="middle" fill="#3B82F6" fontSize="9">job dispatched</text>
+              {/* 4 Worker → LLM (fwd) */}
+              <line x1="422" y1="170" x2="538" y2="170" stroke="#3B82F6" strokeWidth="1.5" markerEnd="url(#arrowSeqFwd)"/>
+              <text x="480" y="165" textAnchor="middle" fill="#3B82F6" fontSize="9">analyse(chunks)</text>
+              {/* 5 LLM → Worker (back) */}
+              <line x1="538" y1="200" x2="422" y2="200" stroke="#10B981" strokeWidth="1.5" markerEnd="url(#arrowSeqBck)"/>
+              <text x="480" y="195" textAnchor="middle" fill="#10B981" fontSize="9">structured JSON</text>
+              {/* 6 Worker → API (back) */}
+              <line x1="418" y1="230" x2="182" y2="230" stroke="#10B981" strokeWidth="1.5" markerEnd="url(#arrowSeqBck)"/>
+              <text x="300" y="225" textAnchor="middle" fill="#10B981" fontSize="9">results stored</text>
+              {/* 7 API → Browser (back) */}
+              <line x1="178" y1="260" x2="62" y2="260" stroke="#10B981" strokeWidth="1.5" markerEnd="url(#arrowSeqBck)"/>
+              <text x="120" y="255" textAnchor="middle" fill="#10B981" fontSize="9">200 + job_id</text>
+              {/* 8 Browser → API (fwd) */}
+              <line x1="62" y1="290" x2="178" y2="290" stroke="#3B82F6" strokeWidth="1.5" markerEnd="url(#arrowSeqFwd)"/>
+              <text x="120" y="285" textAnchor="middle" fill="#3B82F6" fontSize="9">GET /results/{'{id}'}</text>
+            </svg>
+          </div>
+        </div>
+      </div>
       </>)}
 
       {show('3.3') && (<>

@@ -93,6 +93,83 @@ export function BusinessAnalytics() {
         </div>
       </div>
 
+      {/* ── MoSCoW Bubble Chart ─────────────────────────────────────────── */}
+      <div className="overview-card">
+        <div className="overview-card-header">
+          <span className="overview-card-icon">⊙</span>
+          Requirements Value vs. Effort
+        </div>
+        <svg viewBox="0 0 480 320" style={{ width: '100%', height: 'auto', display: 'block' }}>
+          {/* Gridlines */}
+          {[25, 50, 75].map(v => {
+            const x = 40 + (v / 100) * 420
+            const y = 10 + ((100 - v) / 100) * 270
+            return (
+              <g key={v}>
+                <line x1={x} y1={10} x2={x} y2={280} stroke="#F3F4F6" strokeWidth={1} />
+                <line x1={40} y1={y} x2={460} y2={y} stroke="#F3F4F6" strokeWidth={1} />
+              </g>
+            )
+          })}
+
+          {/* Axes */}
+          <line x1={40} y1={280} x2={460} y2={280} stroke="#D1D5DB" strokeWidth={1} />
+          <line x1={40} y1={10} x2={40} y2={280} stroke="#D1D5DB" strokeWidth={1} />
+
+          {/* Axis labels */}
+          <text x={250} y={298} fontSize={10} fill="#6B7280" textAnchor="middle">Implementation Effort (Low → High)</text>
+          <text x={12} y={150} fontSize={10} fill="#6B7280" textAnchor="middle" transform="rotate(-90, 12, 150)">Business Value (Low → High)</text>
+
+          {/* Axis tick labels */}
+          <text x={40} y={293} fontSize={8} fill="#9CA3AF" textAnchor="middle">0</text>
+          <text x={145} y={293} fontSize={8} fill="#9CA3AF" textAnchor="middle">25</text>
+          <text x={250} y={293} fontSize={8} fill="#9CA3AF" textAnchor="middle">50</text>
+          <text x={355} y={293} fontSize={8} fill="#9CA3AF" textAnchor="middle">75</text>
+          <text x={460} y={293} fontSize={8} fill="#9CA3AF" textAnchor="middle">100</text>
+
+          <text x={35} y={283} fontSize={8} fill="#9CA3AF" textAnchor="end">0</text>
+          <text x={35} y={216} fontSize={8} fill="#9CA3AF" textAnchor="end">25</text>
+          <text x={35} y={148} fontSize={8} fill="#9CA3AF" textAnchor="end">50</text>
+          <text x={35} y={81} fontSize={8} fill="#9CA3AF" textAnchor="end">75</text>
+          <text x={35} y={14} fontSize={8} fill="#9CA3AF" textAnchor="end">100</text>
+
+          {/* Bubbles */}
+          {[
+            { label: 'AI RFP Analysis',     effort: 30, value: 95, r: 8,  fill: '#EF4444' },
+            { label: 'PII Anonymisation',   effort: 25, value: 90, r: 8,  fill: '#EF4444' },
+            { label: 'Client Portal',       effort: 45, value: 88, r: 8,  fill: '#EF4444' },
+            { label: 'SSO Integration',     effort: 35, value: 82, r: 8,  fill: '#EF4444' },
+            { label: 'Feature Estimation',  effort: 40, value: 78, r: 6,  fill: '#F59E0B' },
+            { label: 'Analytics Dashboard', effort: 55, value: 72, r: 6,  fill: '#F59E0B' },
+            { label: 'Salesforce CRM',      effort: 50, value: 65, r: 6,  fill: '#F59E0B' },
+            { label: 'Collaboration Tools', effort: 60, value: 55, r: 4,  fill: '#3B82F6' },
+            { label: 'White-labelling',     effort: 65, value: 45, r: 4,  fill: '#3B82F6' },
+            { label: 'Marketplace API',     effort: 80, value: 30, r: 3,  fill: '#6B7280' },
+          ].map(({ label, effort, value, r, fill }) => {
+            const cx = 40 + (effort / 100) * 420
+            const cy = 10 + ((100 - value) / 100) * 270
+            const fillAlpha = fill + '30'
+            return (
+              <g key={label}>
+                <circle cx={cx} cy={cy} r={r} fill={fillAlpha} stroke={fill} strokeWidth={1.5} />
+                <text x={cx} y={cy + r + 9} fontSize={9} fill="#374151" textAnchor="middle">{label}</text>
+              </g>
+            )
+          })}
+
+          {/* Legend */}
+          <circle cx={60}  cy={312} r={5} fill="#EF444430" stroke="#EF4444" strokeWidth={1.5} />
+          <text x={68}  y={316} fontSize={9} fill="#374151">Must</text>
+          <circle cx={105} cy={312} r={5} fill="#F59E0B30" stroke="#F59E0B" strokeWidth={1.5} />
+          <text x={113} y={316} fontSize={9} fill="#374151">Should</text>
+          <circle cx={158} cy={312} r={5} fill="#3B82F630" stroke="#3B82F6" strokeWidth={1.5} />
+          <text x={166} y={316} fontSize={9} fill="#374151">Could</text>
+          <circle cx={206} cy={312} r={5} fill="#6B728030" stroke="#6B7280" strokeWidth={1.5} />
+          <text x={214} y={316} fontSize={9} fill="#374151">Won't</text>
+          <text x={270} y={316} fontSize={8} fill="#9CA3AF">Bubble size indicates delivery priority.</text>
+        </svg>
+      </div>
+
       {/* ── MoSCoW Prioritisation ───────────────────────────────────────── */}
       <div className="biz-section-title">MoSCoW Prioritisation</div>
       <div className="moscow-grid">
@@ -196,7 +273,7 @@ export function BusinessAnalytics() {
           <div className="nabc-letter nabc-c">C</div>
           <div className="nabc-body">
             <div className="nabc-title">Competition</div>
-            <p className="nabc-desc">Nexora (incumbent) failed 3 upgrade cycles and uses T&M with 15–22% historical overrun. Vantrix is ISO-certified but $300K higher and 6 weeks slower. PinPoint is cheapest but has no TechCore v4 capability.</p>
+            <p className="nabc-desc">Nexora (incumbent) failed 3 upgrade cycles and uses T&amp;M with 15–22% historical overrun. Vantrix is ISO-certified but $300K higher and 6 weeks slower. PinPoint is cheapest but has no TechCore v4 capability.</p>
             <ul className="nabc-list">
               <li>Only fixed-price bid with native TechCore v4 delivery</li>
               <li>Fastest delivery: 14 wks vs. 18–22 wk competitor range</li>
@@ -206,6 +283,42 @@ export function BusinessAnalytics() {
           </div>
         </div>
       </div>
+
+      {/* ── Market Opportunity Funnel ────────────────────────────────────── */}
+      <div className="overview-card">
+        <div className="overview-card-header">
+          <span className="overview-card-icon">▽</span>
+          Market Opportunity Funnel
+        </div>
+        <svg viewBox="0 0 400 260" style={{ width: '100%', height: 'auto', display: 'block' }}>
+          {/* Connecting trapezoid lines between tiers */}
+          {/* Tier 1 bottom corners to Tier 2 top corners */}
+          <line x1={20}  y1={80}  x2={70}  y2={95}  stroke="#D1D5DB" strokeWidth={1} />
+          <line x1={380} y1={80}  x2={330} y2={95}  stroke="#D1D5DB" strokeWidth={1} />
+          {/* Tier 2 bottom corners to Tier 3 top corners */}
+          <line x1={70}  y1={155} x2={120} y2={170} stroke="#D1D5DB" strokeWidth={1} />
+          <line x1={330} y1={155} x2={280} y2={170} stroke="#D1D5DB" strokeWidth={1} />
+
+          {/* Tier 1: Total Addressable Market */}
+          <rect x={20} y={20} width={360} height={60} fill="#3B82F620" stroke="#3B82F6" strokeWidth={1.5} rx={3} />
+          <text x={200} y={46} fontSize={12} fontWeight="bold" fill="#1F2937" textAnchor="middle">Total Addressable Market</text>
+          <text x={200} y={62} fontSize={10} fill="#6B7280" textAnchor="middle">$2.4B — Global AI Pre-Sales Tools</text>
+          <text x={388} y={55} fontSize={9} fill="#3B82F6" textAnchor="end" fontWeight="bold">100%</text>
+
+          {/* Tier 2: Serviceable Market */}
+          <rect x={70} y={95} width={260} height={60} fill="#8B5CF620" stroke="#8B5CF6" strokeWidth={1.5} rx={3} />
+          <text x={200} y={121} fontSize={12} fontWeight="bold" fill="#1F2937" textAnchor="middle">Serviceable Market</text>
+          <text x={200} y={137} fontSize={10} fill="#6B7280" textAnchor="middle">$340M — Mid-Large Enterprise (500+ employees)</text>
+          <text x={338} y={130} fontSize={9} fill="#8B5CF6" textAnchor="end" fontWeight="bold">14%</text>
+
+          {/* Tier 3: Target Segment */}
+          <rect x={120} y={170} width={160} height={60} fill="#10B98120" stroke="#10B981" strokeWidth={1.5} rx={3} />
+          <text x={200} y={196} fontSize={12} fontWeight="bold" fill="#1F2937" textAnchor="middle">Target Segment</text>
+          <text x={200} y={212} fontSize={10} fill="#6B7280" textAnchor="middle">$48M — AI-First Custom Dev Shops</text>
+          <text x={288} y={205} fontSize={9} fill="#10B981" textAnchor="end" fontWeight="bold">2%</text>
+        </svg>
+      </div>
+
     </div>
   )
 }

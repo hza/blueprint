@@ -33,6 +33,106 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
       <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
+            <span className="overview-card-icon">💳</span>
+            Payment Schedule
+          </div>
+          <svg viewBox="0 0 600 160" style={{ width: '100%', maxWidth: '500px', height: 'auto', display: 'block', margin: '0 auto' }}>
+            {/* Baseline */}
+            <line x1="20" y1="90" x2="580" y2="90" stroke="#D1D5DB" strokeWidth="2" />
+            {/* Cumulative bar background */}
+            <rect x="20" y="135" width="560" height="6" fill="#F3F4F6" rx="3" />
+            {/* Cumulative bar fill */}
+            <rect x="20" y="135" width="560" height="6" fill="#DBEAFE" rx="3" />
+            {/* Cumulative total label */}
+            <text x="580" y="152" fontSize="10" fill="#6B7280" textAnchor="end">$456k total fixed-price build</text>
+
+            {/* Milestone 1: Contract Signed x=0.05 */}
+            {(() => {
+              const x = 20 + 0.05 * 560;
+              return (
+                <g key="m1">
+                  <text x={x} y="60" fontSize="10" textAnchor="middle" fill="#374151">Contract</text>
+                  <circle cx={x} cy="90" r="8" fill="#3B82F6" stroke="white" strokeWidth="2" />
+                  <text x={x} y="108" fontSize="11" fontWeight="bold" textAnchor="middle" fill="#1D4ED8">$45.6k</text>
+                  <text x={x} y="122" fontSize="10" textAnchor="middle" fill="#6B7280">10%</text>
+                </g>
+              );
+            })()}
+
+            {/* Milestone 2: Discovery Complete x=0.22 */}
+            {(() => {
+              const x = 20 + 0.22 * 560;
+              return (
+                <g key="m2">
+                  <text x={x} y="48" fontSize="10" textAnchor="middle" fill="#374151">Discovery</text>
+                  <text x={x} y="62" fontSize="10" textAnchor="middle" fill="#374151">Complete</text>
+                  <circle cx={x} cy="90" r="8" fill="#3B82F6" stroke="white" strokeWidth="2" />
+                  <text x={x} y="108" fontSize="11" fontWeight="bold" textAnchor="middle" fill="#1D4ED8">$45.6k</text>
+                  <text x={x} y="122" fontSize="10" textAnchor="middle" fill="#6B7280">10%</text>
+                </g>
+              );
+            })()}
+
+            {/* Milestone 3: Phase 1 UAT Oct 2026 x=0.45 */}
+            {(() => {
+              const x = 20 + 0.45 * 560;
+              return (
+                <g key="m3">
+                  <text x={x} y="48" fontSize="10" textAnchor="middle" fill="#374151">Phase 1 UAT</text>
+                  <text x={x} y="62" fontSize="10" textAnchor="middle" fill="#374151">Oct 2026</text>
+                  <circle cx={x} cy="90" r="8" fill="#3B82F6" stroke="white" strokeWidth="2" />
+                  <text x={x} y="108" fontSize="11" fontWeight="bold" textAnchor="middle" fill="#1D4ED8">$91.2k</text>
+                  <text x={x} y="122" fontSize="10" textAnchor="middle" fill="#6B7280">20%</text>
+                </g>
+              );
+            })()}
+
+            {/* Milestone 4: Phase 2 UAT Dec 2026 x=0.65 */}
+            {(() => {
+              const x = 20 + 0.65 * 560;
+              return (
+                <g key="m4">
+                  <text x={x} y="48" fontSize="10" textAnchor="middle" fill="#374151">Phase 2 UAT</text>
+                  <text x={x} y="62" fontSize="10" textAnchor="middle" fill="#374151">Dec 2026</text>
+                  <circle cx={x} cy="90" r="8" fill="#3B82F6" stroke="white" strokeWidth="2" />
+                  <text x={x} y="108" fontSize="11" fontWeight="bold" textAnchor="middle" fill="#1D4ED8">$68.4k</text>
+                  <text x={x} y="122" fontSize="10" textAnchor="middle" fill="#6B7280">15%</text>
+                </g>
+              );
+            })()}
+
+            {/* Milestone 5: Phase 3 UAT Feb 2027 x=0.82 */}
+            {(() => {
+              const x = 20 + 0.82 * 560;
+              return (
+                <g key="m5">
+                  <text x={x} y="48" fontSize="10" textAnchor="middle" fill="#374151">Phase 3 UAT</text>
+                  <text x={x} y="62" fontSize="10" textAnchor="middle" fill="#374151">Feb 2027</text>
+                  <circle cx={x} cy="90" r="8" fill="#3B82F6" stroke="white" strokeWidth="2" />
+                  <text x={x} y="108" fontSize="11" fontWeight="bold" textAnchor="middle" fill="#1D4ED8">$68.4k</text>
+                  <text x={x} y="122" fontSize="10" textAnchor="middle" fill="#6B7280">15%</text>
+                </g>
+              );
+            })()}
+
+            {/* Milestone 6: Programme Close x=0.97 */}
+            {(() => {
+              const x = 20 + 0.97 * 560;
+              return (
+                <g key="m6">
+                  <text x={x} y="48" fontSize="10" textAnchor="middle" fill="#374151">Programme</text>
+                  <text x={x} y="62" fontSize="10" textAnchor="middle" fill="#374151">Close</text>
+                  <circle cx={x} cy="90" r="8" fill="#3B82F6" stroke="white" strokeWidth="2" />
+                  <text x={x} y="108" fontSize="11" fontWeight="bold" textAnchor="middle" fill="#1D4ED8">$136.8k</text>
+                  <text x={x} y="122" fontSize="10" textAnchor="middle" fill="#6B7280">30%</text>
+                </g>
+              );
+            })()}
+          </svg>
+        </div>
+
+        <div className="overview-card">
+          <div className="overview-card-header">
             <span className="overview-card-icon">$</span>
             5-Year Total Cost of Ownership
           </div>
@@ -121,6 +221,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             </tbody>
           </table>
         </div>
+
       </div>
 
       </>)}

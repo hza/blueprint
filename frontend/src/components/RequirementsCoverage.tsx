@@ -15,6 +15,38 @@ function domainColor(title: string): { background: string; color: string } {
 
 type MatrixSortKey = 'id' | 'domain' | 'requirement' | 'status'
 
+function polarToCartesian(cx: number, cy: number, r: number, angleDeg: number) {
+  const rad = ((angleDeg - 90) * Math.PI) / 180
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) }
+}
+
+function arcPath(cx: number, cy: number, outerR: number, innerR: number, startDeg: number, endDeg: number) {
+  const largeArc = endDeg - startDeg > 180 ? 1 : 0
+  const o1 = polarToCartesian(cx, cy, outerR, startDeg)
+  const o2 = polarToCartesian(cx, cy, outerR, endDeg)
+  const i1 = polarToCartesian(cx, cy, innerR, endDeg)
+  const i2 = polarToCartesian(cx, cy, innerR, startDeg)
+  return [
+    `M ${o1.x} ${o1.y}`,
+    `A ${outerR} ${outerR} 0 ${largeArc} 1 ${o2.x} ${o2.y}`,
+    `L ${i1.x} ${i1.y}`,
+    `A ${innerR} ${innerR} 0 ${largeArc} 0 ${i2.x} ${i2.y}`,
+    'Z',
+  ].join(' ')
+}
+
+const HEATMAP_DOMAINS = [
+  { name: 'Document Management', met: 5, atRisk: 1, gap: 0, total: 6 },
+  { name: 'AI/LLM Processing',   met: 4, atRisk: 3, gap: 1, total: 8 },
+  { name: 'Security & Compliance', met: 3, atRisk: 2, gap: 1, total: 6 },
+  { name: 'User Management',     met: 4, atRisk: 1, gap: 0, total: 5 },
+  { name: 'Client Portal',       met: 3, atRisk: 1, gap: 2, total: 6 },
+  { name: 'Integrations',        met: 4, atRisk: 1, gap: 1, total: 6 },
+  { name: 'Analytics',           met: 3, atRisk: 0, gap: 1, total: 4 },
+  { name: 'Infrastructure',      met: 3, atRisk: 1, gap: 0, total: 4 },
+  { name: 'Notifications',       met: 2, atRisk: 0, gap: 0, total: 2 },
+]
+
 export function RequirementsCoverage({
   subsection,
   summary,
@@ -110,6 +142,25 @@ const [showAllDomains, setShowAllDomains] = useState(false)
     return <span className="overview-badge overview-badge--ok">Met</span>
   }
 
+  // Donut chart arc paths
+  const cx = 100, cy = 100, outerR = 80, innerR = 50
+  const total = summary?.total ?? 47
+  const metCount = summary?.met ?? 31
+  const atRiskCount = summary?.risky ?? 10
+  const gapCount = summary?.gaps ?? 6
+  const metPct = total > 0 ? Math.round(metCount / total * 100) : 66
+  const atRiskPct = total > 0 ? Math.round(atRiskCount / total * 100) : 21
+  const gapPct = total > 0 ? Math.round(gapCount / total * 100) : 13
+  const metDeg = (metCount / total) * 360
+  const atRiskDeg = (atRiskCount / total) * 360
+  const gapDeg = (gapCount / total) * 360
+  const metStart = 0
+  const atRiskStart = metDeg
+  const gapStart = metDeg + atRiskDeg
+  const metPath = arcPath(cx, cy, outerR, innerR, metStart, metStart + metDeg)
+  const atRiskPath = arcPath(cx, cy, outerR, innerR, atRiskStart, atRiskStart + atRiskDeg)
+  const gapPath = arcPath(cx, cy, outerR, innerR, gapStart, gapStart + gapDeg)
+
   return (
     <div className="overview" ref={scrollRef} onScroll={(e) => onScrollTopChange?.(e.currentTarget.scrollTop)}>
       <div className="overview-banner">
@@ -141,7 +192,7 @@ const [showAllDomains, setShowAllDomains] = useState(false)
 
       {show('2.1') && (<>
       <div className="rfp-section-heading" id="2.1">Requirements Summary</div>
-      <div className="overview-grid">
+      <div className="overview-grid" style={{ gridTemplateColumns: '1fr auto', alignItems: 'start' }}>
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">📋</span>
@@ -242,6 +293,34 @@ const [showAllDomains, setShowAllDomains] = useState(false)
           </table>
         </div>
 
+        {/* Coverage Donut Chart */}
+        <div className="overview-card" style={{ minWidth: 260 }}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">◎</span>
+            Requirements Coverage at a Glance
+          </div>
+          <svg viewBox="0 0 380 230" style={{ width: '100%', maxWidth: '380px', display: 'block', margin: '0 auto' }}>
+            <path d={metPath} fill="#10B981" />
+            <path d={atRiskPath} fill="#F59E0B" />
+            <path d={gapPath} fill="#EF4444" />
+            <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize="18" fontWeight="bold" fill="#10B981"
+              dy="-8">{metPct}%</text>
+            <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize="18" fill="#6B7280"
+              dy="14">Met</text>
+            <rect x="200" y="60" width="10" height="10" fill="#10B981" rx="2" />
+            <text x="215" y="70" fontSize="10" fill="#374151">Met — {metCount} ({metPct}%)</text>
+            <rect x="200" y="82" width="10" height="10" fill="#F59E0B" rx="2" />
+            <text x="215" y="92" fontSize="10" fill="#374151">At Risk — {atRiskCount} ({atRiskPct}%)</text>
+            <rect x="200" y="104" width="10" height="10" fill="#EF4444" rx="2" />
+            <text x="215" y="114" fontSize="10" fill="#374151">Gap — {gapCount} ({gapPct}%)</text>
+            <text x="190" y="208" textAnchor="middle" fontSize="9" fill="#6B7280">
+              Based on {total} requirements across {HEATMAP_DOMAINS.length} domains
+            </text>
+          </svg>
+        </div>
+      </div>
+
+      <div className="overview-grid">
         <div className="overview-card" id="gaps-risks-card">
           <div className="overview-card-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span>
@@ -340,6 +419,38 @@ const [showAllDomains, setShowAllDomains] = useState(false)
               </ul>
             )
           })()}
+        </div>
+      </div>
+
+      {/* Domain Risk Heatmap — after the Requirements Summary domain table card */}
+      <div className="overview-grid" style={{ gridTemplateColumns: '1fr' }}>
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🔥</span>
+            Domain Risk Heatmap
+          </div>
+          <table style={{ width: '100%', fontSize: '12px', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr>
+                <th style={{ textAlign: 'left', padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>Domain</th>
+                <th style={{ padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>Met</th>
+                <th style={{ padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>At Risk</th>
+                <th style={{ padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>Gap</th>
+                <th style={{ padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {HEATMAP_DOMAINS.map((row) => (
+                <tr key={row.name}>
+                  <td style={{ textAlign: 'left', padding: '6px', fontWeight: 500, borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.name}</td>
+                  <td style={{ padding: '6px', textAlign: 'center', background: '#D1FAE5', color: '#065F46', borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.met}</td>
+                  <td style={{ padding: '6px', textAlign: 'center', background: row.atRisk > 0 ? '#FEF3C7' : '#F9FAFB', color: row.atRisk > 0 ? '#92400E' : '#9CA3AF', borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.atRisk}</td>
+                  <td style={{ padding: '6px', textAlign: 'center', background: row.gap > 0 ? '#FEE2E2' : '#F9FAFB', color: row.gap > 0 ? '#991B1B' : '#9CA3AF', borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.gap}</td>
+                  <td style={{ padding: '6px', textAlign: 'center', background: '#F3F4F6', color: '#374151', fontWeight: 'bold', borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.total}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
       </>)}

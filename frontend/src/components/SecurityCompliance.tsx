@@ -1,5 +1,30 @@
 export function SecurityCompliance({ subsection }: { subsection?: string }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
+
+  // Compliance coverage data
+  type Coverage = 'covered' | 'partial' | 'na'
+  const certRows: { cert: string; cells: Coverage[] }[] = [
+    { cert: 'SOC 2 Type II', cells: ['covered', 'covered', 'covered', 'covered', 'partial'] },
+    { cert: 'ISO 27001', cells: ['covered', 'covered', 'partial', 'covered', 'covered'] },
+    { cert: 'GDPR', cells: ['partial', 'covered', 'covered', 'covered', 'covered'] },
+    { cert: 'PII Anonymisation', cells: ['covered', 'covered', 'na', 'partial', 'covered'] },
+  ]
+  const colHeaders = ['Access Control', 'Encryption', 'Incident Resp.', 'Audit Logs', 'Data Residency']
+
+  const coverageStyle = (c: Coverage): React.CSSProperties => {
+    if (c === 'covered') return { background: '#D1FAE5', color: '#065F46' }
+    if (c === 'partial') return { background: '#FEF3C7', color: '#92400E' }
+    return { background: '#F3F4F6', color: '#6B7280' }
+  }
+  const coverageLabel = (c: Coverage) => c === 'covered' ? '✓' : c === 'partial' ? 'Partial' : 'N/A'
+
+  // Threat model data
+  const tmAssets = ['RFP Documents', 'User PII', 'LLM Prompts', 'API Credentials', 'Vector Embeddings']
+  const tmThreats = ['Document exfiltration', 'PII exposure', 'Prompt injection', 'Credential theft', 'Model poisoning']
+  const tmMitigations = ['AES-256 + RBAC', 'Anon. before LLM', 'Schema validation', 'Vault + rotation', 'Signed embeddings']
+  const tmYs = [60, 110, 160, 210, 260]
+  const boxH = 30, boxW = 130
+
   return (
     <div className="overview">
       <div className="overview-banner">
@@ -27,6 +52,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
       {/* 4.1 Security Model */}
       <div className="rfp-section-heading" id="4.1">Security Model</div>
       <div className="overview-grid">
+
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">🔐</span>
@@ -151,6 +177,42 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
       {/* 4.2 Certifications & Standards */}
       <div className="rfp-section-heading" id="4.2">Certifications &amp; Standards</div>
       <div className="overview-grid">
+
+        {/* Compliance Coverage Matrix — first card */}
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">✓</span>
+            Compliance Coverage Matrix
+          </div>
+          <table style={{ width: '100%', fontSize: '12px', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr>
+                <th style={{ padding: '6px', border: '1px solid #E5E7EB', textAlign: 'left', background: '#F9FAFB', fontSize: '11px' }}></th>
+                {colHeaders.map(h => (
+                  <th key={h} style={{ padding: '6px', border: '1px solid #E5E7EB', textAlign: 'center', background: '#F9FAFB', fontSize: '11px', fontWeight: 600 }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {certRows.map(row => (
+                <tr key={row.cert}>
+                  <td style={{ padding: '6px', border: '1px solid #E5E7EB', fontWeight: 600, whiteSpace: 'nowrap', fontSize: '11px' }}>{row.cert}</td>
+                  {row.cells.map((c, ci) => (
+                    <td key={ci} style={{ padding: '6px', border: '1px solid #E5E7EB', textAlign: 'center', ...coverageStyle(c) }}>
+                      {coverageLabel(c)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div style={{ display: 'flex', gap: '12px', marginTop: '10px', fontSize: '11px' }}>
+            <span style={{ background: '#D1FAE5', color: '#065F46', padding: '2px 8px', borderRadius: '4px' }}>✓ Covered</span>
+            <span style={{ background: '#FEF3C7', color: '#92400E', padding: '2px 8px', borderRadius: '4px' }}>Partial</span>
+            <span style={{ background: '#F3F4F6', color: '#6B7280', padding: '2px 8px', borderRadius: '4px' }}>N/A</span>
+          </div>
+        </div>
+
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">✓</span>
@@ -252,6 +314,98 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+      </>)}
+
+      {show('4.3') && (<>
+      {/* 4.3 Threat Model Overview */}
+      <div className="rfp-section-heading" id="4.3">Threat Model Overview</div>
+      <div className="overview-grid">
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">⚠</span>
+            Assets → Threats → Mitigations
+          </div>
+          <svg viewBox="0 0 600 320" style={{ width: '100%', display: 'block' }}>
+            <defs>
+              <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#9CA3AF" />
+              </marker>
+            </defs>
+
+            {/* Column headers */}
+            {[
+              { x: 60, label: 'Assets' },
+              { x: 280, label: 'Threats' },
+              { x: 500, label: 'Mitigations' },
+            ].map(col => (
+              <g key={col.label}>
+                <rect
+                  x={col.x - 65}
+                  y={10}
+                  width={boxW}
+                  height={30}
+                  rx={4}
+                  fill="#F3F4F6"
+                  stroke="#D1D5DB"
+                  strokeWidth="1"
+                />
+                <text
+                  x={col.x}
+                  y={30}
+                  textAnchor="middle"
+                  fontSize="12"
+                  fontWeight="bold"
+                  fill="#374151"
+                >
+                  {col.label}
+                </text>
+              </g>
+            ))}
+
+            {/* Rows */}
+            {tmYs.map((y, i) => {
+              const midY = y + boxH / 2
+              return (
+                <g key={i}>
+                  {/* Asset box */}
+                  <rect x={60 - 65} y={y} width={boxW} height={boxH} rx={4} fill="#EFF6FF" stroke="#93C5FD" strokeWidth="1" />
+                  <text x={60} y={y + 19} textAnchor="middle" fontSize="11" fill="#1E40AF">{tmAssets[i]}</text>
+
+                  {/* Threat box */}
+                  <rect x={280 - 65} y={y} width={boxW} height={boxH} rx={4} fill="#FEF2F2" stroke="#FCA5A5" strokeWidth="1" />
+                  <text x={280} y={y + 19} textAnchor="middle" fontSize="11" fill="#991B1B">{tmThreats[i]}</text>
+
+                  {/* Mitigation box */}
+                  <rect x={500 - 65} y={y} width={boxW} height={boxH} rx={4} fill="#F0FDF4" stroke="#86EFAC" strokeWidth="1" />
+                  <text x={500} y={y + 19} textAnchor="middle" fontSize="11" fill="#065F46">{tmMitigations[i]}</text>
+
+                  {/* Asset → Threat arrow */}
+                  <line
+                    x1={60 - 65 + boxW}
+                    y1={midY}
+                    x2={280 - 65 - 4}
+                    y2={midY}
+                    stroke="#9CA3AF"
+                    strokeWidth="1"
+                    markerEnd="url(#arrowhead)"
+                  />
+
+                  {/* Threat → Mitigation arrow */}
+                  <line
+                    x1={280 - 65 + boxW}
+                    y1={midY}
+                    x2={500 - 65 - 4}
+                    y2={midY}
+                    stroke="#9CA3AF"
+                    strokeWidth="1"
+                    markerEnd="url(#arrowhead)"
+                  />
+                </g>
+              )
+            })}
+          </svg>
         </div>
       </div>
       </>)}

@@ -28,6 +28,78 @@ export function TechnicalSolution() {
       </div>
 
       <div className="overview-grid">
+        {/* System Components & Interactions — Architecture Diagram */}
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">⬡</span>
+            System Components &amp; Interactions
+          </div>
+          <svg viewBox="0 0 600 320" style={{ width: '100%', height: 'auto' }} aria-label="Architecture component diagram">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#9CA3AF" />
+              </marker>
+            </defs>
+
+            {/* Connections */}
+            {/* React SPA → FastAPI Gateway (horizontal right) */}
+            <line x1="140" y1="50" x2="240" y2="50" stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#arrow)" />
+            {/* FastAPI Gateway → Auth Service (horizontal right) */}
+            <line x1="360" y1="50" x2="460" y2="50" stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#arrow)" />
+            {/* FastAPI Gateway → Document Service (diagonal down-left) */}
+            <line x1="270" y1="70" x2="100" y2="130" stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#arrow)" />
+            {/* FastAPI Gateway → AI Pipeline (vertical down) */}
+            <line x1="300" y1="70" x2="300" y2="130" stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#arrow)" />
+            {/* AI Pipeline → Qdrant Vector DB (vertical down) */}
+            <line x1="300" y1="170" x2="300" y2="230" stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#arrow)" />
+            {/* Document Service → PostgreSQL (vertical down) */}
+            <line x1="80" y1="170" x2="80" y2="230" stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#arrow)" />
+            {/* Document Service → S3 Storage (diagonal down-right, long) */}
+            <line x1="140" y1="160" x2="470" y2="230" stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#arrow)" />
+            {/* AI Pipeline → Notification Svc (horizontal right) */}
+            <line x1="360" y1="150" x2="460" y2="150" stroke="#9CA3AF" strokeWidth="1.5" markerEnd="url(#arrow)" />
+
+            {/* Row 1 */}
+            {/* React SPA */}
+            <rect x="20" y="30" width="120" height="40" rx="6" fill="#DBEAFE" stroke="#93C5FD" />
+            <text x="80" y="55" textAnchor="middle" fontSize="11" fontWeight="600" fill="#1E40AF">React SPA</text>
+
+            {/* FastAPI Gateway */}
+            <rect x="240" y="30" width="120" height="40" rx="6" fill="#F3E8FF" stroke="#C4B5FD" />
+            <text x="300" y="55" textAnchor="middle" fontSize="11" fontWeight="600" fill="#5B21B6">FastAPI Gateway</text>
+
+            {/* Auth Service */}
+            <rect x="460" y="30" width="120" height="40" rx="6" fill="#D1FAE5" stroke="#6EE7B7" />
+            <text x="520" y="55" textAnchor="middle" fontSize="11" fontWeight="600" fill="#065F46">Auth Service</text>
+
+            {/* Row 2 */}
+            {/* Document Service */}
+            <rect x="20" y="130" width="120" height="40" rx="6" fill="#FEF3C7" stroke="#FCD34D" />
+            <text x="80" y="155" textAnchor="middle" fontSize="11" fontWeight="600" fill="#92400E">Document Service</text>
+
+            {/* AI Pipeline */}
+            <rect x="240" y="130" width="120" height="40" rx="6" fill="#FEE2E2" stroke="#FCA5A5" />
+            <text x="300" y="155" textAnchor="middle" fontSize="11" fontWeight="600" fill="#991B1B">AI Pipeline</text>
+
+            {/* Notification Svc */}
+            <rect x="460" y="130" width="120" height="40" rx="6" fill="#F3F4F6" stroke="#D1D5DB" />
+            <text x="520" y="155" textAnchor="middle" fontSize="11" fontWeight="600" fill="#374151">Notification Svc</text>
+
+            {/* Row 3 */}
+            {/* PostgreSQL */}
+            <rect x="20" y="230" width="120" height="40" rx="6" fill="#E5E7EB" stroke="#9CA3AF" />
+            <text x="80" y="255" textAnchor="middle" fontSize="11" fontWeight="600" fill="#374151">PostgreSQL</text>
+
+            {/* Qdrant Vector DB */}
+            <rect x="240" y="230" width="120" height="40" rx="6" fill="#E5E7EB" stroke="#9CA3AF" />
+            <text x="300" y="255" textAnchor="middle" fontSize="11" fontWeight="600" fill="#374151">Qdrant Vector DB</text>
+
+            {/* S3 Storage */}
+            <rect x="460" y="230" width="120" height="40" rx="6" fill="#E5E7EB" stroke="#9CA3AF" />
+            <text x="520" y="255" textAnchor="middle" fontSize="11" fontWeight="600" fill="#374151">S3 Storage</text>
+          </svg>
+        </div>
+
         {/* Proposed Architecture */}
         <div className="overview-card">
           <div className="overview-card-header">
@@ -274,6 +346,79 @@ export function TechnicalSolution() {
               </div>
             </li>
           </ul>
+        </div>
+
+        {/* Action Priority Matrix */}
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">⊞</span>
+            Action Priority Matrix
+          </div>
+          <svg viewBox="0 0 340 280" style={{ width: '100%', height: 'auto' }} aria-label="Action priority matrix">
+            {/* Quadrant backgrounds */}
+            {/* Top-left: Plan */}
+            <rect x="20" y="0" width="150" height="140" fill="#F3F4F6" opacity="0.6" />
+            {/* Top-right: Do First */}
+            <rect x="170" y="0" width="170" height="140" fill="#FEF2F2" opacity="0.4" />
+            {/* Bottom-left: Monitor */}
+            <rect x="20" y="140" width="150" height="120" fill="#F3F4F6" opacity="0.4" />
+            {/* Bottom-right: Schedule */}
+            <rect x="170" y="140" width="170" height="120" fill="#FFFBEB" opacity="0.4" />
+
+            {/* Quadrant divider lines */}
+            <line x1="170" y1="0" x2="170" y2="260" stroke="#D1D5DB" strokeWidth="1" />
+            <line x1="20" y1="140" x2="340" y2="140" stroke="#D1D5DB" strokeWidth="1" />
+
+            {/* Axis border */}
+            <rect x="20" y="0" width="320" height="260" fill="none" stroke="#E5E7EB" strokeWidth="1" />
+
+            {/* Quadrant labels */}
+            <text x="85" y="50" textAnchor="middle" fontSize="11" fill="#9CA3AF" fontWeight="500">Plan</text>
+            <text x="255" y="50" textAnchor="middle" fontSize="11" fill="#EF4444" fontWeight="700">Do First</text>
+            <text x="85" y="230" textAnchor="middle" fontSize="11" fill="#9CA3AF" fontWeight="500">Monitor</text>
+            <text x="255" y="230" textAnchor="middle" fontSize="11" fill="#D97706" fontWeight="500">Schedule</text>
+
+            {/* Axis labels */}
+            <text x="20" y="275" textAnchor="start" fontSize="9" fill="#9CA3AF">Lower Urgency</text>
+            <text x="340" y="275" textAnchor="end" fontSize="9" fill="#9CA3AF">Higher Urgency</text>
+            {/* Y-axis labels — rotated */}
+            <text x="10" y="260" textAnchor="middle" fontSize="9" fill="#9CA3AF" transform="rotate(-90, 10, 140)">Higher Impact</text>
+
+            {/* Action dots
+                urgency 0→1 maps to x: 20→320
+                impact 0→1 maps to y: 260→0  (inverted)
+            */}
+
+            {/* 1. Pen Test Schedule (urgency=0.8, impact=0.9, BLOCKING=#EF4444) */}
+            {/* x = 20 + 0.8*300 = 260, y = 260 - 0.9*260 = 26 */}
+            <circle cx="260" cy="26" r="6" fill="#EF4444" />
+            <text x="268" y="30" fontSize="9" fill="#374151">Pen Test Schedule</text>
+
+            {/* 2. LLM Provider Decision (urgency=0.85, impact=0.85, BLOCKING=#EF4444) */}
+            {/* x = 20 + 0.85*300 = 275, y = 260 - 0.85*260 = 39 */}
+            <circle cx="275" cy="50" r="6" fill="#EF4444" />
+            <text x="215" y="62" fontSize="9" fill="#374151">LLM Provider Decision</text>
+
+            {/* 3. SSO Sandbox Access (urgency=0.7, impact=0.75, HIGH=#F59E0B) */}
+            {/* x = 20 + 0.7*300 = 230, y = 260 - 0.75*260 = 65 */}
+            <circle cx="230" cy="65" r="6" fill="#F59E0B" />
+            <text x="238" y="69" fontSize="9" fill="#374151">SSO Sandbox Access</text>
+
+            {/* 4. Cloud Region Confirm (urgency=0.55, impact=0.7, HIGH=#F59E0B) */}
+            {/* x = 20 + 0.55*300 = 185, y = 260 - 0.7*260 = 78 */}
+            <circle cx="185" cy="78" r="6" fill="#F59E0B" />
+            <text x="193" y="82" fontSize="9" fill="#374151">Cloud Region Confirm</text>
+
+            {/* 5. Rate Card Approval (urgency=0.4, impact=0.5, MED=#3B82F6) */}
+            {/* x = 20 + 0.4*300 = 140, y = 260 - 0.5*260 = 130 */}
+            <circle cx="140" cy="130" r="6" fill="#3B82F6" />
+            <text x="80" y="124" fontSize="9" fill="#374151">Rate Card Approval</text>
+
+            {/* 6. Monitoring Tool Choice (urgency=0.3, impact=0.3, MED=#3B82F6) */}
+            {/* x = 20 + 0.3*300 = 110, y = 260 - 0.3*260 = 182 */}
+            <circle cx="110" cy="182" r="6" fill="#3B82F6" />
+            <text x="118" y="186" fontSize="9" fill="#374151">Monitoring Tool Choice</text>
+          </svg>
         </div>
       </div>
     </div>

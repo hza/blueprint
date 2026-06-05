@@ -1,4 +1,52 @@
 export function CostOfOwnership() {
+  // 5-Year Cost Stacked Bar Chart data ($k)
+  const barData = [
+    { label: 'Y1', Implementation: 2280, Cloud: 140, LLM: 48, Support: 80, Training: 45, Contingency: 259 },
+    { label: 'Y2', Implementation: 0,    Cloud: 155, LLM: 55, Support: 180, Training: 10, Contingency: 40 },
+    { label: 'Y3', Implementation: 0,    Cloud: 155, LLM: 55, Support: 180, Training: 10, Contingency: 40 },
+    { label: 'Y4', Implementation: 0,    Cloud: 155, LLM: 55, Support: 180, Training: 10, Contingency: 40 },
+    { label: 'Y5', Implementation: 0,    Cloud: 155, LLM: 55, Support: 180, Training: 10, Contingency: 40 },
+  ]
+  const barColors: Record<string, string> = {
+    Implementation: '#3B82F6',
+    Cloud: '#10B981',
+    LLM: '#F59E0B',
+    Support: '#8B5CF6',
+    Training: '#EC4899',
+    Contingency: '#EF4444',
+  }
+  const categories = ['Implementation', 'Cloud', 'LLM', 'Support', 'Training', 'Contingency']
+  const yMax = 3000
+  const chartH = 160
+  const chartX = 50
+  const chartY = 10
+  const barWidth = 60
+  const barGap = 16
+  const barStartX = 70
+
+  // ROI curve data
+  const cumulativeCost   = [0, 2852, 3292, 3732, 4172, 4612]   // $k
+  const cumulativeBenefit = [0, 0,   1750, 3500, 5250, 7000]    // $k
+  const roiYMax = 10000
+  const roiChartW = 440
+  const roiChartH = 160
+  const roiChartX = 50
+  const roiChartY = 10
+  const roiXPoints = [0, 1, 2, 3, 4, 5]
+
+  function roiPtX(i: number) {
+    return roiChartX + (i / 5) * roiChartW
+  }
+  function roiPtY(v: number) {
+    return roiChartY + roiChartH - (v / roiYMax) * roiChartH
+  }
+
+  const costPolyline = cumulativeCost.map((v, i) => `${roiPtX(i)},${roiPtY(v)}`).join(' ')
+  const benefitPolyline = cumulativeBenefit.map((v, i) => `${roiPtX(i)},${roiPtY(v)}`).join(' ')
+
+  // Break-even at month 28 → ~2.33 years between Y2 and Y3
+  const breakEvenX = roiPtX(2 + (28 - 24) / 12)
+
   return (
     <div className="overview">
       {/* Summary Banner */}
@@ -28,6 +76,73 @@ export function CostOfOwnership() {
       </div>
 
       <div className="overview-grid">
+        {/* 5-Year Cost at a Glance — Stacked Bar Chart */}
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">📊</span>
+            5-Year Cost at a Glance
+          </div>
+          <svg width="100%" viewBox="0 0 520 220" style={{ display: 'block', overflow: 'visible' }}>
+            {/* Gridlines */}
+            {[0, 1000, 2000, 3000].map(v => {
+              const y = chartY + chartH - (v / yMax) * chartH
+              return (
+                <g key={v}>
+                  <line x1={chartX} y1={y} x2={chartX + 430} y2={y} stroke="#E5E7EB" strokeWidth="1" />
+                  <text x={chartX - 4} y={y + 4} textAnchor="end" fontSize="10" fill="#6B7280">
+                    {v === 0 ? '0' : `${v / 1000}k`}
+                  </text>
+                </g>
+              )
+            })}
+
+            {/* Stacked Bars */}
+            {barData.map((d, i) => {
+              const x = barStartX + i * (barWidth + barGap)
+              let yOffset = chartY + chartH
+              return (
+                <g key={d.label}>
+                  {categories.map(cat => {
+                    const val = (d as Record<string, number | string>)[cat] as number
+                    const h = (val / yMax) * chartH
+                    yOffset -= h
+                    return (
+                      <rect
+                        key={cat}
+                        x={x}
+                        y={yOffset}
+                        width={barWidth}
+                        height={h}
+                        fill={barColors[cat]}
+                      />
+                    )
+                  })}
+                  <text x={x + barWidth / 2} y={chartY + chartH + 14} textAnchor="middle" fontSize="11" fill="#374151">
+                    {d.label}
+                  </text>
+                </g>
+              )
+            })}
+
+            {/* X-axis baseline */}
+            <line x1={chartX} y1={chartY + chartH} x2={chartX + 430} y2={chartY + chartH} stroke="#D1D5DB" strokeWidth="1" />
+
+            {/* Legend */}
+            {categories.map((cat, i) => {
+              const col = i < 3 ? 0 : 1
+              const row = i % 3
+              const lx = 52 + col * 220
+              const ly = 185 + row * 14
+              return (
+                <g key={cat}>
+                  <rect x={lx} y={ly - 8} width={10} height={10} fill={barColors[cat]} rx="2" />
+                  <text x={lx + 14} y={ly} fontSize="10" fill="#374151">{cat}</text>
+                </g>
+              )
+            })}
+          </svg>
+        </div>
+
         {/* Cost Breakdown */}
         <div className="overview-card">
           <div className="overview-card-header">
@@ -129,6 +244,103 @@ export function CostOfOwnership() {
               </tr>
             </tbody>
           </table>
+        </div>
+
+        {/* Cumulative Cost vs. Benefit — ROI Curve */}
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">↗</span>
+            Cumulative Cost vs. Benefit
+          </div>
+          <svg width="100%" viewBox="0 0 520 220" style={{ display: 'block', overflow: 'visible' }}>
+            {/* Gridlines + Y-axis labels */}
+            {[0, 2000, 4000, 6000, 8000, 10000].map(v => {
+              const y = roiPtY(v)
+              const label = `$${v / 1000}M`
+              return (
+                <g key={v}>
+                  <line x1={roiChartX} y1={y} x2={roiChartX + roiChartW} y2={y} stroke="#E5E7EB" strokeWidth="1" />
+                  <text x={roiChartX - 4} y={y + 4} textAnchor="end" fontSize="10" fill="#6B7280">{label}</text>
+                </g>
+              )
+            })}
+
+            {/* X-axis baseline */}
+            <line
+              x1={roiChartX}
+              y1={roiChartY + roiChartH}
+              x2={roiChartX + roiChartW}
+              y2={roiChartY + roiChartH}
+              stroke="#D1D5DB"
+              strokeWidth="1"
+            />
+
+            {/* X-axis labels */}
+            {roiXPoints.map(i => (
+              <text
+                key={i}
+                x={roiPtX(i)}
+                y={roiChartY + roiChartH + 14}
+                textAnchor="middle"
+                fontSize="11"
+                fill="#374151"
+              >
+                Y{i}
+              </text>
+            ))}
+
+            {/* Break-even vertical dashed line (~month 28 = Y2 + 4/12) */}
+            <line
+              x1={breakEvenX}
+              y1={roiChartY}
+              x2={breakEvenX}
+              y2={roiChartY + roiChartH}
+              stroke="#9CA3AF"
+              strokeWidth="1.5"
+              strokeDasharray="4 3"
+            />
+            <text
+              x={breakEvenX + 4}
+              y={roiChartY + 12}
+              fontSize="9"
+              fill="#6B7280"
+            >
+              Break-even ~Month 28
+            </text>
+
+            {/* Cumulative Cost line (red) */}
+            <polyline
+              points={costPolyline}
+              fill="none"
+              stroke="#EF4444"
+              strokeWidth="2.5"
+              strokeLinejoin="round"
+            />
+            {cumulativeCost.map((v, i) => (
+              <circle key={i} cx={roiPtX(i)} cy={roiPtY(v)} r="3.5" fill="#EF4444" />
+            ))}
+
+            {/* Cumulative Benefit line (green) */}
+            <polyline
+              points={benefitPolyline}
+              fill="none"
+              stroke="#10B981"
+              strokeWidth="2.5"
+              strokeLinejoin="round"
+            />
+            {cumulativeBenefit.map((v, i) => (
+              <circle key={i} cx={roiPtX(i)} cy={roiPtY(v)} r="3.5" fill="#10B981" />
+            ))}
+
+            {/* Legend */}
+            <line x1={52} y1={188} x2={72} y2={188} stroke="#EF4444" strokeWidth="2.5" />
+            <circle cx={62} cy={188} r="3.5" fill="#EF4444" />
+            <text x={76} y={192} fontSize="10" fill="#374151">Cumulative Cost</text>
+
+            <line x1={200} y1={188} x2={220} y2={188} stroke="#10B981" strokeWidth="2.5" />
+            <circle cx={210} cy={188} r="3.5" fill="#10B981" />
+            <text x={224} y={192} fontSize="10" fill="#374151">Cumulative Benefit</text>
+          </svg>
         </div>
 
         {/* Cost Risk Flags */}
