@@ -68,7 +68,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             { label: 'Data',        fill: '#F0FDF4', stroke: '#86EFAC', text: '#065F46', r: 32 },
             { label: 'Monitoring',  fill: '#F5F3FF', stroke: '#C4B5FD', text: '#5B21B6', r: 15 },
           ].map(layer => (
-            <circle key={layer.label} cx={200} cy={89} r={layer.r} fill={layer.fill} stroke={layer.stroke} strokeWidth="1.5" />
+            <circle key={layer.label} cx={200} cy={89} r={layer.r} fill={layer.fill} stroke={layer.stroke} strokeWidth="0.75" />
           ))}
 
           {/* Ring labels at −30° */}
@@ -82,15 +82,15 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             const lx = 200 + layer.r * Math.cos(rad)
             const ly = 89  + layer.r * Math.sin(rad)
             return (
-              <text key={layer.label} x={lx} y={ly} textAnchor="middle" fontSize="7" fontWeight="700" fill={layer.text}>
+              <text key={layer.label} x={lx} y={ly} textAnchor="middle" fontSize="4.5" fontWeight="700" fill={layer.text}>
                 {layer.label}
               </text>
             )
           })}
 
           {/* Centre label */}
-          <text x={200} y={86} textAnchor="middle" fontSize="6" fontWeight="700" fill="#5B21B6">Monitoring</text>
-          <text x={200} y={94} textAnchor="middle" fontSize="6" fill="#5B21B6">SOC 24/7</text>
+          <text x={200} y={86} textAnchor="middle" fontSize="4" fontWeight="700" fill="#5B21B6">Monitoring</text>
+          <text x={200} y={93} textAnchor="middle" fontSize="4" fill="#5B21B6">SOC 24/7</text>
 
           {/* Legend — 5 rows, step 26px, rect height 21px */}
           {[
@@ -103,9 +103,9 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             const lx = 360, ly = 21 + i * 26
             return (
               <g key={item.label}>
-                <rect x={lx} y={ly} width={168} height={21} rx="4" fill={item.fill} stroke={item.stroke} strokeWidth="1.5" />
-                <text x={lx + 8} y={ly + 9}  fontSize="8" fontWeight="700" fill={item.text}>{item.label}</text>
-                <text x={lx + 8} y={ly + 18} fontSize="7" fill={item.text} opacity="0.85">{item.sub}</text>
+                <rect x={lx} y={ly} width={84} height={21} rx="4" fill={item.fill} stroke={item.stroke} strokeWidth="0.75" />
+                <text x={lx + 8} y={ly + 9}  fontSize="5.5" fontWeight="700" fill={item.text}>{item.label}</text>
+                <text x={lx + 8} y={ly + 17} fontSize="4.5" fill={item.text} opacity="0.85">{item.sub}</text>
               </g>
             )
           })}
@@ -116,7 +116,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
               key={i}
               x1={360}     y1={21 + i * 26 + 10}
               x2={200 + r} y2={89}
-              stroke="#D1D5DB" strokeWidth="1" strokeDasharray="3 3"
+              stroke="#D1D5DB" strokeWidth="0.5" strokeDasharray="3 3"
             />
           ))}
         </svg>
