@@ -301,3 +301,19 @@
   box-sizing: border-box;
   font-family: inherit;
 }
+
+/* Notion table: only thick line below th, no cell borders */
+[data-theme="notion"] .fl-th {
+  background: transparent;
+  border-bottom: 2px solid var(--fg-subtle);
+  border-right: none;
+}
+[data-theme="notion"] .fl-th:last-child {
+  border-right: none;
+}
+[data-theme="notion"] .fl-td {
+  border-right: none;
+}
+[data-theme="notion"] .fl-row {
+  border-bottom: none;
+}

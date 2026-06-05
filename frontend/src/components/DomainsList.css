@@ -66,3 +66,16 @@
   color: var(--fg-muted);
   font-size: var(--font-size-sm);
 }
+
+/* Notion table: only thick line below th, no cell borders */
+[data-theme="notion"] .cat-th {
+  background: transparent;
+  border-bottom: 2px solid var(--fg-subtle);
+  border-right: none;
+}
+[data-theme="notion"] .cat-tr {
+  border-bottom: none;
+}
+[data-theme="notion"] .cat-tr:last-child {
+  border-bottom: none;
+}

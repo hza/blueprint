@@ -333,7 +333,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             RACI — Who Does What
           </div>
           <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', fontSize: '12px', borderCollapse: 'collapse' }}>
+            <table className="raci-table" style={{ width: '100%', fontSize: '12px', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
                   <th style={{ textAlign: 'left', padding: '5px 8px', border: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>Activity</th>

@@ -683,3 +683,37 @@
   border: none;
   box-shadow: none;
 }
+[data-theme="notion"] .overview-card-header {
+  background: transparent;
+  border-bottom: none;
+  color: var(--fg-muted);
+  padding-bottom: 4px;
+}
+
+/* Notion table: only thick line below th, no cell borders */
+[data-theme="notion"] .raci-table th,
+[data-theme="notion"] .raci-table td {
+  border: none !important;
+  background: transparent !important;
+}
+[data-theme="notion"] .raci-table th {
+  border-bottom: 2px solid var(--fg-subtle) !important;
+}
+[data-theme="notion"] .raci-table tr:hover td {
+  background: var(--canvas-subtle) !important;
+}
+
+[data-theme="notion"] .overview-table th {
+  background: transparent;
+  border-bottom: 2px solid var(--fg-subtle);
+  border-top: none;
+}
+[data-theme="notion"] .overview-table td {
+  border-bottom: none;
+}
+[data-theme="notion"] .overview-table tr:last-child td {
+  border-bottom: none;
+}
+[data-theme="notion"] .overview-table tbody tr:hover td {
+  background: var(--canvas-subtle);
+}
