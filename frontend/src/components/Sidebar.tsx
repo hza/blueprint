@@ -347,7 +347,7 @@ export function Sidebar({
               <span className="sidebar-avatar sidebar-avatar-lg">{initials}</span>
               <div>
                 <div className="sidebar-popup-name">{userName}</div>
-                <div className="sidebar-popup-role">Dear Customer</div>
+                <div className="sidebar-popup-role">Valued Client</div>
               </div>
             </div>
             <div className="sidebar-popup-sep" />
