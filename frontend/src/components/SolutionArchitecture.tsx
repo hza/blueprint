@@ -319,7 +319,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
 
             </svg>
           </div>
-          <p style={{fontSize: '0.8rem', color: 'var(--text-secondary, #6b7280)', marginTop: '0.5rem'}}>
+          <p style={{fontSize: '0.8rem', color: 'var(--text-secondary, #6b7280)', marginTop: '0.5rem', padding: '8px'}}>
             C4 Model — Level 2 (Container). Shows the major containers inside the portal boundary and their interactions with external systems. Dashed arrows = async / external; solid = synchronous.
           </p>
         </div>
@@ -574,7 +574,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               <line x1="900" y1="510" x2="565" y2="317" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
             </svg>
           </div>
-          <p style={{fontSize: '0.8rem', color: 'var(--text-secondary, #6b7280)', marginTop: '0.5rem'}}>
+          <p style={{fontSize: '0.8rem', color: 'var(--text-secondary, #6b7280)', marginTop: '0.5rem', padding: '8px'}}>
             C4 Model — Level 1 (System Context). Dashed lines show data flows between users, the portal, and external systems.
           </p>
         </div>
