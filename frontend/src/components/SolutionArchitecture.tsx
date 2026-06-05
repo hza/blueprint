@@ -472,10 +472,10 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               <line x1="815" y1="103" x2="837" y2="116" stroke="#374151" strokeWidth="1.5"/>
               <line x1="815" y1="123" x2="797" y2="146" stroke="#374151" strokeWidth="1.5"/>
               <line x1="815" y1="123" x2="833" y2="146" stroke="#374151" strokeWidth="1.5"/>
-              <text x="815" y="163" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Admin</text>
+              <text x="815" y="163" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Estimator</text>
               <text x="815" y="176" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
               <line x1="795" y1="143" x2="585" y2="193" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="712" y="158" textAnchor="middle" fill="#6b7280" fontSize="9">Configure system · Manage users</text>
+              <text x="712" y="158" textAnchor="middle" fill="#6b7280" fontSize="9">Edit effort estimates</text>
 
               {/* ══ LEFT — 2 actors ══ */}
 
@@ -524,10 +524,10 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
               <line x1="925" y1="415" x2="947" y2="428" stroke="#374151" strokeWidth="1.5"/>
               <line x1="925" y1="435" x2="907" y2="458" stroke="#374151" strokeWidth="1.5"/>
               <line x1="925" y1="435" x2="943" y2="458" stroke="#374151" strokeWidth="1.5"/>
-              <text x="925" y="475" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Estimator</text>
+              <text x="925" y="475" textAnchor="middle" fill="#111827" fontSize="11" fontWeight="bold">Admin</text>
               <text x="925" y="488" textAnchor="middle" fill="#6b7280" fontSize="10">[Employee]</text>
               <line x1="903" y1="393" x2="612" y2="286" stroke="#6b7280" strokeWidth="1" markerEnd="url(#arrow)" strokeDasharray="5,3"/>
-              <text x="782" y="355" textAnchor="middle" fill="#6b7280" fontSize="9">Edit effort estimates</text>
+              <text x="782" y="355" textAnchor="middle" fill="#6b7280" fontSize="9">Configure system · Manage users</text>
 
               {/* ══ BOTTOM — 5 external systems evenly spaced ══ */}
 
