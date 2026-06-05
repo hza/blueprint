@@ -10,12 +10,6 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
   return (
     <div className="overview">
       <div className="overview-banner">
-        <div className="overview-banner-header">
-          <div className="overview-banner-main">
-            <div className="overview-banner-title">3. Solution Architecture</div>
-          </div>
-          <span className="overview-badge overview-badge--ok">REVIEWED</span>
-        </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Platform</span>

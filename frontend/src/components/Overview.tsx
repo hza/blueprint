@@ -5,13 +5,6 @@ export function Overview() {
     <div className="overview">
       {/* Overview Banner */}
       <div className="overview-banner">
-        <div className="overview-banner-header">
-          <div className="overview-banner-main">
-            <div className="overview-banner-title">Enterprise Resource Planning Modernisation</div>
-            <div className="overview-banner-client">Meridian Software · Project #RFP-2025-0042</div>
-          </div>
-          <span className="overview-badge overview-badge--danger overview-banner-status">AT RISK</span>
-        </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Health Score</span>

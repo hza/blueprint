@@ -3,13 +3,6 @@ export function CostOfOwnership() {
     <div className="overview">
       {/* Summary Banner */}
       <div className="overview-banner">
-        <div className="overview-banner-header">
-          <div className="overview-banner-main">
-            <div className="overview-banner-title">Your Investment &amp; Return</div>
-            <div className="overview-banner-client">Projected ROI break-even at Month 28 · 5-year TCO $4.6M</div>
-          </div>
-          <span className="overview-badge overview-badge--ok overview-banner-status">WITHIN BUDGET</span>
-        </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">5-Year TCO</span>

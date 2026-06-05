@@ -35,10 +35,7 @@ export function RequirementsCoverage({
   onOpenSource?: (item: FRItem) => void
 }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
-  const gapCount = summary?.gaps ?? 0
-  const riskCount = summary?.risky ?? 0
-  const gapRiskCount = gapCount + riskCount
-  const [showAllDomains, setShowAllDomains] = useState(false)
+const [showAllDomains, setShowAllDomains] = useState(false)
   const [gapRiskDomains, setGapRiskDomains] = useState<string[]>([])
   const [gapRiskLabel, setGapRiskLabel] = useState('')
   const [matrixFilter, setMatrixFilter] = useState('')
@@ -116,14 +113,6 @@ export function RequirementsCoverage({
   return (
     <div className="overview" ref={scrollRef} onScroll={(e) => onScrollTopChange?.(e.currentTarget.scrollTop)}>
       <div className="overview-banner">
-        <div className="overview-banner-header">
-          <div className="overview-banner-main">
-            <div className="overview-banner-title">2. Requirements Coverage</div>
-          </div>
-          <span className={`overview-badge ${gapRiskCount > 0 ? 'overview-badge--danger' : 'overview-badge--ok'}`}>
-            {gapRiskCount} {gapRiskCount === 1 ? 'GAP/RISK' : 'GAPS/RISKS'}
-          </span>
-        </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Total Requirements</span>

@@ -3,12 +3,6 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
   return (
     <div className="overview">
       <div className="overview-banner">
-        <div className="overview-banner-header">
-          <div className="overview-banner-main">
-            <div className="overview-banner-title">6. Pricing &amp; Commercials</div>
-          </div>
-          <span className="overview-badge overview-badge--warn">REVIEW REQUIRED</span>
-        </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Fixed-Price Total</span>

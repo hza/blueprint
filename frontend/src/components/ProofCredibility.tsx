@@ -3,12 +3,6 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
   return (
     <div className="overview">
       <div className="overview-banner">
-        <div className="overview-banner-header">
-          <div className="overview-banner-main">
-            <div className="overview-banner-title">7. References &amp; Track Record</div>
-          </div>
-          <span className="overview-badge overview-badge--ok">SUBMITTED</span>
-        </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">AI/SaaS Case Studies</span>

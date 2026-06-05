@@ -3,12 +3,6 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
   return (
     <div className="overview">
       <div className="overview-banner">
-        <div className="overview-banner-header">
-          <div className="overview-banner-main">
-            <div className="overview-banner-title">4. Security &amp; Compliance</div>
-          </div>
-          <span className="overview-badge overview-badge--warn">IN REVIEW</span>
-        </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Security Tier</span>

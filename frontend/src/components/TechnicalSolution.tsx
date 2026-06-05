@@ -3,12 +3,6 @@ export function TechnicalSolution() {
     <div className="overview">
       {/* Architecture Banner */}
       <div className="overview-banner">
-        <div className="overview-banner-header">
-          <div className="overview-banner-main">
-            <div className="overview-banner-title">Technical Solution</div>
-          </div>
-          <span className="overview-badge overview-badge--ok overview-banner-status">SOLUTION READY</span>
-        </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Solution Score</span>

@@ -127,12 +127,6 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
   return (
     <div className="overview">
       <div className="overview-banner">
-        <div className="overview-banner-header">
-          <div className="overview-banner-main">
-            <div className="overview-banner-title">1. Executive Overview</div>
-          </div>
-          <span className="overview-badge overview-badge--ok">SUBMITTED</span>
-        </div>
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Delivery Partner</span>
