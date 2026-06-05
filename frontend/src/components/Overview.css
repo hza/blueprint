@@ -429,12 +429,20 @@
   padding: 8px 0;
 }
 .overview-check {
-  display: flex;
+  display: grid;
+  grid-template-columns: 16px minmax(120px, 180px) 1fr;
   gap: 10px;
-  align-items: flex-start;
+  align-items: start;
   padding: 7px 14px;
   font-size: var(--font-size-sm);
   border-bottom: 1px solid var(--border);
+}
+.overview-check-label {
+  white-space: nowrap;
+  font-weight: 600;
+}
+.overview-check-desc {
+  color: inherit;
 }
 .overview-check:last-child { border-bottom: none; }
 .overview-check-icon {
@@ -442,8 +450,9 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  margin-top: 1px;
+  margin-top: 2px;
   background: var(--border);
+  align-self: start;
 }
 .overview-check--ok   .overview-check-icon { background: var(--sem-a-dot-bg); }
 .overview-check--ok   { color: var(--fg-muted); }

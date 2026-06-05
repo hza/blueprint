@@ -961,23 +961,28 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
           <ul className="overview-checklist">
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>Security sign-off</strong> — OWASP Top 10 scan completed per sprint. Dependency scan with hard block on critical CVEs in CI. SOC 2 Type II certification path documented.
+              <span className="overview-check-label">Security sign-off</span>
+              <span className="overview-check-desc">OWASP Top 10 scan completed per sprint. Dependency scan with hard block on critical CVEs in CI. SOC 2 Type II certification path documented.</span>
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>GDPR compliance</strong> — Right to erasure flow tested: client data purged within 72 hours across all artifacts and audit log. Purge completion recorded. DPA signed before data processing begins.
+              <span className="overview-check-label">GDPR compliance</span>
+              <span className="overview-check-desc">Right to erasure flow tested: client data purged within 72 hours across all artifacts and audit log. Purge completion recorded. DPA signed before data processing begins.</span>
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>PII anonymisation</strong> — Verified that no PII reaches external LLM. Placeholder count recorded in audit log per document version. Reversible mapping never leaves company infrastructure.
+              <span className="overview-check-label">PII anonymisation</span>
+              <span className="overview-check-desc">Verified that no PII reaches external LLM. Placeholder count recorded in audit log per document version. Reversible mapping never leaves company infrastructure.</span>
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>Test coverage</strong> — ≥ 80% unit test coverage for all business logic. Integration tests green on every merge.
+              <span className="overview-check-label">Test coverage</span>
+              <span className="overview-check-desc">≥ 80% unit test coverage for all business logic. Integration tests green on every merge.</span>
             </li>
             <li className="overview-check overview-check--ok">
               <span className="overview-check-icon" />
-              <strong>Documentation handover</strong> — API reference (OpenAPI 3.1), runbooks, architecture decision records, and operations manual delivered and acknowledged before each phase sign-off.
+              <span className="overview-check-label">Documentation handover</span>
+              <span className="overview-check-desc">API reference (OpenAPI 3.1), runbooks, architecture decision records, and operations manual delivered and acknowledged before each phase sign-off.</span>
             </li>
           </ul>
         </div>
