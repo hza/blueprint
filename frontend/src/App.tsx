@@ -450,11 +450,10 @@ export default function App() {
           <>
             <nav className="breadcrumb">
               {activeTab === 'requirements' ? (
-                <>
-                  <span className="breadcrumb-file">Requirements</span>
-                  <span className="breadcrumb-sep">/</span>
-                  <span className="breadcrumb-file">{selectedFile}</span>
-                </>
+                <div className="breadcrumb-title-block">
+                  <span className="breadcrumb-file">Requirements / {selectedFile}</span>
+                  <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                </div>
               ) : (
                 <span className="breadcrumb-file">{selectedFile}</span>
               )}
