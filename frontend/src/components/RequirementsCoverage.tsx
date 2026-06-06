@@ -354,10 +354,9 @@ const [showAllDomains, setShowAllDomains] = useState(false)
                   const refLabel = sourceItem?.references?.split(';').map(s => s.trim()).filter(Boolean)[0] ?? null
                   return (
                     <li key={item.id} className={`overview-risk ${isGap ? 'overview-risk--high' : 'overview-risk--med'}`}>
-                      <span className="overview-risk-level">{isGap ? 'GAP' : 'RISK'}</span>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5em', flexWrap: 'wrap' }}>
-                          <strong>{item.id} — {item.requirement}</strong>
+                          <strong><span className="overview-risk-level" style={{ marginTop: 0, position: 'relative', top: '-1px', verticalAlign: 'middle' }}>{isGap ? 'GAP' : 'RISK'}</span> {item.id} — {item.requirement}</strong>
                           {sourceItem && (
                             <button
                               type="button"
@@ -369,12 +368,12 @@ const [showAllDomains, setShowAllDomains] = useState(false)
                             </button>
                           )}
                         </div>
-                        {item.description && <div style={{ marginTop: '0.15em', opacity: 0.85 }}>{item.description}</div>}
+                        {item.description && <div style={{ marginTop: '2px', opacity: 0.85, paddingLeft: '4px' }}>{item.description}</div>}
                         <div style={{ marginTop: '0.6em', borderTop: '1px solid var(--color-border, #e0e0e0)', paddingTop: '0.5em' }}>
                           <div style={{ fontWeight: 700, fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.06em', color: accentColor, marginBottom: '0.4em' }}>Your decision</div>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25em' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25em', paddingLeft: '8px' }}>
                             {preparedOptions.map((opt) => (
-                              <label key={opt} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5em', cursor: 'pointer', fontSize: '12px' }}>
+                              <label key={opt} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5em', cursor: 'pointer', fontSize: '13px' }}>
                                 <input
                                   type="radio"
                                   name={`resp-${item.id}`}
@@ -386,7 +385,7 @@ const [showAllDomains, setShowAllDomains] = useState(false)
                                 {opt}
                               </label>
                             ))}
-                            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5em', cursor: 'pointer', fontSize: '12px', fontStyle: 'italic' }}>
+                            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5em', cursor: 'pointer', fontSize: '13px', fontStyle: 'italic' }}>
                               <input
                                 type="radio"
                                 name={`resp-${item.id}`}
