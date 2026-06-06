@@ -250,16 +250,19 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">◎</span>
             Executive Statement
           </div>
-          <div style={{ lineHeight: '1.7', fontSize: '14px', color: 'var(--fg)', padding: '14px' }}>
-            <p style={{ marginBottom: '0.85rem' }}>
-              We understand that high-quality RFP responses demand significant analytical effort — often <strong>8–40 hours per proposal</strong> — and that delivering a consistent, professional experience to every prospective client is a meaningful competitive advantage. SCNSoft proposes an <strong>AI-Powered Customer Facing Portal</strong> designed to compress proposal turnaround from 5–7 business days to under 24 hours, ensure consistent output quality regardless of team size or workload, and give every client a dedicated, access-controlled workspace to review the deliverables prepared specifically for them.
-            </p>
-            <p style={{ marginBottom: '0.85rem' }}>
-              The portal ingests RFP documents (PDF, DOCX, MD, TXT), runs them through a multi-stage AI pipeline — OCR, semantic segmentation, PII anonymisation, LLM analysis — and produces a full suite of pre-sales artefacts: classified requirement lists, feature estimates, C4 architecture views, risk registers, a Go/No-Go recommendation, and an RFP Health Score. Clients review and approve deliverables through a branded portal with threaded comments and formal approval workflows.
-            </p>
-            <p style={{ marginBottom: 0 }}>
-              SCNSoft has delivered AI-powered SaaS applications with LLM integration in production. Our proposed stack (React 18, FastAPI, PostgreSQL, Qdrant, Kafka, Kubernetes) maps directly to your technical requirements. We commit to the <strong>3-phase delivery schedule</strong>: Phase 1 MVP in 12 weeks, Enhanced Analytics in a further 8 weeks, and Platform &amp; Ecosystem in the final 8 weeks — 28 weeks total from kick-off on 2026-08-04.
-            </p>
+          <div style={{ lineHeight: '1.7', fontSize: '14px', color: 'var(--fg)', padding: '14px', display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+            <div style={{ flex: 1 }}>
+              <p style={{ marginBottom: '0.85rem' }}>
+                We understand that high-quality RFP responses demand significant analytical effort — often <strong>8–40 hours per proposal</strong> — and that delivering a consistent, professional experience to every prospective client is a meaningful competitive advantage. SCNSoft proposes an <strong>AI-Powered Customer Facing Portal</strong> designed to compress proposal turnaround from 5–7 business days to under 24 hours, ensure consistent output quality regardless of team size or workload, and give every client a dedicated, access-controlled workspace to review the deliverables prepared specifically for them.
+              </p>
+              <p style={{ marginBottom: '0.85rem' }}>
+                The portal ingests RFP documents (PDF, DOCX, MD, TXT), runs them through a multi-stage AI pipeline — OCR, semantic segmentation, PII anonymisation, LLM analysis — and produces a full suite of pre-sales artefacts: classified requirement lists, feature estimates, C4 architecture views, risk registers, a Go/No-Go recommendation, and an RFP Health Score. Clients review and approve deliverables through a branded portal with threaded comments and formal approval workflows.
+              </p>
+              <p style={{ marginBottom: 0 }}>
+                SCNSoft has delivered AI-powered SaaS applications with LLM integration in production. Our proposed stack (React 18, FastAPI, PostgreSQL, Qdrant, Kafka, Kubernetes) maps directly to your technical requirements. We commit to the <strong>3-phase delivery schedule</strong>: Phase 1 MVP in 12 weeks, Enhanced Analytics in a further 8 weeks, and Platform &amp; Ecosystem in the final 8 weeks — 28 weeks total from kick-off on 2026-08-04.
+              </p>
+            </div>
+            <img src="/b2b.png" alt="B2B Portal" style={{ width: '400px', flexShrink: 0, borderRadius: '8px', alignSelf: 'flex-start' }} />
           </div>
         </div>
 
