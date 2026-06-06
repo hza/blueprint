@@ -307,30 +307,30 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
 
         <div className="overview-card">
           <div className="overview-card-header">
-            <span className="overview-card-icon">🏆</span>
+            <span className="overview-card-icon">🎯</span>
             Why This Proposal Delivers for You
           </div>
           <ul className="overview-risk-list">
             <li className="overview-risk">
-              <span className="overview-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>1</span>
+              <span className="overview-risk-level" style={{ background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)' }}>1</span>
               <div>
                 <strong>AI automation reduces pre-sales effort by ≥ 70%</strong> — The portal's LLM pipeline (OpenAI GPT-4-class or Anthropic Claude, swappable via abstraction layer) turns an 8–40 hour manual RFP parse into an automated analysis completing in under 2 minutes for a standard 30-page document.
               </div>
             </li>
             <li className="overview-risk">
-              <span className="overview-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>2</span>
+              <span className="overview-risk-level" style={{ background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)' }}>2</span>
               <div>
                 <strong>Proposal turnaround: 5–7 days → &lt; 24 hours</strong> — Standardised AI analysis, editable feature estimates with real-time recalculation, and a one-click export to PDF/DOCX/Confluence mean your team can respond to RFPs the same day they arrive.
               </div>
             </li>
             <li className="overview-risk">
-              <span className="overview-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>3</span>
+              <span className="overview-risk-level" style={{ background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)' }}>3</span>
               <div>
                 <strong>PII-safe LLM pipeline</strong> — A dedicated anonymisation worker replaces PII with typed placeholders before any content reaches an external LLM. The mapping is stored encrypted and never leaves your infrastructure, satisfying GDPR requirements and LLM provider data-use restrictions.
               </div>
             </li>
             <li className="overview-risk">
-              <span className="overview-risk-level" style={{ background: 'var(--accent, #2563EB)' }}>4</span>
+              <span className="overview-risk-level" style={{ background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)' }}>4</span>
               <div>
                 <strong>Production LLM experience</strong> — SCNSoft meets both mandatory qualification thresholds: at least one delivered AI-powered web application with a live reference customer, and demonstrated LLM integration (OpenAI / Anthropic) in production.
               </div>
