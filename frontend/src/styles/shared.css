@@ -87,6 +87,24 @@
 .icon-btn:hover { background: var(--canvas-inset); }
 .icon-btn.active { background: var(--canvas-active); color: var(--accent); }
 
+.file-view-toggle {
+  display: inline-flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  gap: 0;
+}
+.file-view-toggle .icon-btn {
+  border-radius: 0;
+  border: none;
+}
+.file-view-toggle .icon-btn:first-child {
+  border-radius: 7px 0 0 7px;
+}
+.file-view-toggle .icon-btn:last-child {
+  border-radius: 0 7px 7px 0;
+}
+
 /* ── Loading / error ────────────────────────────────────────────────────── */
 .loading {
   display: flex;
