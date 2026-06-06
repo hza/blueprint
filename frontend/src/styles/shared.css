@@ -25,6 +25,32 @@
   margin-left: auto;
 }
 
+.breadcrumb-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  background: var(--input-bg, var(--canvas));
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+.breadcrumb-search-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--fg-subtle);
+  flex-shrink: 0;
+}
+.breadcrumb-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: var(--fg);
+  width: 160px;
+}
+.breadcrumb-search-input::placeholder { color: var(--fg-subtle); }
+
 /* ── File box ───────────────────────────────────────────────────────────── */
 .file-box {
   margin: 0;

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { fetchFile, fetchFiles, fetchFR, fetchFL, fetchRequirementsSummary } from './api'
 import { CodeViewer } from './components/CodeViewer'
 import { EmptyState } from './components/EmptyState'
-import { FileBoxHeader } from './components/FileBoxHeader'
+import { PageHeader } from './components/PageHeader'
 import { PreviewRenderer } from './components/PreviewRenderer'
 import { BusinessAnalytics } from './components/BusinessAnalytics'
 import { TechnicalSolution } from './components/TechnicalSolution'
@@ -254,10 +254,7 @@ export default function App() {
       <main className="main-content">
         {activeTab === 'overview' ? (
           <>
-            <nav className="breadcrumb">
-              <span className="breadcrumb-file">Overview</span>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Overview" activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <Overview />
@@ -266,10 +263,7 @@ export default function App() {
           </>
         ) : activeTab === 'analytics' ? (
           <>
-            <nav className="breadcrumb">
-              <span className="breadcrumb-file">Business Analytics</span>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Business Analytics" activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <BusinessAnalytics />
@@ -278,14 +272,7 @@ export default function App() {
           </>
         ) : activeTab === 'technical' ? (
           <>
-            <nav className="breadcrumb">
-              <div className="breadcrumb-title-block">
-                <span className="breadcrumb-file">Technical Solution</span>
-                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
-
-              </div>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Technical Solution" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <TechnicalSolution />
@@ -294,10 +281,7 @@ export default function App() {
           </>
         ) : activeTab === 'cost' ? (
           <>
-            <nav className="breadcrumb">
-              <span className="breadcrumb-file">Your Investment &amp; Return</span>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Your Investment &amp; Return" activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <CostOfOwnership />
@@ -306,10 +290,7 @@ export default function App() {
           </>
         ) : activeTab === 'timeline' ? (
           <>
-            <nav className="breadcrumb">
-              <span className="breadcrumb-file">Timeline</span>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Timeline" activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <Timeline />
@@ -318,10 +299,7 @@ export default function App() {
           </>
         ) : activeTab === 'team' ? (
           <>
-            <nav className="breadcrumb">
-              <span className="breadcrumb-file">Team</span>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Team" activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <Team />
@@ -330,14 +308,7 @@ export default function App() {
           </>
         ) : activeTab === 'security' ? (
           <>
-            <nav className="breadcrumb">
-              <div className="breadcrumb-title-block">
-                <span className="breadcrumb-file">Security &amp; Compliance</span>
-                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
-
-              </div>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Security &amp; Compliance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <SecurityCompliance subsection={activeSection ?? undefined} />
@@ -346,14 +317,7 @@ export default function App() {
           </>
         ) : activeTab === 'delivery' ? (
           <>
-            <nav className="breadcrumb">
-              <div className="breadcrumb-title-block">
-                <span className="breadcrumb-file">Delivery &amp; Governance</span>
-                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
-
-              </div>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Delivery &amp; Governance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <DeliveryGovernance subsection={activeSection ?? undefined} />
@@ -362,14 +326,7 @@ export default function App() {
           </>
         ) : activeTab === 'pricing' ? (
           <>
-            <nav className="breadcrumb">
-              <div className="breadcrumb-title-block">
-                <span className="breadcrumb-file">Pricing &amp; Commercials</span>
-                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
-
-              </div>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Pricing &amp; Commercials" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <PricingCommercials subsection={activeSection ?? undefined} />
@@ -378,14 +335,7 @@ export default function App() {
           </>
         ) : activeTab === 'proof' ? (
           <>
-            <nav className="breadcrumb">
-              <div className="breadcrumb-title-block">
-                <span className="breadcrumb-file">References &amp; Track Record</span>
-                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
-
-              </div>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="References &amp; Track Record" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <ProofCredibility subsection={activeSection ?? undefined} />
@@ -394,14 +344,7 @@ export default function App() {
           </>
         ) : activeTab === 'executive-overview' ? (
           <>
-            <nav className="breadcrumb">
-              <div className="breadcrumb-title-block">
-                <span className="breadcrumb-file">Executive Overview</span>
-                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
-
-              </div>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Executive Overview" subtitle={PROJECT_TITLE} showSearch activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <ExecutiveOverview subsection={activeSection ?? undefined} />
@@ -410,14 +353,7 @@ export default function App() {
           </>
         ) : activeTab === 'requirements-coverage' ? (
           <>
-            <nav className="breadcrumb">
-              <div className="breadcrumb-title-block">
-                <span className="breadcrumb-file">Requirements Coverage</span>
-                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
-
-              </div>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Requirements Coverage" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <RequirementsCoverage subsection={activeSection ?? undefined} summary={reqSummary} items={flItems} selectedItemId={selectedListItemId} initialScrollTop={rcScrollTopRef.current} onScrollTopChange={(top) => { rcScrollTopRef.current = top }} onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }} onOpenSource={(item) => { setSelectedListItemId(item.id); openFRSource(item) }} />
@@ -426,14 +362,7 @@ export default function App() {
           </>
         ) : activeTab === 'solution-architecture' ? (
           <>
-            <nav className="breadcrumb">
-              <div className="breadcrumb-title-block">
-                <span className="breadcrumb-file">Solution Architecture</span>
-                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
-
-              </div>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Solution Architecture" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <SolutionArchitecture subsection={activeSection ?? undefined} />
@@ -444,12 +373,7 @@ export default function App() {
           <EmptyState />
         ) : activeTab === 'qa' && selectedFile ? (
           <>
-            <nav className="breadcrumb">
-              <span className="breadcrumb-file">Q&amp;A</span>
-              <span className="breadcrumb-sep">/</span>
-              <span className="breadcrumb-file">{selectedFile}</span>
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            </nav>
+            <PageHeader title="Q&amp;A" segment={selectedFile ?? undefined} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 {loading && (
@@ -474,25 +398,25 @@ export default function App() {
           <EmptyState />
         ) : (
           <>
-            <nav className="breadcrumb">
-              {activeTab === 'requirements' ? (
-                <div className="breadcrumb-title-block">
-                  <span className="breadcrumb-file">Requirements / {selectedFile}</span>
-                  <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
-
-                </div>
-              ) : (
-                <span className="breadcrumb-file">{selectedFile}</span>
-              )}
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} hasReturnPath={hasReturnPath} onClose={() => {
+            <PageHeader
+              title={activeTab === 'requirements' ? 'Requirements' : (selectedFile ?? '')}
+              segment={activeTab === 'requirements' ? (selectedFile ?? undefined) : undefined}
+              subtitle={activeTab === 'requirements' ? PROJECT_TITLE : undefined}
+              activeTab={activeTab}
+              selectedFile={selectedFile}
+              fileContent={fileContent}
+              fileView={fileView}
+              onSetFileView={setFileView}
+              hasReturnPath={hasReturnPath}
+              onClose={() => {
                 const returnTo = outlineReturnPath.current
                 outlineReturnPath.current = null
                 setHasReturnPath(false)
                 setSelectedFile(null)
                 setFileContent(null)
                 navigate(returnTo ?? '/requirements-coverage/document')
-              }} />
-            </nav>
+              }}
+            />
 
             <div className="file-box">
               <div className="file-box-body">
