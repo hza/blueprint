@@ -349,6 +349,10 @@
   border-top: none !important;
 }
 
+.overview-table tr:has(+ tr .td-answer--recorded) td {
+  border-bottom: none;
+}
+
 .answer-recorded {
   display: flex;
   align-items: baseline;
