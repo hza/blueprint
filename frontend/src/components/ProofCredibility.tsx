@@ -291,7 +291,7 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">🏆</span>
-            Minimum Qualification Thresholds (RFP §9)
+            Minimum Qualification Thresholds
           </div>
           <table className="overview-table">
             <colgroup>

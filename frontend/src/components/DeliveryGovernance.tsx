@@ -565,7 +565,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">🎓</span>
-            User Onboarding (RFP §4.4)
+            User Onboarding
           </div>
           <table className="overview-table">
             <tbody>

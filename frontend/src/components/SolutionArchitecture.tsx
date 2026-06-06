@@ -709,7 +709,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
         <div className="overview-card" style={{gridColumn: '1 / -1'}}>
           <div className="overview-card-header">
             <span className="overview-card-icon">👥</span>
-            User Roles &amp; Access Model (RFP §5)
+            User Roles &amp; Access Model
           </div>
           <table className="overview-table">
             <thead>
@@ -764,7 +764,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">🔗</span>
-            Integration Map (RFP §4.5)
+            Integration Map
           </div>
           <table className="overview-table">
             <thead>
@@ -826,7 +826,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">📊</span>
-            NFR Compliance Matrix (RFP §4.4)
+            NFR Compliance Matrix
           </div>
           <table className="overview-table">
             <thead>
