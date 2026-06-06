@@ -88,7 +88,7 @@ function SequenceDiagram({ externalSystem }: { externalSystem: string }) {
     <div className="integration-detail-seq-wrap">
       <svg
         viewBox={`0 0 ${W} ${totalH}`}
-        width="100%"
+        width="80%"
         style={{ display: 'block' }}
         className="integration-detail-seq-svg"
       >

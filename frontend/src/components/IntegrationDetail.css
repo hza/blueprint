@@ -163,6 +163,8 @@
 .integration-detail-seq-wrap {
   padding: 0 14px 14px;
   overflow-x: auto;
+  display: flex;
+  justify-content: center;
 }
 
 /* SVG classes — use currentColor so they respect themes */
