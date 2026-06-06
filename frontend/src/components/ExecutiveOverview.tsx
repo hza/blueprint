@@ -34,6 +34,7 @@ const CLARIFICATIONS = [
 const LS_KEY = 'clarifications_answers'
 
 const DEFAULT_ANSWERS: Record<string, string> = {
+  Q1: 'I do not understand, please explain.',
   Q4: 'Yes, maybe',
 }
 
