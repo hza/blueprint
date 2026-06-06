@@ -58,7 +58,7 @@ function ClarificationsTable() {
           return (
             <React.Fragment key={ref}>
               <tr>
-                <td>{ref}</td>
+                <td><strong>{ref}</strong></td>
                 <td>{question}</td>
                 <td>
                   {answered
@@ -193,10 +193,6 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                 <td>Fixed-price, 3-phase delivery · 28 weeks</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Submission Deadline</td>
-                <td>2026-06-20</td>
-              </tr>
-              <tr>
                 <td className="overview-table-label">Contract Signing Target</td>
                 <td>2026-07-25</td>
               </tr>
@@ -268,27 +264,27 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             </thead>
             <tbody>
               <tr>
-                <td>A1</td>
+                <td><strong>A1</strong></td>
                 <td>Cloud data region (EU or US) is confirmed at contract award. Infrastructure design and GDPR DPA drafting begin immediately after.</td>
                 <td>Region choice affects infrastructure cost estimates by up to 15%. Pricing assumes a standard cloud region; sovereign or restricted regions may carry a surcharge.</td>
               </tr>
               <tr>
-                <td>A2</td>
+                <td><strong>A2</strong></td>
                 <td>LLM provider (OpenAI, Anthropic, or Azure OpenAI) is agreed before Phase 1 kick-off. The abstraction layer supports swapping providers post-launch with no code changes.</td>
                 <td>Provider-specific prompt tuning is scoped per the agreed provider. Switching providers post-launch requires a regression test cycle (estimated 1 sprint).</td>
               </tr>
               <tr>
-                <td>A3</td>
+                <td><strong>A3</strong></td>
                 <td>Meridian nominates a Product Owner with authority to accept deliverables and raise change requests within 2 business days of submission.</td>
                 <td>Delayed sign-offs push UAT gates and can cascade into Phase 2 and 3 start dates.</td>
               </tr>
               <tr>
-                <td>A4</td>
+                <td><strong>A4</strong></td>
                 <td>SSO provider (Google Workspace, Azure AD, Okta, or SAML 2.0) and Salesforce sandbox credentials are available for integration testing from Phase 1 week 4.</td>
                 <td>Integration testing deferred to Phase 3 if credentials are not available, potentially delaying CRM webhook and SSO delivery.</td>
               </tr>
               <tr>
-                <td>A5</td>
+                <td><strong>A5</strong></td>
                 <td>All change requests will receive written approval or rejection within 5 business days of submission.</td>
                 <td>Pending CRs not actioned within this window will be treated as approved for planning purposes, per standard contract terms.</td>
               </tr>
