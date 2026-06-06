@@ -1,5 +1,24 @@
 # The Blueprint
 
+## Option 1: Run with Docker (recommended)
+
+### Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/)
+
+### Build and run
+
+```bash
+docker build -t blueprint .
+docker run -p 8080:8080 blueprint
+```
+
+The app will be available at `http://localhost:8080`.
+
+---
+
+## Option 2: Run locally in VS Code
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18+)
