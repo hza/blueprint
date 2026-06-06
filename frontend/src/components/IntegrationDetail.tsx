@@ -61,6 +61,116 @@ const INTEGRATIONS: Integration[] = [
   },
 ]
 
+const ACTORS = ['User / UI', 'Blueprint API', '', 'Auth Provider']
+
+const STEPS: Array<{ from: number; to: number; label: string; dashed?: boolean }> = [
+  { from: 0, to: 1, label: '1. Trigger request' },
+  { from: 1, to: 3, label: '2. Validate token (OAuth / SAML)' },
+  { from: 3, to: 1, label: '3. Token confirmed', dashed: true },
+  { from: 1, to: 2, label: '4. API call (REST / webhook)' },
+  { from: 2, to: 1, label: '5. Response / acknowledgement', dashed: true },
+  { from: 1, to: 1, label: '6. Audit log + OpenTelemetry span' },
+  { from: 1, to: 0, label: '7. Return result to user', dashed: true },
+]
+
+function SequenceDiagram({ externalSystem }: { externalSystem: string }) {
+  const actors = [...ACTORS]
+  actors[2] = externalSystem
+
+  const W = 780
+  const colW = W / actors.length
+  const cols = actors.map((_, i) => colW * i + colW / 2)
+  const rowH = 52
+  const headerH = 44
+  const totalH = headerH + STEPS.length * rowH + 20
+
+  return (
+    <div className="integration-detail-seq-wrap">
+      <svg
+        viewBox={`0 0 ${W} ${totalH}`}
+        width="100%"
+        style={{ display: 'block' }}
+        className="integration-detail-seq-svg"
+      >
+        {/* Actor boxes */}
+        {actors.map((name, i) => (
+          <g key={i}>
+            <rect
+              x={cols[i] - 72}
+              y={4}
+              width={144}
+              height={30}
+              rx={5}
+              className="seq-actor-box"
+            />
+            <text x={cols[i]} y={24} textAnchor="middle" className="seq-actor-text">
+              {name}
+            </text>
+          </g>
+        ))}
+
+        {/* Lifelines */}
+        {cols.map((x, i) => (
+          <line
+            key={i}
+            x1={x} y1={34}
+            x2={x} y2={totalH - 10}
+            className="seq-lifeline"
+            strokeDasharray="4 4"
+          />
+        ))}
+
+        {/* Arrows */}
+        {STEPS.map((step, si) => {
+          const y = headerH + si * rowH + rowH / 2
+          const x1 = cols[step.from]
+          const x2 = cols[step.to]
+          const isSelf = step.from === step.to
+          const dir = x2 > x1 ? 1 : -1
+          const midX = (x1 + x2) / 2
+
+          if (isSelf) {
+            const lx = x1 + 18
+            return (
+              <g key={si}>
+                <path
+                  d={`M ${x1} ${y - 10} H ${lx + 20} V ${y + 10} H ${x1}`}
+                  className={`seq-arrow-path${step.dashed ? ' seq-arrow-path--dashed' : ''}`}
+                  fill="none"
+                  markerEnd="url(#arrowhead)"
+                />
+                <text x={lx + 24} y={y + 4} className="seq-step-label">{step.label}</text>
+              </g>
+            )
+          }
+
+          return (
+            <g key={si}>
+              <line
+                x1={x1 + (dir * 4)}
+                y1={y}
+                x2={x2 - (dir * 4)}
+                y2={y}
+                className={`seq-arrow-line${step.dashed ? ' seq-arrow-line--dashed' : ''}`}
+                markerEnd="url(#arrowhead)"
+              />
+              <text x={midX} y={y - 7} textAnchor="middle" className="seq-step-label">
+                {step.label}
+              </text>
+            </g>
+          )
+        })}
+
+        <defs>
+          <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <polygon points="0 0, 7 3.5, 0 7" className="seq-arrowhead" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  )
+}
+
 export function IntegrationDetail({ integrationId }: { integrationId?: string }) {
   const navigate = useNavigate()
   const integration = integrationId ? INTEGRATIONS.find((i) => i.id === integrationId) : null
@@ -235,6 +345,19 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div className="overview-card integration-detail-card--wide">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🔄</span>
+            Sequence Diagram
+            <span className="integration-detail-example-badge">Example — exact flow confirmed at Discovery</span>
+          </div>
+          <div className="integration-detail-seq-notice">
+            The diagram below illustrates a representative happy-path flow based on our current understanding.
+            Precise steps, actors, and error branches will be finalised with your team during Discovery (Weeks 1–2).
+          </div>
+          <SequenceDiagram externalSystem={integration.system.split('/')[0].trim()} />
         </div>
 
         <div className="overview-card integration-detail-card--wide">

@@ -139,6 +139,79 @@
   margin-top: 1px;
 }
 
+/* Sequence diagram */
+.integration-detail-example-badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 500;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 4px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.integration-detail-seq-notice {
+  font-size: var(--font-size-sm);
+  color: var(--fg-muted);
+  font-style: italic;
+  margin: 0 14px 12px;
+  line-height: 1.6;
+}
+
+.integration-detail-seq-wrap {
+  padding: 0 14px 14px;
+  overflow-x: auto;
+}
+
+/* SVG classes — use currentColor so they respect themes */
+.integration-detail-seq-svg .seq-actor-box {
+  fill: color-mix(in srgb, var(--accent) 10%, var(--canvas-subtle));
+  stroke: color-mix(in srgb, var(--accent) 30%, transparent);
+  stroke-width: 1;
+}
+
+.integration-detail-seq-svg .seq-actor-text {
+  fill: var(--fg);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.integration-detail-seq-svg .seq-lifeline {
+  stroke: color-mix(in srgb, var(--fg-muted) 35%, transparent);
+  stroke-width: 1;
+}
+
+.integration-detail-seq-svg .seq-arrow-line {
+  stroke: var(--fg-muted);
+  stroke-width: 1.5;
+}
+
+.integration-detail-seq-svg .seq-arrow-line--dashed {
+  stroke-dasharray: 5 3;
+}
+
+.integration-detail-seq-svg .seq-arrow-path {
+  stroke: var(--fg-muted);
+  stroke-width: 1.5;
+}
+
+.integration-detail-seq-svg .seq-arrow-path--dashed {
+  stroke-dasharray: 5 3;
+}
+
+.integration-detail-seq-svg .seq-arrowhead {
+  fill: var(--fg-muted);
+}
+
+.integration-detail-seq-svg .seq-step-label {
+  fill: var(--fg-muted);
+  font-size: 10.5px;
+  font-family: inherit;
+}
+
 .integration-detail-empty {
   display: flex;
   flex-direction: column;
