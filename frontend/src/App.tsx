@@ -152,6 +152,11 @@ export default function App() {
   }, [location.pathname])
 
   useEffect(() => {
+    const body = document.querySelector('.file-box-body > *') as HTMLElement | null
+    if (body) body.scrollTop = 0
+  }, [location.pathname])
+
+  useEffect(() => {
     fetchFiles()
       .then(setFiles)
       .catch((e: unknown) =>
