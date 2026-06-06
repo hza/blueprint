@@ -164,7 +164,43 @@
   padding: 0 14px 14px;
   overflow-x: auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.integration-detail-seq-scale-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-end;
+  background: var(--canvas-subtle);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 6px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.integration-detail-seq-scale-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 2px 4px;
+  color: var(--fg);
+}
+
+.integration-detail-seq-scale-btn:hover {
+  color: var(--accent);
+}
+
+.integration-detail-seq-scale-label {
+  font-size: 11px;
+  min-width: 2.5rem;
+  text-align: center;
+  color: var(--fg-muted);
 }
 
 /* SVG classes — use currentColor so they respect themes */

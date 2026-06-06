@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './IntegrationDetail.css'
 
@@ -74,6 +75,11 @@ const STEPS: Array<{ from: number; to: number; label: string; dashed?: boolean }
 ]
 
 function SequenceDiagram({ externalSystem }: { externalSystem: string }) {
+  const [scale, setScale] = useState(80)
+  const scaleStep = 10
+  const scaleMin = 40
+  const scaleMax = 100
+
   const actors = [...ACTORS]
   actors[2] = externalSystem
 
@@ -86,9 +92,14 @@ function SequenceDiagram({ externalSystem }: { externalSystem: string }) {
 
   return (
     <div className="integration-detail-seq-wrap">
+      <div className="integration-detail-seq-scale-controls">
+        <button onClick={() => setScale(s => Math.max(scaleMin, s - scaleStep))} className="integration-detail-seq-scale-btn">−</button>
+        <span className="integration-detail-seq-scale-label">{scale}%</span>
+        <button onClick={() => setScale(s => Math.min(scaleMax, s + scaleStep))} className="integration-detail-seq-scale-btn">+</button>
+      </div>
       <svg
         viewBox={`0 0 ${W} ${totalH}`}
-        width="80%"
+        width={`${scale}%`}
         style={{ display: 'block' }}
         className="integration-detail-seq-svg"
       >
