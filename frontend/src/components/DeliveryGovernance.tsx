@@ -303,7 +303,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="overview-table-label">QA Lead</td>
-                <td><span className="team-name-cell"><span className="team-avatar">JO</span>James Obi</span></td>
+                <td><span className="team-name-cell"><span className="team-avatar team-avatar--tbd">?</span>Named in Annex D</span></td>
                 <td>100%</td>
                 <td>≥ 80% unit coverage gate, BDD (Gherkin/Pytest-BDD), OWASP ZAP DAST per sprint.</td>
               </tr>

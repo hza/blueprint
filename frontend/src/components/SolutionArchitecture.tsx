@@ -183,6 +183,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
 
       {show('3.2') && (<>
 
+      <div className="rfp-section-heading" id="3.2">Functional Scope</div>
 
       <div className="overview-grid">
         <div className="overview-card" style={{gridColumn: '1 / -1'}}>
@@ -339,7 +340,6 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
       </div>
 
       {/* 3.2 Functional Scope */}
-      <div className="rfp-section-heading" id="3.2">Functional Scope</div>
       <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
@@ -931,7 +931,7 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
                 <th>Phase</th>
                 <th>Deliverables</th>
                 <th>Acceptance Criterion</th>
-                <th>Target Date</th>
+                <th style={{whiteSpace: 'nowrap'}}>Target Date</th>
               </tr>
             </thead>
             <tbody>
@@ -939,19 +939,19 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
                 <td className="overview-table-label">Phase 1 — MVP (12 wks)</td>
                 <td>Document ingestion, PII anonymisation, AI analysis, feature list, C4 views, risk register, Go/No-Go, RFP Health Score, basic client portal, MS Teams notifications, PDF/DOCX export</td>
                 <td>≥ 95% of agreed user stories accepted in UAT; zero open P1/P2 defects; load test confirms API p95 &lt; 300 ms at 100 concurrent users</td>
-                <td>~2026-10-27</td>
+                <td style={{whiteSpace: 'nowrap'}}>~2026-10-27</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Phase 2 — Enhanced Analytics (+8 wks)</td>
                 <td>C4 Level 3 views, real-time collaboration (WebSockets), approval workflow, Confluence export, email notifications, full audit trail UI</td>
                 <td>WebSocket latency &lt; 500 ms for collaboration updates; approval workflow passes end-to-end UAT; Confluence push verified against a live instance</td>
-                <td>~2026-12-22</td>
+                <td style={{whiteSpace: 'nowrap'}}>~2026-12-22</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Phase 3 — Platform &amp; Ecosystem (+8 wks)</td>
                 <td>SSO (SAML), Salesforce CRM webhooks, analytics dashboard, LLM provider switching, Ollama self-hosted option, API key management</td>
                 <td>SSO login verified with at least one provider (Google Workspace or Azure AD); Salesforce webhook creates project within 60 s; LLM provider switch tested with no functionality regression</td>
-                <td>~2027-02-16</td>
+                <td style={{whiteSpace: 'nowrap'}}>~2027-02-16</td>
               </tr>
             </tbody>
           </table>

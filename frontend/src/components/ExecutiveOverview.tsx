@@ -180,7 +180,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
             <tbody>
               <tr>
                 <td className="overview-table-label">Vendor</td>
-                <td>SCNSoft</td>
+                <td>SCNSoft Ltd. · 220 Davidson Ave, Somerset, NJ 08873, USA</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Solution</td>
