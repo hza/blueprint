@@ -4,6 +4,8 @@
       "Bash(grep *)",
       "Bash(npx *)",
       "Bash(xargs *)",
+      "Bash(sed *)",
+      "Bash(TMPDIR *)",
       "Bash(.venv/bin/python *)",
       "Bash(.venv/bin/pip install *)"
     ]

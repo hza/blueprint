@@ -654,3 +654,5 @@
 [data-theme="notion"] .sidebar-docs-tree::-webkit-scrollbar-thumb { background: transparent; border-radius: 2px; }
 [data-theme="notion"] .sidebar-docs-tree:hover::-webkit-scrollbar-thumb { background: var(--border); }
 [data-theme="notion"] .sidebar-sub-item { margin: 0 10px; }
+[data-theme="notion"] .sidebar-sub-item.active .sidebar-sub-title { color: #000; }
+[data-theme="notion"] .sidebar-sub-item.active .sidebar-sub-icon { color: #000; }

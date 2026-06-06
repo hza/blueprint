@@ -324,7 +324,7 @@ const [showAllDomains, setShowAllDomains] = useState(false)
         <div className="overview-card" id="gaps-risks-card">
           <div className="overview-card-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span>
-              <span className="overview-card-icon">!</span>
+              <span className="overview-card-icon">⚠️ </span>
               Requirement Gaps &amp; Risks — Action Required
             </span>
             {gapRiskLabel && (
@@ -524,8 +524,9 @@ const [showAllDomains, setShowAllDomains] = useState(false)
                     onSelectItem ? 'fl-row-clickable' : '',
                     selectedItemId === item.id ? 'fl-row-selected' : '',
                   ].filter(Boolean).join(' ')}
+                  style={{ userSelect: 'none' }}
                   onClick={() => { setSelectedItemId(item.id); onSelectItem?.(item) }}
-                  onDoubleClick={() => onOpenSource?.(item)}
+                  onDoubleClick={(e) => { e.preventDefault(); onOpenSource?.(item); }}
                 >
                   <td style={{ whiteSpace: 'nowrap' }}>{item.id}</td>
                   <td>
