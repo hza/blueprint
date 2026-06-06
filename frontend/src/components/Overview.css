@@ -739,7 +739,7 @@
 [data-theme="notion"] .overview-table tr:last-child td {
   border-bottom: none;
 }
-[data-theme="notion"] .overview-table tbody tr:hover td {
+[data-theme="notion"] .overview-table tbody tr:not(:has(.td-answer)):not(:has(.td-answer--recorded)):hover td {
   background: var(--canvas-subtle);
 }
 [data-theme="notion"] .rfp-section-heading { margin-left: 12px; }
