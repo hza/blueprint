@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './Sidebar.css'
 import { FileTree } from './FileTree'
+import { DEFAULT_USER_NAME } from '../types'
 import type { FileInfo } from '../types'
 
 const THEMES = [
@@ -176,7 +177,7 @@ export function Sidebar({
   width,
   activeSection,
   onSectionChange,
-  userName = 'Hans Zimmer',
+  userName = DEFAULT_USER_NAME,
   collapsed = false,
   onCollapse,
   reqSummaryTotal,

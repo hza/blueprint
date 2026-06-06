@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { DEFAULT_USER_NAME } from '../types'
 
-const CURRENT_USER = 'Henady Zakalusky'
+const CURRENT_USER = DEFAULT_USER_NAME
 
 const REPLY_ICON = (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

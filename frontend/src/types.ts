@@ -1,3 +1,5 @@
+export const DEFAULT_USER_NAME = 'Hans Zimmer' as const
+
 export interface FileInfo {
   name: string
   size: number

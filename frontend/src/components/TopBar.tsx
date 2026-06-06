@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { DEFAULT_USER_NAME } from '../types'
 import type { ViewTab } from '../types'
 import './TopBar.css'
 
@@ -29,7 +30,7 @@ const NAV_TABS: { key: ViewTab; label: string }[] = [
   { key: 'cost', label: 'Investment & ROI' },
 ]
 
-export function TopBar({ userName = 'Hans Zimmer', activeTab, onTabChange }: TopBarProps) {
+export function TopBar({ userName = DEFAULT_USER_NAME, activeTab, onTabChange }: TopBarProps) {
   const [notifOpen, setNotifOpen] = useState(false)
   const [userOpen, setUserOpen] = useState(false)
   const [theme, setThemeState] = useState<Theme>(
