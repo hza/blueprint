@@ -81,21 +81,20 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
 
   return (
     <div className="overview">
-      <div className="integration-detail-back">
+      <div className="integration-detail-header">
+        <div className="integration-detail-header-left">
+          <span className="overview-card-icon">🔗</span>
+          <div>
+            <div className="integration-detail-title">{integration.system}</div>
+            <div className="integration-detail-meta">
+              <span>{integration.direction}</span>
+              <span className={`overview-badge ${integration.phaseClass}`}>{integration.phase}</span>
+            </div>
+          </div>
+        </div>
         <button className="integration-detail-back-btn" onClick={() => navigate('/solution-architecture/integration-data')}>
           ← Back to Integration Map
         </button>
-      </div>
-
-      <div className="integration-detail-header">
-        <span className="overview-card-icon">🔗</span>
-        <div>
-          <div className="integration-detail-title">{integration.system}</div>
-          <div className="integration-detail-meta">
-            <span>{integration.direction}</span>
-            <span className={`overview-badge ${integration.phaseClass}`}>{integration.phase}</span>
-          </div>
-        </div>
       </div>
 
       <div className="integration-detail-discovery-notice">
