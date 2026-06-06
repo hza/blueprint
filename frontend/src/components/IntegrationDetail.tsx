@@ -62,6 +62,261 @@ const INTEGRATIONS: Integration[] = [
   },
 ]
 
+interface AsrSliders {
+  cost: number
+  complexity: number
+  novelty: number
+  risk: number
+  reward: number
+  legalComp: number
+  politics: number
+  constraints: number
+  principles: number
+  skills: number
+  doability: number
+}
+
+interface AsrCardData {
+  id: string
+  title: string
+  domain: string
+  criticality: 'Critical' | 'High' | 'Medium' | 'Low'
+  status: string
+  requirement: string
+  significance: string
+  sliders: AsrSliders
+  strategy: string
+  ideas: string
+  stakeholders: string
+}
+
+const ASR_CARDS: AsrCardData[] = [
+  {
+    id: 'ASR-01',
+    title: 'Authentication & Token Lifecycle',
+    domain: 'Security',
+    criticality: 'High',
+    status: 'Open — TBC at Discovery',
+    requirement:
+      'The integration must authenticate using a mechanism that supports zero-downtime secret rotation, satisfies your organisation\'s token expiry policy, and stores no long-lived credentials in application code or environment variables.',
+    significance:
+      'Wrong auth pattern causes credential sprawl, failed compliance audits, and rotation-induced outages. Once the integration ships, switching auth mechanisms requires redeploying and re-credentialing every environment — not a cheap fix.',
+    sliders: { cost: 35, complexity: 65, novelty: 40, risk: 80, reward: 70, legalComp: 75, politics: 40, constraints: 60, principles: 70, skills: 35, doability: 30 },
+    strategy:
+      'Week 1 — confirm cloud provider, IAM setup, and existing credential management tooling. Week 2 — evaluate OAuth client-credentials vs workload identity vs managed identity. Lock mechanism in ADR before Sprint 1 development begins.',
+    ideas: 'Workload Identity Federation (preferred); OAuth 2.0 client-credentials with Secrets Manager rotation; API key with automated rotation pipeline',
+    stakeholders: 'Cloud Infra Lead, Security Architect, Compliance Officer',
+  },
+  {
+    id: 'ASR-02',
+    title: 'Latency & Throughput Envelope',
+    domain: 'Performance',
+    criticality: 'High',
+    status: 'Open — TBC at Discovery',
+    requirement:
+      'The integration must sustain the agreed p95 latency ceiling and peak RPS without triggering the external system\'s rate-limit quotas or degrading Blueprint\'s own response times for end users.',
+    significance:
+      'Choosing synchronous calls, an async queue, or a batch pattern is architecturally irreversible at scale. The wrong choice surfaces as throttling errors or user-visible latency under load — not detectable until production traffic hits.',
+    sliders: { cost: 50, complexity: 70, novelty: 30, risk: 65, reward: 75, legalComp: 20, politics: 35, constraints: 70, principles: 30, skills: 40, doability: 45 },
+    strategy:
+      'Week 1 — gather expected call volumes, SLA targets, and vendor rate-limit quotas. Week 2 — select concurrency model (synchronous / queued / batched) and lock in ADR before integration design is finalised.',
+    ideas: 'Async queue with back-pressure (preferred for high volume); synchronous with client-side throttle; nightly batch for non-realtime data',
+    stakeholders: 'Product Owner (SLA targets), Platform Architect, Vendor Integration Contact',
+  },
+  {
+    id: 'ASR-03',
+    title: 'Failure Isolation & Graceful Degradation',
+    domain: 'Reliability',
+    criticality: 'Critical',
+    status: 'Open — TBC at Discovery',
+    requirement:
+      'When the external system is unavailable, Blueprint must continue core operations without data loss or unhandled errors. The acceptable degraded behaviour — queue, skip, warn, or block — must be explicitly specified per use-case before coding begins.',
+    significance:
+      'Without a defined failure contract, outages cascade through Blueprint workflows. "Fail gracefully" means different things: blocking is safest for financial data; silently queuing is right for notifications. The wrong default either drops data or locks out users — both are production incidents.',
+    sliders: { cost: 40, complexity: 60, novelty: 35, risk: 85, reward: 80, legalComp: 30, politics: 50, constraints: 45, principles: 40, skills: 30, doability: 35 },
+    strategy:
+      'Week 1 — for each integration use-case, define whether an outage should queue, skip, warn, or block. Week 2 — design circuit-breaker thresholds and dead-letter handling. Lock failure contract in ADR before Sprint 2.',
+    ideas: 'Circuit breaker with dead-letter queue (preferred); graceful skip with UI warning banner; synchronous block with user-facing retry prompt',
+    stakeholders: 'Product Owner, Operations Lead, QA Lead',
+  },
+  {
+    id: 'ASR-04',
+    title: 'PII & Sensitive-Data Boundary',
+    domain: 'Compliance',
+    criticality: 'Critical',
+    status: 'Open — TBC at Discovery',
+    requirement:
+      'All PII and governance-classified sensitive data must be identified, minimised, and anonymised or encrypted before transmission to or storage by the external system. The legal basis for the transfer must be documented.',
+    significance:
+      'Transmitting unmasked PII without a valid legal basis is a GDPR/HIPAA violation. Field classification cannot be determined without access to your internal data catalogue — any assumption made during development risks regulatory exposure and cannot be undone after data has left the perimeter.',
+    sliders: { cost: 45, complexity: 55, novelty: 40, risk: 90, reward: 65, legalComp: 90, politics: 60, constraints: 75, principles: 80, skills: 45, doability: 40 },
+    strategy:
+      'Week 1 — data-governance team provides field-level classification inventory. Week 2 — agree masking strategy and legal transfer basis. ADR becomes the audit artefact for the transfer — required evidence if the integration is ever challenged.',
+    ideas: 'Tokenisation of PII fields before dispatch (preferred); server-side anonymisation proxy; field-level encryption with isolated key management',
+    stakeholders: 'Data Governance Officer, Legal / DPO, Security Architect, Compliance Officer',
+  },
+  {
+    id: 'ASR-05',
+    title: 'Data Residency & Sovereignty',
+    domain: 'Compliance',
+    criticality: 'High',
+    status: 'Open — TBC at Discovery',
+    requirement:
+      'All data in transit and at rest must remain within your approved geographic jurisdictions. If the external system routes traffic or stores data outside permitted regions, a compliant routing or proxy strategy must be adopted before go-live.',
+    significance:
+      'Regional API endpoint availability varies by vendor tier and subscription plan. A routing decision made without confirming this can violate data-sovereignty law — penalties are regulatory, not just technical, and cannot be retroactively remedied by a hotfix.',
+    sliders: { cost: 40, complexity: 50, novelty: 35, risk: 85, reward: 55, legalComp: 95, politics: 55, constraints: 80, principles: 85, skills: 50, doability: 40 },
+    strategy:
+      'Week 1 — confirm approved jurisdiction list and the vendor\'s regional endpoint catalogue. If a gap exists, design egress proxy or regional deployment in Week 2. ADR documents approved regions and verification steps — required evidence for compliance audits.',
+    ideas: 'Vendor-native regional endpoint (preferred if available); egress proxy pinned to compliant region; separate regional Blueprint deployment co-located with data',
+    stakeholders: 'Legal / DPO, Cloud Infra Lead, Vendor Account Manager',
+  },
+  {
+    id: 'ASR-06',
+    title: 'Schema Versioning & Backward Compatibility',
+    domain: 'Maintainability',
+    criticality: 'Medium',
+    status: 'Open — TBC at Discovery',
+    requirement:
+      'The integration must tolerate breaking changes to the external API schema without requiring a coordinated same-day deployment of Blueprint. A versioning and migration strategy must be established and tested before go-live.',
+    significance:
+      'External APIs change continuously: fields are deprecated, auth flows retired, new required fields added with no warning. Without a migration contract, a vendor-side change can silently break production overnight — and the root cause is the absent design decision, not a new bug.',
+    sliders: { cost: 35, complexity: 55, novelty: 25, risk: 60, reward: 70, legalComp: 20, politics: 30, constraints: 40, principles: 35, skills: 35, doability: 25 },
+    strategy:
+      'Week 1 — confirm vendor API versioning policy and deprecation notice period. Week 2 — design consumer-driven contract tests and rollback procedure. ADR specifies version-pinning strategy and migration triggers.',
+    ideas: 'Consumer-driven contract tests via Pact (preferred); version-pinned client with deprecation alert pipeline; API gateway with version shim layer',
+    stakeholders: 'Platform Architect, DevOps Lead, Vendor Integration Contact',
+  },
+  {
+    id: 'ASR-07',
+    title: 'Network Topology & Access Control',
+    domain: 'Security',
+    criticality: 'High',
+    status: 'Open — TBC at Discovery',
+    requirement:
+      'All outbound connections must traverse only approved network paths. Required IP allowlisting, VPN tunnels, or private link configurations must be provisioned before integration testing begins — not after.',
+    significance:
+      'Network provisioning has a multi-week lead time and requires explicit security sign-off. Starting development without a confirmed egress path means the integration cannot be tested in a representative environment, and security gaps surface too late to fix without delaying the phase.',
+    sliders: { cost: 30, complexity: 60, novelty: 30, risk: 75, reward: 60, legalComp: 50, politics: 45, constraints: 70, principles: 55, skills: 40, doability: 35 },
+    strategy:
+      'Week 1 — map required egress paths and confirm security team\'s allowlisting and provisioning process. Raise the provisioning request immediately — lead time is the critical path. ADR triggers this work in parallel with development so it is not a blocker at Sprint 1.',
+    ideas: 'NAT gateway with static egress IP (preferred); AWS PrivateLink / VPC peering; egress proxy with allowlisted upstream',
+    stakeholders: 'Security Architect, Network / Infra Lead, External System Admin',
+  },
+]
+
+type SliderCol = { label: string; left: string; right: string; value: number | null }
+
+function AsrCardView({ card }: { card: AsrCardData }) {
+  const critClass =
+    card.criticality === 'Critical' ? 'asr-card-crit--critical'
+    : card.criticality === 'High' ? 'asr-card-crit--high'
+    : card.criticality === 'Medium' ? 'asr-card-crit--medium'
+    : 'asr-card-crit--low'
+
+  const rows: SliderCol[][] = [
+    [
+      { label: 'COST', left: 'no impact', right: 'significant impact', value: card.sliders.cost },
+      { label: 'REWARD', left: 'no return', right: 'high returns', value: card.sliders.reward },
+      { label: 'PRINCIPLES', left: 'compliant', right: 'major non-compliance', value: card.sliders.principles },
+    ],
+    [
+      { label: 'COMPLEXITY', left: 'simple', right: 'complex', value: card.sliders.complexity },
+      { label: 'LEGAL & COMP', left: 'no impact', right: 'significant impact', value: card.sliders.legalComp },
+      { label: 'SKILLS', left: 'available', right: 'unavailable', value: card.sliders.skills },
+    ],
+    [
+      { label: 'NOVELTY', left: 'not new', right: 'bleeding edge', value: card.sliders.novelty },
+      { label: 'POLITICS', left: 'low visibility', right: 'high visibility', value: card.sliders.politics },
+      { label: 'DOABILITY', left: 'doable', right: 'impossible', value: card.sliders.doability },
+    ],
+    [
+      { label: 'RISK', left: 'low', right: 'high', value: card.sliders.risk },
+      { label: 'CONSTRAINTS', left: 'no constraints', right: 'constraints', value: card.sliders.constraints },
+      { label: 'other:', left: '', right: '', value: null },
+    ],
+  ]
+
+  return (
+    <div className="asr-card">
+      <div className="asr-card-header-row">
+        <div className="asr-card-heading-cell">
+          <span className="asr-card-heading-label">ASR CARD</span>
+          <span className="asr-card-heading-id">{card.id} — {card.title}</span>
+        </div>
+        <div className="asr-card-meta-fields">
+          <div className="asr-card-meta-field">
+            <span className="asr-card-meta-key">DOMAIN:</span>
+            <span className="asr-card-meta-val">{card.domain}</span>
+          </div>
+          <div className="asr-card-meta-field">
+            <span className="asr-card-meta-key">CRITICALITY:</span>
+            <span className={`asr-card-meta-val asr-card-crit ${critClass}`}>{card.criticality}</span>
+          </div>
+          <div className="asr-card-meta-field">
+            <span className="asr-card-meta-key">DATE:</span>
+            <span className="asr-card-meta-val">Discovery</span>
+          </div>
+          <div className="asr-card-meta-field">
+            <span className="asr-card-meta-key">STATUS:</span>
+            <span className="asr-card-meta-val">{card.status}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="asr-card-section">
+        <div className="asr-card-section-lbl">ARCHITECTURALLY SIGNIFICANT REQUIREMENT &amp; ARCHITECTURE CONTEXT:</div>
+        <div className="asr-card-section-txt">{card.requirement}</div>
+      </div>
+
+      <div className="asr-card-section">
+        <div className="asr-card-section-lbl">SIGNIFICANCE &amp; IMPACT:</div>
+        <div className="asr-card-section-txt">{card.significance}</div>
+      </div>
+
+      <div className="asr-card-section">
+        <div className="asr-card-section-lbl">CHARACTERISTICS:</div>
+        <div className="asr-card-chars-grid">
+          {rows.map((row, ri) => (
+            <div key={ri} className="asr-card-chars-row">
+              {row.map((col) => (
+                <div key={col.label} className="asr-card-char-cell">
+                  <span className="asr-card-char-lbl">{col.label}</span>
+                  <div className="asr-card-slider-wrap">
+                    <span className="asr-card-slider-edge">{col.left}</span>
+                    <div className="asr-card-slider-track">
+                      {col.value !== null && (
+                        <div className="asr-card-slider-dot" style={{ left: `${col.value}%` }} />
+                      )}
+                    </div>
+                    <span className="asr-card-slider-edge">{col.right}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="asr-card-section">
+        <div className="asr-card-section-lbl">STRATEGY &amp; PLAN:</div>
+        <div className="asr-card-section-txt">{card.strategy}</div>
+      </div>
+
+      <div className="asr-card-footer-row">
+        <div className="asr-card-footer-cell">
+          <div className="asr-card-section-lbl">IDEAS:</div>
+          <div className="asr-card-section-txt">{card.ideas}</div>
+        </div>
+        <div className="asr-card-footer-cell">
+          <div className="asr-card-section-lbl">STAKEHOLDERS:</div>
+          <div className="asr-card-section-txt">{card.stakeholders}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const ACTORS = ['User / UI', 'Blueprint API', '', 'Auth Provider']
 
 const STEPS: Array<{ from: number; to: number; label: string; dashed?: boolean }> = [
@@ -377,171 +632,8 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
             Architecturally Significant Requirements (ASRs)
             <span className="integration-detail-example-badge">Each ASR below will produce an ADR during Discovery</span>
           </div>
-          <div className="integration-detail-asr-intro">
-            The requirements listed here are <strong>architecturally significant</strong> — they constrain the design
-            in ways that cannot be reversed cheaply once development begins. Because the correct solution depends on
-            information only your team holds (existing infrastructure, compliance obligations, operational policies),
-            each ASR must be resolved through a documented <strong>Architecture Decision Record (ADR)</strong> before
-            coding starts. Leaving these open risks costly rework, security gaps, or integration failures in production.
-          </div>
-          <div className="integration-detail-asr-list">
-
-            <div className="integration-detail-asr-item">
-              <div className="integration-detail-asr-header">
-                <span className="integration-detail-asr-id">ASR-01</span>
-                <span className="integration-detail-asr-title">Authentication &amp; Token Lifecycle</span>
-                <span className="integration-detail-asr-category">Security</span>
-              </div>
-              <div className="integration-detail-asr-body">
-                <div className="integration-detail-asr-requirement">
-                  The integration must authenticate with {integration.system.split('/')[0].trim()} using a mechanism
-                  that supports secret rotation without downtime, satisfies your organisation's token expiry policy,
-                  and does not store long-lived credentials in application code or environment variables.
-                </div>
-                <div className="integration-detail-asr-why-adr">
-                  <span className="integration-detail-asr-why-label">Why an ADR is required:</span>
-                  The choice between service-account keys, OAuth client-credentials flow, workload-identity federation,
-                  and managed identities has irreversible consequences for secret sprawl, audit trails, and rotation
-                  automation. The right answer depends on your cloud provider, existing IAM setup, and compliance
-                  requirements — facts only your team can confirm.
-                </div>
-              </div>
-            </div>
-
-            <div className="integration-detail-asr-item">
-              <div className="integration-detail-asr-header">
-                <span className="integration-detail-asr-id">ASR-02</span>
-                <span className="integration-detail-asr-title">Latency &amp; Throughput Envelope</span>
-                <span className="integration-detail-asr-category">Performance</span>
-              </div>
-              <div className="integration-detail-asr-body">
-                <div className="integration-detail-asr-requirement">
-                  The integration must meet a defined maximum end-to-end latency (p95) and peak request-per-second
-                  ceiling under normal load, without triggering the external system's rate-limit quotas or
-                  degrading Blueprint's own response times.
-                </div>
-                <div className="integration-detail-asr-why-adr">
-                  <span className="integration-detail-asr-why-label">Why an ADR is required:</span>
-                  Whether to use synchronous calls, an async queue, or a batch job is not a stylistic choice —
-                  it is driven by your SLA, the external API's rate limits, and expected call volume. Building
-                  the wrong pattern means either unacceptable latency or throttling errors visible to end users.
-                  Your team must confirm expected volumes before we commit to a concurrency model.
-                </div>
-              </div>
-            </div>
-
-            <div className="integration-detail-asr-item">
-              <div className="integration-detail-asr-header">
-                <span className="integration-detail-asr-id">ASR-03</span>
-                <span className="integration-detail-asr-title">Failure Isolation &amp; Graceful Degradation</span>
-                <span className="integration-detail-asr-category">Reliability</span>
-              </div>
-              <div className="integration-detail-asr-body">
-                <div className="integration-detail-asr-requirement">
-                  If {integration.system.split('/')[0].trim()} becomes unavailable, Blueprint must continue to
-                  operate its core workflow without data loss and without presenting unhandled errors to users.
-                  The acceptable degraded behaviour (queue, skip, warn, or block) must be specified per use-case.
-                </div>
-                <div className="integration-detail-asr-why-adr">
-                  <span className="integration-detail-asr-why-label">Why an ADR is required:</span>
-                  "Fail gracefully" means different things depending on business priority: blocking the workflow
-                  is safest for financial data; silently queuing is better for notifications. The wrong default
-                  either corrupts data or locks out users. Only your team can define acceptable degraded
-                  behaviour, and the circuit-breaker, retry, and dead-letter design must follow from that decision.
-                </div>
-              </div>
-            </div>
-
-            <div className="integration-detail-asr-item">
-              <div className="integration-detail-asr-header">
-                <span className="integration-detail-asr-id">ASR-04</span>
-                <span className="integration-detail-asr-title">PII &amp; Sensitive-Data Boundary</span>
-                <span className="integration-detail-asr-category">Compliance</span>
-              </div>
-              <div className="integration-detail-asr-body">
-                <div className="integration-detail-asr-requirement">
-                  Any personally identifiable information (PII) or data classified as sensitive under your
-                  data-governance policy must be identified, minimised, and either anonymised or encrypted
-                  before being transmitted to or stored by {integration.system.split('/')[0].trim()}.
-                </div>
-                <div className="integration-detail-asr-why-adr">
-                  <span className="integration-detail-asr-why-label">Why an ADR is required:</span>
-                  The field-level classification of data depends on your internal data catalogue and applicable
-                  regulations (GDPR, HIPAA, SOC 2). We cannot determine which fields are PII without your
-                  data-governance team's input. The ADR will document the agreed field inventory, masking
-                  strategy, and the legal basis for the transfer — serving as the audit record if ever challenged.
-                </div>
-              </div>
-            </div>
-
-            <div className="integration-detail-asr-item">
-              <div className="integration-detail-asr-header">
-                <span className="integration-detail-asr-id">ASR-05</span>
-                <span className="integration-detail-asr-title">Data-Residency &amp; Sovereignty</span>
-                <span className="integration-detail-asr-category">Compliance</span>
-              </div>
-              <div className="integration-detail-asr-body">
-                <div className="integration-detail-asr-requirement">
-                  All data in transit and at rest must remain within approved geographic regions.
-                  If {integration.system.split('/')[0].trim()} routes traffic or stores data outside your
-                  permitted jurisdictions, a compliant routing or proxy strategy must be adopted.
-                </div>
-                <div className="integration-detail-asr-why-adr">
-                  <span className="integration-detail-asr-why-label">Why an ADR is required:</span>
-                  Regional API endpoint availability varies per vendor and per subscription tier. A routing
-                  decision made without this knowledge can violate data-sovereignty obligations that carry
-                  regulatory penalties. The ADR locks in the approved region list and documents the
-                  verification steps taken — required evidence for compliance audits.
-                </div>
-              </div>
-            </div>
-
-            <div className="integration-detail-asr-item">
-              <div className="integration-detail-asr-header">
-                <span className="integration-detail-asr-id">ASR-06</span>
-                <span className="integration-detail-asr-title">Schema Versioning &amp; Backward Compatibility</span>
-                <span className="integration-detail-asr-category">Maintainability</span>
-              </div>
-              <div className="integration-detail-asr-body">
-                <div className="integration-detail-asr-requirement">
-                  The integration must handle breaking changes to the {integration.system.split('/')[0].trim()} API
-                  schema without requiring a coordinated, same-day deployment of Blueprint.
-                  A versioning and migration strategy must be agreed upon before go-live.
-                </div>
-                <div className="integration-detail-asr-why-adr">
-                  <span className="integration-detail-asr-why-label">Why an ADR is required:</span>
-                  External APIs change: fields are deprecated, authentication flows are retired, and new
-                  required fields appear. Without a documented versioning contract and tested migration
-                  path, a vendor-side update can silently break production overnight. The ADR specifies
-                  the canary-testing, contract-testing, and rollback strategy your operations team will own.
-                </div>
-              </div>
-            </div>
-
-            <div className="integration-detail-asr-item">
-              <div className="integration-detail-asr-header">
-                <span className="integration-detail-asr-id">ASR-07</span>
-                <span className="integration-detail-asr-title">Network Topology &amp; Access Control</span>
-                <span className="integration-detail-asr-category">Security</span>
-              </div>
-              <div className="integration-detail-asr-body">
-                <div className="integration-detail-asr-requirement">
-                  Outbound connections to {integration.system.split('/')[0].trim()} must traverse only
-                  approved network paths. Any IP allowlisting, VPN tunnels, private link configurations,
-                  or firewall rules required by your security team must be provisioned before integration
-                  testing begins.
-                </div>
-                <div className="integration-detail-asr-why-adr">
-                  <span className="integration-detail-asr-why-label">Why an ADR is required:</span>
-                  Network provisioning often has a lead time of days to weeks and requires sign-off from
-                  your infrastructure and security teams. If the approved egress path is not established
-                  before development, the integration cannot be tested in a representative environment,
-                  and security issues surface too late to fix without delaying the phase. The ADR triggers
-                  this provisioning work in parallel with development.
-                </div>
-              </div>
-            </div>
-
+          <div className="asr-cards-list">
+            {ASR_CARDS.map(card => <AsrCardView key={card.id} card={card} />)}
           </div>
         </div>
 
