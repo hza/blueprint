@@ -223,7 +223,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
         <div className="overview-banner-stats">
           <div className="overview-stat">
             <span className="overview-stat-label">Delivery Partner</span>
-            <span className="overview-stat-value">SCNSoft</span>
+            <span className="overview-stat-value">SCNSoft Ltd.</span>
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Phase 1 MVP</span>

@@ -23,34 +23,6 @@ export function ProofCredibility({ subsection }: { subsection?: string }) {
         </div>
       </div>
 
-      {/* Results at a Glance */}
-      <div className="overview-card" style={{ marginBottom: '1.5rem' }}>
-        <div className="overview-card-header">
-          <span className="overview-card-icon">🏆</span>
-          Results at a Glance
-        </div>
-        <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
-          <div style={{ flex: 1, padding: '16px', border: '1px solid #E5E7EB', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#3B82F6' }}>↓ 80%</div>
-            <div style={{ fontSize: '13px', fontWeight: 600, color: '#374151', marginTop: '4px' }}>Processing time reduced</div>
-            <div style={{ fontSize: '11px', color: '#6B7280', marginTop: '2px' }}>Manual → automated</div>
-          </div>
-          <div style={{ flex: 1, padding: '16px', border: '1px solid #E5E7EB', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#3B82F6' }}>3 Live</div>
-            <div style={{ fontSize: '13px', fontWeight: 600, color: '#374151', marginTop: '4px' }}>Production AI deployments</div>
-            <div style={{ fontSize: '11px', color: '#6B7280', marginTop: '2px' }}>Verifiable references</div>
-          </div>
-          <div style={{ flex: 1, padding: '16px', border: '1px solid #E5E7EB', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#3B82F6' }}>100%</div>
-            <div style={{ fontSize: '13px', fontWeight: 600, color: '#374151', marginTop: '4px' }}>On-time delivery</div>
-            <div style={{ fontSize: '11px', color: '#6B7280', marginTop: '2px' }}>Across 3 case studies</div>
-          </div>
-        </div>
-        <div style={{ marginTop: '12px', fontSize: '12px', color: '#6B7280', fontStyle: 'italic' }}>
-          All outcomes are independently verifiable via live reference contacts listed below.
-        </div>
-      </div>
-
       {show('7.1') && (<>
       {/* 7.1 Case Studies */}
       <div className="rfp-section-heading" id="7.1">Results for Comparable Organisations</div>
