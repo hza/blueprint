@@ -349,6 +349,46 @@
   border-top: none !important;
 }
 
+.assumption-status-toggle {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.assumption-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--canvas-subtle);
+  color: var(--fg-muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+.assumption-toggle-btn:hover {
+  border-color: var(--fg-muted);
+  color: var(--fg);
+}
+.assumption-toggle-btn--approved.assumption-toggle-btn--active {
+  color: var(--sem-ok-fg);
+  border-color: var(--sem-ok-fg);
+}
+.assumption-toggle-btn--pending.assumption-toggle-btn--active {
+  color: var(--sem-warn-fg);
+  border-color: var(--sem-warn-fg);
+}
+.assumption-toggle-btn--rejected.assumption-toggle-btn--active {
+  color: var(--sem-danger-fg);
+  border-color: var(--sem-danger-fg);
+}
+.assumption-toggle-btn--comment.assumption-toggle-btn--active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 .overview-table tr:has(+ tr .td-answer--recorded) td {
   border-bottom: none;
 }

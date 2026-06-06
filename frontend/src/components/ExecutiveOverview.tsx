@@ -5,9 +5,30 @@ import { DEFAULT_USER_NAME } from '../types'
 const CURRENT_USER = DEFAULT_USER_NAME
 
 const REPLY_ICON = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="9 17 4 12 9 7"/>
-    <path d="M20 18v-2a4 4 0 0 0-4-4H4"/>
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    <path d="M16.5 2.5l.4 1.1 1.1.4-1.1.4-.4 1.1-.4-1.1-1.1-.4 1.1-.4z" fill="currentColor" stroke="none"/>
+    <path d="M19.5 7l.25.7.7.25-.7.25-.25.7-.25-.7-.7-.25.7-.25z" fill="currentColor" stroke="none"/>
+  </svg>
+)
+
+const ICON_APPROVED = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
+  </svg>
+)
+
+const ICON_REJECTED = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"/>
+    <line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+)
+
+const ICON_PENDING = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="12 6 12 12 16 14"/>
   </svg>
 )
 
@@ -173,20 +194,15 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
     const saved = loadAssumptionNotes()
     return { A1: 'Let me think about it...', A2: 'I have changed my mind, let\'s always use Anthropic', ...saved }
   })
+  const [openNote, setOpenNote] = useState<string | null>(null)
   const [editingNote, setEditingNote] = useState<string | null>(null)
   const [noteDraft, setNoteDraft] = useState<Record<string, string>>({})
-  const dropdownInteracted = React.useRef<Set<string>>(new Set())
-
   function setAssumptionStatus(id: string, status: AssumptionStatus) {
     setAssumptionStatuses(prev => {
       const next = { ...prev, [id]: status }
       localStorage.setItem(LS_ASSUMPTIONS_KEY, JSON.stringify(next))
       return next
     })
-    if (status !== 'None') {
-      setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' }))
-      setEditingNote(id)
-    }
   }
 
   function saveNote(id: string) {
@@ -359,30 +375,31 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                     <td>{impact}</td>
                     <td><AssumptionStatusTag status={assumptionStatuses[id]} /></td>
                     <td className="td-action">
-                      <select
-                        className="assumption-status-select"
-                        value={assumptionStatuses[id]}
-                        onMouseDown={() => dropdownInteracted.current.add(id)}
-                        onChange={e => {
-                          dropdownInteracted.current.delete(id)
-                          setAssumptionStatus(id, e.target.value as AssumptionStatus)
-                        }}
-                        onBlur={() => {
-                          if (dropdownInteracted.current.has(id)) {
-                            dropdownInteracted.current.delete(id)
-                            setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' }))
-                            setEditingNote(id)
-                          }
-                        }}
-                      >
-                        <option value="None">None</option>
-                        <option value="Approved">Approved</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Rejected">Rejected</option>
-                      </select>
+                      <div className="assumption-status-toggle">
+                        {(['Approved', 'Pending', 'Rejected'] as AssumptionStatus[]).map(s => (
+                          <button
+                            key={s}
+                            title={s}
+                            className={`assumption-toggle-btn assumption-toggle-btn--${s.toLowerCase()}${assumptionStatuses[id] === s ? ' assumption-toggle-btn--active' : ''}`}
+                            onClick={() => { if (assumptionStatuses[id] !== s) setAssumptionStatus(id, s) }}
+                          >
+                            {s === 'Approved' ? ICON_APPROVED : s === 'Rejected' ? ICON_REJECTED : ICON_PENDING}
+                          </button>
+                        ))}
+                        <button
+                          title="Add note"
+                          className={`assumption-toggle-btn assumption-toggle-btn--comment${editingNote === id ? ' assumption-toggle-btn--active' : ''}`}
+                          onClick={() => {
+                            if (editingNote === id) { setEditingNote(null) }
+                            else { setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' })); setEditingNote(id); setOpenNote(id) }
+                          }}
+                        >
+                          {REPLY_ICON}
+                        </button>
+                      </div>
                     </td>
                   </tr>
-                  {assumptionNotes[id] && editingNote !== id && assumptionStatuses[id] !== 'None' && (
+                  {assumptionNotes[id] && editingNote !== id && (
                     <tr>
                       <td />
                       <td colSpan={4} className="td-answer td-answer--recorded">
@@ -394,13 +411,28 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                             onClick={() => {
                               setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' }))
                               setEditingNote(id)
+                              setOpenNote(id)
                             }}
                           >{assumptionNotes[id]}</span>
                         </div>
                       </td>
                     </tr>
                   )}
-                  {editingNote === id && (
+                  {!assumptionNotes[id] && editingNote !== id && (
+                    <tr>
+                      <td />
+                      <td colSpan={4} className="td-answer td-answer--recorded">
+                        <div className="answer-recorded">
+                          <span
+                            className="answer-recorded-text"
+                            style={{ color: 'var(--fg-muted)', fontStyle: 'italic', cursor: 'pointer' }}
+                            onClick={() => { setNoteDraft(d => ({ ...d, [id]: '' })); setEditingNote(id) }}
+                          >Click to add a note…</span>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                  {openNote === id && editingNote === id && (
                     <tr>
                       <td />
                       <td colSpan={4} className="td-answer">
