@@ -1,3 +1,46 @@
+const RATE_CARD_DATA = [
+  { label: 'Programme Director', rate: 440, color: '#6366F1' },
+  { label: 'Solution Architect',  rate: 400, color: '#8B5CF6' },
+  { label: 'AI/ML Engineer',      rate: 340, color: '#3B82F6' },
+  { label: 'Senior Developer',    rate: 320, color: '#10B981' },
+  { label: 'Mid Dev / BA',        rate: 260, color: '#F59E0B' },
+  { label: 'QA / Test Engineer',  rate: 220, color: '#EF4444' },
+]
+
+function RateCardPieChart() {
+  const total = RATE_CARD_DATA.reduce((s, d) => s + d.rate, 0)
+  const cx = 90, cy = 90, r = 70
+  let angle = -Math.PI / 2
+  const slices = RATE_CARD_DATA.map(d => {
+    const sweep = (d.rate / total) * 2 * Math.PI
+    const x1 = cx + r * Math.cos(angle)
+    const y1 = cy + r * Math.sin(angle)
+    angle += sweep
+    const x2 = cx + r * Math.cos(angle)
+    const y2 = cy + r * Math.sin(angle)
+    const large = sweep > Math.PI ? 1 : 0
+    return { ...d, path: `M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} Z` }
+  })
+  const ir = 35
+  return (
+    <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+      <svg width="180" height="180" viewBox="0 0 180 180">
+        {slices.map(s => <path key={s.label} d={s.path} fill={s.color} stroke="#fff" strokeWidth="1.5" />)}
+        <circle cx={cx} cy={cy} r={ir} fill="var(--card-bg, #fff)" />
+      </svg>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center', marginRight: '20px' }}>
+        {RATE_CARD_DATA.map(d => (
+          <div key={d.label} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
+            <span style={{ width: 10, height: 10, borderRadius: 2, background: d.color, flexShrink: 0 }} />
+            <span style={{ color: 'var(--text-secondary, #6B7280)' }}>{d.label}</span>
+            <span style={{ fontWeight: 600, paddingLeft: 8, whiteSpace: 'nowrap' }}>${d.rate}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function PricingCommercials({ subsection }: { subsection?: string }) {
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
   return (
@@ -235,7 +278,13 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">📋</span>
             Implementation Cost by Phase
           </div>
-          <table className="overview-table">
+          <table className="overview-table" style={{ tableLayout: 'fixed', width: '100%' }}>
+            <colgroup>
+              <col style={{ width: '18%' }} />
+              <col style={{ width: '60%' }} />
+              <col style={{ width: '11%' }} />
+              <col style={{ width: '11%' }} />
+            </colgroup>
             <thead>
               <tr>
                 <th>Phase</th>
@@ -278,7 +327,13 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">💳</span>
             Payment Milestones
           </div>
-          <table className="overview-table">
+          <table className="overview-table" style={{ tableLayout: 'fixed', width: '100%' }}>
+            <colgroup>
+              <col style={{ width: '22%' }} />
+              <col style={{ width: '58%' }} />
+              <col style={{ width: '11%' }} />
+              <col style={{ width: '9%' }} />
+            </colgroup>
             <thead>
               <tr>
                 <th>Milestone</th>
@@ -328,12 +383,19 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
           </table>
         </div>
 
-        <div className="overview-card">
+      </div>
+      <div style={{ display: 'flex', gap: '16px', alignItems: 'stretch' }}>
+        <div className="overview-card" style={{ flex: '1 1 auto' }}>
           <div className="overview-card-header">
             <span className="overview-card-icon">⚡</span>
             Rate Card — Change Requests
           </div>
-          <table className="overview-table">
+          <table className="overview-table" style={{ tableLayout: 'fixed', width: '100%' }}>
+            <colgroup>
+              <col style={{ width: '50%' }} />
+              <col style={{ width: '25%' }} />
+              <col style={{ width: '25%' }} />
+            </colgroup>
             <thead>
               <tr>
                 <th>Role</th>
@@ -374,6 +436,14 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div className="overview-card" style={{ flexShrink: 0 }}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🥧</span>
+            Rate Distribution
+          </div>
+          <RateCardPieChart />
         </div>
       </div>
 
