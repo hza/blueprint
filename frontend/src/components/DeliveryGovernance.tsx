@@ -86,7 +86,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
       {/* Gantt chart */}
       <div className="timeline-wrap" style={{ height: 'auto', overflow: 'visible', padding: '0 0 8px' }}>
         <div className="timeline-header-row">
-          <div className="timeline-title">Your Implementation Timeline — 28 Weeks · 3 Phases</div>
+          <div className="timeline-title">Implementation Timeline — 28 Weeks · 3 Phases</div>
           <div className="timeline-legend">
             {Object.entries(PHASE_LABELS).map(([key, label]) => (
               <span key={key} className="timeline-legend-item">
@@ -365,7 +365,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
                     <tr key={activity}>
                       <td style={{ textAlign: 'left', padding: '5px 8px', border: '1px solid var(--border)', color: 'var(--fg)' }}>{activity}</td>
                       {cells.map((v, i) => (
-                        <td key={i} style={{ textAlign: 'center', padding: '5px 8px', border: '1px solid var(--border)', ...cellStyle(v) }}>{v}</td>
+                        <td key={i} className={`raci-cell raci-cell--${v.toLowerCase()}`} style={{ textAlign: 'center', padding: '5px 8px', border: '1px solid var(--border)', ...cellStyle(v) }}>{v}</td>
                       ))}
                     </tr>
                   )

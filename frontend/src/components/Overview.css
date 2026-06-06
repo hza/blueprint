@@ -702,6 +702,10 @@
 [data-theme="notion"] .raci-table tr:hover td {
   background: var(--canvas-subtle) !important;
 }
+[data-theme="notion"] .raci-table td.raci-cell--r { background: var(--sem-info-bg) !important; color: var(--sem-info-fg) !important; }
+[data-theme="notion"] .raci-table td.raci-cell--a { background: var(--sem-ok-bg)   !important; color: var(--sem-ok-fg)   !important; }
+[data-theme="notion"] .raci-table td.raci-cell--c { background: var(--sem-warn-bg) !important; color: var(--sem-warn-fg) !important; }
+[data-theme="notion"] .raci-table td.raci-cell--i { background: var(--canvas-inset) !important; color: var(--fg-muted) !important; }
 
 [data-theme="notion"] .overview-table th {
   background: transparent;
@@ -717,3 +721,4 @@
 [data-theme="notion"] .overview-table tbody tr:hover td {
   background: var(--canvas-subtle);
 }
+[data-theme="notion"] .rfp-section-heading { margin-left: 12px; }

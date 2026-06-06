@@ -319,7 +319,7 @@
   align-items: center;
   gap: 4px;
   width: calc(100% - 12px);
-  margin: 0 6px;
+  margin: 0 8px;
   padding: 7px 10px 7px 14px;
   border: none;
   background: none;
@@ -653,3 +653,4 @@
 [data-theme="notion"] .sidebar-docs-tree::-webkit-scrollbar { width: 4px; }
 [data-theme="notion"] .sidebar-docs-tree::-webkit-scrollbar-thumb { background: transparent; border-radius: 2px; }
 [data-theme="notion"] .sidebar-docs-tree:hover::-webkit-scrollbar-thumb { background: var(--border); }
+[data-theme="notion"] .sidebar-sub-item { margin: 0 10px; }
