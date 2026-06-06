@@ -197,6 +197,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
     setAssumptionStatuses(prev => {
       const next = { ...prev, [id]: status }
       localStorage.setItem(LS_ASSUMPTIONS_KEY, JSON.stringify(next))
+      window.dispatchEvent(new StorageEvent('storage', { key: LS_ASSUMPTIONS_KEY, newValue: JSON.stringify(next) }))
       return next
     })
   }
@@ -368,7 +369,15 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                   <tr>
                     <td><strong>{id}</strong></td>
                     <td>{assumption}</td>
-                    <td><AssumptionStatusTag status={assumptionStatuses[id]} /></td>
+                    <td>
+                      <AssumptionStatusTag status={assumptionStatuses[id]} />
+                      {assumptionStatuses[id] === 'Approved' && (
+                        <div className="assumption-approved-by">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l2.4 3.2L18 4l-.8 3.8L21 10l-3 2 1 3.8-3.8-.8L12 18l-3.2-3-3.8.8L6 12 3 10l3.8-2.2L6 4l3.6 1.2z"/><polyline points="9 12 11 14 15 10"/></svg>
+                          <span>{CURRENT_USER}</span>
+                        </div>
+                      )}
+                    </td>
                     <td>{impact}</td>
                     <td className="td-action">
                       <div className="assumption-status-toggle">
@@ -377,7 +386,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                             key={s}
                             title={s}
                             className={`assumption-toggle-btn assumption-toggle-btn--${s.toLowerCase()}${assumptionStatuses[id] === s ? ' assumption-toggle-btn--active' : ''}`}
-                            onClick={() => { if (assumptionStatuses[id] !== s) setAssumptionStatus(id, s) }}
+                            onClick={() => setAssumptionStatus(id, assumptionStatuses[id] === s ? 'None' : s)}
                           >
                             {s === 'Approved' ? ICON_APPROVED : s === 'Rejected' ? ICON_REJECTED : ICON_PENDING}
                           </button>

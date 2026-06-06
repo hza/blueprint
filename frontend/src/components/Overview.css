@@ -393,6 +393,15 @@
   border-bottom: none;
 }
 
+.assumption-approved-by {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--sem-ok-fg);
+}
+
 .answer-recorded {
   display: flex;
   align-items: baseline;
