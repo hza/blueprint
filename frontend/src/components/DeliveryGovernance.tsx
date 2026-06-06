@@ -336,9 +336,9 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             <table className="raci-table" style={{ width: '100%', fontSize: 'var(--font-size-sm)', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: 'left', padding: '5px 8px', border: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>Activity</th>
+                  <th style={{ textAlign: 'left', padding: '10px 12px', border: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>Activity</th>
                   {['PM', 'Tech Lead', 'Dev Team', 'QA', 'BA', 'Your Team'].map(col => (
-                    <th key={col} style={{ textAlign: 'center', padding: '5px 8px', border: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>{col}</th>
+                    <th key={col} style={{ textAlign: 'center', padding: '10px 12px', border: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>{col}</th>
                   ))}
                 </tr>
               </thead>
@@ -363,9 +363,9 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
                   }
                   return (
                     <tr key={activity}>
-                      <td style={{ textAlign: 'left', padding: '5px 8px', border: '1px solid var(--border)', color: 'var(--fg)' }}>{activity}</td>
+                      <td style={{ textAlign: 'left', padding: '10px 12px', border: '1px solid var(--border)', color: 'var(--fg)' }}>{activity}</td>
                       {cells.map((v, i) => (
-                        <td key={i} className={`raci-cell raci-cell--${v.toLowerCase()}`} style={{ textAlign: 'center', padding: '5px 8px', border: '1px solid var(--border)', ...cellStyle(v) }}>{v}</td>
+                        <td key={i} className={`raci-cell raci-cell--${v.toLowerCase()}`} style={{ textAlign: 'center', padding: '10px 12px', border: '1px solid var(--border)', ...cellStyle(v) }}>{v}</td>
                       ))}
                     </tr>
                   )
