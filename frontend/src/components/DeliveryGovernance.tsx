@@ -333,12 +333,18 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             RACI — Who Does What
           </div>
           <div style={{ overflowX: 'auto' }}>
-            <table className="raci-table" style={{ width: '100%', fontSize: 'var(--font-size-sm)', borderCollapse: 'collapse' }}>
+            <table className="raci-table" style={{ width: '100%', fontSize: 'var(--font-size-sm)', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
+              <colgroup>
+                <col style={{ width: '28%' }} />
+                {['PM', 'Tech Lead', 'Dev Team', 'QA', 'BA', 'Your Team'].map(col => (
+                  <col key={col} style={{ width: `${72 / 6}%` }} />
+                ))}
+              </colgroup>
               <thead>
                 <tr>
-                  <th style={{ textAlign: 'left', padding: '10px 12px', border: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>Activity</th>
-                  {['PM', 'Tech Lead', 'Dev Team', 'QA', 'BA', 'Your Team'].map(col => (
-                    <th key={col} style={{ textAlign: 'center', padding: '10px 12px', border: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>{col}</th>
+                  <th style={{ textAlign: 'left', padding: '10px 12px', borderBottom: '1px solid var(--border)', borderRight: '1px solid var(--border)', background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>Activity</th>
+                  {['PM', 'Tech Lead', 'Dev Team', 'QA', 'BA', 'Your Team'].map((col, i, arr) => (
+                    <th key={col} style={{ textAlign: 'center', padding: '10px 12px', borderBottom: '1px solid var(--border)', borderRight: i < arr.length - 1 ? '1px solid var(--border)' : undefined, background: 'var(--canvas-subtle)', color: 'var(--fg)' }}>{col}</th>
                   ))}
                 </tr>
               </thead>
@@ -354,7 +360,8 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
                   ['Deployment Approvals',   'A','R','C','C','I','C'],
                   ['Steering Updates',       'R','C','I','I','I','A'],
                   ['Invoice Approval',       'I','I','I','I','I','R'],
-                ] as [string, string, string, string, string, string, string][]).map(([activity, ...cells]) => {
+                ] as [string, string, string, string, string, string, string][]).map(([activity, ...cells], rowIdx, rows) => {
+                  const isLast = rowIdx === rows.length - 1
                   const cellStyle = (v: string): React.CSSProperties => {
                     if (v === 'R') return { background: 'var(--sem-info-bg)', color: 'var(--sem-info-fg)', fontWeight: 'bold' }
                     if (v === 'A') return { background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)', fontWeight: 'bold' }
@@ -363,9 +370,9 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
                   }
                   return (
                     <tr key={activity}>
-                      <td style={{ textAlign: 'left', padding: '10px 12px', border: '1px solid var(--border)', color: 'var(--fg)' }}>{activity}</td>
+                      <td style={{ textAlign: 'left', padding: '10px 12px', borderBottom: isLast ? undefined : '1px solid var(--border)', borderRight: '1px solid var(--border)', color: 'var(--fg)' }}>{activity}</td>
                       {cells.map((v, i) => (
-                        <td key={i} className={`raci-cell raci-cell--${v.toLowerCase()}`} style={{ textAlign: 'center', padding: '10px 12px', border: '1px solid var(--border)', ...cellStyle(v) }}>{v}</td>
+                        <td key={i} className={`raci-cell raci-cell--${v.toLowerCase()}`} style={{ textAlign: 'center', padding: '10px 12px', borderBottom: isLast ? undefined : '1px solid var(--border)', borderRight: i < cells.length - 1 ? '1px solid var(--border)' : undefined, ...cellStyle(v) }}>{v}</td>
                       ))}
                     </tr>
                   )
