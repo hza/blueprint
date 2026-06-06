@@ -451,11 +451,10 @@
 
 .asr-card-slider-dot {
   position: absolute;
-  width: 7px;
-  height: 7px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
-  background: var(--fg);
-  top: -3px;
+  top: -5px;
   transform: translateX(-50%);
 }
 

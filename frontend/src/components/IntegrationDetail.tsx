@@ -286,7 +286,7 @@ function AsrCardView({ card }: { card: AsrCardData }) {
                     <span className="asr-card-slider-edge">{col.left}</span>
                     <div className="asr-card-slider-track">
                       {col.value !== null && (
-                        <div className="asr-card-slider-dot" style={{ left: `${col.value}%` }} />
+                        <div className="asr-card-slider-dot" style={{ left: `${col.value}%`, background: `hsl(${240 + (col.value ?? 0) * 1.2}, 90%, 50%)` }} />
                       )}
                     </div>
                     <span className="asr-card-slider-edge">{col.right}</span>
