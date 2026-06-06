@@ -308,7 +308,9 @@
   gap: 10px;
   padding: 8px 14px;
   border-right: 1.5px solid var(--asr-card-border, var(--border));
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .asr-card-heading-label {
@@ -324,6 +326,9 @@
   font-size: 11px;
   color: var(--fg-muted);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .asr-card-meta-fields {
@@ -338,8 +343,8 @@
   justify-content: center;
   padding: 6px 12px;
   border-right: 1.5px solid var(--asr-card-border, var(--border));
-  min-width: 100px;
-  flex: 1;
+  width: 140px;
+  flex-shrink: 0;
 }
 
 .asr-card-meta-field:last-child {
@@ -553,7 +558,9 @@
   gap: 10px;
   padding: 8px 14px;
   border-right: 1.5px solid var(--asr-card-border, var(--border));
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .qatt-card-title-label {
@@ -569,6 +576,9 @@
   font-size: 11px;
   color: var(--fg-muted);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .qatt-card-meta-fields {
@@ -583,7 +593,8 @@
   justify-content: center;
   padding: 6px 12px;
   border-right: 1.5px solid var(--asr-card-border, var(--border));
-  flex: 1;
+  width: 140px;
+  flex-shrink: 0;
 }
 
 .qatt-card-meta-field:last-child {

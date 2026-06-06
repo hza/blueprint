@@ -96,7 +96,7 @@ const ASR_CARDS: AsrCardData[] = [
     title: 'Authentication & Token Lifecycle',
     domain: 'Security',
     criticality: 'High',
-    status: 'Open — TBC at Discovery',
+    status: 'TBC',
     requirement:
       'The integration must authenticate using a mechanism that supports zero-downtime secret rotation, satisfies your organisation\'s token expiry policy, and stores no long-lived credentials in application code or environment variables.',
     significance:
@@ -112,7 +112,7 @@ const ASR_CARDS: AsrCardData[] = [
     title: 'Latency & Throughput Envelope',
     domain: 'Performance',
     criticality: 'High',
-    status: 'Open — TBC at Discovery',
+    status: 'TBC',
     requirement:
       'The integration must sustain the agreed p95 latency ceiling and peak RPS without triggering the external system\'s rate-limit quotas or degrading Blueprint\'s own response times for end users.',
     significance:
@@ -128,7 +128,7 @@ const ASR_CARDS: AsrCardData[] = [
     title: 'Failure Isolation & Graceful Degradation',
     domain: 'Reliability',
     criticality: 'Critical',
-    status: 'Open — TBC at Discovery',
+    status: 'TBC',
     requirement:
       'When the external system is unavailable, Blueprint must continue core operations without data loss or unhandled errors. The acceptable degraded behaviour — queue, skip, warn, or block — must be explicitly specified per use-case before coding begins.',
     significance:
@@ -144,7 +144,7 @@ const ASR_CARDS: AsrCardData[] = [
     title: 'PII & Sensitive-Data Boundary',
     domain: 'Compliance',
     criticality: 'Critical',
-    status: 'Open — TBC at Discovery',
+    status: 'TBC',
     requirement:
       'All PII and governance-classified sensitive data must be identified, minimised, and anonymised or encrypted before transmission to or storage by the external system. The legal basis for the transfer must be documented.',
     significance:
@@ -160,7 +160,7 @@ const ASR_CARDS: AsrCardData[] = [
     title: 'Data Residency & Sovereignty',
     domain: 'Compliance',
     criticality: 'High',
-    status: 'Open — TBC at Discovery',
+    status: 'TBC',
     requirement:
       'All data in transit and at rest must remain within your approved geographic jurisdictions. If the external system routes traffic or stores data outside permitted regions, a compliant routing or proxy strategy must be adopted before go-live.',
     significance:
@@ -176,7 +176,7 @@ const ASR_CARDS: AsrCardData[] = [
     title: 'Schema Versioning & Backward Compatibility',
     domain: 'Maintainability',
     criticality: 'Medium',
-    status: 'Open — TBC at Discovery',
+    status: 'TBC',
     requirement:
       'The integration must tolerate breaking changes to the external API schema without requiring a coordinated same-day deployment of Blueprint. A versioning and migration strategy must be established and tested before go-live.',
     significance:
@@ -192,7 +192,7 @@ const ASR_CARDS: AsrCardData[] = [
     title: 'Network Topology & Access Control',
     domain: 'Security',
     criticality: 'High',
-    status: 'Open — TBC at Discovery',
+    status: 'TBC',
     requirement:
       'All outbound connections must traverse only approved network paths. Required IP allowlisting, VPN tunnels, or private link configurations must be provisioned before integration testing begins — not after.',
     significance:
