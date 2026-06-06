@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const REPLY_ICON = (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -123,6 +124,7 @@ function ClarificationsTable() {
 }
 
 export function ExecutiveOverview({ subsection }: { subsection?: string }) {
+  const navigate = useNavigate()
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
   return (
     <div className="overview">
@@ -186,11 +188,11 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="overview-table-label">Deployment Model</td>
-                <td>Cloud-native, containerised — AWS, GCP, or Azure (region confirmed at award)</td>
+                <td>Cloud-native, containerised</td>
               </tr>
               <tr>
                 <td className="overview-table-label">Implementation Model</td>
-                <td>Fixed-price, 3-phase delivery · 28 weeks</td>
+                <td><span style={{cursor:'pointer',textDecoration:'underline'}} onClick={() => navigate('/delivery-governance/delivery-timeline')}>Fixed-price, 3-phase delivery · 28 weeks</span></td>
               </tr>
               <tr>
                 <td className="overview-table-label">Contract Signing Target</td>

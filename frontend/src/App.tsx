@@ -139,6 +139,16 @@ export default function App() {
   }, [location.pathname, location.search, location.hash, navigate])
 
   useEffect(() => {
+    const path = location.pathname
+    for (const section of NAV_SECTIONS) {
+      for (const sub of section.subsections) {
+        if (path === sub.path) { setActiveSection(sub.id); return }
+      }
+      if (path === section.path) { setActiveSection(section.id); return }
+    }
+  }, [location.pathname])
+
+  useEffect(() => {
     fetchFiles()
       .then(setFiles)
       .catch((e: unknown) =>
