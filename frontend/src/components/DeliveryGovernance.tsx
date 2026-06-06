@@ -261,7 +261,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">👥</span>
             Your Delivery Team
           </div>
-          <table className="overview-table">
+          <table className="overview-table delivery-team-table">
             <thead>
               <tr>
                 <th>Role</th>
