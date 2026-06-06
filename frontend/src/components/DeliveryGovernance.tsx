@@ -191,7 +191,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">◎</span>
-            Programme Phases (RFP §7)
+            Programme Phases
           </div>
           <ul className="overview-timeline">
             <li className="overview-tl-item overview-tl--future">

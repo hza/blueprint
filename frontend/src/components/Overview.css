@@ -640,7 +640,7 @@
 .overview-timeline::before {
   content: '';
   position: absolute;
-  left: 21px;
+  left: 18px;
   top: 20px;
   bottom: 20px;
   width: 2px;
@@ -669,8 +669,8 @@
 .overview-tl--future  .overview-tl-dot { background: var(--border); }
 .overview-tl-item > div {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 4px;
 }
 .overview-tl-date {
   font-weight: 600;
