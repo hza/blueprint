@@ -468,6 +468,70 @@
   border-right: 1.5px solid var(--asr-card-border, var(--border));
 }
 
+/* ─── Card stack navigator ───────────────────────────────────────────────────── */
+.card-stack-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.card-stack-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--fg);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 1px 7px 3px;
+  transition: background 0.1s, color 0.1s;
+}
+
+.card-stack-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.card-stack-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.card-stack-counter {
+  font-size: 11px;
+  color: var(--fg-muted);
+  min-width: 36px;
+  text-align: center;
+}
+
+.card-stack-dots {
+  display: flex;
+  gap: 6px;
+  padding: 8px 20px 4px;
+}
+
+.card-stack-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: color-mix(in srgb, var(--fg-muted) 35%, transparent);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.card-stack-dot:hover {
+  background: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.card-stack-dot--active {
+  background: var(--accent);
+  transform: scale(1.25);
+}
+
 /* ─── QATT Card ─────────────────────────────────────────────────────────────── */
 .qatt-card {
   border: 1.5px solid var(--asr-card-border, var(--border));

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './IntegrationDetail.css'
 
@@ -662,6 +662,84 @@ function SequenceDiagram({ externalSystem }: { externalSystem: string }) {
   )
 }
 
+function CardStack<T extends { id: string }>({
+  cards,
+  icon,
+  title,
+  badge,
+  renderCard,
+}: {
+  cards: T[]
+  icon: string
+  title: string
+  badge: string
+  renderCard: (card: T) => React.ReactNode
+}) {
+  const [index, setIndex] = useState(0)
+  const card = cards[index]
+  return (
+    <div className="overview-card integration-detail-card--wide">
+      <div className="overview-card-header">
+        <span className="overview-card-icon">{icon}</span>
+        {title}
+        <span className="integration-detail-example-badge">{badge}</span>
+        <div className="card-stack-nav">
+          <button
+            className="card-stack-btn"
+            onClick={() => setIndex(i => Math.max(0, i - 1))}
+            disabled={index === 0}
+            aria-label="Previous card"
+          >‹</button>
+          <span className="card-stack-counter">{index + 1} / {cards.length}</span>
+          <button
+            className="card-stack-btn"
+            onClick={() => setIndex(i => Math.min(cards.length - 1, i + 1))}
+            disabled={index === cards.length - 1}
+            aria-label="Next card"
+          >›</button>
+        </div>
+      </div>
+      <div className="card-stack-dots">
+        {cards.map((c, i) => (
+          <button
+            key={c.id}
+            className={`card-stack-dot${i === index ? ' card-stack-dot--active' : ''}`}
+            onClick={() => setIndex(i)}
+            aria-label={`Go to card ${i + 1}`}
+          />
+        ))}
+      </div>
+      <div className="asr-cards-list">
+        {renderCard(card)}
+      </div>
+    </div>
+  )
+}
+
+function AsrCardStack() {
+  return (
+    <CardStack
+      cards={ASR_CARDS}
+      icon="🏛️"
+      title="Architecturally Significant Requirements (ASRs)"
+      badge="Each ASR below will produce an ADR during Discovery"
+      renderCard={card => <AsrCardView card={card} />}
+    />
+  )
+}
+
+function QattCardStack() {
+  return (
+    <CardStack
+      cards={QATT_CARDS}
+      icon="🎯"
+      title="Quality Attribute Tradeoff (QATT) Cards"
+      badge="Each QATT below will be validated against testable acceptance criteria at Discovery"
+      renderCard={card => <QattCardView card={card} />}
+    />
+  )
+}
+
 export function IntegrationDetail({ integrationId }: { integrationId?: string }) {
   const navigate = useNavigate()
   const integration = integrationId ? INTEGRATIONS.find((i) => i.id === integrationId) : null
@@ -890,27 +968,11 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
           <SequenceDiagram externalSystem={integration.system.split('/')[0].trim()} />
         </div>
 
-        <div className="overview-card integration-detail-card--wide">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">🏛️</span>
-            Architecturally Significant Requirements (ASRs)
-            <span className="integration-detail-example-badge">Each ASR below will produce an ADR during Discovery</span>
-          </div>
-          <div className="asr-cards-list">
-            {ASR_CARDS.map(card => <AsrCardView key={card.id} card={card} />)}
-          </div>
-        </div>
+        <AsrCardStack />
 
-        <div className="overview-card integration-detail-card--wide">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">🎯</span>
-            Quality Attribute Tradeoff (QATT) Cards
-            <span className="integration-detail-example-badge">Each QATT below will be validated against testable acceptance criteria at Discovery</span>
-          </div>
-          <div className="asr-cards-list">
-            {QATT_CARDS.map(card => <QattCardView key={card.id} card={card} />)}
-          </div>
-        </div>
+
+
+        <QattCardStack />
 
         <div className="overview-card integration-detail-card--wide">
           <div className="overview-card-header">
