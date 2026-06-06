@@ -35,7 +35,6 @@ function ClarificationsTable() {
 
   const handleSubmit = (ref: string) => {
     const text = (drafts[ref] ?? '').trim()
-    if (!text) return
     const next = { ...answers, [ref]: text }
     setAnswers(next)
     localStorage.setItem(LS_KEY, JSON.stringify(next))
@@ -56,7 +55,7 @@ function ClarificationsTable() {
       </thead>
       <tbody>
         {CLARIFICATIONS.map(({ ref, question, notes }) => {
-          const answered = !!answers[ref]
+          const answered = ref in answers && !!answers[ref]
           const isOpen = openRef === ref
           return (
             <React.Fragment key={ref}>

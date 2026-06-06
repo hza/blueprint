@@ -86,7 +86,7 @@ export const NAV_SECTIONS: NavSection[] = [
     subsections: [
       { id: '1.1', title: 'Proposal Summary',   icon: 'proposal-summary',  path: '/executive-overview/proposal-summary' },
       { id: '1.3', title: 'Key Assumptions',    icon: 'key-assumptions',   path: '/executive-overview/key-assumptions' },
-      { id: '1.4', title: 'Clarifications',     icon: 'clarifications',    path: '/executive-overview/clarifications', badge: 4 },
+      { id: '1.4', title: 'Clarifications',     icon: 'clarifications',    path: '/executive-overview/clarifications' },
     ],
   },
   {
@@ -184,6 +184,43 @@ export function Sidebar({
   const [theme, setThemeState] = useState<Theme>(
     () => (localStorage.getItem('app-theme') as Theme | null) ?? 'day'
   )
+
+  const ASSUMPTION_IDS = ['A1', 'A2', 'A3', 'A4', 'A5']
+  const CLARIFICATION_IDS = ['Q1', 'Q2', 'Q3', 'Q4']
+
+  const countNotApproved = (saved: Record<string, string>) => {
+    const defaults: Record<string, string> = {}
+    ASSUMPTION_IDS.forEach(id => { defaults[id] = saved[id] ?? (id === 'A1' ? 'Pending' : id === 'A2' ? 'Rejected' : 'Approved') })
+    return ASSUMPTION_IDS.filter(id => defaults[id] !== 'Approved').length
+  }
+
+  const countUnanswered = (saved: Record<string, string>) =>
+    CLARIFICATION_IDS.filter(id => !saved[id]?.trim()).length
+
+  const [notApprovedAssumptions, setNotApprovedAssumptions] = useState<number>(() => {
+    try { return countNotApproved(JSON.parse(localStorage.getItem('assumption_statuses') ?? '{}')) }
+    catch { return 0 }
+  })
+
+  const [unansweredClarifications, setUnansweredClarifications] = useState<number>(() => {
+    try { return countUnanswered(JSON.parse(localStorage.getItem('clarifications_answers') ?? '{}')) }
+    catch { return CLARIFICATION_IDS.length }
+  })
+
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === 'assumption_statuses') {
+        try { setNotApprovedAssumptions(countNotApproved(JSON.parse(e.newValue ?? '{}'))) }
+        catch { /* ignore */ }
+      }
+      if (e.key === 'clarifications_answers') {
+        try { setUnansweredClarifications(countUnanswered(JSON.parse(e.newValue ?? '{}'))) }
+        catch { /* ignore */ }
+      }
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
   const [userOpen, setUserOpen] = useState(false)
   const [docsOpen, setDocsOpen] = useState(false)
   const [projectOpen, setProjectOpen] = useState(false)
@@ -316,7 +353,9 @@ export function Sidebar({
                         <span className="sidebar-sub-title">{sub.title}</span>
                         {(() => {
                           const isReqSummary = sub.path === '/requirements-coverage/requirements-summary' && reqSummaryTotal != null
-                          const badgeVal = isReqSummary ? reqSummaryTotal : sub.badge
+                          const isKeyAssumptions = sub.path === '/executive-overview/key-assumptions'
+                          const isClarifications = sub.path === '/executive-overview/clarifications'
+                          const badgeVal = isReqSummary ? reqSummaryTotal : isKeyAssumptions ? (notApprovedAssumptions || undefined) : isClarifications ? (unansweredClarifications || undefined) : sub.badge
                           const badgeGrey = isReqSummary ? false : sub.badgeGrey
                           return badgeVal !== undefined && badgeVal !== 0 && (
                             <span className={badgeGrey ? 'sidebar-badge sidebar-badge--grey' : 'sidebar-badge'}>{badgeVal}</span>
