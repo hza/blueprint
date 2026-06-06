@@ -35,17 +35,6 @@ function arcPath(cx: number, cy: number, outerR: number, innerR: number, startDe
   ].join(' ')
 }
 
-const HEATMAP_DOMAINS = [
-  { name: 'Document Management', met: 5, atRisk: 1, gap: 0, total: 6 },
-  { name: 'AI/LLM Processing',   met: 4, atRisk: 3, gap: 1, total: 8 },
-  { name: 'Security & Compliance', met: 3, atRisk: 2, gap: 1, total: 6 },
-  { name: 'User Management',     met: 4, atRisk: 1, gap: 0, total: 5 },
-  { name: 'Client Portal',       met: 3, atRisk: 1, gap: 2, total: 6 },
-  { name: 'Integrations',        met: 4, atRisk: 1, gap: 1, total: 6 },
-  { name: 'Analytics',           met: 3, atRisk: 0, gap: 1, total: 4 },
-  { name: 'Infrastructure',      met: 3, atRisk: 1, gap: 0, total: 4 },
-  { name: 'Notifications',       met: 2, atRisk: 0, gap: 0, total: 2 },
-]
 
 export function RequirementsCoverage({
   subsection,
@@ -314,7 +303,7 @@ const [showAllDomains, setShowAllDomains] = useState(false)
             <rect x="200" y="104" width="10" height="10" fill="#EF4444" rx="2" />
             <text x="215" y="114" fontSize="10" fill="#374151">Gap — {gapCount} ({gapPct}%)</text>
             <text x="190" y="208" textAnchor="middle" fontSize="9" fill="#6B7280">
-              Based on {total} requirements across {HEATMAP_DOMAINS.length} domains
+              Based on {total} requirements across 9 domains
             </text>
           </svg>
         </div>
@@ -421,37 +410,6 @@ const [showAllDomains, setShowAllDomains] = useState(false)
         </div>
       </div>
 
-      {/* Domain Risk Heatmap — after the Requirements Summary domain table card */}
-      <div className="overview-grid" style={{ gridTemplateColumns: '1fr' }}>
-        <div className="overview-card">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">🔥</span>
-            Domain Risk Heatmap
-          </div>
-          <table style={{ width: '100%', fontSize: '12px', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr>
-                <th style={{ textAlign: 'left', padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>Domain</th>
-                <th style={{ padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>Met</th>
-                <th style={{ padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>At Risk</th>
-                <th style={{ padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>Gap</th>
-                <th style={{ padding: '6px', borderBottom: '1px solid var(--color-border, #e0e0e0)', fontWeight: 600 }}>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {HEATMAP_DOMAINS.map((row) => (
-                <tr key={row.name}>
-                  <td style={{ textAlign: 'left', padding: '6px', fontWeight: 500, borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.name}</td>
-                  <td style={{ padding: '6px', textAlign: 'center', background: '#D1FAE5', color: '#065F46', borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.met}</td>
-                  <td style={{ padding: '6px', textAlign: 'center', background: row.atRisk > 0 ? '#FEF3C7' : '#F9FAFB', color: row.atRisk > 0 ? '#92400E' : '#9CA3AF', borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.atRisk}</td>
-                  <td style={{ padding: '6px', textAlign: 'center', background: row.gap > 0 ? '#FEE2E2' : '#F9FAFB', color: row.gap > 0 ? '#991B1B' : '#9CA3AF', borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.gap}</td>
-                  <td style={{ padding: '6px', textAlign: 'center', background: '#F3F4F6', color: '#374151', fontWeight: 'bold', borderBottom: '1px solid var(--color-border, #f3f4f6)' }}>{row.total}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
       </>)}
 
       {show('2.2') && (<>
