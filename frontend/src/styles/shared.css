@@ -225,6 +225,17 @@
 }
 
 
+.tag-none {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
 .tag-approved {
   display: inline-block;
   padding: 2px 8px;
@@ -337,6 +348,10 @@
 }
 
 .btn-discard-note:hover { color: var(--fg); background: var(--canvas-inset); }
+
+.answer-recorded {
+  background: var(--canvas);
+}
 
 .answer-recorded-text--editable {
   cursor: pointer;

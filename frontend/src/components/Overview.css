@@ -358,7 +358,7 @@
   align-items: baseline;
   gap: 10px;
   padding: 8px 14px;
-  background: var(--sem-ok-bg);
+  background: var(--canvas);
 }
 
 .answer-recorded-label {

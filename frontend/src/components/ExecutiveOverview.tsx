@@ -134,7 +134,7 @@ function ClarificationsTable() {
   )
 }
 
-type AssumptionStatus = 'Approved' | 'Pending' | 'Rejected'
+type AssumptionStatus = 'None' | 'Approved' | 'Pending' | 'Rejected'
 
 const LS_ASSUMPTIONS_KEY = 'assumption_statuses'
 const LS_ASSUMPTIONS_NOTES_KEY = 'assumption_notes'
@@ -150,6 +150,7 @@ function loadAssumptionNotes(): Record<string, string> {
 const ASSUMPTION_IDS = ['A1', 'A2', 'A3', 'A4', 'A5']
 
 function AssumptionStatusTag({ status }: { status: AssumptionStatus }) {
+  if (status === 'None') return <span className="tag-none">None</span>
   if (status === 'Approved') return <span className="tag-approved">✓ Approved</span>
   if (status === 'Rejected') return <span className="tag-rejected">✗ Rejected</span>
   return <span className="tag-pending">⏳ Pending</span>
@@ -162,7 +163,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
     () => {
       const saved = loadAssumptionStatuses()
       const defaults: Record<string, AssumptionStatus> = {}
-      ASSUMPTION_IDS.forEach(id => { defaults[id] = saved[id] ?? (id === 'A1' ? 'Pending' : id === 'A2' ? 'Rejected' : 'Approved') })
+      ASSUMPTION_IDS.forEach(id => { defaults[id] = saved[id] ?? (id === 'A1' ? 'Pending' : id === 'A2' ? 'Rejected' : id === 'A3' ? 'Approved' : 'None') })
       return defaults
     }
   )
@@ -180,8 +181,10 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
       localStorage.setItem(LS_ASSUMPTIONS_KEY, JSON.stringify(next))
       return next
     })
-    setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' }))
-    setEditingNote(id)
+    if (status !== 'None') {
+      setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' }))
+      setEditingNote(id)
+    }
   }
 
   function saveNote(id: string) {
@@ -370,23 +373,17 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                           }
                         }}
                       >
+                        <option value="None">None</option>
                         <option value="Approved">Approved</option>
                         <option value="Pending">Pending</option>
                         <option value="Rejected">Rejected</option>
                       </select>
                     </td>
                   </tr>
-                  {assumptionNotes[id] && editingNote !== id && (
+                  {assumptionNotes[id] && editingNote !== id && assumptionStatuses[id] !== 'None' && (
                     <tr>
                       <td colSpan={5} className="td-answer td-answer--recorded">
-                        <div
-                          className="answer-recorded"
-                          style={{
-                            background: assumptionStatuses[id] === 'Approved' ? '#d1fae5'
-                              : assumptionStatuses[id] === 'Rejected' ? '#fee2e2'
-                              : '#fef9c3',
-                          }}
-                        >
+                        <div className="answer-recorded">
                           <span className="answer-recorded-label"><span className="answer-recorded-avatar">HZ</span>{CURRENT_USER}:</span>
                           <span
                             className="answer-recorded-text answer-recorded-text--editable"
