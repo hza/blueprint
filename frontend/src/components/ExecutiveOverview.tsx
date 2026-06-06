@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+const CURRENT_USER = 'Henady Zakalusky'
+
 const REPLY_ICON = (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="9 17 4 12 9 7"/>
@@ -81,8 +83,12 @@ function ClarificationsTable() {
                 <tr key={`${ref}-recorded`}>
                   <td colSpan={5} className="td-answer td-answer--recorded">
                     <div className="answer-recorded">
-                      <span className="answer-recorded-label">Answer:</span>
-                      <span className="answer-recorded-text">{answers[ref]}</span>
+                      <span className="answer-recorded-label">{CURRENT_USER}:</span>
+                      <span
+                        className="answer-recorded-text answer-recorded-text--editable"
+                        title="Click to edit"
+                        onClick={() => setOpenRef(ref)}
+                      >{answers[ref]}</span>
                     </div>
                   </td>
                 </tr>
@@ -123,9 +129,71 @@ function ClarificationsTable() {
   )
 }
 
+type AssumptionStatus = 'Approved' | 'Pending' | 'Rejected'
+
+const LS_ASSUMPTIONS_KEY = 'assumption_statuses'
+const LS_ASSUMPTIONS_NOTES_KEY = 'assumption_notes'
+
+function loadAssumptionStatuses(): Record<string, AssumptionStatus> {
+  try { return JSON.parse(localStorage.getItem(LS_ASSUMPTIONS_KEY) ?? '{}') } catch { return {} }
+}
+
+function loadAssumptionNotes(): Record<string, string> {
+  try { return JSON.parse(localStorage.getItem(LS_ASSUMPTIONS_NOTES_KEY) ?? '{}') } catch { return {} }
+}
+
+const ASSUMPTION_IDS = ['A1', 'A2', 'A3', 'A4', 'A5']
+
+function AssumptionStatusTag({ status }: { status: AssumptionStatus }) {
+  if (status === 'Approved') return <span className="tag-approved">✓ Approved</span>
+  if (status === 'Rejected') return <span className="tag-rejected">✗ Rejected</span>
+  return <span className="tag-pending">⏳ Pending</span>
+}
+
 export function ExecutiveOverview({ subsection }: { subsection?: string }) {
   const navigate = useNavigate()
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
+  const [assumptionStatuses, setAssumptionStatuses] = useState<Record<string, AssumptionStatus>>(
+    () => {
+      const saved = loadAssumptionStatuses()
+      const defaults: Record<string, AssumptionStatus> = {}
+      ASSUMPTION_IDS.forEach(id => { defaults[id] = saved[id] ?? (id === 'A1' ? 'Pending' : id === 'A2' ? 'Rejected' : 'Approved') })
+      return defaults
+    }
+  )
+  const [assumptionNotes, setAssumptionNotes] = useState<Record<string, string>>(() => {
+    const saved = loadAssumptionNotes()
+    return { A1: 'Let me think about it...', A2: 'I have changed my mind, let\'s always use Anthropic', ...saved }
+  })
+  const [editingNote, setEditingNote] = useState<string | null>(null)
+  const [noteDraft, setNoteDraft] = useState<Record<string, string>>({})
+  const dropdownInteracted = React.useRef<Set<string>>(new Set())
+
+  function setAssumptionStatus(id: string, status: AssumptionStatus) {
+    setAssumptionStatuses(prev => {
+      const next = { ...prev, [id]: status }
+      localStorage.setItem(LS_ASSUMPTIONS_KEY, JSON.stringify(next))
+      return next
+    })
+    setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' }))
+    setEditingNote(id)
+  }
+
+  function saveNote(id: string) {
+    const text = noteDraft[id] ?? ''
+    setAssumptionNotes(prev => {
+      const next = { ...prev, [id]: text }
+      localStorage.setItem(LS_ASSUMPTIONS_NOTES_KEY, JSON.stringify(next))
+      return next
+    })
+    setEditingNote(null)
+  }
+
+  function discardNote(id: string) {
+    setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' }))
+    setEditingNote(null)
+  }
+
   return (
     <div className="overview">
       <div className="overview-banner">
@@ -262,34 +330,97 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                 <th>#</th>
                 <th>Assumption</th>
                 <th>Impact if Wrong</th>
+                <th>Status</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong>A1</strong></td>
-                <td>Cloud data region (EU or US) is confirmed at contract award. Infrastructure design and GDPR DPA drafting begin immediately after.</td>
-                <td>Region choice affects infrastructure cost estimates by up to 15%. Pricing assumes a standard cloud region; sovereign or restricted regions may carry a surcharge.</td>
-              </tr>
-              <tr>
-                <td><strong>A2</strong></td>
-                <td>LLM provider (OpenAI, Anthropic, or Azure OpenAI) is agreed before Phase 1 kick-off. The abstraction layer supports swapping providers post-launch with no code changes.</td>
-                <td>Provider-specific prompt tuning is scoped per the agreed provider. Switching providers post-launch requires a regression test cycle (estimated 1 sprint).</td>
-              </tr>
-              <tr>
-                <td><strong>A3</strong></td>
-                <td>Meridian nominates a Product Owner with authority to accept deliverables and raise change requests within 2 business days of submission.</td>
-                <td>Delayed sign-offs push UAT gates and can cascade into Phase 2 and 3 start dates.</td>
-              </tr>
-              <tr>
-                <td><strong>A4</strong></td>
-                <td>SSO provider (Google Workspace, Azure AD, Okta, or SAML 2.0) and Salesforce sandbox credentials are available for integration testing from Phase 1 week 4.</td>
-                <td>Integration testing deferred to Phase 3 if credentials are not available, potentially delaying CRM webhook and SSO delivery.</td>
-              </tr>
-              <tr>
-                <td><strong>A5</strong></td>
-                <td>All change requests will receive written approval or rejection within 5 business days of submission.</td>
-                <td>Pending CRs not actioned within this window will be treated as approved for planning purposes, per standard contract terms.</td>
-              </tr>
+              {([
+                { id: 'A1', assumption: 'Cloud data region (EU or US) is confirmed at contract award. Infrastructure design and GDPR DPA drafting begin immediately after.', impact: 'Region choice affects infrastructure cost estimates by up to 15%. Pricing assumes a standard cloud region; sovereign or restricted regions may carry a surcharge.' },
+                { id: 'A2', assumption: 'LLM provider (OpenAI, Anthropic, or Azure OpenAI) is agreed before Phase 1 kick-off. The abstraction layer supports swapping providers post-launch with no code changes.', impact: 'Provider-specific prompt tuning is scoped per the agreed provider. Switching providers post-launch requires a regression test cycle (estimated 1 sprint).' },
+                { id: 'A3', assumption: 'Meridian nominates a Product Owner with authority to accept deliverables and raise change requests within 2 business days of submission.', impact: 'Delayed sign-offs push UAT gates and can cascade into Phase 2 and 3 start dates.' },
+                { id: 'A4', assumption: 'SSO provider (Google Workspace, Azure AD, Okta, or SAML 2.0) and Salesforce sandbox credentials are available for integration testing from Phase 1 week 4.', impact: 'Integration testing deferred to Phase 3 if credentials are not available, potentially delaying CRM webhook and SSO delivery.' },
+                { id: 'A5', assumption: 'All change requests will receive written approval or rejection within 5 business days of submission.', impact: 'Pending CRs not actioned within this window will be treated as approved for planning purposes, per standard contract terms.' },
+              ] as const).map(({ id, assumption, impact }) => (
+                <React.Fragment key={id}>
+                  <tr>
+                    <td><strong>{id}</strong></td>
+                    <td>{assumption}</td>
+                    <td>{impact}</td>
+                    <td><AssumptionStatusTag status={assumptionStatuses[id]} /></td>
+                    <td className="td-action">
+                      <select
+                        className="assumption-status-select"
+                        value={assumptionStatuses[id]}
+                        onMouseDown={() => dropdownInteracted.current.add(id)}
+                        onChange={e => {
+                          dropdownInteracted.current.delete(id)
+                          setAssumptionStatus(id, e.target.value as AssumptionStatus)
+                        }}
+                        onBlur={() => {
+                          if (dropdownInteracted.current.has(id)) {
+                            dropdownInteracted.current.delete(id)
+                            setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' }))
+                            setEditingNote(id)
+                          }
+                        }}
+                      >
+                        <option value="Approved">Approved</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Rejected">Rejected</option>
+                      </select>
+                    </td>
+                  </tr>
+                  {assumptionNotes[id] && editingNote !== id && (
+                    <tr>
+                      <td colSpan={5} className="td-answer td-answer--recorded">
+                        <div
+                          className="answer-recorded"
+                          style={{
+                            background: assumptionStatuses[id] === 'Approved' ? '#d1fae5'
+                              : assumptionStatuses[id] === 'Rejected' ? '#fee2e2'
+                              : '#fef9c3',
+                          }}
+                        >
+                          <span className="answer-recorded-label">{CURRENT_USER}:</span>
+                          <span
+                            className="answer-recorded-text answer-recorded-text--editable"
+                            title="Click to edit"
+                            onClick={() => {
+                              setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' }))
+                              setEditingNote(id)
+                            }}
+                          >{assumptionNotes[id]}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                  {editingNote === id && (
+                    <tr>
+                      <td colSpan={5} className="td-answer">
+                        <div className="answer-panel">
+                          <div className="answer-panel-header">
+                            <span className="answer-panel-label">Note for {id}</span>
+                            <span className="answer-panel-hint">Your note will be recorded against this assumption</span>
+                          </div>
+                          <textarea
+                            className="answer-textarea"
+                            placeholder="Add a note about this decision…"
+                            autoFocus
+                            rows={3}
+                            value={noteDraft[id] ?? ''}
+                            onChange={e => setNoteDraft(d => ({ ...d, [id]: e.target.value }))}
+                          />
+                          <div className="answer-panel-actions">
+                            <button className="answer-btn answer-btn--submit" onClick={() => saveNote(id)}>Save</button>
+                            <button className="answer-btn answer-btn--discard" onClick={() => discardNote(id)}>Discard</button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              ))}
             </tbody>
           </table>
         </div>

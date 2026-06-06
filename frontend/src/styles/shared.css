@@ -224,3 +224,123 @@
   font-weight: 600;
 }
 
+
+.tag-approved {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #d1fae5;
+  color: #065f46;
+  white-space: nowrap;
+}
+
+.tag-rejected {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #fee2e2;
+  color: #991b1b;
+  white-space: nowrap;
+}
+
+.tag-pending {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #fef9c3;
+  color: #854d0e;
+  white-space: nowrap;
+}
+
+.assumption-status-select {
+  font-size: 0.8rem;
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--canvas);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.td-assumption-note {
+  min-width: 140px;
+  max-width: 220px;
+  font-size: 0.82rem;
+  color: var(--fg);
+}
+
+.assumption-note-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.assumption-note-empty {
+  color: var(--fg-muted);
+}
+
+.td-note-editor {
+  padding: 8px 12px;
+  background: var(--canvas-inset);
+}
+
+.note-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.note-editor-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.82rem;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--canvas);
+  color: var(--fg);
+  resize: vertical;
+  font-family: inherit;
+}
+
+.note-editor-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-save-note {
+  font-size: 0.78rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: none;
+  background: #065f46;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-save-note:hover { background: #047857; }
+
+.btn-discard-note {
+  font-size: 0.78rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--canvas);
+  color: var(--fg-muted);
+  cursor: pointer;
+}
+
+.btn-discard-note:hover { color: var(--fg); background: var(--canvas-inset); }
+
+.answer-recorded-text--editable {
+  cursor: pointer;
+}
+.answer-recorded-text--editable:hover {
+  text-decoration: underline dotted;
+}
