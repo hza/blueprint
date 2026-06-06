@@ -85,7 +85,8 @@ function ClarificationsTable() {
               </tr>
               {answered && !isOpen && (
                 <tr key={`${ref}-recorded`}>
-                  <td colSpan={5} className="td-answer td-answer--recorded">
+                  <td />
+                  <td colSpan={4} className="td-answer td-answer--recorded">
                     <div className="answer-recorded">
                       <span className="answer-recorded-label"><span className="answer-recorded-avatar">HZ</span>{CURRENT_USER}:</span>
                       <span
@@ -99,7 +100,8 @@ function ClarificationsTable() {
               )}
               {isOpen && (
                 <tr key={`${ref}-edit`}>
-                  <td colSpan={5} className="td-answer">
+                  <td />
+                  <td colSpan={4} className="td-answer">
                     <div className="answer-panel">
                       <div className="answer-panel-header">
                         <span className="answer-panel-label">{answered ? 'Edit answer for' : 'Answer for'} {ref}</span>
@@ -382,7 +384,8 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                   </tr>
                   {assumptionNotes[id] && editingNote !== id && assumptionStatuses[id] !== 'None' && (
                     <tr>
-                      <td colSpan={5} className="td-answer td-answer--recorded">
+                      <td />
+                      <td colSpan={4} className="td-answer td-answer--recorded">
                         <div className="answer-recorded">
                           <span className="answer-recorded-label"><span className="answer-recorded-avatar">HZ</span>{CURRENT_USER}:</span>
                           <span
@@ -399,7 +402,8 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                   )}
                   {editingNote === id && (
                     <tr>
-                      <td colSpan={5} className="td-answer">
+                      <td />
+                      <td colSpan={4} className="td-answer">
                         <div className="answer-panel">
                           <div className="answer-panel-header">
                             <span className="answer-panel-label">Note for {id}</span>
