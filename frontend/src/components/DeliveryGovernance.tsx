@@ -481,35 +481,35 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             Risk Heatmap
           </div>
           <div className="risk-heatmap-wrap">
-            <div className="risk-heatmap">
-              {/* 5 rows: probability 5→1 top to bottom; 5 cols: impact 1→5 left to right */}
-              {[5,4,3,2,1].map(prob => (
-                [1,2,3,4,5].map(impact => {
-                  const score = prob * impact
-                  const zone = score >= 15 ? 'high' : score >= 6 ? 'med' : 'low'
-                  // Risks: LLM reliability (P=4,I=4), PII anonymisation (P=3,I=5),
-                  //        OCR quality (P=3,I=3), Scope creep (P=4,I=3)
-                  const dots: string[] = []
-                  if (prob === 4 && impact === 4) dots.push('LLM')
-                  if (prob === 3 && impact === 5) dots.push('PII')
-                  if (prob === 3 && impact === 3) dots.push('OCR')
-                  if (prob === 4 && impact === 3) dots.push('SCR')
-                  return (
-                    <div key={`${prob}-${impact}`} className={`risk-heatmap-cell risk-heatmap-cell--${zone}`}>
-                      {dots.map(d => <span key={d} className="risk-heatmap-dot" title={
-                        d === 'LLM' ? 'LLM API reliability' :
-                        d === 'PII' ? 'PII anonymisation accuracy' :
-                        d === 'OCR' ? 'OCR quality on poor-quality PDFs' :
-                        'Scope creep in AI feature requests'
-                      }>{d}</span>)}
-                    </div>
-                  )
-                })
-              ))}
-            </div>
-            <div className="risk-heatmap-axes">
+            <div className="risk-heatmap-outer">
               <span className="risk-heatmap-ylabel">← Probability →</span>
-              <span className="risk-heatmap-xlabel">← Impact →</span>
+              <div className="risk-heatmap-grid-col">
+                <div className="risk-heatmap">
+                  {/* 5 rows: probability 5→1 top to bottom; 5 cols: impact 1→5 left to right */}
+                  {[5,4,3,2,1].map(prob => (
+                    [1,2,3,4,5].map(impact => {
+                      const score = prob * impact
+                      const zone = score >= 15 ? 'high' : score >= 6 ? 'med' : 'low'
+                      const dots: string[] = []
+                      if (prob === 4 && impact === 4) dots.push('LLM')
+                      if (prob === 3 && impact === 5) dots.push('PII')
+                      if (prob === 3 && impact === 3) dots.push('OCR')
+                      if (prob === 4 && impact === 3) dots.push('SCR')
+                      return (
+                        <div key={`${prob}-${impact}`} className={`risk-heatmap-cell risk-heatmap-cell--${zone}`}>
+                          {dots.map(d => <span key={d} className="risk-heatmap-dot" title={
+                            d === 'LLM' ? 'LLM API reliability' :
+                            d === 'PII' ? 'PII anonymisation accuracy' :
+                            d === 'OCR' ? 'OCR quality on poor-quality PDFs' :
+                            'Scope creep in AI feature requests'
+                          }>{d}</span>)}
+                        </div>
+                      )
+                    })
+                  ))}
+                </div>
+                <div className="risk-heatmap-xlabel">← Impact →</div>
+              </div>
             </div>
             <div className="risk-heatmap-legend">
               <span className="risk-heatmap-legend-item risk-heatmap-legend--high">High</span>
