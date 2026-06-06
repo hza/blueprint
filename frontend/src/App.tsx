@@ -344,7 +344,7 @@ export default function App() {
           </>
         ) : activeTab === 'executive-overview' ? (
           <>
-            <PageHeader title="Executive Overview" subtitle={PROJECT_TITLE} showSearch activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            <PageHeader title="Executive Overview" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <ExecutiveOverview subsection={activeSection ?? undefined} />
@@ -353,7 +353,7 @@ export default function App() {
           </>
         ) : activeTab === 'requirements-coverage' ? (
           <>
-            <PageHeader title="Requirements Coverage" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            <PageHeader title="Requirements Coverage" subtitle={PROJECT_TITLE} showSearch={activeSection === '2.2'} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             <div className="file-box">
               <div className="file-box-body">
                 <RequirementsCoverage subsection={activeSection ?? undefined} summary={reqSummary} items={flItems} selectedItemId={selectedListItemId} initialScrollTop={rcScrollTopRef.current} onScrollTopChange={(top) => { rcScrollTopRef.current = top }} onSelectItem={(item) => { setSelectedListItemId(item.id); setRightPanelItem(item) }} onOpenSource={(item) => { setSelectedListItemId(item.id); openFRSource(item) }} />

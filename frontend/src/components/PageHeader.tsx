@@ -19,7 +19,7 @@ export function PageHeader({
   title,
   subtitle,
   segment,
-  showSearch = false,
+  showSearch = true,
   activeTab,
   selectedFile,
   fileContent,
