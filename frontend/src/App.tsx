@@ -137,7 +137,7 @@ export default function App() {
     }
     const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility']
     if (!knownPrefixes.some((prefix) => location.pathname === prefix || location.pathname.startsWith(prefix + '/'))) {
-      navigate('/requirements-coverage/document', { replace: true })
+      navigate('/executive-overview/proposal-summary', { replace: true })
     }
   }, [location.pathname, location.search, location.hash, navigate])
 
