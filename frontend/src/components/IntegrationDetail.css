@@ -308,7 +308,7 @@
   gap: 10px;
   padding: 8px 14px;
   border-right: 1.5px solid var(--asr-card-border, var(--border));
-  flex: 1;
+  flex: 0 0 50%;
   min-width: 0;
   overflow: hidden;
 }
@@ -557,7 +557,7 @@
   gap: 10px;
   padding: 8px 14px;
   border-right: 1.5px solid var(--asr-card-border, var(--border));
-  flex: 1;
+  flex: 0 0 50%;
   min-width: 0;
   overflow: hidden;
 }
