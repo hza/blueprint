@@ -7,6 +7,46 @@ const RATE_CARD_DATA = [
   { label: 'QA / Test Engineer',  rate: 220, color: '#EF4444' },
 ]
 
+const PHASE_COST_DATA = [
+  { label: 'Phase 1', rate: 196000, color: '#10B981' },
+  { label: 'Phase 2', rate: 144000, color: '#F59E0B' },
+  { label: 'Phase 3', rate: 116000, color: '#EF4444' },
+]
+
+function PhaseCostDonut() {
+  const total = PHASE_COST_DATA.reduce((s, d) => s + d.rate, 0)
+  const cx = 90, cy = 90, r = 70
+  let angle = -Math.PI / 2
+  const slices = PHASE_COST_DATA.map(d => {
+    const sweep = (d.rate / total) * 2 * Math.PI
+    const x1 = cx + r * Math.cos(angle)
+    const y1 = cy + r * Math.sin(angle)
+    angle += sweep
+    const x2 = cx + r * Math.cos(angle)
+    const y2 = cy + r * Math.sin(angle)
+    const large = sweep > Math.PI ? 1 : 0
+    return { ...d, path: `M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} Z` }
+  })
+  const ir = 35
+  return (
+    <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+      <svg width="180" height="180" viewBox="0 0 180 180">
+        {slices.map(s => <path key={s.label} d={s.path} fill={s.color} stroke="#fff" strokeWidth="1.5" />)}
+        <circle cx={cx} cy={cy} r={ir} fill="var(--card-bg, #fff)" />
+      </svg>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center', marginRight: '20px' }}>
+        {PHASE_COST_DATA.map(d => (
+          <div key={d.label} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
+            <span style={{ width: 10, height: 10, borderRadius: 2, background: d.color, flexShrink: 0 }} />
+            <span style={{ color: 'var(--text-secondary, #6B7280)' }}>{d.label}</span>
+            <span style={{ fontWeight: 600, paddingLeft: 8, whiteSpace: 'nowrap' }}>${(d.rate / 1000).toFixed(0)}k</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function RateCardPieChart() {
   const total = RATE_CARD_DATA.reduce((s, d) => s + d.rate, 0)
   const cx = 90, cy = 90, r = 70
@@ -272,16 +312,16 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
       {show('6.2') && (<>
       {/* 6.2 Cost Breakdown */}
       <div className="rfp-section-heading" id="6.2">Cost Breakdown</div>
-      <div className="overview-grid">
-        <div className="overview-card">
+      <div style={{ display: 'flex', gap: '16px', alignItems: 'stretch' }}>
+        <div className="overview-card" style={{ flex: '1 1 auto' }}>
           <div className="overview-card-header">
             <span className="overview-card-icon">📋</span>
             Implementation Cost by Phase
           </div>
           <table className="overview-table" style={{ tableLayout: 'fixed', width: '100%' }}>
             <colgroup>
-              <col style={{ width: '18%' }} />
-              <col style={{ width: '60%' }} />
+              <col style={{ width: '26%' }} />
+              <col style={{ width: '52%' }} />
               <col style={{ width: '11%' }} />
               <col style={{ width: '11%' }} />
             </colgroup>
@@ -315,14 +355,23 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
               <tr>
                 <td className="overview-table-label overview-val--strong">Total Fixed Price</td>
                 <td></td>
-                <td><strong>28 weeks</strong></td>
+                <td style={{ whiteSpace: 'nowrap' }}><strong>28 weeks</strong></td>
                 <td className="overview-val--strong">$456,000</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div className="overview-card">
+        <div className="overview-card" style={{ flexShrink: 0 }}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🥧</span>
+            Cost Distribution by Phase
+          </div>
+          <PhaseCostDonut />
+        </div>
+      </div>
+      <div style={{ display: 'flex', gap: '16px', alignItems: 'stretch' }}>
+        <div className="overview-card" style={{ flex: '1 1 auto' }}>
           <div className="overview-card-header">
             <span className="overview-card-icon">💳</span>
             Payment Milestones
@@ -382,7 +431,6 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             </tbody>
           </table>
         </div>
-
       </div>
       <div style={{ display: 'flex', gap: '16px', alignItems: 'stretch' }}>
         <div className="overview-card" style={{ flex: '1 1 auto' }}>
