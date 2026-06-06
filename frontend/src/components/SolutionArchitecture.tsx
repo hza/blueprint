@@ -114,45 +114,16 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
 
         <div className="overview-card">
           <div className="overview-card-header">
-            <span className="overview-card-icon">⚡</span>
-            Non-Functional Targets (RFP §4.4)
-          </div>
-          <table className="overview-table">
-            <tbody>
-              <tr>
-                <td className="overview-table-label">API Read Latency</td>
-                <td><span className="overview-badge overview-badge--ok">&lt; 300 ms p95</span> — RFP requirement met. Achieved via Redis caching and read-path optimisation.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">RFP Analysis Time</td>
-                <td>Standard 30-page RFP: complete within 120 s. Stages shown in real time: Uploaded → Queued → OCR → Segmentation → Anonymisation → AI Analysis → Complete.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Concurrent Users</td>
-                <td>~100 concurrent users without degradation. ≥ 20 concurrent analysis jobs. System handles 2× users/projects within SLA without infrastructure reconfiguration.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Uptime</td>
-                <td>Portal: 99.9%/month. AI pipeline: 99.5%. Graceful degradation: if AI service is down, upload and manual editing remain available within 30 s.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">RTO / RPO</td>
-                <td>RTO: 1 hour. RPO: 15 minutes. Geo-redundant within chosen data region.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Data Scale</td>
-                <td>Up to 5,000 projects and 500,000 artifacts. 1,000 read/s, 200 writes/s at data layer.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="overview-card">
-          <div className="overview-card-header">
             <span className="overview-card-icon">🔧</span>
             DevOps &amp; CI/CD Pipeline
           </div>
           <table className="overview-table">
+            <thead>
+              <tr>
+                <th className="overview-table-label">Area</th>
+                <th>Approach &amp; Detail</th>
+              </tr>
+            </thead>
             <tbody>
               <tr>
                 <td className="overview-table-label">Source Control</td>
@@ -936,19 +907,19 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Phase 1 — MVP (12 wks)</td>
+                <td className="overview-table-label">Phase 1<br />MVP (12 wks)</td>
                 <td>Document ingestion, PII anonymisation, AI analysis, feature list, C4 views, risk register, Go/No-Go, RFP Health Score, basic client portal, MS Teams notifications, PDF/DOCX export</td>
                 <td>≥ 95% of agreed user stories accepted in UAT; zero open P1/P2 defects; load test confirms API p95 &lt; 300 ms at 100 concurrent users</td>
                 <td style={{whiteSpace: 'nowrap'}}>~2026-10-27</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Phase 2 — Enhanced Analytics (+8 wks)</td>
+                <td className="overview-table-label">Phase 2<br />Enhanced Analytics (+8 wks)</td>
                 <td>C4 Level 3 views, real-time collaboration (WebSockets), approval workflow, Confluence export, email notifications, full audit trail UI</td>
                 <td>WebSocket latency &lt; 500 ms for collaboration updates; approval workflow passes end-to-end UAT; Confluence push verified against a live instance</td>
                 <td style={{whiteSpace: 'nowrap'}}>~2026-12-22</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Phase 3 — Platform &amp; Ecosystem (+8 wks)</td>
+                <td className="overview-table-label">Phase 3<br />Platform &amp; Ecosystem (+8 wks)</td>
                 <td>SSO (SAML), Salesforce CRM webhooks, analytics dashboard, LLM provider switching, Ollama self-hosted option, API key management</td>
                 <td>SSO login verified with at least one provider (Google Workspace or Azure AD); Salesforce webhook creates project within 60 s; LLM provider switch tested with no functionality regression</td>
                 <td style={{whiteSpace: 'nowrap'}}>~2027-02-16</td>
