@@ -278,12 +278,12 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                 <td>AI-Powered Customer Facing Portal (greenfield build)</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Deployment Model</td>
-                <td>Cloud-native, containerised</td>
-              </tr>
-              <tr>
                 <td className="overview-table-label">Implementation Model</td>
                 <td><span style={{cursor:'pointer',textDecoration:'underline'}} onClick={() => navigate('/delivery-governance/delivery-timeline')}>Fixed-price, 3-phase delivery · 28 weeks</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Final Cost</td>
+                <td><span style={{cursor:'pointer',textDecoration:'underline'}} onClick={() => navigate('/pricing-commercials')}><strong>$456,000</strong> fixed-price (all 3 phases)</span></td>
               </tr>
               <tr>
                 <td className="overview-table-label">Contract Signing Target</td>
@@ -296,6 +296,10 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
               <tr>
                 <td className="overview-table-label">Phase 1 MVP Go-Live</td>
                 <td>~2026-10-27 (12 weeks from kick-off)</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Deployment Model</td>
+                <td>Cloud-native, containerised</td>
               </tr>
             </tbody>
           </table>
