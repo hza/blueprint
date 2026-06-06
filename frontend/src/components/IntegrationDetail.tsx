@@ -317,6 +317,231 @@ function AsrCardView({ card }: { card: AsrCardData }) {
   )
 }
 
+interface QattCardData {
+  id: string
+  title: string
+  domain: string
+  ownedBy: string
+  qualityAttribute: string
+  qualityAttributeRequirement: string
+  characteristic: string
+  subcharacteristic: string
+  sourceOfStimulus: string
+  environment: string
+  stimulus: string
+  artifacts: string
+  response: string
+  responseMeasure: string
+  measure: string
+  unit: string
+  tradeoffsPlus: string[]
+  tradeoffsMinus: string[]
+  tactics: string[]
+}
+
+const QATT_CARDS: QattCardData[] = [
+  {
+    id: 'QATT-01',
+    title: 'LLM Response Latency',
+    domain: 'Performance',
+    ownedBy: 'Solution Architect',
+    qualityAttribute: 'Performance Efficiency',
+    qualityAttributeRequirement:
+      'Under normal load, the system must return a complete LLM-generated response to the end user within 5 seconds of request submission, measured at the API gateway, for 95% of requests.',
+    characteristic: 'Time Behaviour',
+    subcharacteristic: 'Response Time',
+    sourceOfStimulus: 'End user submitting an RFP analysis request via the Blueprint UI',
+    environment: 'Normal Operation — up to 50 concurrent users. Seasonal Peak — RFP deadline periods with up to 200 concurrent users.',
+    stimulus: 'User triggers an LLM completion request (e.g. generate executive summary, score requirements coverage)',
+    artifacts: 'LLM abstraction layer; Blueprint API; OpenAI / Anthropic / Azure OpenAI endpoint',
+    response: 'API gateway receives the full streamed response from the LLM provider and delivers it to the client within the SLA threshold',
+    responseMeasure: 'End-to-end response time from API gateway request receipt to last token delivered to the client, sampled at P95 across a 5-minute window',
+    measure: 'P95 latency',
+    unit: 'seconds (≤ 5 s)',
+    tradeoffsPlus: [
+      'Streaming responses reduce perceived latency significantly',
+      'Model tier selection (e.g. GPT-4o-mini vs GPT-4o) allows cost-latency balancing',
+      'Caching identical prompts eliminates repeat LLM round-trips',
+    ],
+    tradeoffsMinus: [
+      'Streaming requires stateful connections — harder to load-balance',
+      'Cheaper / faster models may reduce output quality',
+      'Prompt caching adds cache-invalidation complexity',
+    ],
+    tactics: [
+      'Implement server-sent events (SSE) streaming from API to browser',
+      'Route to GPT-4o-mini for draft generation; GPT-4o for final scoring passes',
+      'Semantic prompt cache with 1-hour TTL keyed on normalised prompt hash',
+      'Circuit breaker with 3 s timeout; fall back to queued async delivery with email notification',
+      'OpenTelemetry span per LLM call — alert on P95 > 4 s',
+    ],
+  },
+  {
+    id: 'QATT-02',
+    title: 'SSO Token Validation Availability',
+    domain: 'Reliability',
+    ownedBy: 'Security Architect',
+    qualityAttribute: 'Reliability',
+    qualityAttributeRequirement:
+      'The authentication flow must succeed within 2 seconds for 99.5% of login attempts during normal operation, with graceful degradation (informative error, no data exposure) in the remaining 0.5%.',
+    characteristic: 'Availability',
+    subcharacteristic: 'Fault Tolerance',
+    sourceOfStimulus: 'External identity provider (Google Workspace / Azure AD / Okta) returning a delayed or malformed token response',
+    environment: 'Normal Operation. Financial Close — elevated login volume as procurement teams access RFP responses simultaneously.',
+    stimulus: 'SSO provider returns an error, timeout, or malformed SAML assertion during token validation',
+    artifacts: 'Auth middleware; SSO provider (Google WS / Azure AD / Okta); Blueprint API session handler',
+    response: 'System returns a clear, non-technical error message to the user; logs the failure with correlation ID; does not expose partial session state or internal stack traces',
+    responseMeasure: 'Percentage of login attempts completing within 2 s (target ≥ 99.5%); zero partial-session data leaks on failure path',
+    measure: 'Login success rate',
+    unit: '% within 2 s (≥ 99.5%)',
+    tradeoffsPlus: [
+      'Multi-provider fallback (e.g. Azure AD → Okta) improves resilience',
+      'Session token caching reduces SSO round-trips on subsequent requests',
+    ],
+    tradeoffsMinus: [
+      'Multi-provider fallback increases credential-management surface',
+      'Session caching risks stale revocation — must respect token expiry policy',
+    ],
+    tactics: [
+      'Retry with exponential back-off (max 2 retries within 1.8 s budget)',
+      'Structured error response — map provider error codes to user-friendly messages',
+      'Centralised audit log entry on every auth failure (correlation ID, provider, timestamp)',
+      'Health-check endpoint for each configured SSO provider — alert on > 1% error rate',
+    ],
+  },
+]
+
+function QattCardView({ card }: { card: QattCardData }) {
+  return (
+    <div className="qatt-card">
+      {/* Header */}
+      <div className="qatt-card-header-row">
+        <div className="qatt-card-title-cell">
+          <span className="qatt-card-title-label">QATT CARD</span>
+          <span className="qatt-card-title-id">{card.id} — {card.title}</span>
+        </div>
+        <div className="qatt-card-meta-fields">
+          <div className="qatt-card-meta-field">
+            <span className="qatt-card-meta-key">DOMAIN:</span>
+            <span className="qatt-card-meta-val">{card.domain}</span>
+          </div>
+          <div className="qatt-card-meta-field">
+            <span className="qatt-card-meta-key">OWNED BY:</span>
+            <span className="qatt-card-meta-val">{card.ownedBy}</span>
+          </div>
+          <div className="qatt-card-meta-field">
+            <span className="qatt-card-meta-key">DATE:</span>
+            <span className="qatt-card-meta-val">Discovery</span>
+          </div>
+          <div className="qatt-card-meta-field">
+            <span className="qatt-card-meta-key">VERSION:</span>
+            <span className="qatt-card-meta-val">Draft</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Quality Attribute + QAR + Characteristic */}
+      <div className="qatt-card-top-row">
+        <div className="qatt-card-qa-cell">
+          <div className="qatt-card-section-lbl">QUALITY ATTRIBUTE:</div>
+          <div className="qatt-card-section-txt qatt-card-qa-name">{card.qualityAttribute}</div>
+          <div className="qatt-card-section-hint">Which quality attribute(s) will be impacted</div>
+        </div>
+        <div className="qatt-card-qar-cell">
+          <div className="qatt-card-section-lbl">QUALITY ATTRIBUTE REQUIREMENT:</div>
+          <div className="qatt-card-section-txt">{card.qualityAttributeRequirement}</div>
+          <div className="qatt-card-section-hint">scenario, allows an architect to make quantifiable arguments about a system</div>
+        </div>
+        <div className="qatt-card-char-col">
+          <div className="qatt-card-char-block">
+            <div className="qatt-card-section-lbl">CHARACTERISTIC:</div>
+            <div className="qatt-card-section-txt">{card.characteristic}</div>
+          </div>
+          <div className="qatt-card-char-block">
+            <div className="qatt-card-section-lbl">SUBCHARACTERISTIC:</div>
+            <div className="qatt-card-section-txt">{card.subcharacteristic}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Source of Stimulus + Environment */}
+      <div className="qatt-card-mid-row">
+        <div className="qatt-card-mid-cell">
+          <div className="qatt-card-section-lbl">SOURCE OF STIMULUS:</div>
+          <div className="qatt-card-section-hint">An entity capable of creating stimulus (internal or external people, a computer system, etc)</div>
+          <div className="qatt-card-section-txt qatt-card-section-txt--mt">{card.sourceOfStimulus}</div>
+        </div>
+        <div className="qatt-card-mid-cell">
+          <div className="qatt-card-section-lbl">ENVIRONMENT:</div>
+          <div className="qatt-card-section-hint">The environment where the stimulus occurs</div>
+          <div className="qatt-card-section-txt qatt-card-section-txt--mt">{card.environment}</div>
+        </div>
+      </div>
+
+      {/* Stimulus + Artifact + Response + Response Measure */}
+      <div className="qatt-card-lower-row">
+        <div className="qatt-card-stimulus-cell">
+          <div className="qatt-card-section-lbl">STIMULUS:</div>
+          <div className="qatt-card-section-hint">A condition that requires a response when it arrives at a system</div>
+          <div className="qatt-card-section-txt qatt-card-section-txt--mt">{card.stimulus}</div>
+        </div>
+        <div className="qatt-card-artifact-cell">
+          <div className="qatt-card-section-lbl">ARTIFACT(s):</div>
+          <div className="qatt-card-section-hint">The artifact that receives the stimulus</div>
+          <div className="qatt-card-section-txt qatt-card-section-txt--mt">{card.artifacts}</div>
+        </div>
+        <div className="qatt-card-response-cell">
+          <div className="qatt-card-section-lbl">RESPONSE:</div>
+          <div className="qatt-card-section-hint">The action of the artifact according to the received stimulus</div>
+          <div className="qatt-card-section-txt qatt-card-section-txt--mt">{card.response}</div>
+        </div>
+        <div className="qatt-card-measure-cell">
+          <div className="qatt-card-section-lbl">RESPONSE MEASURE:</div>
+          <div className="qatt-card-section-hint">The measure that should be tested for the response</div>
+          <div className="qatt-card-section-txt qatt-card-section-txt--mt">{card.responseMeasure}</div>
+          <div className="qatt-card-measure-row">
+            <div className="qatt-card-measure-sub">
+              <span className="qatt-card-meta-key">MEASURE:</span>
+              <span className="qatt-card-measure-val">{card.measure}</span>
+            </div>
+            <div className="qatt-card-measure-sub">
+              <span className="qatt-card-meta-key">UNIT:</span>
+              <span className="qatt-card-measure-val">{card.unit}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Trade-offs + Tactics */}
+      <div className="qatt-card-footer-row">
+        <div className="qatt-card-tradeoffs-cell">
+          <div className="qatt-card-section-lbl">TRADE-OFFs:</div>
+          <div className="qatt-card-tradeoffs-grid">
+            <div className="qatt-card-tradeoffs-col">
+              <span className="qatt-card-tradeoffs-sign qatt-card-tradeoffs-sign--plus">+</span>
+              <ul className="qatt-card-tradeoffs-list">
+                {card.tradeoffsPlus.map((t, i) => <li key={i}>{t}</li>)}
+              </ul>
+            </div>
+            <div className="qatt-card-tradeoffs-col">
+              <span className="qatt-card-tradeoffs-sign qatt-card-tradeoffs-sign--minus">−</span>
+              <ul className="qatt-card-tradeoffs-list">
+                {card.tradeoffsMinus.map((t, i) => <li key={i}>{t}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="qatt-card-tactics-cell">
+          <div className="qatt-card-section-lbl">TACTICs:</div>
+          <ul className="qatt-card-tactics-list">
+            {card.tactics.map((t, i) => <li key={i}>{t}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const ACTORS = ['User / UI', 'Blueprint API', '', 'Auth Provider']
 
 const STEPS: Array<{ from: number; to: number; label: string; dashed?: boolean }> = [
@@ -613,6 +838,45 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
           </table>
         </div>
 
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">💰</span>
+            Cost of Ownership
+          </div>
+          <table className="overview-table">
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Subscription plan required</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Cost per API call</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Token / unit pricing</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Included call quota (monthly)</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Overage / burst charges</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Estimated monthly volume</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Projected monthly cost</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <div className="overview-card integration-detail-card--wide">
           <div className="overview-card-header">
             <span className="overview-card-icon">🔄</span>
@@ -634,6 +898,17 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
           </div>
           <div className="asr-cards-list">
             {ASR_CARDS.map(card => <AsrCardView key={card.id} card={card} />)}
+          </div>
+        </div>
+
+        <div className="overview-card integration-detail-card--wide">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🎯</span>
+            Quality Attribute Tradeoff (QATT) Cards
+            <span className="integration-detail-example-badge">Each QATT below will be validated against testable acceptance criteria at Discovery</span>
+          </div>
+          <div className="asr-cards-list">
+            {QATT_CARDS.map(card => <QattCardView key={card.id} card={card} />)}
           </div>
         </div>
 

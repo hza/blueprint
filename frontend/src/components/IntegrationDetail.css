@@ -467,3 +467,256 @@
 .asr-card-footer-cell:first-child {
   border-right: 1.5px solid var(--asr-card-border, var(--border));
 }
+
+/* ─── QATT Card ─────────────────────────────────────────────────────────────── */
+.qatt-card {
+  border: 1.5px solid var(--asr-card-border, var(--border));
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: var(--font-size-sm);
+}
+
+/* Header */
+.qatt-card-header-row {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+.qatt-card-title-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-right: 1.5px solid var(--asr-card-border, var(--border));
+  flex-shrink: 0;
+}
+
+.qatt-card-title-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg);
+  white-space: nowrap;
+}
+
+.qatt-card-title-id {
+  font-size: 11px;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+.qatt-card-meta-fields {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+}
+
+.qatt-card-meta-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6px 12px;
+  border-right: 1.5px solid var(--asr-card-border, var(--border));
+  flex: 1;
+}
+
+.qatt-card-meta-field:last-child {
+  border-right: none;
+}
+
+.qatt-card-meta-key {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 2px;
+}
+
+.qatt-card-meta-val {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+/* Section labels & text */
+.qatt-card-section-lbl {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 3px;
+}
+
+.qatt-card-section-txt {
+  font-size: var(--font-size-sm);
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+.qatt-card-section-txt--mt {
+  margin-top: 8px;
+}
+
+.qatt-card-section-hint {
+  font-size: 10px;
+  color: var(--fg-muted);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.qatt-card-qa-name {
+  font-weight: 600;
+  font-size: 13px;
+  margin: 4px 0 2px;
+}
+
+/* Top row: QA | QAR | Characteristic+Sub */
+.qatt-card-top-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 220px;
+  border-bottom: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+.qatt-card-qa-cell {
+  padding: 10px 14px;
+  border-right: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+.qatt-card-qar-cell {
+  padding: 10px 14px;
+  border-right: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+.qatt-card-char-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.qatt-card-char-block {
+  padding: 10px 14px;
+  flex: 1;
+}
+
+.qatt-card-char-block:first-child {
+  border-bottom: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+/* Mid row: Source of Stimulus | Environment */
+.qatt-card-mid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+.qatt-card-mid-cell {
+  padding: 10px 14px;
+  min-height: 90px;
+}
+
+.qatt-card-mid-cell:first-child {
+  border-right: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+/* Lower row: Stimulus | Artifact | Response | Response Measure */
+.qatt-card-lower-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+.qatt-card-stimulus-cell,
+.qatt-card-artifact-cell,
+.qatt-card-response-cell,
+.qatt-card-measure-cell {
+  padding: 10px 14px;
+  min-height: 120px;
+}
+
+.qatt-card-stimulus-cell,
+.qatt-card-artifact-cell,
+.qatt-card-response-cell {
+  border-right: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+.qatt-card-measure-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.qatt-card-measure-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+.qatt-card-measure-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.qatt-card-measure-val {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* Footer: Trade-offs | Tactics */
+.qatt-card-footer-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.qatt-card-tradeoffs-cell {
+  padding: 10px 14px;
+  border-right: 1.5px solid var(--asr-card-border, var(--border));
+}
+
+.qatt-card-tactics-cell {
+  padding: 10px 14px;
+}
+
+.qatt-card-tradeoffs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.qatt-card-tradeoffs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.qatt-card-tradeoffs-sign {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.qatt-card-tradeoffs-sign--plus  { color: #16a34a; }
+.qatt-card-tradeoffs-sign--minus { color: #dc2626; }
+
+.qatt-card-tradeoffs-list,
+.qatt-card-tactics-list {
+  margin: 0;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.qatt-card-tradeoffs-list li,
+.qatt-card-tactics-list li {
+  font-size: var(--font-size-sm);
+  color: var(--fg);
+  line-height: 1.5;
+}
