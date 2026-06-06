@@ -16,7 +16,7 @@ export interface FileContent {
   size_formatted: string
 }
 
-export type ViewTab = 'overview' | 'qa' | 'analytics' | 'technical' | 'cost' | 'timeline' | 'team' | 'code' | 'requirements' | 'security' | 'delivery' | 'pricing' | 'proof' | 'executive-overview' | 'requirements-coverage' | 'solution-architecture' | 'uxdesign'
+export type ViewTab = 'overview' | 'qa' | 'analytics' | 'technical' | 'cost' | 'timeline' | 'team' | 'code' | 'requirements' | 'security' | 'delivery' | 'pricing' | 'proof' | 'executive-overview' | 'requirements-coverage' | 'solution-architecture' | 'uxdesign' | 'integration-detail'
 
 export type FileView = 'source' | 'preview'
 

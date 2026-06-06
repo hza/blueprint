@@ -307,7 +307,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
               </tr>
               <tr>
                 <td className="overview-table-label">Live Demo</td>
-                <td><a href="https://the-blueprint.azurewebsites.net/executive-overview/proposal-summary" target="_blank" rel="noopener noreferrer" style={{color:'inherit',textDecoration:'underline'}}>See it in action →</a></td>
+                <td><a href="https://the-blueprint.azurewebsites.net/executive-overview/proposal-summary" target="_blank" rel="noopener noreferrer">See it in action →</a></td>
               </tr>
             </tbody>
           </table>

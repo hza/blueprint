@@ -18,6 +18,7 @@ import { ProofCredibility } from './components/ProofCredibility'
 import { ExecutiveOverview } from './components/ExecutiveOverview'
 import { RequirementsCoverage } from './components/RequirementsCoverage'
 import { SolutionArchitecture } from './components/SolutionArchitecture'
+import { IntegrationDetail } from './components/IntegrationDetail'
 import { RightPanel } from './components/RightPanel'
 import { Sidebar, NAV_SECTIONS } from './components/Sidebar'
 import { ChatPopup } from './components/ChatPopup'
@@ -128,6 +129,7 @@ export default function App() {
     p.startsWith('/executive-overview') ? 'executive-overview' :
     p.startsWith('/requirements-coverage') ? 'requirements-coverage' :
     p.startsWith('/solution-architecture') ? 'solution-architecture' :
+    p.startsWith('/integration-detail') ? 'integration-detail' :
     'requirements'
 
   useEffect(() => {
@@ -135,7 +137,7 @@ export default function App() {
       navigate(`/list${location.search}${location.hash}`, { replace: true })
       return
     }
-    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility']
+    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility', '/integration-detail']
     if (!knownPrefixes.some((prefix) => location.pathname === prefix || location.pathname.startsWith(prefix + '/'))) {
       navigate('/executive-overview/proposal-summary', { replace: true })
     }
@@ -151,9 +153,21 @@ export default function App() {
     }
   }, [location.pathname])
 
+  const prevPathname = useRef(location.pathname)
   useEffect(() => {
+    const prev = prevPathname.current
+    prevPathname.current = location.pathname
+    const returningFromIntegrationDetail =
+      prev.startsWith('/integration-detail') &&
+      location.pathname.startsWith('/solution-architecture')
     const body = document.querySelector('.file-box-body > *') as HTMLElement | null
-    if (body) body.scrollTop = 0
+    if (!body) return
+    if (returningFromIntegrationDetail) {
+      const saved = sessionStorage.getItem('sa-scroll')
+      if (saved !== null) body.scrollTop = parseInt(saved, 10)
+    } else {
+      body.scrollTop = 0
+    }
   }, [location.pathname])
 
   useEffect(() => {
@@ -371,6 +385,15 @@ export default function App() {
             <div className="file-box">
               <div className="file-box-body">
                 <SolutionArchitecture subsection={activeSection ?? undefined} />
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'integration-detail' ? (
+          <>
+            <PageHeader title="Integration Specification" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            <div className="file-box">
+              <div className="file-box-body">
+                <IntegrationDetail integrationId={location.pathname.split('/integration-detail/')[1]} />
               </div>
             </div>
           </>
