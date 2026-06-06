@@ -169,10 +169,10 @@ function loadAssumptionNotes(): Record<string, string> {
 const ASSUMPTION_IDS = ['A1', 'A2', 'A3', 'A4', 'A5']
 
 function AssumptionStatusTag({ status }: { status: AssumptionStatus }) {
-  if (status === 'None') return <span className="tag-none">None</span>
-  if (status === 'Approved') return <span className="tag-approved">✓ Approved</span>
-  if (status === 'Rejected') return <span className="tag-rejected">✗ Rejected</span>
-  return <span className="tag-pending">⏳ Pending</span>
+  if (status === 'None') return <span className="tag-none">NONE</span>
+  if (status === 'Approved') return <span className="tag-approved">APPROVED</span>
+  if (status === 'Rejected') return <span className="tag-rejected">REJECTED</span>
+  return <span className="tag-pending">PENDING</span>
 }
 
 export function ExecutiveOverview({ subsection }: { subsection?: string }) {
@@ -373,7 +373,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                       <AssumptionStatusTag status={assumptionStatuses[id]} />
                       {assumptionStatuses[id] === 'Approved' && (
                         <div className="assumption-approved-by">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l2.4 3.2L18 4l-.8 3.8L21 10l-3 2 1 3.8-3.8-.8L12 18l-3.2-3-3.8.8L6 12 3 10l3.8-2.2L6 4l3.6 1.2z"/><polyline points="9 12 11 14 15 10"/></svg>
+                          <span>✅</span>
                           <span>{CURRENT_USER}</span>
                         </div>
                       )}
