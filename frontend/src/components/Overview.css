@@ -433,7 +433,9 @@
 .answer-recorded-text {
   font-size: 13px;
   color: var(--fg);
-  white-space: pre-wrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .overview-card--internal {

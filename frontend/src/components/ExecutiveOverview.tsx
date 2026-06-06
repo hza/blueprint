@@ -4,14 +4,6 @@ import { DEFAULT_USER_NAME } from '../types'
 
 const CURRENT_USER = DEFAULT_USER_NAME
 
-const REPLY_ICON = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    <path d="M16.5 2.5l.4 1.1 1.1.4-1.1.4-.4 1.1-.4-1.1-1.1-.4 1.1-.4z" fill="currentColor" stroke="none"/>
-    <path d="M19.5 7l.25.7.7.25-.7.25-.25.7-.25-.7-.7-.25.7-.25z" fill="currentColor" stroke="none"/>
-  </svg>
-)
-
 const ICON_APPROVED = (
   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="20 6 9 17 4 12"/>
@@ -76,7 +68,6 @@ function ClarificationsTable() {
           <th>Question</th>
           <th>Status</th>
           <th>Notes</th>
-          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -94,20 +85,11 @@ function ClarificationsTable() {
                     : <span className="overview-badge overview-badge--warn">Unanswered</span>}
                 </td>
                 <td>{notes}</td>
-                <td className="td-action">
-                  <button
-                    className={`btn-provide-answer${isOpen ? ' btn-provide-answer--active' : ''}`}
-                    title={answered ? 'Edit Answer' : 'Provide Answer'}
-                    onClick={() => setOpenRef(isOpen ? null : ref)}
-                  >
-                    {REPLY_ICON}
-                  </button>
-                </td>
               </tr>
               {answered && !isOpen && (
                 <tr key={`${ref}-recorded`}>
                   <td />
-                  <td colSpan={4} className="td-answer td-answer--recorded">
+                  <td colSpan={3} className="td-answer td-answer--recorded">
                     <div className="answer-recorded">
                       <span className="answer-recorded-label"><span className="answer-recorded-avatar">HZ</span>{CURRENT_USER}:</span>
                       <span
@@ -119,10 +101,24 @@ function ClarificationsTable() {
                   </td>
                 </tr>
               )}
+              {!answered && !isOpen && (
+                <tr key={`${ref}-placeholder`}>
+                  <td />
+                  <td colSpan={3} className="td-answer td-answer--recorded">
+                    <div className="answer-recorded">
+                      <span
+                        className="answer-recorded-text"
+                        style={{ color: 'var(--fg-muted)', fontStyle: 'italic', cursor: 'pointer', marginLeft: '8px' }}
+                        onClick={() => setOpenRef(ref)}
+                      >Click to add an answer…</span>
+                    </div>
+                  </td>
+                </tr>
+              )}
               {isOpen && (
                 <tr key={`${ref}-edit`}>
                   <td />
-                  <td colSpan={4} className="td-answer">
+                  <td colSpan={3} className="td-answer">
                     <div className="answer-panel">
                       <div className="answer-panel-header">
                         <span className="answer-panel-label">{answered ? 'Edit answer for' : 'Answer for'} {ref}</span>
@@ -355,8 +351,8 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
               <tr>
                 <th>#</th>
                 <th>Assumption</th>
-                <th>Impact if Wrong</th>
                 <th>Status</th>
+                <th>Impact if Wrong</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -372,8 +368,8 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                   <tr>
                     <td><strong>{id}</strong></td>
                     <td>{assumption}</td>
-                    <td>{impact}</td>
                     <td><AssumptionStatusTag status={assumptionStatuses[id]} /></td>
+                    <td>{impact}</td>
                     <td className="td-action">
                       <div className="assumption-status-toggle">
                         {(['Approved', 'Pending', 'Rejected'] as AssumptionStatus[]).map(s => (
@@ -386,16 +382,6 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                             {s === 'Approved' ? ICON_APPROVED : s === 'Rejected' ? ICON_REJECTED : ICON_PENDING}
                           </button>
                         ))}
-                        <button
-                          title="Add note"
-                          className={`assumption-toggle-btn assumption-toggle-btn--comment${editingNote === id ? ' assumption-toggle-btn--active' : ''}`}
-                          onClick={() => {
-                            if (editingNote === id) { setEditingNote(null) }
-                            else { setNoteDraft(d => ({ ...d, [id]: assumptionNotes[id] ?? '' })); setEditingNote(id); setOpenNote(id) }
-                          }}
-                        >
-                          {REPLY_ICON}
-                        </button>
                       </div>
                     </td>
                   </tr>
@@ -425,7 +411,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                         <div className="answer-recorded">
                           <span
                             className="answer-recorded-text"
-                            style={{ color: 'var(--fg-muted)', fontStyle: 'italic', cursor: 'pointer' }}
+                            style={{ color: 'var(--fg-muted)', fontStyle: 'italic', cursor: 'pointer', marginLeft: '8px' }}
                             onClick={() => { setNoteDraft(d => ({ ...d, [id]: '' })); setEditingNote(id) }}
                           >Click to add a note…</span>
                         </div>
