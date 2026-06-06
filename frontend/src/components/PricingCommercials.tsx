@@ -119,7 +119,7 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">💳</span>
             Payment Schedule
           </div>
-          <svg viewBox="0 0 600 160" style={{ width: '100%', maxWidth: '500px', height: 'auto', display: 'block', margin: '0 auto' }}>
+          <svg viewBox="0 0 600 160" style={{ width: '100%', maxWidth: '600px', height: 'auto', display: 'block', margin: '0 auto' }}>
             {/* Baseline */}
             <line x1="20" y1="90" x2="580" y2="90" stroke="#D1D5DB" strokeWidth="2" />
             {/* Cumulative bar background */}
@@ -335,26 +335,25 @@ export function PricingCommercials({ subsection }: { subsection?: string }) {
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label">Phase 1 — MVP</td>
+                <td className="overview-table-label">Phase 1<br />MVP</td>
                 <td>Document ingestion, PII anonymisation, AI analysis, feature list, C4 views, risk register, Go/No-Go, RFP Health Score, basic client portal, PDF/DOCX export, MS Teams notifications</td>
                 <td>12 weeks</td>
                 <td>$196,000</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Phase 2 — Enhanced Analytics</td>
+                <td className="overview-table-label">Phase 2<br />Enhanced Analytics</td>
                 <td>Real-time collaboration (WebSockets), approval workflow, C4 Level 3 views, Confluence export, email notifications, full audit trail UI</td>
                 <td>+8 weeks</td>
                 <td>$144,000</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Phase 3 — Platform &amp; Ecosystem</td>
+                <td className="overview-table-label">Phase 3<br />Platform &amp; Ecosystem</td>
                 <td>SSO (SAML), Salesforce CRM webhooks, analytics dashboard, LLM provider switching, Ollama self-hosted option, API key management</td>
                 <td>+8 weeks</td>
                 <td>$116,000</td>
               </tr>
               <tr>
-                <td className="overview-table-label overview-val--strong">Total Fixed Price</td>
-                <td></td>
+                <td className="overview-table-label overview-val--strong" colSpan={2}>Total Fixed Price</td>
                 <td style={{ whiteSpace: 'nowrap' }}><strong>28 weeks</strong></td>
                 <td className="overview-val--strong">$456,000</td>
               </tr>
