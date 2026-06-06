@@ -7,6 +7,7 @@ interface FileBoxHeaderProps {
   fileContent: FileContent | null
   fileView: FileView
   onSetFileView: (v: FileView) => void
+  hasReturnPath?: boolean
   onClose?: () => void
 }
 
@@ -16,6 +17,7 @@ export function FileBoxHeader({
   fileContent,
   fileView,
   onSetFileView,
+  hasReturnPath,
   onClose,
 }: FileBoxHeaderProps) {
   if (!fileContent || !selectedFile || !(activeTab === 'code' || activeTab === 'qa' || activeTab === 'requirements')) {
@@ -41,15 +43,14 @@ export function FileBoxHeader({
           <span>Preview</span>
         </button>
       </div>
-      {onClose && (
+      {onClose && hasReturnPath && (
         <button
-          className="icon-btn"
-          title="Close"
+          className="icon-btn icon-btn-close"
+          title="Back"
           onClick={onClose}
         >
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg" style={{ width: 14, height: 14 }}>
-            <line x1="3" y1="3" x2="13" y2="13" />
-            <line x1="13" y1="3" x2="3" y2="13" />
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg" style={{ width: 14, height: 14 }}>
+            <polyline points="10,3 4,8 10,13" />
           </svg>
         </button>
       )}

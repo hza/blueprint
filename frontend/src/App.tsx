@@ -44,6 +44,7 @@ export default function App() {
   const [selectedListItemId, setSelectedListItemId] = useState<string | null>(null)
   const [fileView, setFileView] = useState<FileView>('source')
   const outlineReturnPath = useRef<string | null>(null)
+  const [hasReturnPath, setHasReturnPath] = useState(false)
   const [sidebarWidth, setSidebarWidth] = useState(SIDEBAR_DEFAULT)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [draggingSidebar, setDraggingSidebar] = useState(false)
@@ -221,7 +222,10 @@ export default function App() {
 
     if (!targetFile) return
     setSelectedListItemId(item.id)
-    if (activeTab === 'requirements-coverage') outlineReturnPath.current = location.pathname
+    if (activeTab === 'requirements-coverage') {
+      outlineReturnPath.current = location.pathname
+      setHasReturnPath(true)
+    }
     openFile(targetFile, targetLine, { preserveCurrentTab: true })
   }
 
@@ -480,9 +484,10 @@ export default function App() {
               ) : (
                 <span className="breadcrumb-file">{selectedFile}</span>
               )}
-              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} onClose={() => {
+              <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} hasReturnPath={hasReturnPath} onClose={() => {
                 const returnTo = outlineReturnPath.current
                 outlineReturnPath.current = null
+                setHasReturnPath(false)
                 setSelectedFile(null)
                 setFileContent(null)
                 navigate(returnTo ?? '/requirements-coverage/document')
