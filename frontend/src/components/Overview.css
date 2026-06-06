@@ -436,6 +436,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: relative;
+  top: 1px;
+}
+
+.answer-recorded-text--placeholder:hover {
+  text-decoration: underline dashed;
 }
 
 .overview-card--internal {

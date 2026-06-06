@@ -107,7 +107,7 @@ function ClarificationsTable() {
                   <td colSpan={3} className="td-answer td-answer--recorded">
                     <div className="answer-recorded">
                       <span
-                        className="answer-recorded-text"
+                        className="answer-recorded-text answer-recorded-text--placeholder"
                         style={{ color: 'var(--fg-muted)', fontStyle: 'italic', cursor: 'pointer', marginLeft: '8px' }}
                         onClick={() => setOpenRef(ref)}
                       >Click to add an answer…</span>
@@ -410,9 +410,9 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                       <td colSpan={4} className="td-answer td-answer--recorded">
                         <div className="answer-recorded">
                           <span
-                            className="answer-recorded-text"
+                            className="answer-recorded-text answer-recorded-text--placeholder"
                             style={{ color: 'var(--fg-muted)', fontStyle: 'italic', cursor: 'pointer', marginLeft: '8px' }}
-                            onClick={() => { setNoteDraft(d => ({ ...d, [id]: '' })); setEditingNote(id) }}
+                            onClick={() => { setNoteDraft(d => ({ ...d, [id]: '' })); setEditingNote(id); setOpenNote(id) }}
                           >Click to add a note…</span>
                         </div>
                       </td>
