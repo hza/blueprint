@@ -20,8 +20,12 @@ const CLARIFICATIONS = [
 
 const LS_KEY = 'clarifications_answers'
 
+const DEFAULT_ANSWERS: Record<string, string> = {
+  Q4: 'Yes, maybe',
+}
+
 function loadAnswers(): Record<string, string> {
-  try { return JSON.parse(localStorage.getItem(LS_KEY) ?? '{}') } catch { return {} }
+  try { return { ...DEFAULT_ANSWERS, ...JSON.parse(localStorage.getItem(LS_KEY) ?? '{}') } } catch { return { ...DEFAULT_ANSWERS } }
 }
 
 function ClarificationsTable() {
@@ -30,7 +34,7 @@ function ClarificationsTable() {
   const [answers, setAnswers] = useState<Record<string, string>>(loadAnswers)
 
   const handleDiscard = (ref: string) => {
-    setDrafts(d => ({ ...d, [ref]: '' }))
+    setDrafts(d => { const next = { ...d }; delete next[ref]; return next })
     setOpenRef(null)
   }
 
@@ -83,7 +87,7 @@ function ClarificationsTable() {
                 <tr key={`${ref}-recorded`}>
                   <td colSpan={5} className="td-answer td-answer--recorded">
                     <div className="answer-recorded">
-                      <span className="answer-recorded-label">{CURRENT_USER}:</span>
+                      <span className="answer-recorded-label"><span className="answer-recorded-avatar">HZ</span>{CURRENT_USER}:</span>
                       <span
                         className="answer-recorded-text answer-recorded-text--editable"
                         title="Click to edit"
@@ -106,8 +110,9 @@ function ClarificationsTable() {
                         placeholder="Type your answer here…"
                         autoFocus
                         rows={4}
-                        value={drafts[ref] ?? answers[ref] ?? ''}
+                        value={ref in drafts ? drafts[ref] : (answers[ref] ?? '')}
                         onChange={e => setDrafts(d => ({ ...d, [ref]: e.target.value }))}
+                        ref={el => { if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length) } }}
                       />
                       <div className="answer-panel-actions">
                         <button className="answer-btn answer-btn--submit" onClick={() => handleSubmit(ref)}>
@@ -382,7 +387,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                               : '#fef9c3',
                           }}
                         >
-                          <span className="answer-recorded-label">{CURRENT_USER}:</span>
+                          <span className="answer-recorded-label"><span className="answer-recorded-avatar">HZ</span>{CURRENT_USER}:</span>
                           <span
                             className="answer-recorded-text answer-recorded-text--editable"
                             title="Click to edit"
@@ -410,6 +415,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                             rows={3}
                             value={noteDraft[id] ?? ''}
                             onChange={e => setNoteDraft(d => ({ ...d, [id]: e.target.value }))}
+                            ref={el => { if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length) } }}
                           />
                           <div className="answer-panel-actions">
                             <button className="answer-btn answer-btn--submit" onClick={() => saveNote(id)}>Save</button>
