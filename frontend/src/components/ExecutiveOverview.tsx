@@ -278,12 +278,12 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
                 <td>AI-Powered Customer Facing Portal (greenfield build)</td>
               </tr>
               <tr>
-                <td className="overview-table-label">Implementation Model</td>
-                <td><span style={{cursor:'pointer',textDecoration:'underline'}} onClick={() => navigate('/delivery-governance/delivery-timeline')}>Fixed-price, 3-phase delivery · 28 weeks</span></td>
+                <td className="overview-table-label">How we'll deliver</td>
+                <td><span style={{cursor:'pointer',textDecoration:'underline'}} onClick={() => navigate('/delivery-governance/delivery-timeline')}>Fixed-price delivery across 3 phases, live in 28 weeks</span></td>
               </tr>
               <tr>
-                <td className="overview-table-label">Final Cost</td>
-                <td><span style={{cursor:'pointer',textDecoration:'underline'}} onClick={() => navigate('/pricing-commercials')}><strong>$456,000</strong> fixed-price (all 3 phases)</span></td>
+                <td className="overview-table-label">What you'll pay</td>
+                <td><span style={{cursor:'pointer',textDecoration:'underline'}} onClick={() => navigate('/pricing-commercials')}><strong>$456,000</strong> fixed — the price you see is the price you pay</span></td>
               </tr>
               <tr>
                 <td className="overview-table-label">Contract Signing Target</td>
