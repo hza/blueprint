@@ -15,7 +15,7 @@
 }
 
 .timeline-title {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--fg);
 }
@@ -103,13 +103,13 @@
   font-size: 11px;
   color: var(--fg-muted);
   background: var(--canvas-subtle);
-  border-bottom: 2px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .gantt-milestone-cell {
   background: var(--canvas-subtle);
   border-right: 1px solid var(--border);
-  border-bottom: 2px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 4px 2px;
   position: relative;
   min-height: 30px;

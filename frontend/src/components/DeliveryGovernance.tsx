@@ -83,6 +83,9 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
 
       {show('5.1') && (<>
 
+      {/* 5.1 Delivery Approach & Timeline */}
+      <div className="rfp-section-heading" id="5.1">Delivery Approach &amp; Timeline</div>
+
       {/* Gantt chart */}
       <div className="timeline-wrap" style={{ height: 'auto', overflow: 'visible', padding: '0 0 8px' }}>
         <div className="timeline-header-row">
@@ -155,15 +158,13 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
         </div>
       </div>
 
-      {/* 5.1 Delivery Approach & Timeline */}
-      <div className="rfp-section-heading" id="5.1">Delivery Approach &amp; Timeline</div>
       <div className="overview-grid">
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">🗓</span>
             Sprint Rhythm (2-Week Sprint)
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '4px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: 0, overflow: 'hidden' }}>
             {([
               { day: 'Mon', week: 1, ceremonies: [{ label: 'Sprint Planning', bg: 'var(--sem-info-bg)', color: 'var(--sem-info-fg)' }, { label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }] },
               { day: 'Tue', week: 1, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }] },
@@ -176,7 +177,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
               { day: 'Thu', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }, { label: 'Sprint Review', bg: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)' }] },
               { day: 'Fri', week: 2, ceremonies: [{ label: 'Stand-up (15 min)', bg: 'var(--canvas-inset)', color: 'var(--fg-muted)', small: true }, { label: 'Retrospective', bg: 'var(--sem-purple-bg)', color: 'var(--sem-purple-fg)' }] },
             ] as { day: string; week: number; ceremonies: { label: string; bg: string; color: string; small?: boolean }[] }[]).map((cell, idx) => (
-              <div key={idx} style={{ minHeight: '80px', border: '1px solid var(--border)', borderRadius: '4px', padding: '6px', fontSize: '11px' }}>
+              <div key={idx} style={{ minHeight: '80px', background: 'var(--canvas)', borderRight: idx < 9 ? '1px solid var(--border)' : undefined, padding: '6px', fontSize: '11px' }}>
                 <div style={{ fontWeight: 'bold', marginBottom: '4px', color: 'var(--fg-muted)' }}>Wk{cell.week} {cell.day}</div>
                 {cell.ceremonies.map((c, ci) => (
                   <div key={ci} style={{ background: c.bg, color: c.color, borderRadius: '2px', padding: '2px 4px', marginBottom: '2px', fontSize: c.small ? '10px' : '11px' }}>{c.label}</div>
