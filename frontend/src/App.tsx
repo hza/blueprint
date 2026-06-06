@@ -23,6 +23,8 @@ import { Sidebar, NAV_SECTIONS } from './components/Sidebar'
 import { ChatPopup } from './components/ChatPopup'
 import type { FileContent, FileView, FileInfo, FRAnnotations, FRItem, RequirementsSummary, ViewTab } from './types'
 
+const PROJECT_TITLE = 'Meridian Software · AI-Powered Customer Facing Portal'
+
 const SIDEBAR_MIN = 160
 const SIDEBAR_MAX = 600
 const SIDEBAR_DEFAULT = 290
@@ -275,7 +277,8 @@ export default function App() {
             <nav className="breadcrumb">
               <div className="breadcrumb-title-block">
                 <span className="breadcrumb-file">Technical Solution</span>
-                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
+
               </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
@@ -326,7 +329,8 @@ export default function App() {
             <nav className="breadcrumb">
               <div className="breadcrumb-title-block">
                 <span className="breadcrumb-file">Security &amp; Compliance</span>
-                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
+
               </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
@@ -341,7 +345,8 @@ export default function App() {
             <nav className="breadcrumb">
               <div className="breadcrumb-title-block">
                 <span className="breadcrumb-file">Delivery &amp; Governance</span>
-                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
+
               </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
@@ -356,7 +361,8 @@ export default function App() {
             <nav className="breadcrumb">
               <div className="breadcrumb-title-block">
                 <span className="breadcrumb-file">Pricing &amp; Commercials</span>
-                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
+
               </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
@@ -371,7 +377,8 @@ export default function App() {
             <nav className="breadcrumb">
               <div className="breadcrumb-title-block">
                 <span className="breadcrumb-file">References &amp; Track Record</span>
-                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
+
               </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
@@ -386,7 +393,8 @@ export default function App() {
             <nav className="breadcrumb">
               <div className="breadcrumb-title-block">
                 <span className="breadcrumb-file">Executive Overview</span>
-                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
+
               </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
@@ -401,7 +409,8 @@ export default function App() {
             <nav className="breadcrumb">
               <div className="breadcrumb-title-block">
                 <span className="breadcrumb-file">Requirements Coverage</span>
-                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
+
               </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
@@ -416,7 +425,8 @@ export default function App() {
             <nav className="breadcrumb">
               <div className="breadcrumb-title-block">
                 <span className="breadcrumb-file">Solution Architecture</span>
-                <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
+
               </div>
               <FileBoxHeader activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
             </nav>
@@ -464,7 +474,8 @@ export default function App() {
               {activeTab === 'requirements' ? (
                 <div className="breadcrumb-title-block">
                   <span className="breadcrumb-file">Requirements / {selectedFile}</span>
-                  <span className="breadcrumb-subtitle">Meridian Software · AI-Powered Customer Facing Portal — RFP</span>
+                  <span className="breadcrumb-subtitle">{PROJECT_TITLE}</span>
+
                 </div>
               ) : (
                 <span className="breadcrumb-file">{selectedFile}</span>
