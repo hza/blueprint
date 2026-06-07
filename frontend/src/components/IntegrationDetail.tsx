@@ -667,6 +667,7 @@ function CardStack<T extends { id: string }>({
   icon,
   title,
   badge,
+  stamp,
   renderCard,
   renderMiniCard,
 }: {
@@ -674,6 +675,7 @@ function CardStack<T extends { id: string }>({
   icon: string
   title: string
   badge: string
+  stamp?: string
   renderCard: (card: T) => React.ReactNode
   renderMiniCard: (card: T, active: boolean) => React.ReactNode
 }) {
@@ -713,6 +715,7 @@ function CardStack<T extends { id: string }>({
         <span className="integration-detail-example-badge">{badge}</span>
       </div>
       <div className="asr-mini-row-wrap" ref={wrapRef}>
+        {stamp && <div className="example-stamp example-stamp--row">{stamp}</div>}
         {!fitsAll && <button className="asr-mini-scroll-btn" onClick={() => scroll(-1)} aria-label="Scroll left" disabled={offset === 0}>←</button>}
         <div className="asr-mini-row" style={{ width: rowWidth }}>
           <div className="asr-mini-row-inner" style={{ transform: `translateX(calc(-${offset} * (${CARD_W}px + ${GAP}px)))` }}>
@@ -730,7 +733,7 @@ function CardStack<T extends { id: string }>({
         {!fitsAll && <button className="asr-mini-scroll-btn" onClick={() => scroll(1)} aria-label="Scroll right" disabled={offset >= maxOffset}>→</button>}
       </div>
       {expandedCard && (
-        <div className="asr-cards-list">
+        <div className="asr-cards-list asr-cards-list--stamped">
           {renderCard(expandedCard)}
         </div>
       )}
@@ -751,6 +754,7 @@ function AsrCardStack() {
       icon="🏛️"
       title="Architecturally Significant Requirements (ASRs)"
       badge="Each ASR below will produce an ADR during Discovery"
+      stamp="EXAMPLE"
       renderCard={card => <AsrCardView card={card} />}
       renderMiniCard={card => <>
         <span className="asr-mini-id">{card.id}</span>
@@ -769,6 +773,7 @@ function QattCardStack() {
       icon="🎯"
       title="Quality Attribute Tradeoff (QATT) Cards"
       badge="Each QATT below will be validated against testable acceptance criteria at Discovery"
+      stamp="EXAMPLE"
       renderCard={card => <QattCardView card={card} />}
       renderMiniCard={card => <>
         <span className="asr-mini-id">{card.id}</span>
@@ -1059,13 +1064,11 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
           </div>
         </div>
 
-        <div className="example-stamp-wrap">
-          <div className="example-stamp">EXAMPLE</div>
+        <div className="integration-detail-full-row">
           <AsrCardStack />
         </div>
 
-        <div className="example-stamp-wrap">
-          <div className="example-stamp">EXAMPLE</div>
+        <div className="integration-detail-full-row">
           <QattCardStack />
         </div>
 

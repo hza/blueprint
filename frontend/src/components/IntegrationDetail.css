@@ -280,10 +280,36 @@
 
 /* ASR mini card row */
 .asr-mini-row-wrap {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px 0;
+}
+
+.asr-cards-list--stamped {
+  position: relative;
+}
+
+.example-stamp--row {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  pointer-events: none;
+  z-index: 10;
+  font-size: 24px;
+  border-width: 2px;
+  padding: 3px 10px;
+}
+
+.example-stamp--card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  pointer-events: none;
+  z-index: 10;
 }
 
 .asr-mini-scroll-btn {
@@ -920,4 +946,8 @@
   white-space: nowrap;
   z-index: 10;
   text-transform: uppercase;
+}
+
+.integration-detail-full-row {
+  grid-column: 1 / -1;
 }
