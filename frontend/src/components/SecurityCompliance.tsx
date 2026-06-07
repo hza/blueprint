@@ -292,9 +292,9 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
                 const isLast = ri === certRows.length - 1
                 return (
                 <tr key={row.cert}>
-                  <td style={{ padding: '6px', border: isLast ? 'none' : '1px solid var(--border)', fontWeight: 600, whiteSpace: 'nowrap', fontSize: 'var(--font-size-sm)', color: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'var(--accent, #0969da)' : 'var(--fg)', cursor: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'pointer' : undefined, textDecoration: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'underline' : undefined }} onClick={row.cert === 'GDPR' ? () => navigate('/gdpr-compliance') : row.cert === 'SOC 2 Type II' ? () => navigate('/soc2-compliance') : row.cert === 'ISO 27001' ? () => navigate('/iso27001-compliance') : row.cert === 'EU AI Act' ? () => navigate('/euai-compliance') : undefined}>{row.cert}</td>
+                  <td style={{ padding: '6px', border: isLast ? 'none' : '1px solid var(--border)', borderLeft: isLast ? '1px solid var(--border)' : undefined, borderRight: isLast ? '1px solid var(--border)' : undefined, fontWeight: 600, whiteSpace: 'nowrap', fontSize: 'var(--font-size-sm)', color: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'var(--accent, #0969da)' : 'var(--fg)', cursor: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'pointer' : undefined, textDecoration: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'underline' : undefined }} onClick={row.cert === 'GDPR' ? () => navigate('/gdpr-compliance') : row.cert === 'SOC 2 Type II' ? () => navigate('/soc2-compliance') : row.cert === 'ISO 27001' ? () => navigate('/iso27001-compliance') : row.cert === 'EU AI Act' ? () => navigate('/euai-compliance') : undefined}>{row.cert}</td>
                   {row.cells.map((c, ci) => (
-                    <td key={ci} style={{ padding: '6px', border: isLast ? 'none' : '1px solid var(--border)', textAlign: 'center', ...coverageStyle(c) }}>
+                    <td key={ci} style={{ padding: '6px', border: isLast ? 'none' : '1px solid var(--border)', borderLeft: isLast ? '1px solid var(--border)' : undefined, borderRight: isLast ? '1px solid var(--border)' : undefined, textAlign: 'center', ...coverageStyle(c) }}>
                       {coverageLabel(c)}
                     </td>
                   ))}
@@ -359,7 +359,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
                 <td className="overview-table-label">Password Hashing</td>
                 <td>bcrypt (cost ≥ 12) or Argon2id. CSP headers prevent XSS. All inputs validated server-side against SQL injection, SSRF, and path traversal (RFP §4.4).</td>
               </tr>
-              <tr>
+              <tr style={{ borderLeft: '1px solid var(--border)', borderRight: '1px solid var(--border)' }}>
                 <td className="overview-table-label">Security Training</td>
                 <td>Mandatory annual awareness training. Phishing simulation quarterly. Role-specific training for developers (OWASP, secure SDLC).</td>
               </tr>
