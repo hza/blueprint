@@ -34,20 +34,20 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
       <div className="overview-banner">
         <div className="overview-banner-stats">
           <div className="overview-stat">
-            <span className="overview-stat-label">Security Posture</span>
-            <span className="overview-stat-value">Enterprise-Grade</span>
+            <span className="overview-stat-label">Operating Countries</span>
+            <span className="overview-stat-value">US, EU, UK, Canada</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Data Encryption</span>
-            <span className="overview-stat-value">AES-256 at Rest &amp; Transit</span>
+            <span className="overview-stat-label">Data Residency</span>
+            <span className="overview-stat-value">EU &amp; US Regions</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Access Control</span>
-            <span className="overview-stat-value">Role-Based (RBAC)</span>
+            <span className="overview-stat-label">Audit Readiness</span>
+            <span className="overview-stat-value">Fully Prepared</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Audit Logging</span>
-            <span className="overview-stat-value">Full Event Trail</span>
+            <span className="overview-stat-label">First Audit</span>
+            <span className="overview-stat-value">2027</span>
           </div>
         </div>
       </div>
@@ -328,10 +328,6 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
               <tr>
                 <td className="overview-table-label">Supplier Security</td>
                 <td>Third-party security assessments for all Tier 1 vendors. Contractual security clauses in all subcontracts. Annual vendor review.</td>
-              </tr>
-              <tr>
-                <td className="overview-table-label">Password Hashing</td>
-                <td>bcrypt (cost ≥ 12) or Argon2id. CSP headers prevent XSS. All inputs validated server-side against SQL injection, SSRF, and path traversal (RFP §4.4).</td>
               </tr>
               <tr style={{ borderLeft: '1px solid var(--border)', borderRight: '1px solid var(--border)' }}>
                 <td className="overview-table-label">Security Training</td>
