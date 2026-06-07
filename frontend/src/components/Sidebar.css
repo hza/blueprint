@@ -554,6 +554,33 @@
 .sidebar-popup-item-danger svg { color: var(--sem-danger-fg); }
 .sidebar-popup-item-danger:hover { background: var(--sem-danger-bg); }
 
+.sidebar-menu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 14px;
+}
+
+.sidebar-menu-item-link {
+  border: none;
+  background: none;
+  padding: 4px 0;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--fg-muted);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+}
+.sidebar-menu-item-link:hover { color: var(--fg); }
+
+.sidebar-menu-version {
+  font-size: 11px;
+  color: var(--fg-muted);
+  white-space: nowrap;
+  margin-left: auto;
+}
+
 /* ── Theme picker ────────────────────────────────────────────────────────── */
 .sidebar-theme-section {
   padding: 10px 14px 12px;
