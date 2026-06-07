@@ -503,6 +503,7 @@
   box-shadow: var(--shadow-md);
   z-index: 200;
   overflow: hidden;
+  max-width: 280px;
 }
 
 .sidebar-popup-header {
