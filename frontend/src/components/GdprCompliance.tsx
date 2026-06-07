@@ -110,6 +110,61 @@ export function GdprCompliance() {
           </table>
         </div>
       </div>
+
+      <div className="overview-grid">
+        <div className="overview-card" style={{ gridColumn: '1 / -1' }}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">⚑</span>
+            How We Prepare Your Project for GDPR Audit-Readiness
+          </div>
+          <table className="overview-table" style={{ tableLayout: 'fixed' }}>
+            <colgroup>
+              <col style={{ width: '8%' }} />
+              <col style={{ width: '24%' }} />
+              <col />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>What We Deliver</th>
+                <th>Why It Matters to You</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">DPA</span></td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Data Processing Agreement signed before day one</td>
+                <td>Your legal team has a complete paper trail from the first commit — sub-processors named, lawful basis documented, retention and deletion obligations locked in before any client data enters our systems.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">ROPA</span></td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Living data inventory maintained throughout the engagement</td>
+                <td>A Records of Processing Activities log maps every data flow — what personal data, why, where it goes, how long we hold it, and which security controls apply. Delivered at kick-off and updated with each major release, ready to hand to a supervisory authority on request.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">PII</span></td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Personal data stripped before it reaches any LLM</td>
+                <td>Our anonymisation worker removes personal identifiers from all content before it is sent to an external model — eliminating the most common GDPR risk in AI-assisted systems: inadvertent transfer of personal data to a third-country processor without adequate safeguards.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">SCCs</span></td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>International transfers covered by Standard Contractual Clauses</td>
+                <td>Every US-based sub-processor is bound by SCCs under the 2021 EU Commission decision. Transfer Impact Assessments are documented per vendor — you inherit a complete transfer mechanism record with no additional legal work required.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">AUDIT</span></td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Audit evidence pack delivered with each release</td>
+                <td>Each release ships an updated ROPA, sub-processor list, current SCC references, SOC 2 Type II report extract, and penetration test summary. Your compliance or procurement team can review without chasing the engineering team for documents.</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">IRP</span></td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>72-hour breach notification chain built into the Incident Response Plan</td>
+                <td>A documented chain — detection → client notification → supervisory authority notification — completes within 72 hours. RTO 1 hour, RPO 15 minutes. You are never in a position where the regulatory clock runs without your knowledge.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }
