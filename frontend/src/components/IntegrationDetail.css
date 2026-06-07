@@ -288,11 +288,13 @@
 
 .asr-mini-scroll-btn {
   flex-shrink: 0;
-  width: 32px;
+  width: 44px;
+  height: 44px;
+  padding: 0 8px;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--fg-muted);
   display: flex;
   align-items: center;
@@ -372,6 +374,13 @@
   font-size: 11px;
   color: var(--fg-muted);
 }
+
+.asr-mini-qa--performance-efficiency { color: #7c3aed; }
+.asr-mini-qa--reliability            { color: #0891b2; }
+.asr-mini-qa--security               { color: #dc2626; }
+.asr-mini-qa--maintainability        { color: #059669; }
+.asr-mini-qa--usability              { color: #d97706; }
+.asr-mini-qa--portability            { color: #2563eb; }
 
 /* ASR card list */
 .asr-cards-list {

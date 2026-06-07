@@ -444,7 +444,7 @@ function QattCardView({ card }: { card: QattCardData }) {
       <div className="qatt-card-top-row">
         <div className="qatt-card-qa-cell">
           <div className="qatt-card-section-lbl">QUALITY ATTRIBUTE:</div>
-          <div className="qatt-card-section-txt qatt-card-qa-name">{card.qualityAttribute}</div>
+          <div className={`qatt-card-section-txt qatt-card-qa-name asr-mini-qa--${card.qualityAttribute.toLowerCase().replace(/\s+/g, '-')}`}>{card.qualityAttribute}</div>
           <div className="qatt-card-section-hint">Which quality attribute(s) will be impacted</div>
         </div>
         <div className="qatt-card-qar-cell">
@@ -773,7 +773,7 @@ function QattCardStack() {
       renderMiniCard={card => <>
         <span className="asr-mini-id">{card.id}</span>
         <span className="asr-mini-title">{card.title}</span>
-        <span className="asr-mini-crit">{card.qualityAttribute}</span>
+        <span className={`asr-mini-crit asr-mini-qa--${card.qualityAttribute.toLowerCase().replace(/\s+/g, '-')}`}>{card.qualityAttribute}</span>
         <span className="asr-mini-domain">{card.domain}</span>
       </>}
     />
