@@ -290,7 +290,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             <tbody>
               {certRows.map(row => (
                 <tr key={row.cert}>
-                  <td style={{ padding: '6px', border: '1px solid var(--border)', fontWeight: 600, whiteSpace: 'nowrap', fontSize: 'var(--font-size-sm)', color: row.cert === 'GDPR' ? 'var(--accent, #0969da)' : 'var(--fg)', cursor: row.cert === 'GDPR' ? 'pointer' : undefined, textDecoration: row.cert === 'GDPR' ? 'underline' : undefined }} onClick={row.cert === 'GDPR' ? () => navigate('/gdpr-compliance') : undefined}>{row.cert}</td>
+                  <td style={{ padding: '6px', border: '1px solid var(--border)', fontWeight: 600, whiteSpace: 'nowrap', fontSize: 'var(--font-size-sm)', color: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II') ? 'var(--accent, #0969da)' : 'var(--fg)', cursor: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II') ? 'pointer' : undefined, textDecoration: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II') ? 'underline' : undefined }} onClick={row.cert === 'GDPR' ? () => navigate('/gdpr-compliance') : row.cert === 'SOC 2 Type II' ? () => navigate('/soc2-compliance') : undefined}>{row.cert}</td>
                   {row.cells.map((c, ci) => (
                     <td key={ci} style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'center', ...coverageStyle(c) }}>
                       {coverageLabel(c)}
