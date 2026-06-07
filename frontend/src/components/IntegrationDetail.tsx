@@ -668,53 +668,81 @@ function CardStack<T extends { id: string }>({
   title,
   badge,
   renderCard,
+  renderMiniCard,
 }: {
   cards: T[]
   icon: string
   title: string
   badge: string
   renderCard: (card: T) => React.ReactNode
+  renderMiniCard: (card: T, active: boolean) => React.ReactNode
 }) {
-  const [index, setIndex] = useState(0)
-  const card = cards[index]
+  const [expanded, setExpanded] = useState<string | null>(cards[0]?.id ?? null)
+  const [offset, setOffset] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(4)
+  const wrapRef = React.useRef<HTMLDivElement>(null)
+
+  const CARD_W = 190
+  const GAP = 10
+
+  React.useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+    const ro = new ResizeObserver(([entry]) => {
+      const w = entry.contentRect.width - 64 // subtract two 32px scroll buttons
+      setVisibleCount(Math.max(1, Math.floor((w + GAP) / (CARD_W + GAP))))
+    })
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const maxOffset = Math.max(0, cards.length - visibleCount)
+  const scroll = (dir: -1 | 1) => setOffset(o => Math.max(0, Math.min(maxOffset, o + dir)))
+  const fitsAll = cards.length <= visibleCount
+  const rowWidth = fitsAll
+    ? cards.length * CARD_W + (cards.length - 1) * GAP
+    : visibleCount * CARD_W + (visibleCount - 1) * GAP
+
+  const expandedCard = cards.find(c => c.id === expanded)
+
   return (
     <div className="overview-card integration-detail-card--wide">
       <div className="overview-card-header">
         <span className="overview-card-icon">{icon}</span>
         {title}
         <span className="integration-detail-example-badge">{badge}</span>
-        <div className="card-stack-nav">
-          <button
-            className="card-stack-btn"
-            onClick={() => setIndex(i => Math.max(0, i - 1))}
-            disabled={index === 0}
-            aria-label="Previous card"
-          >‹</button>
-          <span className="card-stack-counter">{index + 1} / {cards.length}</span>
-          <button
-            className="card-stack-btn"
-            onClick={() => setIndex(i => Math.min(cards.length - 1, i + 1))}
-            disabled={index === cards.length - 1}
-            aria-label="Next card"
-          >›</button>
+      </div>
+      <div className="asr-mini-row-wrap" ref={wrapRef}>
+        {!fitsAll && <button className="asr-mini-scroll-btn" onClick={() => scroll(-1)} aria-label="Scroll left" disabled={offset === 0}>←</button>}
+        <div className="asr-mini-row" style={{ width: rowWidth }}>
+          <div className="asr-mini-row-inner" style={{ transform: `translateX(calc(-${offset} * (${CARD_W}px + ${GAP}px)))` }}>
+            {cards.map(card => (
+              <button
+                key={card.id}
+                className={`asr-mini-card${expanded === card.id ? ' asr-mini-card--active' : ''}`}
+                onClick={() => setExpanded(expanded === card.id ? null : card.id)}
+              >
+                {renderMiniCard(card, expanded === card.id)}
+              </button>
+            ))}
+          </div>
         </div>
+        {!fitsAll && <button className="asr-mini-scroll-btn" onClick={() => scroll(1)} aria-label="Scroll right" disabled={offset >= maxOffset}>→</button>}
       </div>
-      <div className="card-stack-dots">
-        {cards.map((c, i) => (
-          <button
-            key={c.id}
-            className={`card-stack-dot${i === index ? ' card-stack-dot--active' : ''}`}
-            onClick={() => setIndex(i)}
-            aria-label={`Go to card ${i + 1}`}
-          />
-        ))}
-      </div>
-      <div className="asr-cards-list">
-        {renderCard(card)}
-      </div>
+      {expandedCard && (
+        <div className="asr-cards-list">
+          {renderCard(expandedCard)}
+        </div>
+      )}
     </div>
   )
 }
+
+const asrCritClass = (c: AsrCardData['criticality']) =>
+  c === 'Critical' ? 'asr-card-crit--critical'
+  : c === 'High' ? 'asr-card-crit--high'
+  : c === 'Medium' ? 'asr-card-crit--medium'
+  : 'asr-card-crit--low'
 
 function AsrCardStack() {
   return (
@@ -724,6 +752,12 @@ function AsrCardStack() {
       title="Architecturally Significant Requirements (ASRs)"
       badge="Each ASR below will produce an ADR during Discovery"
       renderCard={card => <AsrCardView card={card} />}
+      renderMiniCard={card => <>
+        <span className="asr-mini-id">{card.id}</span>
+        <span className="asr-mini-title">{card.title}</span>
+        <span className={`asr-mini-crit asr-card-crit ${asrCritClass(card.criticality)}`}>{card.criticality}</span>
+        <span className="asr-mini-domain">{card.domain}</span>
+      </>}
     />
   )
 }
@@ -736,6 +770,12 @@ function QattCardStack() {
       title="Quality Attribute Tradeoff (QATT) Cards"
       badge="Each QATT below will be validated against testable acceptance criteria at Discovery"
       renderCard={card => <QattCardView card={card} />}
+      renderMiniCard={card => <>
+        <span className="asr-mini-id">{card.id}</span>
+        <span className="asr-mini-title">{card.title}</span>
+        <span className="asr-mini-crit">{card.qualityAttribute}</span>
+        <span className="asr-mini-domain">{card.domain}</span>
+      </>}
     />
   )
 }
