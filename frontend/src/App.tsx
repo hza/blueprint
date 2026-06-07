@@ -118,7 +118,7 @@ export default function App() {
 
   const p = location.pathname
   const activeTab: ViewTab =
-    p === '/requirements-coverage/document' ? 'requirements' :
+    p === '/requirements-coverage/documents' || p.startsWith('/requirements-coverage/documents/') ? 'requirements' :
     p === '/overview' ? 'overview' :
     p === '/qa' ? 'qa' :
     p === '/analytics' ? 'analytics' :
@@ -141,7 +141,7 @@ export default function App() {
       navigate(`/list${location.search}${location.hash}`, { replace: true })
       return
     }
-    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility', '/integration-detail']
+    const knownPrefixes = ['/requirements-coverage/documents', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility', '/integration-detail']
     if (!knownPrefixes.some((prefix) => location.pathname === prefix || location.pathname.startsWith(prefix + '/'))) {
       navigate('/executive-overview/proposal-summary', { replace: true })
     }
@@ -190,6 +190,21 @@ export default function App() {
     fetchRequirementsSummary().then(setReqSummary).catch(() => {})
   }, [])
 
+  const selectedFileRef = useRef(selectedFile)
+  selectedFileRef.current = selectedFile
+  useEffect(() => {
+    const match = location.pathname.match(/^\/requirements-coverage\/document\/(.+)$/)
+    if (!match) return
+    const filename = decodeURIComponent(match[1].replace(/\+/g, ' '))
+    if (filename === selectedFileRef.current) return
+    setSelectedFile(filename)
+    setLoading(true)
+    setError(null)
+    fetchFile(filename)
+      .then((data) => { setFileContent(data); setLoading(false) })
+      .catch((e: unknown) => { setError(e instanceof Error ? e.message : 'Failed to load file'); setLoading(false) })
+    fetchFR(filename).then(setFrAnnotations).catch(() => {})
+  }, [location.pathname])
 
   const openFile = (
     filename: string,
@@ -197,11 +212,14 @@ export default function App() {
     options?: { preserveCurrentTab?: boolean },
   ) => {
     const fileViewingTabs = new Set<ViewTab>(['requirements', 'qa'])
-    const tabToPath: Partial<Record<ViewTab, string>> = { requirements: '/requirements-coverage/document', qa: '/qa' }
-    const targetPath = options?.preserveCurrentTab && fileViewingTabs.has(activeTab) ? (tabToPath[activeTab] ?? '/requirements-coverage/document') : '/requirements-coverage/document'
+    const tabToPath: Partial<Record<ViewTab, string>> = { requirements: '/requirements-coverage/documents', qa: '/qa' }
+    const targetPath = options?.preserveCurrentTab && fileViewingTabs.has(activeTab) ? (tabToPath[activeTab] ?? '/requirements-coverage/documents') : '/requirements-coverage/documents'
     const fileChanged = filename !== selectedFile
     setSelectedFile(filename)
-    navigate({ pathname: targetPath, hash: line ? `#L${line}` : '' })
+    const navPath = targetPath === '/requirements-coverage/documents'
+      ? `/requirements-coverage/documents/${encodeURIComponent(filename).replace(/%20/g, '+')}`
+      : targetPath
+    navigate({ pathname: navPath, hash: line ? `#L${line}` : '' })
     setLoading(true)
     setError(null)
     if (fileChanged) setFrAnnotations({})
@@ -493,7 +511,7 @@ export default function App() {
                 setHasReturnPath(false)
                 setSelectedFile(null)
                 setFileContent(null)
-                navigate(returnTo ?? '/requirements-coverage/document')
+                navigate(returnTo ?? '/requirements-coverage/documents')
               }}
             />
 
@@ -542,7 +560,7 @@ export default function App() {
           setSelectedFile(null)
           setFileContent(null)
           setFrAnnotations({})
-          navigate('/requirements-coverage/document')
+          navigate('/requirements-coverage/documents')
         }}
         requirementEdits={requirementEdits}
         onRequirementEdit={(id, text) => setRequirementEdits((prev) => ({ ...prev, [id]: text }))}

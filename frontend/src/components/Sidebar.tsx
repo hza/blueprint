@@ -5,12 +5,12 @@ import { DEFAULT_USER_NAME } from '../types'
 import type { FileInfo } from '../types'
 
 const THEMES = [
-  { key: 'day',        label: 'Day',        topbar: '#253858', canvas: '#F5F7FA',  accent: '#2196F3' },
-  { key: 'fantasy',    label: 'Fantasy',    topbar: '#000000', canvas: '#1B1B1B',  accent: '#FF9000' },
-  { key: 'night',      label: 'Night',      topbar: '#050D18', canvas: '#0F172A',  accent: '#3B82F6' },
-  { key: 'confluence', label: 'Confluence', topbar: '#FFFFFF', canvas: '#F4F5F7',  accent: '#0052CC' },
-  { key: 'notion',     label: 'Notion',     topbar: '#F7F6F3', canvas: '#FFFFFF',  accent: '#2EAADC' },
-  { key: 'gray',       label: 'Gray',       topbar: '#2D2E30', canvas: '#F1F3F4',  accent: '#5F6368' },
+  { key: 'day', label: 'Day', topbar: '#253858', canvas: '#F5F7FA', accent: '#2196F3' },
+  { key: 'fantasy', label: 'Fantasy', topbar: '#000000', canvas: '#1B1B1B', accent: '#FF9000' },
+  { key: 'night', label: 'Night', topbar: '#050D18', canvas: '#0F172A', accent: '#3B82F6' },
+  { key: 'confluence', label: 'Confluence', topbar: '#FFFFFF', canvas: '#F4F5F7', accent: '#0052CC' },
+  { key: 'notion', label: 'Notion', topbar: '#F7F6F3', canvas: '#FFFFFF', accent: '#2EAADC' },
+  { key: 'gray', label: 'Gray', topbar: '#2D2E30', canvas: '#F1F3F4', accent: '#5F6368' },
 ] as const
 type Theme = (typeof THEMES)[number]['key']
 
@@ -31,44 +31,44 @@ function SubIcon({ name }: { name: string }) {
   const base = { className: "sidebar-sub-icon", viewBox: "0 0 16 16", fill: "none", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round" as const, strokeLinejoin: "round" as const, xmlns: "http://www.w3.org/2000/svg" }
   switch (name) {
     // Executive Overview
-    case 'proposal-summary': return <svg {...base}><path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h5L13 4.5V13a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13z"/><polyline points="9 1 9 5 13 5"/><line x1="5.5" y1="8" x2="10.5" y2="8"/><line x1="5.5" y1="10.5" x2="8.5" y2="10.5"/></svg>
-    case 'key-assumptions': return <svg {...base}><circle cx="5.5" cy="9.5" r="2.5"/><line x1="7.5" y1="7.5" x2="14" y2="1"/><line x1="12" y1="3" x2="13.5" y2="4.5"/><line x1="10" y1="5" x2="11.5" y2="6.5"/></svg>
-    case 'clarifications': return <svg {...base}><path d="M8 1.5A6 6 0 1 0 14 7.5"/><path d="M8 5.5v2.8l1.5 1.5"/><circle cx="8" cy="11.5" r=".5" fill="currentColor" stroke="none"/></svg>
+    case 'proposal-summary': return <svg {...base}><path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h5L13 4.5V13a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13z" /><polyline points="9 1 9 5 13 5" /><line x1="5.5" y1="8" x2="10.5" y2="8" /><line x1="5.5" y1="10.5" x2="8.5" y2="10.5" /></svg>
+    case 'key-assumptions': return <svg {...base}><circle cx="5.5" cy="9.5" r="2.5" /><line x1="7.5" y1="7.5" x2="14" y2="1" /><line x1="12" y1="3" x2="13.5" y2="4.5" /><line x1="10" y1="5" x2="11.5" y2="6.5" /></svg>
+    case 'clarifications': return <svg {...base}><path d="M8 1.5A6 6 0 1 0 14 7.5" /><path d="M8 5.5v2.8l1.5 1.5" /><circle cx="8" cy="11.5" r=".5" fill="currentColor" stroke="none" /></svg>
 
     // Requirements Coverage
-    case 'requirements-summary': return <svg {...base}><rect x="2" y="2" width="12" height="12" rx="1.5"/><polyline points="5 8 7 10 11 6"/></svg>
-    case 'coverage-matrix': return <svg {...base}><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="2" y1="6" x2="14" y2="6"/><line x1="2" y1="10" x2="14" y2="10"/><line x1="6" y1="2" x2="6" y2="14"/><line x1="10" y1="2" x2="10" y2="14"/></svg>
+    case 'requirements-summary': return <svg {...base}><rect x="2" y="2" width="12" height="12" rx="1.5" /><polyline points="5 8 7 10 11 6" /></svg>
+    case 'coverage-matrix': return <svg {...base}><rect x="2" y="2" width="12" height="12" rx="1.5" /><line x1="2" y1="6" x2="14" y2="6" /><line x1="2" y1="10" x2="14" y2="10" /><line x1="6" y1="2" x2="6" y2="14" /><line x1="10" y1="2" x2="10" y2="14" /></svg>
 
     // Solution Architecture
-    case 'architecture-overview': return <svg {...base}><rect x="2" y="9" width="12" height="4" rx="1"/><rect x="4" y="5" width="8" height="3" rx="1"/><rect x="6" y="2" width="4" height="2.5" rx="1"/></svg>
-    case 'roles-integrations': return <svg {...base}><circle cx="8" cy="3.5" r="2"/><line x1="8" y1="5.5" x2="8" y2="10.5"/><line x1="5" y1="7.5" x2="11" y2="7.5"/><line x1="8" y1="10.5" x2="5.5" y2="13.5"/><line x1="8" y1="10.5" x2="10.5" y2="13.5"/></svg>
-    case 'functional-scope': return <svg {...base}><polyline points="1.5 5 5 5 7 2 9 12 11 8 13 8 14.5 8"/></svg>
-    case 'non-functional': return <svg {...base}><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3.5l2 2"/></svg>
-    case 'acceptance-criteria': return <svg {...base}><polyline points="2.5 9 5.5 12 13.5 4"/></svg>
+    case 'architecture-overview': return <svg {...base}><rect x="2" y="9" width="12" height="4" rx="1" /><rect x="4" y="5" width="8" height="3" rx="1" /><rect x="6" y="2" width="4" height="2.5" rx="1" /></svg>
+    case 'roles-integrations': return <svg {...base}><circle cx="8" cy="3.5" r="2" /><line x1="8" y1="5.5" x2="8" y2="10.5" /><line x1="5" y1="7.5" x2="11" y2="7.5" /><line x1="8" y1="10.5" x2="5.5" y2="13.5" /><line x1="8" y1="10.5" x2="10.5" y2="13.5" /></svg>
+    case 'functional-scope': return <svg {...base}><polyline points="1.5 5 5 5 7 2 9 12 11 8 13 8 14.5 8" /></svg>
+    case 'non-functional': return <svg {...base}><circle cx="8" cy="8" r="5.5" /><path d="M8 5v3.5l2 2" /></svg>
+    case 'acceptance-criteria': return <svg {...base}><polyline points="2.5 9 5.5 12 13.5 4" /></svg>
 
     // Security & Compliance
-    case 'security-model': return <svg {...base}><path d="M8 1.5L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4z"/></svg>
-    case 'certifications': return <svg {...base}><circle cx="8" cy="7" r="3.5"/><path d="M5.5 9.5L4.5 14l3.5-1.5L11.5 14l-1-4.5"/></svg>
+    case 'security-model': return <svg {...base}><path d="M8 1.5L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4z" /></svg>
+    case 'certifications': return <svg {...base}><circle cx="8" cy="7" r="3.5" /><path d="M5.5 9.5L4.5 14l3.5-1.5L11.5 14l-1-4.5" /></svg>
 
     // Delivery & Governance
-    case 'delivery-timeline': return <svg {...base}><rect x="2" y="3" width="12" height="10" rx="1.5"/><line x1="2" y1="6.5" x2="14" y2="6.5"/><line x1="5.5" y1="2" x2="5.5" y2="4.5"/><line x1="10.5" y1="2" x2="10.5" y2="4.5"/><line x1="5" y1="9.5" x2="11" y2="9.5"/></svg>
-    case 'team-roles': return <svg {...base}><circle cx="6" cy="5.5" r="2"/><path d="M2 13c0-2.2 1.8-4 4-4s4 1.8 4 4"/><circle cx="11.5" cy="5.5" r="1.5"/><path d="M9 13c0-1.7 1.1-3 2.5-3s2.5 1.3 2.5 3"/></svg>
-    case 'testing-quality': return <svg {...base}><path d="M6 2h4M6 2v4.5L3.5 11a2 2 0 0 0 1.8 2.8h5.4a2 2 0 0 0 1.8-2.8L10 6.5V2"/><line x1="3.2" y1="9" x2="12.8" y2="9"/></svg>
-    case 'risks-mitigation': return <svg {...base}><path d="M8 2L1.5 13.5h13z"/><line x1="8" y1="6.5" x2="8" y2="9.5"/><circle cx="8" cy="11.5" r=".5" fill="currentColor" stroke="none"/></svg>
-    case 'training': return <svg {...base}><polygon points="8,2 15,5.5 8,9 1,5.5"/><path d="M4 7.2V11c0 1.7 1.8 3 4 3s4-1.3 4-3V7.2"/><line x1="15" y1="5.5" x2="15" y2="10"/><circle cx="15" cy="10.5" r="0.8" fill="currentColor" stroke="none"/></svg>
-    case 'sla-support': return <svg {...base}><path d="M3 4.5h10a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z"/><path d="M5 4.5V3.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M6 8.5h4M8 7v3"/></svg>
-    case 'transition': return <svg {...base}><path d="M3 8h10M10 5l3 3-3 3"/></svg>
+    case 'delivery-timeline': return <svg {...base}><rect x="2" y="3" width="12" height="10" rx="1.5" /><line x1="2" y1="6.5" x2="14" y2="6.5" /><line x1="5.5" y1="2" x2="5.5" y2="4.5" /><line x1="10.5" y1="2" x2="10.5" y2="4.5" /><line x1="5" y1="9.5" x2="11" y2="9.5" /></svg>
+    case 'team-roles': return <svg {...base}><circle cx="6" cy="5.5" r="2" /><path d="M2 13c0-2.2 1.8-4 4-4s4 1.8 4 4" /><circle cx="11.5" cy="5.5" r="1.5" /><path d="M9 13c0-1.7 1.1-3 2.5-3s2.5 1.3 2.5 3" /></svg>
+    case 'testing-quality': return <svg {...base}><path d="M6 2h4M6 2v4.5L3.5 11a2 2 0 0 0 1.8 2.8h5.4a2 2 0 0 0 1.8-2.8L10 6.5V2" /><line x1="3.2" y1="9" x2="12.8" y2="9" /></svg>
+    case 'risks-mitigation': return <svg {...base}><path d="M8 2L1.5 13.5h13z" /><line x1="8" y1="6.5" x2="8" y2="9.5" /><circle cx="8" cy="11.5" r=".5" fill="currentColor" stroke="none" /></svg>
+    case 'training': return <svg {...base}><polygon points="8,2 15,5.5 8,9 1,5.5" /><path d="M4 7.2V11c0 1.7 1.8 3 4 3s4-1.3 4-3V7.2" /><line x1="15" y1="5.5" x2="15" y2="10" /><circle cx="15" cy="10.5" r="0.8" fill="currentColor" stroke="none" /></svg>
+    case 'sla-support': return <svg {...base}><path d="M3 4.5h10a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z" /><path d="M5 4.5V3.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" /><path d="M6 8.5h4M8 7v3" /></svg>
+    case 'transition': return <svg {...base}><path d="M3 8h10M10 5l3 3-3 3" /></svg>
 
     // Pricing & Commercials
-    case 'tco-overview': return <svg {...base}><line x1="8" y1="1.5" x2="8" y2="14.5"/><path d="M11 5.5C11 3.5 9.5 2.5 8 2.5C6.5 2.5 5 3.5 5 5.5C5 7 6.5 7.5 8 8C9.5 8.5 11 9 11 10.5C11 12.5 9.5 13.5 8 13.5C6.5 13.5 5 12.5 5 10.5"/></svg>
-    case 'cost-breakdown': return <svg {...base}><line x1="2.5" y1="13.5" x2="13.5" y2="13.5"/><rect x="3" y="9" width="2.5" height="4.5"/><rect x="6.75" y="6" width="2.5" height="7.5"/><rect x="10.5" y="3" width="2.5" height="10.5"/></svg>
-    case 'contractual-terms': return <svg {...base}><path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h5L13 4.5V13a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13z"/><polyline points="9 1 9 5 13 5"/><line x1="5.5" y1="7.5" x2="10.5" y2="7.5"/><line x1="5.5" y1="9.5" x2="8.5" y2="9.5"/><path d="M5.5 12c.4-.7.8-.2 1.2.1s.8-.5 1.2-.1.8.3 1.2 0"/></svg>
+    case 'tco-overview': return <svg {...base}><line x1="8" y1="1.5" x2="8" y2="14.5" /><path d="M11 5.5C11 3.5 9.5 2.5 8 2.5C6.5 2.5 5 3.5 5 5.5C5 7 6.5 7.5 8 8C9.5 8.5 11 9 11 10.5C11 12.5 9.5 13.5 8 13.5C6.5 13.5 5 12.5 5 10.5" /></svg>
+    case 'cost-breakdown': return <svg {...base}><line x1="2.5" y1="13.5" x2="13.5" y2="13.5" /><rect x="3" y="9" width="2.5" height="4.5" /><rect x="6.75" y="6" width="2.5" height="7.5" /><rect x="10.5" y="3" width="2.5" height="10.5" /></svg>
+    case 'contractual-terms': return <svg {...base}><path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h5L13 4.5V13a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13z" /><polyline points="9 1 9 5 13 5" /><line x1="5.5" y1="7.5" x2="10.5" y2="7.5" /><line x1="5.5" y1="9.5" x2="8.5" y2="9.5" /><path d="M5.5 12c.4-.7.8-.2 1.2.1s.8-.5 1.2-.1.8.3 1.2 0" /></svg>
 
     // References & Track Record
-    case 'case-studies': return <svg {...base}><path d="M8 2l1.5 3 3.5.5-2.5 2.5.5 3.5L8 10l-3 1.5.5-3.5L3 5.5l3.5-.5z"/></svg>
-    case 'client-references': return <svg {...base}><rect x="4" y="1.5" width="8" height="13" rx="1.5"/><line x1="6.5" y1="3.5" x2="9.5" y2="3.5"/><circle cx="8" cy="13" r=".7" fill="currentColor" stroke="none"/></svg>
+    case 'case-studies': return <svg {...base}><path d="M8 2l1.5 3 3.5.5-2.5 2.5.5 3.5L8 10l-3 1.5.5-3.5L3 5.5l3.5-.5z" /></svg>
+    case 'client-references': return <svg {...base}><rect x="4" y="1.5" width="8" height="13" rx="1.5" /><line x1="6.5" y1="3.5" x2="9.5" y2="3.5" /><circle cx="8" cy="13" r=".7" fill="currentColor" stroke="none" /></svg>
 
-    default: return <svg {...base}><rect x="3" y="2" width="10" height="12" rx="1.5"/><line x1="5.5" y1="5.5" x2="10.5" y2="5.5"/><line x1="5.5" y1="8" x2="10.5" y2="8"/><line x1="5.5" y1="10.5" x2="8.5" y2="10.5"/></svg>
+    default: return <svg {...base}><rect x="3" y="2" width="10" height="12" rx="1.5" /><line x1="5.5" y1="5.5" x2="10.5" y2="5.5" /><line x1="5.5" y1="8" x2="10.5" y2="8" /><line x1="5.5" y1="10.5" x2="8.5" y2="10.5" /></svg>
   }
 }
 
@@ -85,9 +85,9 @@ export const NAV_SECTIONS: NavSection[] = [
     title: 'Executive Overview',
     path: '/executive-overview',
     subsections: [
-      { id: '1.1', title: 'Proposal Summary',   icon: 'proposal-summary',  path: '/executive-overview/proposal-summary' },
-      { id: '1.3', title: 'Key Assumptions',    icon: 'key-assumptions',   path: '/executive-overview/key-assumptions' },
-      { id: '1.4', title: 'Clarifications',     icon: 'clarifications',    path: '/executive-overview/clarifications' },
+      { id: '1.1', title: 'Proposal Summary', icon: 'proposal-summary', path: '/executive-overview/proposal-summary' },
+      { id: '1.3', title: 'Key Assumptions', icon: 'key-assumptions', path: '/executive-overview/key-assumptions' },
+      { id: '1.4', title: 'Clarifications', icon: 'clarifications', path: '/executive-overview/clarifications' },
     ],
   },
   {
@@ -95,8 +95,8 @@ export const NAV_SECTIONS: NavSection[] = [
     title: 'Requirements Coverage',
     path: '/requirements-coverage',
     subsections: [
-      { id: '2.1', title: 'Requirements Summary',        icon: 'requirements-summary', path: '/requirements-coverage/requirements-summary', badge: 0, badgeGrey: true },
-      { id: '2.2', title: 'Coverage & Compliance Matrix', icon: 'coverage-matrix',      path: '/requirements-coverage/coverage-matrix' },
+      { id: '2.1', title: 'Requirements Summary', icon: 'requirements-summary', path: '/requirements-coverage/requirements-summary', badge: 0, badgeGrey: true },
+      { id: '2.2', title: 'Coverage & Compliance Matrix', icon: 'coverage-matrix', path: '/requirements-coverage/coverage-matrix' },
     ],
   },
   {
@@ -104,11 +104,11 @@ export const NAV_SECTIONS: NavSection[] = [
     title: 'Solution Architecture',
     path: '/solution-architecture',
     subsections: [
-      { id: '3.1', title: 'Architecture Overview',       icon: 'architecture-overview', path: '/solution-architecture/architecture-overview' },
-      { id: '3.3', title: 'Roles & Integrations',        icon: 'roles-integrations',    path: '/solution-architecture/roles-and-integrations', badge: '7+5', badgeGrey: true },
-      { id: '3.2', title: 'Functional Scope',            icon: 'functional-scope',      path: '/solution-architecture/functional-scope' },
-      { id: '3.4', title: 'Non-Functional Requirements', icon: 'non-functional',        path: '/solution-architecture/non-functional-requirements' },
-      { id: '3.5', title: 'Acceptance Criteria',         icon: 'acceptance-criteria',   path: '/solution-architecture/acceptance-criteria' },
+      { id: '3.1', title: 'Architecture Overview', icon: 'architecture-overview', path: '/solution-architecture/architecture-overview' },
+      { id: '3.3', title: 'Roles & Integrations', icon: 'roles-integrations', path: '/solution-architecture/roles-and-integrations', badge: '7+5', badgeGrey: true },
+      { id: '3.2', title: 'Functional Scope', icon: 'functional-scope', path: '/solution-architecture/functional-scope' },
+      { id: '3.4', title: 'Non-Functional Requirements', icon: 'non-functional', path: '/solution-architecture/non-functional-requirements' },
+      { id: '3.5', title: 'Acceptance Criteria', icon: 'acceptance-criteria', path: '/solution-architecture/acceptance-criteria' },
     ],
   },
   {
@@ -116,7 +116,7 @@ export const NAV_SECTIONS: NavSection[] = [
     title: 'Security & Compliance',
     path: '/security-compliance',
     subsections: [
-      { id: '4.1', title: 'Security Model',           icon: 'security-model',  path: '/security-compliance/security-model' },
+      { id: '4.1', title: 'Security Model', icon: 'security-model', path: '/security-compliance/security-model' },
       { id: '4.2', title: 'Certifications & Standards', icon: 'certifications', path: '/security-compliance/certifications-standards' },
     ],
   },
@@ -126,12 +126,12 @@ export const NAV_SECTIONS: NavSection[] = [
     path: '/delivery-governance',
     subsections: [
       { id: '5.1', title: 'Delivery Approach & Timeline', icon: 'delivery-timeline', path: '/delivery-governance/delivery-timeline' },
-      { id: '5.2', title: 'Team & Roles',                 icon: 'team-roles',        path: '/delivery-governance/team-roles' },
-      { id: '5.3', title: 'Testing & Quality',            icon: 'testing-quality',   path: '/delivery-governance/testing-quality' },
-      { id: '5.4', title: 'Risks & Mitigation',           icon: 'risks-mitigation',  path: '/delivery-governance/risks-mitigation' },
-      { id: '5.5', title: 'Training & Change Enablement', icon: 'training',          path: '/delivery-governance/training-change-enablement' },
-      { id: '5.6', title: 'SLA & Support Post-Go-Live',  icon: 'sla-support',       path: '/delivery-governance/sla-support' },
-      { id: '5.7', title: 'Transition & Handover',        icon: 'transition',        path: '/delivery-governance/transition-handover' },
+      { id: '5.2', title: 'Team & Roles', icon: 'team-roles', path: '/delivery-governance/team-roles' },
+      { id: '5.3', title: 'Testing & Quality', icon: 'testing-quality', path: '/delivery-governance/testing-quality' },
+      { id: '5.4', title: 'Risks & Mitigation', icon: 'risks-mitigation', path: '/delivery-governance/risks-mitigation' },
+      { id: '5.5', title: 'Training & Change Enablement', icon: 'training', path: '/delivery-governance/training-change-enablement' },
+      { id: '5.6', title: 'SLA & Support Post-Go-Live', icon: 'sla-support', path: '/delivery-governance/sla-support' },
+      { id: '5.7', title: 'Transition & Handover', icon: 'transition', path: '/delivery-governance/transition-handover' },
     ],
   },
   {
@@ -139,8 +139,8 @@ export const NAV_SECTIONS: NavSection[] = [
     title: 'Pricing & Commercials',
     path: '/pricing-commercials',
     subsections: [
-      { id: '6.1', title: 'TCO Overview',      icon: 'tco-overview',      path: '/pricing-commercials/tco-overview' },
-      { id: '6.2', title: 'Cost Breakdown',    icon: 'cost-breakdown',    path: '/pricing-commercials/cost-breakdown' },
+      { id: '6.1', title: 'TCO Overview', icon: 'tco-overview', path: '/pricing-commercials/tco-overview' },
+      { id: '6.2', title: 'Cost Breakdown', icon: 'cost-breakdown', path: '/pricing-commercials/cost-breakdown' },
       { id: '6.3', title: 'Contractual Terms', icon: 'contractual-terms', path: '/pricing-commercials/contractual-terms' },
     ],
   },
@@ -149,8 +149,8 @@ export const NAV_SECTIONS: NavSection[] = [
     title: 'References & Track Record',
     path: '/proof-credibility',
     subsections: [
-      { id: '7.1', title: 'Results for Similar Organisations', icon: 'case-studies',       path: '/proof-credibility/case-studies' },
-      { id: '7.2', title: 'Peers You Can Call',                icon: 'client-references',  path: '/proof-credibility/client-references' },
+      { id: '7.1', title: 'Results for Similar Organisations', icon: 'case-studies', path: '/proof-credibility/case-studies' },
+      { id: '7.2', title: 'Peers You Can Call', icon: 'client-references', path: '/proof-credibility/client-references' },
     ],
   },
 ]
@@ -342,7 +342,7 @@ export function Sidebar({
             <div key={section.id} className="sidebar-section">
               {hasChildren ? (
                 <>
-                  <div className="sidebar-group-label" style={{cursor: 'pointer'}} onClick={() => onSectionChange?.(section.id, section.path)}>{section.title}</div>
+                  <div className="sidebar-group-label" style={{ cursor: 'pointer' }} onClick={() => onSectionChange?.(section.id, section.path)}>{section.title}</div>
                   <div className="sidebar-subsections">
                     {section.subsections.map((sub) => (
                       <button
@@ -448,6 +448,11 @@ export function Sidebar({
                   </button>
                 ))}
               </div>
+            </div>
+            <div className="sidebar-popup-sep" />
+            <div className="sidebar-menu-footer">
+              <button className="sidebar-menu-item sidebar-menu-item-link">Report a problem</button>
+              <span className="sidebar-menu-version">v6.1.391</span>
             </div>
             <div className="sidebar-popup-sep" />
             <button className="sidebar-popup-item sidebar-popup-item-danger">
