@@ -962,6 +962,47 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
           </table>
         </div>
 
+        <div className="overview-card">
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🔧</span>
+            Implementation Details
+          </div>
+          <table className="overview-table">
+            <tbody>
+              <tr>
+                <td className="overview-table-label">Delivery phase</td>
+                <td>
+                  <span className={`overview-badge ${integration.phaseClass}`}>{integration.phase}</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Integration method</td>
+                <td>{integration.method}</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Key libraries / SDKs</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Infrastructure components</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Config / secrets management</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label">Test approach</td>
+                <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label"></td>
+                <td><span className="integration-detail-tbc"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <div className="overview-card integration-detail-card--wide">
           <div className="overview-card-header">
             <span className="overview-card-icon">🔄</span>
