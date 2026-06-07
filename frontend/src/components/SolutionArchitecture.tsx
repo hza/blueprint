@@ -154,6 +154,59 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
             </tbody>
           </table>
         </div>
+
+        <div className="overview-card" style={{gridColumn: '1 / -1'}}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🚀</span>
+            CI/CD Pipeline — Stages &amp; Flow
+          </div>
+          <div style={{overflowX: 'auto', padding: '1.25rem 0.5rem'}}>
+            <svg viewBox="0 0 1040 200" style={{width: '100%', minWidth: 700, fontFamily: 'inherit'}} aria-label="CI/CD pipeline stages diagram">
+              <defs>
+                <marker id="arrowCI" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L7,3 z" fill="#6B7280"/>
+                </marker>
+                <marker id="arrowCIRed" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L7,3 z" fill="#EF4444"/>
+                </marker>
+              </defs>
+
+              {/* ── Stage definitions ── */}
+              {([
+                { x: 10,  label: 'Code Push',        sub: 'GitHub / GitLab',           color: '#374151', text: '#F9FAFB' },
+                { x: 140, label: 'Lint',              sub: 'ESLint · Black · mypy',     color: '#3B82F6', text: '#EFF6FF' },
+                { x: 270, label: 'Unit Tests',        sub: '≥ 80 % coverage gate',      color: '#3B82F6', text: '#EFF6FF' },
+                { x: 400, label: 'Integration Tests', sub: 'Real DB + services',        color: '#3B82F6', text: '#EFF6FF' },
+                { x: 530, label: 'SAST + Dep Scan',   sub: 'Hard block on CRITICAL',    color: '#EF4444', text: '#FEF2F2' },
+                { x: 660, label: 'Container Scan',    sub: 'Trivy · image hardening',   color: '#F59E0B', text: '#111827' },
+                { x: 790, label: 'Staging Deploy',    sub: 'IaC · smoke tests',         color: '#8B5CF6', text: '#F5F3FF' },
+                { x: 920, label: 'Prod Deploy',       sub: 'Blue/green · auto-rollback', color: '#10B981', text: '#ECFDF5' },
+              ] as {x:number,label:string,sub:string,color:string,text:string}[]).map((stage, i, arr) => (
+                <g key={stage.label}>
+                  <rect x={stage.x} y="60" width="110" height="72" rx="6"
+                    fill={stage.color} stroke={stage.color} strokeWidth="1.5"/>
+                  <text x={stage.x + 55} y="88" textAnchor="middle"
+                    fill={stage.text} fontSize="10" fontWeight="700">{stage.label}</text>
+                  <text x={stage.x + 55} y="103" textAnchor="middle"
+                    fill={stage.text} fontSize="8.5" opacity="0.85">{stage.sub}</text>
+                  <circle cx={stage.x + 55} cy="44" r="14" fill={stage.color} stroke="#fff" strokeWidth="2"/>
+                  <text x={stage.x + 55} y="49" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="700">{i + 1}</text>
+                  {i < arr.length - 1 && (
+                    <line x1={stage.x + 112} y1="96" x2={stage.x + 127} y2="96"
+                      stroke="#6B7280" strokeWidth="1.5" markerEnd="url(#arrowCI)"/>
+                  )}
+                </g>
+              ))}
+
+              <text x="520" y="158" textAnchor="middle" fill="#6B7280" fontSize="9" fontStyle="italic">
+                Triggered on every PR merge to main · target run time &lt; 15 min · feature flags for gradual rollout
+              </text>
+
+              <path d="M 975 132 Q 855 185 790 132" fill="none" stroke="#EF4444" strokeWidth="1.2" strokeDasharray="5,3" markerEnd="url(#arrowCIRed)"/>
+              <text x="885" y="183" textAnchor="middle" fill="#EF4444" fontSize="8.5">auto-rollback on health-check fail</text>
+            </svg>
+          </div>
+        </div>
       </div>
 
       </>)}
