@@ -15,6 +15,7 @@ import { SecurityCompliance } from './components/SecurityCompliance'
 import { GdprCompliance } from './components/GdprCompliance'
 import { Soc2Compliance } from './components/Soc2Compliance'
 import { Iso27001Compliance } from './components/Iso27001Compliance'
+import { EuAiActCompliance } from './components/EuAiActCompliance'
 import { DeliveryGovernance } from './components/DeliveryGovernance'
 import { PricingCommercials } from './components/PricingCommercials'
 import { ProofCredibility } from './components/ProofCredibility'
@@ -128,6 +129,7 @@ export default function App() {
     p.startsWith('/gdpr-compliance') ? 'gdpr-compliance' :
     p.startsWith('/soc2-compliance') ? 'soc2-compliance' :
     p.startsWith('/iso27001-compliance') ? 'iso27001-compliance' :
+    p.startsWith('/euai-compliance') ? 'euai-compliance' :
     p === '/security' || p.startsWith('/security-compliance') ? 'security' :
     p === '/delivery' || p.startsWith('/delivery-governance') ? 'delivery' :
     p === '/pricing' || p.startsWith('/pricing-commercials') ? 'pricing' :
@@ -143,7 +145,7 @@ export default function App() {
       navigate(`/list${location.search}${location.hash}`, { replace: true })
       return
     }
-    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility', '/integration-detail', '/gdpr-compliance', '/soc2-compliance', '/iso27001-compliance']
+    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility', '/integration-detail', '/gdpr-compliance', '/soc2-compliance', '/iso27001-compliance', '/euai-compliance']
     if (!knownPrefixes.some((prefix) => location.pathname === prefix || location.pathname.startsWith(prefix + '/'))) {
       navigate('/executive-overview/proposal-summary', { replace: true })
     }
@@ -364,6 +366,15 @@ export default function App() {
             <div className="file-box">
               <div className="file-box-body">
                 <Iso27001Compliance />
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'euai-compliance' ? (
+          <>
+            <PageHeader title="EU AI Act Compliance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            <div className="file-box">
+              <div className="file-box-body">
+                <EuAiActCompliance />
               </div>
             </div>
           </>
