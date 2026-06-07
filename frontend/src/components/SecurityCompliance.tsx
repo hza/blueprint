@@ -12,7 +12,6 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
     { cert: 'ISO 27001', cells: ['covered', 'covered', 'partial', 'covered', 'covered'] },
     { cert: 'GDPR', cells: ['partial', 'covered', 'covered', 'covered', 'covered'] },
     { cert: 'EU AI Act', cells: ['covered', 'partial', 'covered', 'covered', 'na'] },
-    { cert: 'PII Anonymisation', cells: ['covered', 'covered', 'na', 'partial', 'covered'] },
   ]
   const colHeaders = ['Access Control', 'Encryption', 'Incident Resp.', 'Audit Logs', 'Data Residency']
 
@@ -102,7 +101,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             { label: 'Perimeter',   sub: 'WAF · DDoS · Front Door',           fill: '#FEF2F2', stroke: '#FCA5A5', text: '#991B1B' },
             { label: 'Network',     sub: 'Private Subnets · NSGs · IDS',       fill: '#FFF7ED', stroke: '#FCD34D', text: '#92400E' },
             { label: 'Application', sub: 'MFA · RBAC · Input Validation',      fill: '#EFF6FF', stroke: '#93C5FD', text: '#1E40AF' },
-            { label: 'Data',        sub: 'AES-256 · TLS 1.3 · PII Anon.',      fill: '#F0FDF4', stroke: '#86EFAC', text: '#065F46' },
+            { label: 'Data',        sub: 'AES-256 · TLS 1.3 · Field Encryption', fill: '#F0FDF4', stroke: '#86EFAC', text: '#065F46' },
             { label: 'Monitoring',  sub: 'SIEM · Audit Logs · SOC 24/7',       fill: '#F5F3FF', stroke: '#C4B5FD', text: '#5B21B6' },
           ].map((item, i) => {
             const lx = 360, ly = 21 + i * 26
@@ -289,16 +288,19 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
               </tr>
             </thead>
             <tbody>
-              {certRows.map(row => (
+              {certRows.map((row, ri) => {
+                const isLast = ri === certRows.length - 1
+                return (
                 <tr key={row.cert}>
-                  <td style={{ padding: '6px', border: '1px solid var(--border)', fontWeight: 600, whiteSpace: 'nowrap', fontSize: 'var(--font-size-sm)', color: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'var(--accent, #0969da)' : 'var(--fg)', cursor: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'pointer' : undefined, textDecoration: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'underline' : undefined }} onClick={row.cert === 'GDPR' ? () => navigate('/gdpr-compliance') : row.cert === 'SOC 2 Type II' ? () => navigate('/soc2-compliance') : row.cert === 'ISO 27001' ? () => navigate('/iso27001-compliance') : row.cert === 'EU AI Act' ? () => navigate('/euai-compliance') : undefined}>{row.cert}</td>
+                  <td style={{ padding: '6px', border: isLast ? 'none' : '1px solid var(--border)', fontWeight: 600, whiteSpace: 'nowrap', fontSize: 'var(--font-size-sm)', color: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'var(--accent, #0969da)' : 'var(--fg)', cursor: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'pointer' : undefined, textDecoration: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'underline' : undefined }} onClick={row.cert === 'GDPR' ? () => navigate('/gdpr-compliance') : row.cert === 'SOC 2 Type II' ? () => navigate('/soc2-compliance') : row.cert === 'ISO 27001' ? () => navigate('/iso27001-compliance') : row.cert === 'EU AI Act' ? () => navigate('/euai-compliance') : undefined}>{row.cert}</td>
                   {row.cells.map((c, ci) => (
-                    <td key={ci} style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'center', ...coverageStyle(c) }}>
+                    <td key={ci} style={{ padding: '6px', border: isLast ? 'none' : '1px solid var(--border)', textAlign: 'center', ...coverageStyle(c) }}>
                       {coverageLabel(c)}
                     </td>
                   ))}
                 </tr>
-              ))}
+                )
+              })}
             </tbody>
           </table>
         </div>
@@ -323,7 +325,6 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
                 { cert: 'ISO 27001', area: 'Incident Resp.', reason: 'Playbooks exist for Tier 1–2 incidents; Tier 3 (nation-state / supply-chain) scenarios are in final review. Full coverage expected at next ISO surveillance audit (Sep 2026).' },
                 { cert: 'GDPR', area: 'Access Control', reason: 'Data-subject access request (DSAR) portal is live for EU users; automated DSAR routing for US-based data subjects is in staging and scheduled for release Aug 2026.' },
                 { cert: 'EU AI Act', area: 'Encryption', reason: 'AI model weights stored with AES-256 at rest; end-to-end encrypted inference pipeline for high-risk use-cases is under implementation per Article 15 requirements, targeting Q4 2026.' },
-                { cert: 'PII Anonymisation', area: 'Audit Logs', reason: 'Anonymisation events are logged; structured metadata (data-subject ID hash, technique applied, timestamp) is captured for 80% of flows — remaining 20% (legacy batch jobs) will be migrated to structured logging by Jul 2026.' },
               ].map(({ cert, area, reason }) => (
                 <tr key={cert + area}>
                   <td><strong>{cert}</strong></td>
