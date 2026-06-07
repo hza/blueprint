@@ -1003,24 +1003,31 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
           </table>
         </div>
 
-        <div className="overview-card integration-detail-card--wide">
-          <div className="overview-card-header">
-            <span className="overview-card-icon">🔄</span>
-            Sequence Diagram
-            <span className="integration-detail-example-badge">Example — exact flow confirmed at Discovery</span>
+        <div className="example-stamp-wrap">
+          <div className="example-stamp">EXAMPLE</div>
+          <div className="overview-card integration-detail-card--wide">
+            <div className="overview-card-header">
+              <span className="overview-card-icon">🔄</span>
+              Sequence Diagram
+              <span className="integration-detail-example-badge">Example — exact flow confirmed at Discovery</span>
+            </div>
+            <div className="integration-detail-seq-notice">
+              The diagram below illustrates a representative happy-path flow based on our current understanding.
+              Precise steps, actors, and error branches will be finalised with your team during Discovery (Weeks 1–2).
+            </div>
+            <SequenceDiagram externalSystem={integration.system.split('/')[0].trim()} />
           </div>
-          <div className="integration-detail-seq-notice">
-            The diagram below illustrates a representative happy-path flow based on our current understanding.
-            Precise steps, actors, and error branches will be finalised with your team during Discovery (Weeks 1–2).
-          </div>
-          <SequenceDiagram externalSystem={integration.system.split('/')[0].trim()} />
         </div>
 
-        <AsrCardStack />
+        <div className="example-stamp-wrap">
+          <div className="example-stamp">EXAMPLE</div>
+          <AsrCardStack />
+        </div>
 
-
-
-        <QattCardStack />
+        <div className="example-stamp-wrap">
+          <div className="example-stamp">EXAMPLE</div>
+          <QattCardStack />
+        </div>
 
         <div className="overview-card integration-detail-card--wide">
           <div className="overview-card-header">
