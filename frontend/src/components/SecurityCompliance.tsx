@@ -308,6 +308,8 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
           </table>
         </div>
 
+        No conflicts or gaps were identified between your RFP requirements and the certifications and standards described below.
+
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">📋</span>
