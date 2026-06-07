@@ -260,6 +260,12 @@
   text-transform: uppercase;
   letter-spacing: .05em;
 }
+
+.compliance-matrix th:first-child,
+.compliance-matrix td:first-child { border-left: none !important; }
+.compliance-matrix th:last-child,
+.compliance-matrix td:last-child { border-right: none !important; }
+.compliance-matrix thead tr:first-child th { border-top: none !important; }
 .overview-card-icon {
   font-size: 11px;
   opacity: .7;

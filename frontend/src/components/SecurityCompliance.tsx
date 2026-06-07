@@ -34,20 +34,20 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
       <div className="overview-banner">
         <div className="overview-banner-stats">
           <div className="overview-stat">
-            <span className="overview-stat-label">Security Tier</span>
-            <span className="overview-stat-value overview-stat-score--ok">Enterprise</span>
+            <span className="overview-stat-label">Security Posture</span>
+            <span className="overview-stat-value">Enterprise-Grade</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">ISO 27001</span>
-            <span className="overview-stat-value">In Progress</span>
+            <span className="overview-stat-label">Data Encryption</span>
+            <span className="overview-stat-value">AES-256 at Rest &amp; Transit</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">SOC 2 Type II</span>
-            <span className="overview-stat-value overview-stat-score--ok">Certified</span>
+            <span className="overview-stat-label">Access Control</span>
+            <span className="overview-stat-value">Role-Based (RBAC)</span>
           </div>
           <div className="overview-stat">
-            <span className="overview-stat-label">Pen Test</span>
-            <span className="overview-stat-value">Annual</span>
+            <span className="overview-stat-label">Audit Logging</span>
+            <span className="overview-stat-value">Full Event Trail</span>
           </div>
         </div>
       </div>
@@ -278,7 +278,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">✓</span>
             Compliance Coverage Matrix
           </div>
-          <table style={{ width: '100%', fontSize: 'var(--font-size-sm)', borderCollapse: 'collapse' }}>
+          <table className="compliance-matrix" style={{ width: '100%', fontSize: 'var(--font-size-sm)', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
                 <th style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'left', background: 'var(--canvas-subtle)', color: 'var(--fg)', fontSize: 'var(--font-size-sm)' }}></th>
