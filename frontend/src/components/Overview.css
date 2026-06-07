@@ -78,6 +78,49 @@
   font-weight: 700;
 }
 
+.overview-info-banner {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--canvas-inset);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+.overview-info-banner-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.overview-info-banner-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.overview-info-banner-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--fg);
+}
+.overview-info-banner-text {
+  font-size: var(--font-size-sm);
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+.overview-info-banner-why,
+.overview-info-banner-when {
+  font-size: var(--font-size-sm);
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+.overview-info-banner-why strong,
+.overview-info-banner-when strong {
+  color: var(--fg);
+}
+
 .overview-section-heading {
   font-size: var(--font-size-sm);
   font-weight: 600;

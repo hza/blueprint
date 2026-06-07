@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import './IntegrationDetail.css'
+import './Overview.css'
 
 type Soc2Item = { category: string; criterion: string; status: 'met' | 'partial' | 'discovery'; detail: string }
 
@@ -98,7 +99,7 @@ export function Soc2Compliance() {
           </div>
           <div className="overview-stat">
             <span className="overview-stat-label">Audit Period</span>
-            <span className="overview-stat-value">Jan–Dec 2024</span>
+            <span className="overview-stat-value">Jan–Dec 2027</span>
           </div>
         </div>
       </div>
@@ -110,6 +111,26 @@ export function Soc2Compliance() {
         <button className="integration-detail-back-btn" onClick={() => navigate(-1)}>
           ← Back
         </button>
+      </div>
+
+      <div className="overview-grid">
+        <div className="overview-card" style={{ gridColumn: '1 / -1' }}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">✅</span>
+            What is SOC 2 — and Why Does It Matter to You?
+          </div>
+          <div style={{ lineHeight: '1.7', fontSize: '14px', color: 'var(--fg)', padding: '14px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <p style={{ margin: 0 }}>
+              <strong>SOC 2 (Service Organization Control 2)</strong> is an auditing framework developed by the American Institute of CPAs (AICPA). It evaluates how a vendor manages customer data across five Trust Service Criteria: Security, Availability, Processing Integrity, Confidentiality, and Privacy. A <strong>Type II</strong> report — the gold standard — covers actual control effectiveness over an observation period (typically 6–12 months), not just design.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong>Why it matters to you:</strong> SOC 2 Type II is the most widely required security assurance standard for US-listed companies and any organisation using SaaS or cloud services. It gives your security team independent evidence — from a licensed CPA firm — that your vendor's controls actually operated as designed throughout the audit period, not just on paper. It directly addresses the most common enterprise procurement and vendor risk requirements.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong>When it applies:</strong> Typically requested during procurement, contract renewal, or annual vendor risk reviews. SCNSoft's SOC 2 Type II audit covers Jan–Dec 2027 — the report is available under NDA. This page maps every criterion so your team can review the scope before requesting the full report.
+            </p>
+          </div>
+        </div>
       </div>
       <div style={{ color: 'var(--fg-muted)', marginBottom: '12px' }}>
         Items marked <strong style={{ color: 'var(--fg)' }}>Discovery Stage</strong> depend on client-specific context (data types, processing workflows) and will be finalised at project kick-off.
@@ -320,6 +341,12 @@ export function Soc2Compliance() {
                   </ul>
                 </td>
                 <td>Ongoing</td>
+              </tr>
+              <tr style={{ fontWeight: 600, borderTop: '2px solid var(--border)' }}>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Total (Phases 1–7)</td>
+                <td></td>
+                <td></td>
+                <td>17–35 weeks</td>
               </tr>
             </tbody>
           </table>

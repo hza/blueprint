@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import './IntegrationDetail.css'
+import './Overview.css'
 
 type GdprItem = { article: string; requirement: string; status: 'met' | 'partial' | 'discovery'; detail: string }
 
@@ -56,6 +57,10 @@ export function GdprCompliance() {
             <span className="overview-stat-label">Pending Discovery</span>
             <span className="overview-stat-value">{discoveryCount}</span>
           </div>
+          <div className="overview-stat">
+            <span className="overview-stat-label">Audit Period</span>
+            <span className="overview-stat-value">Jan–Dec 2027</span>
+          </div>
         </div>
       </div>
 
@@ -67,6 +72,27 @@ export function GdprCompliance() {
           ← Back
         </button>
       </div>
+
+      <div className="overview-grid">
+        <div className="overview-card" style={{ gridColumn: '1 / -1' }}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">🔒</span>
+            What is GDPR — and Why Does It Apply to Your Project?
+          </div>
+          <div style={{ lineHeight: '1.7', fontSize: '14px', color: 'var(--fg)', padding: '14px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <p style={{ margin: 0 }}>
+              The <strong>General Data Protection Regulation (EU 2016/679)</strong> is the EU's binding privacy law, effective May 2018. It governs how organisations collect, store, process, and delete personal data of EU and EEA residents — regardless of where the vendor is based.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong>Why it matters to you:</strong> If your platform handles personal data of EU users (names, emails, usage logs, payment details), GDPR compliance is a legal requirement — not optional. Violations carry fines of up to <strong>€20 million or 4% of global annual turnover</strong>. As your software vendor, SCNSoft acts as a <em>data processor</em> under your instructions; this page shows exactly how we meet our obligations so your audit exposure is minimised.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong>When it applies:</strong> From day one of development — any environment that touches real personal data must be compliant. Relevant for procurement sign-off, DPA signing, and any infosec or legal review your organisation requires.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div style={{ color: 'var(--fg-muted)', marginBottom: '12px' }}>
         Items marked <strong style={{ color: 'var(--fg)' }}>Discovery Stage</strong> depend on client-specific context (data subjects, processing scale, correction workflows) and will be finalised at project kick-off.
       </div>
@@ -293,6 +319,12 @@ export function GdprCompliance() {
                   </ul>
                 </td>
                 <td>1 week</td>
+              </tr>
+              <tr style={{ fontWeight: 600, borderTop: '2px solid var(--border)' }}>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Total</td>
+                <td></td>
+                <td></td>
+                <td>17–26 weeks</td>
               </tr>
             </tbody>
           </table>
