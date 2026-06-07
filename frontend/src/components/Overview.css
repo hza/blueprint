@@ -244,7 +244,6 @@
   border-radius: 8px;
   background: var(--canvas);
   box-shadow: var(--shadow-sm);
-  overflow: hidden;
 }
 
 .overview-card-header {

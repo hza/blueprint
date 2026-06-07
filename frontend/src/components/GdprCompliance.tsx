@@ -330,9 +330,12 @@ export function GdprCompliance() {
           </table>
         </div>
       </div>
-      <div style={{ marginTop: '16px', padding: '16px', background: 'var(--canvas-inset)', borderRadius: '6px' }}>
-        <div style={{ fontWeight: 600, marginBottom: '10px', color: 'var(--fg)' }}>What You Gain</div>
-        <ul style={{ margin: 0, paddingLeft: '1.4em', color: 'var(--fg-muted)', lineHeight: '1.7' }}>
+      <div className="overview-card" style={{ marginTop: '16px' }}>
+        <div className="overview-card-header">
+          <span className="overview-card-icon">◎</span>
+          What You Gain
+        </div>
+        <ul style={{ margin: 0, padding: '14px 14px 14px 2em', color: 'var(--fg)', fontSize: '14px', lineHeight: '1.7' }}>
           <li>Audit-ready documentation that demonstrates accountability</li>
           <li>Reduced risk of fines and reputational damage</li>
           <li>Efficient, reusable processes tailored to your project</li>

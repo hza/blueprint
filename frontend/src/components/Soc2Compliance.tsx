@@ -352,9 +352,12 @@ export function Soc2Compliance() {
           </table>
         </div>
       </div>
-      <div style={{ marginTop: '16px', padding: '16px', background: 'var(--canvas-inset)', borderRadius: '6px' }}>
-        <div style={{ fontWeight: 600, marginBottom: '10px', color: 'var(--fg)' }}>What You Gain</div>
-        <ul style={{ margin: 0, paddingLeft: '1.4em', color: 'var(--fg-muted)', lineHeight: '1.7' }}>
+      <div className="overview-card" style={{ marginTop: '16px' }}>
+        <div className="overview-card-header">
+          <span className="overview-card-icon">◎</span>
+          What You Gain
+        </div>
+        <ul style={{ margin: 0, padding: '14px 14px 14px 2em', color: 'var(--fg)', fontSize: '14px', lineHeight: '1.7' }}>
           <li>A SOC 2 Type II report your customers and auditors can rely on</li>
           <li>Reduced security questionnaire burden — share the report instead</li>
           <li>Demonstrated continuous control effectiveness over a 12-month period</li>

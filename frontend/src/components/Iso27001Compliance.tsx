@@ -346,9 +346,12 @@ export function Iso27001Compliance() {
           </table>
         </div>
       </div>
-      <div style={{ marginTop: '16px', padding: '16px', background: 'var(--canvas-inset)', borderRadius: '6px' }}>
-        <div style={{ fontWeight: 600, marginBottom: '10px', color: 'var(--fg)' }}>What You Gain</div>
-        <ul style={{ margin: 0, paddingLeft: '1.4em', color: 'var(--fg-muted)', lineHeight: '1.7' }}>
+      <div className="overview-card" style={{ marginTop: '16px' }}>
+        <div className="overview-card-header">
+          <span className="overview-card-icon">◎</span>
+          What You Gain
+        </div>
+        <ul style={{ margin: 0, padding: '14px 14px 14px 2em', color: 'var(--fg)', fontSize: '14px', lineHeight: '1.7' }}>
           <li>Internationally recognised certification that opens doors to regulated and enterprise markets</li>
           <li>A systematic, risk-based approach to protecting your information assets</li>
           <li>Reduced supplier security questionnaire burden — share the certificate instead</li>
