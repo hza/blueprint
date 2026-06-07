@@ -116,7 +116,7 @@ export const NAV_SECTIONS: NavSection[] = [
     title: 'Security & Compliance',
     path: '/security-compliance',
     subsections: [
-      { id: '4.1', title: 'Security Model',           icon: 'security-model', path: '/security-compliance/security-model' },
+      { id: '4.1', title: 'Security Model',           icon: 'security-model',  path: '/security-compliance/security-model' },
       { id: '4.2', title: 'Certifications & Standards', icon: 'certifications', path: '/security-compliance/certifications-standards' },
     ],
   },

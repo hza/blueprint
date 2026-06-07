@@ -12,6 +12,7 @@ import { Timeline } from './components/Timeline'
 import { Team } from './components/Team'
 import { Overview } from './components/Overview'
 import { SecurityCompliance } from './components/SecurityCompliance'
+import { GdprCompliance } from './components/GdprCompliance'
 import { DeliveryGovernance } from './components/DeliveryGovernance'
 import { PricingCommercials } from './components/PricingCommercials'
 import { ProofCredibility } from './components/ProofCredibility'
@@ -122,6 +123,7 @@ export default function App() {
     p === '/cost' ? 'cost' :
     p === '/timeline' ? 'timeline' :
     p === '/team' ? 'team' :
+    p.startsWith('/gdpr-compliance') ? 'gdpr-compliance' :
     p === '/security' || p.startsWith('/security-compliance') ? 'security' :
     p === '/delivery' || p.startsWith('/delivery-governance') ? 'delivery' :
     p === '/pricing' || p.startsWith('/pricing-commercials') ? 'pricing' :
@@ -137,7 +139,7 @@ export default function App() {
       navigate(`/list${location.search}${location.hash}`, { replace: true })
       return
     }
-    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility', '/integration-detail']
+    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility', '/integration-detail', '/gdpr-compliance']
     if (!knownPrefixes.some((prefix) => location.pathname === prefix || location.pathname.startsWith(prefix + '/'))) {
       navigate('/executive-overview/proposal-summary', { replace: true })
     }
@@ -331,6 +333,15 @@ export default function App() {
             <div className="file-box">
               <div className="file-box-body">
                 <SecurityCompliance subsection={activeSection ?? undefined} />
+              </div>
+            </div>
+          </>
+        ) : activeTab === 'gdpr-compliance' ? (
+          <>
+            <PageHeader title="GDPR Compliance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+            <div className="file-box">
+              <div className="file-box-body">
+                <GdprCompliance />
               </div>
             </div>
           </>

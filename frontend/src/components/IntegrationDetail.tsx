@@ -793,8 +793,7 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
     return (
       <div className="overview">
         <div className="integration-detail-empty">
-          <span className="integration-detail-empty-icon">🔗</span>
-          <div className="integration-detail-empty-title">Select an integration to view its specification</div>
+<div className="integration-detail-empty-title">Select an integration to view its specification</div>
           <div className="integration-detail-empty-desc">
             Choose a system from the Integration Map in Solution Architecture to see its full technical detail.
           </div>
@@ -807,7 +806,7 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
     <div className="overview">
       <div className="integration-detail-header">
         <div className="integration-detail-header-left">
-          <span className="rfp-section-heading">🔗 {integration.system} Integration</span>
+          <span className="rfp-section-heading">{integration.system} Integration</span>
         </div>
         <button className="integration-detail-back-btn" onClick={() => navigate('/solution-architecture/integration-data')}>
           ← Back to Integration Map

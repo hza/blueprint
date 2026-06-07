@@ -1,4 +1,8 @@
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
 export function SecurityCompliance({ subsection }: { subsection?: string }) {
+  const navigate = useNavigate()
   const show = (id: string) => !subsection || subsection === id.split('.')[0] || subsection === id
 
   // Compliance coverage data
@@ -274,19 +278,19 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             <span className="overview-card-icon">✓</span>
             Compliance Coverage Matrix
           </div>
-          <table style={{ width: '100%', fontSize: '12px', borderCollapse: 'collapse' }}>
+          <table style={{ width: '100%', fontSize: 'var(--font-size-sm)', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
-                <th style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'left', background: 'var(--canvas-subtle)', color: 'var(--fg)', fontSize: '11px' }}></th>
+                <th style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'left', background: 'var(--canvas-subtle)', color: 'var(--fg)', fontSize: 'var(--font-size-sm)' }}></th>
                 {colHeaders.map(h => (
-                  <th key={h} style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'center', background: 'var(--canvas-subtle)', color: 'var(--fg)', fontSize: '11px', fontWeight: 600 }}>{h}</th>
+                  <th key={h} style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'center', background: 'var(--canvas-subtle)', color: 'var(--fg)', fontSize: 'var(--font-size-sm)', fontWeight: 600 }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {certRows.map(row => (
                 <tr key={row.cert}>
-                  <td style={{ padding: '6px', border: '1px solid var(--border)', fontWeight: 600, whiteSpace: 'nowrap', fontSize: '11px', color: 'var(--fg)' }}>{row.cert}</td>
+                  <td style={{ padding: '6px', border: '1px solid var(--border)', fontWeight: 600, whiteSpace: 'nowrap', fontSize: 'var(--font-size-sm)', color: row.cert === 'GDPR' ? 'var(--accent, #0969da)' : 'var(--fg)', cursor: row.cert === 'GDPR' ? 'pointer' : undefined, textDecoration: row.cert === 'GDPR' ? 'underline' : undefined }} onClick={row.cert === 'GDPR' ? () => navigate('/gdpr-compliance') : undefined}>{row.cert}</td>
                   {row.cells.map((c, ci) => (
                     <td key={ci} style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'center', ...coverageStyle(c) }}>
                       {coverageLabel(c)}
@@ -296,7 +300,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
               ))}
             </tbody>
           </table>
-          <div style={{ display: 'flex', gap: '12px', marginTop: '10px', fontSize: '11px' }}>
+          <div style={{ display: 'flex', gap: '12px', marginTop: '10px', fontSize: 'var(--font-size-sm)' }}>
             <span style={{ background: 'var(--sem-ok-bg)', color: 'var(--sem-ok-fg)', padding: '2px 8px', borderRadius: '4px' }}>✓ Covered</span>
             <span style={{ background: 'var(--sem-warn-bg)', color: 'var(--sem-warn-fg)', padding: '2px 8px', borderRadius: '4px' }}>Partial</span>
             <span style={{ background: 'var(--canvas-inset)', color: 'var(--fg-muted)', padding: '2px 8px', borderRadius: '4px' }}>N/A</span>

@@ -3,7 +3,7 @@
   border: none;
   color: var(--link);
   cursor: pointer;
-  font-size: var(--font-size-back-btn);
+  font-size: var(--font-size-sm);
   font-family: inherit;
   padding: 0;
   text-decoration: none;
