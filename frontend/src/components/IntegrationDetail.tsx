@@ -808,7 +808,7 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
         <div className="integration-detail-header-left">
           <span className="rfp-section-heading">{integration.system} Integration</span>
         </div>
-        <button className="integration-detail-back-btn" onClick={() => navigate('/solution-architecture/integration-data')}>
+        <button className="integration-detail-back-btn" onClick={() => navigate(-1)}>
           ← Back to Integration Map
         </button>
       </div>

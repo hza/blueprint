@@ -105,7 +105,7 @@ export const NAV_SECTIONS: NavSection[] = [
     path: '/solution-architecture',
     subsections: [
       { id: '3.1', title: 'Architecture Overview',       icon: 'architecture-overview', path: '/solution-architecture/architecture-overview' },
-      { id: '3.3', title: 'Roles & Integrations',        icon: 'roles-integrations',    path: '/solution-architecture/integration-data', badge: '7+5', badgeGrey: true },
+      { id: '3.3', title: 'Roles & Integrations',        icon: 'roles-integrations',    path: '/solution-architecture/roles-and-integrations', badge: '7+5', badgeGrey: true },
       { id: '3.2', title: 'Functional Scope',            icon: 'functional-scope',      path: '/solution-architecture/functional-scope' },
       { id: '3.4', title: 'Non-Functional Requirements', icon: 'non-functional',        path: '/solution-architecture/non-functional-requirements' },
       { id: '3.5', title: 'Acceptance Criteria',         icon: 'acceptance-criteria',   path: '/solution-architecture/acceptance-criteria' },

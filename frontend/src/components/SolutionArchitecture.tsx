@@ -841,42 +841,42 @@ export function SolutionArchitecture({ subsection }: { subsection?: string }) {
                 <td>→ Outbound</td>
                 <td>REST API via LLM abstraction layer; PII anonymised before dispatch</td>
                 <td><span className="overview-badge overview-badge--ok">Phase 1</span></td>
-                <td><Link to="/integration-detail/llm" onClick={saveScrollAndNavigate}>View spec →</Link></td>
+                <td><Link to="/solution-architecture/roles-and-integrations/llm" onClick={saveScrollAndNavigate}>View spec →</Link></td>
               </tr>
               <tr>
                 <td className="overview-table-label">SSO (Google WS / Azure AD / Okta / SAML)</td>
                 <td>↔ Bi-directional</td>
                 <td>OAuth 2.0 / SAML 2.0</td>
                 <td><span className="overview-badge overview-badge--warn">Phase 3</span></td>
-                <td><Link to="/integration-detail/sso" onClick={saveScrollAndNavigate}>View spec →</Link></td>
+                <td><Link to="/solution-architecture/roles-and-integrations/sso" onClick={saveScrollAndNavigate}>View spec →</Link></td>
               </tr>
               <tr>
                 <td className="overview-table-label">MS Teams</td>
                 <td>→ Outbound</td>
                 <td>Incoming webhook</td>
                 <td><span className="overview-badge overview-badge--ok">Phase 1</span></td>
-                <td><Link to="/integration-detail/teams" onClick={saveScrollAndNavigate}>View spec →</Link></td>
+                <td><Link to="/solution-architecture/roles-and-integrations/teams" onClick={saveScrollAndNavigate}>View spec →</Link></td>
               </tr>
               <tr>
                 <td className="overview-table-label">Confluence</td>
                 <td>→ Outbound</td>
                 <td>REST API — page create/update</td>
                 <td><span className="overview-badge overview-badge--warn">Phase 2</span></td>
-                <td><Link to="/integration-detail/confluence" onClick={saveScrollAndNavigate}>View spec →</Link></td>
+                <td><Link to="/solution-architecture/roles-and-integrations/confluence" onClick={saveScrollAndNavigate}>View spec →</Link></td>
               </tr>
               <tr>
                 <td className="overview-table-label">Salesforce</td>
                 <td>↔ Bi-directional</td>
                 <td>REST API + webhooks; creates/updates projects within 60 s</td>
                 <td><span className="overview-badge overview-badge--warn">Phase 3</span></td>
-                <td><Link to="/integration-detail/salesforce" onClick={saveScrollAndNavigate}>View spec →</Link></td>
+                <td><Link to="/solution-architecture/roles-and-integrations/salesforce" onClick={saveScrollAndNavigate}>View spec →</Link></td>
               </tr>
               <tr>
                 <td className="overview-table-label">Slack</td>
                 <td>→ Outbound</td>
                 <td>Incoming webhook</td>
                 <td><span className="overview-badge overview-badge--warn">Phase 2</span></td>
-                <td><Link to="/integration-detail/slack" onClick={saveScrollAndNavigate}>View spec →</Link></td>
+                <td><Link to="/solution-architecture/roles-and-integrations/slack" onClick={saveScrollAndNavigate}>View spec →</Link></td>
               </tr>
             </tbody>
           </table>

@@ -45,12 +45,14 @@ export function FileBoxHeader({
       </div>
       {onClose && hasReturnPath && (
         <button
-          className="icon-btn icon-btn-close"
-          title="Back"
+          className="icon-btn icon-btn-no-bg"
+          title="Close"
           onClick={onClose}
+          style={{ position: 'relative', left: 16 }}
         >
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg" style={{ width: 14, height: 14 }}>
-            <polyline points="10,3 4,8 10,13" />
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg" style={{ width: 14, height: 14 }}>
+            <line x1="3" y1="3" x2="13" y2="13" />
+            <line x1="13" y1="3" x2="3" y2="13" />
           </svg>
         </button>
       )}

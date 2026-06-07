@@ -162,7 +162,7 @@ export default function App() {
     const prev = prevPathname.current
     prevPathname.current = location.pathname
     const returningFromIntegrationDetail =
-      prev.startsWith('/integration-detail') &&
+      (prev.startsWith('/integration-detail') || prev.startsWith('/solution-architecture/roles-and-integrations/')) &&
       location.pathname.startsWith('/solution-architecture')
     const body = document.querySelector('.file-box-body > *') as HTMLElement | null
     if (!body) return
@@ -412,14 +412,32 @@ export default function App() {
             </div>
           </>
         ) : activeTab === 'solution-architecture' ? (
-          <>
-            <PageHeader title="Solution Architecture" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            <div className="file-box">
-              <div className="file-box-body">
-                <SolutionArchitecture subsection={activeSection ?? undefined} />
-              </div>
-            </div>
-          </>
+          (() => {
+            const INTEGRATION_LABELS: Record<string, string> = { llm: 'LLM', sso: 'SSO', teams: 'MS Teams', confluence: 'Confluence', salesforce: 'Salesforce', slack: 'Slack' }
+            const integrationId = location.pathname.startsWith('/solution-architecture/roles-and-integrations/')
+              ? location.pathname.split('/solution-architecture/roles-and-integrations/')[1]
+              : null
+            const integrationLabel = integrationId ? INTEGRATION_LABELS[integrationId] : null
+            return integrationId && integrationLabel ? (
+              <>
+                <PageHeader title="Roles & Integrations" segment={integrationLabel} parentPath="/solution-architecture/roles-and-integrations" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+                <div className="file-box">
+                  <div className="file-box-body">
+                    <IntegrationDetail integrationId={integrationId} />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <PageHeader title="Solution Architecture" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+                <div className="file-box">
+                  <div className="file-box-body">
+                    <SolutionArchitecture subsection={activeSection ?? undefined} />
+                  </div>
+                </div>
+              </>
+            )
+          })()
         ) : activeTab === 'integration-detail' ? (
           <>
             <PageHeader title="Integration Specification" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
@@ -462,6 +480,7 @@ export default function App() {
               title={activeTab === 'requirements' ? 'Requirements' : (selectedFile ?? '')}
               segment={activeTab === 'requirements' ? (selectedFile ?? undefined) : undefined}
               subtitle={activeTab === 'requirements' ? PROJECT_TITLE : undefined}
+              showSearch={false}
               activeTab={activeTab}
               selectedFile={selectedFile}
               fileContent={fileContent}

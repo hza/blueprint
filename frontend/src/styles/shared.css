@@ -133,6 +133,10 @@
   border-radius: 0 7px 7px 0;
 }
 
+.icon-btn-no-bg,
+.icon-btn-no-bg:hover { background: transparent !important; border: none; }
+.icon-btn-no-bg:hover svg { stroke-width: 2.5; }
+
 .icon-btn-close {
   width: 28px;
   height: 28px;
