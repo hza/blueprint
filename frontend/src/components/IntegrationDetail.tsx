@@ -762,14 +762,7 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
     <div className="overview">
       <div className="integration-detail-header">
         <div className="integration-detail-header-left">
-          <span className="overview-card-icon">🔗</span>
-          <div>
-            <div className="integration-detail-title">{integration.system}</div>
-            <div className="integration-detail-meta">
-              <span>{integration.direction}</span>
-              <span className={`overview-badge ${integration.phaseClass}`}>{integration.phase}</span>
-            </div>
-          </div>
+          <span className="rfp-section-heading">🔗 {integration.system} Integration</span>
         </div>
         <button className="integration-detail-back-btn" onClick={() => navigate('/solution-architecture/integration-data')}>
           ← Back to Integration Map
@@ -777,7 +770,13 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
       </div>
 
       <div className="integration-detail-discovery-notice">
-        <span className="integration-detail-notice-icon">🔍</span>
+        <span className="integration-detail-notice-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="8"/>
+            <line x1="12" y1="12" x2="12" y2="16"/>
+          </svg>
+        </span>
         <div>
           <div className="integration-detail-notice-title">Specification to be finalised at Discovery</div>
           <div className="integration-detail-notice-body">
@@ -799,6 +798,10 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
           </div>
           <table className="overview-table">
             <tbody>
+              <tr>
+                <td className="overview-table-label">Direction</td>
+                <td>{integration.direction}</td>
+              </tr>
               <tr>
                 <td className="overview-table-label">Integration method</td>
                 <td>{integration.method}</td>
@@ -849,6 +852,10 @@ export function IntegrationDetail({ integrationId }: { integrationId?: string })
               <tr>
                 <td className="overview-table-label">Schema versioning</td>
                 <td><span className="integration-detail-tbc">TBC at Discovery</span></td>
+              </tr>
+              <tr>
+                <td className="overview-table-label"></td>
+                <td><span className="integration-detail-tbc"></span></td>
               </tr>
             </tbody>
           </table>
