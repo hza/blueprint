@@ -561,8 +561,8 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
       {show('5.5') && (<>
       {/* 5.5 Training & Change */}
       <div className="rfp-section-heading" id="5.5">Training &amp; Onboarding</div>
-      <div className="overview-grid">
-        <div className="overview-card">
+      <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+        <div className="overview-card" style={{ flex: 1 }}>
           <div className="overview-card-header">
             <span className="overview-card-icon">🎓</span>
             User Onboarding
@@ -588,6 +588,7 @@ export function DeliveryGovernance({ subsection }: { subsection?: string }) {
             </tbody>
           </table>
         </div>
+        <img src="/training.png" alt="Training" style={{ width: '340px', borderRadius: '8px', flexShrink: 0 }} />
       </div>
 
       </>)}
