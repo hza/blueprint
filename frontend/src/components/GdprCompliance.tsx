@@ -115,55 +115,198 @@ export function GdprCompliance() {
         <div className="overview-card" style={{ gridColumn: '1 / -1' }}>
           <div className="overview-card-header">
             <span className="overview-card-icon">⚑</span>
-            How We Prepare Your Project for GDPR Audit-Readiness
+            How We Prepare Projects for GDPR Audit-Readiness
           </div>
           <table className="overview-table" style={{ tableLayout: 'fixed' }}>
             <colgroup>
-              <col style={{ width: '8%' }} />
-              <col style={{ width: '24%' }} />
-              <col />
+              <col style={{ width: '22%' }} />
+              <col style={{ width: '33%' }} />
+              <col style={{ width: '30%' }} />
+              <col style={{ width: '10%' }} />
             </colgroup>
             <thead>
               <tr>
-                <th>Area</th>
-                <th>What We Deliver</th>
-                <th>Why It Matters to You</th>
+                <th>Phase</th>
+                <th>Key Activities</th>
+                <th>Deliverables</th>
+                <th>Timeline</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">DPA</span></td>
-                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Data Processing Agreement signed before day one</td>
-                <td>Your legal team has a complete paper trail from the first commit — sub-processors named, lawful basis documented, retention and deletion obligations locked in before any client data enters our systems.</td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>1. Project Scoping &amp; Applicability Assessment</td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Determine GDPR applicability</li>
+                    <li>Identify data flows, controllers/processors, and data subjects</li>
+                    <li>Define scope of the project (systems, modules, third parties)</li>
+                  </ul>
+                </td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>GDPR Applicability Report</li>
+                    <li>High-level Data Flow Diagram</li>
+                    <li>Gap Analysis Summary</li>
+                  </ul>
+                </td>
+                <td>1–2 weeks</td>
               </tr>
               <tr>
-                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">ROPA</span></td>
-                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Living data inventory maintained throughout the engagement</td>
-                <td>A Records of Processing Activities log maps every data flow — what personal data, why, where it goes, how long we hold it, and which security controls apply. Delivered at kick-off and updated with each major release, ready to hand to a supervisory authority on request.</td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>2. Data Inventory &amp; Mapping</td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Comprehensive data discovery and classification</li>
+                    <li>Create Records of Processing Activities (ROPA)</li>
+                    <li>Identify special category data and high-risk processing</li>
+                  </ul>
+                </td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Complete Data Inventory</li>
+                    <li>ROPA Document (Art. 30)</li>
+                    <li>Data Flow Maps (visual)</li>
+                  </ul>
+                </td>
+                <td>2–3 weeks</td>
               </tr>
               <tr>
-                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">PII</span></td>
-                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Personal data stripped before it reaches any LLM</td>
-                <td>Our anonymisation worker removes personal identifiers from all content before it is sent to an external model — eliminating the most common GDPR risk in AI-assisted systems: inadvertent transfer of personal data to a third-country processor without adequate safeguards.</td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>3. Legal Basis &amp; Compliance Foundation</td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Define lawful basis for each processing activity</li>
+                    <li>Conduct Legitimate Interest Assessments (LIA)</li>
+                    <li>Review/update privacy notices and consent mechanisms</li>
+                  </ul>
+                </td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Lawful Basis Register</li>
+                    <li>Updated Privacy Notices / Consent Flows</li>
+                    <li>DPIA Screening</li>
+                  </ul>
+                </td>
+                <td>2 weeks</td>
               </tr>
               <tr>
-                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">SCCs</span></td>
-                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>International transfers covered by Standard Contractual Clauses</td>
-                <td>Every US-based sub-processor is bound by SCCs under the 2021 EU Commission decision. Transfer Impact Assessments are documented per vendor — you inherit a complete transfer mechanism record with no additional legal work required.</td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>4. Data Subject Rights Implementation</td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Design and implement processes for DSARs (access, deletion, portability, objection, etc.)</li>
+                    <li>Build automated/manual response workflows</li>
+                  </ul>
+                </td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Rights Management Procedure</li>
+                    <li>Response Templates &amp; Tracking System</li>
+                    <li>SLAs for rights requests</li>
+                  </ul>
+                </td>
+                <td>2–4 weeks</td>
               </tr>
               <tr>
-                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">AUDIT</span></td>
-                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>Audit evidence pack delivered with each release</td>
-                <td>Each release ships an updated ROPA, sub-processor list, current SCC references, SOC 2 Type II report extract, and penetration test summary. Your compliance or procurement team can review without chasing the engineering team for documents.</td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>5. Technical &amp; Security Controls</td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Implement Privacy by Design &amp; Default</li>
+                    <li>Apply data minimization, pseudonymization, encryption</li>
+                    <li>Role-based access control, audit logging, breach detection</li>
+                  </ul>
+                </td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Technical Compliance Report</li>
+                    <li>Security Configuration Guide</li>
+                    <li>Encryption &amp; Access Control Matrix</li>
+                  </ul>
+                </td>
+                <td>3–6 weeks</td>
               </tr>
               <tr>
-                <td className="overview-table-label"><span className="overview-badge overview-badge--ok">IRP</span></td>
-                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>72-hour breach notification chain built into the Incident Response Plan</td>
-                <td>A documented chain — detection → client notification → supervisory authority notification — completes within 72 hours. RTO 1 hour, RPO 15 minutes. You are never in a position where the regulatory clock runs without your knowledge.</td>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>6. Vendor &amp; Processor Management</td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Review third-party contracts</li>
+                    <li>Draft/align Data Processing Agreements (DPAs)</li>
+                    <li>Assess international data transfers &amp; safeguards</li>
+                  </ul>
+                </td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Vendor Risk Assessment</li>
+                    <li>Signed DPAs / SCCs</li>
+                    <li>Transfer Impact Assessments</li>
+                  </ul>
+                </td>
+                <td>2–3 weeks</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>7. Policies, Training &amp; Documentation</td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Develop required policies and procedures</li>
+                    <li>Deliver staff training</li>
+                    <li>Create accountability documentation</li>
+                  </ul>
+                </td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>GDPR Policy Pack</li>
+                    <li>Training Materials &amp; Records</li>
+                    <li>Internal Compliance Handbook</li>
+                  </ul>
+                </td>
+                <td>2 weeks</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>8. Testing &amp; Mock Audit</td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Conduct internal mock audit</li>
+                    <li>Simulate data subject requests and breach scenarios</li>
+                    <li>Penetration testing &amp; vulnerability assessment</li>
+                  </ul>
+                </td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Mock Audit Report</li>
+                    <li>Remediation Plan</li>
+                    <li>Test Evidence Package</li>
+                  </ul>
+                </td>
+                <td>2–3 weeks</td>
+              </tr>
+              <tr>
+                <td className="overview-table-label" style={{ whiteSpace: 'normal' }}>9. Final Audit-Readiness Package</td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Compile all evidence</li>
+                    <li>Prepare for external audit</li>
+                    <li>Handover and knowledge transfer</li>
+                  </ul>
+                </td>
+                <td style={{ whiteSpace: 'normal' }}>
+                  <ul style={{ margin: 0, paddingLeft: '1.2em' }}>
+                    <li>Complete GDPR Audit-Readiness Dossier</li>
+                    <li>Executive Summary &amp; Roadmap</li>
+                    <li>Ongoing Monitoring Plan</li>
+                  </ul>
+                </td>
+                <td>1 week</td>
               </tr>
             </tbody>
           </table>
         </div>
+      </div>
+      <div style={{ marginTop: '16px', padding: '16px', background: 'var(--canvas-inset)', borderRadius: '6px' }}>
+        <div style={{ fontWeight: 600, marginBottom: '10px', color: 'var(--fg)' }}>What You Gain</div>
+        <ul style={{ margin: 0, paddingLeft: '1.4em', color: 'var(--fg-muted)', lineHeight: '1.7' }}>
+          <li>Audit-ready documentation that demonstrates accountability</li>
+          <li>Reduced risk of fines and reputational damage</li>
+          <li>Efficient, reusable processes tailored to your project</li>
+          <li>Clear evidence of Privacy by Design implementation</li>
+          <li>Ongoing support for maintenance and future audits</li>
+        </ul>
       </div>
     </div>
   )
