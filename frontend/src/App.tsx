@@ -126,10 +126,6 @@ export default function App() {
     p === '/cost' ? 'cost' :
     p === '/timeline' ? 'timeline' :
     p === '/team' ? 'team' :
-    p.startsWith('/gdpr-compliance') ? 'gdpr-compliance' :
-    p.startsWith('/soc2-compliance') ? 'soc2-compliance' :
-    p.startsWith('/iso27001-compliance') ? 'iso27001-compliance' :
-    p.startsWith('/euai-compliance') ? 'euai-compliance' :
     p === '/security' || p.startsWith('/security-compliance') ? 'security' :
     p === '/delivery' || p.startsWith('/delivery-governance') ? 'delivery' :
     p === '/pricing' || p.startsWith('/pricing-commercials') ? 'pricing' :
@@ -145,7 +141,7 @@ export default function App() {
       navigate(`/list${location.search}${location.hash}`, { replace: true })
       return
     }
-    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility', '/integration-detail', '/gdpr-compliance', '/soc2-compliance', '/iso27001-compliance', '/euai-compliance']
+    const knownPrefixes = ['/requirements-coverage/document', '/overview', '/qa', '/analytics', '/technical', '/cost', '/timeline', '/team', '/security', '/delivery', '/pricing', '/proof', '/executive-overview', '/requirements-coverage', '/solution-architecture', '/security-compliance', '/delivery-governance', '/pricing-commercials', '/proof-credibility', '/integration-detail']
     if (!knownPrefixes.some((prefix) => location.pathname === prefix || location.pathname.startsWith(prefix + '/'))) {
       navigate('/executive-overview/proposal-summary', { replace: true })
     }
@@ -334,50 +330,42 @@ export default function App() {
             </div>
           </>
         ) : activeTab === 'security' ? (
-          <>
-            <PageHeader title="Security &amp; Compliance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            <div className="file-box">
-              <div className="file-box-body">
-                <SecurityCompliance subsection={activeSection ?? undefined} />
-              </div>
-            </div>
-          </>
-        ) : activeTab === 'gdpr-compliance' ? (
-          <>
-            <PageHeader title="GDPR Compliance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            <div className="file-box">
-              <div className="file-box-body">
-                <GdprCompliance />
-              </div>
-            </div>
-          </>
-        ) : activeTab === 'soc2-compliance' ? (
-          <>
-            <PageHeader title="SOC 2 Type II Compliance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            <div className="file-box">
-              <div className="file-box-body">
-                <Soc2Compliance />
-              </div>
-            </div>
-          </>
-        ) : activeTab === 'iso27001-compliance' ? (
-          <>
-            <PageHeader title="ISO 27001 Compliance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            <div className="file-box">
-              <div className="file-box-body">
-                <Iso27001Compliance />
-              </div>
-            </div>
-          </>
-        ) : activeTab === 'euai-compliance' ? (
-          <>
-            <PageHeader title="EU AI Act Compliance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
-            <div className="file-box">
-              <div className="file-box-body">
-                <EuAiActCompliance />
-              </div>
-            </div>
-          </>
+          (() => {
+            if (location.pathname.startsWith('/security-compliance/certifications-standards/gdpr')) return (
+              <>
+                <PageHeader title="Security & Compliance" segment="GDPR Compliance" parentPath="/security-compliance/certifications-standards" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+                <div className="file-box"><div className="file-box-body"><GdprCompliance /></div></div>
+              </>
+            )
+            if (location.pathname.startsWith('/security-compliance/certifications-standards/soc2')) return (
+              <>
+                <PageHeader title="Security & Compliance" segment="SOC 2 Type II" parentPath="/security-compliance/certifications-standards" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+                <div className="file-box"><div className="file-box-body"><Soc2Compliance /></div></div>
+              </>
+            )
+            if (location.pathname.startsWith('/security-compliance/certifications-standards/iso27001')) return (
+              <>
+                <PageHeader title="Security & Compliance" segment="ISO 27001" parentPath="/security-compliance/certifications-standards" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+                <div className="file-box"><div className="file-box-body"><Iso27001Compliance /></div></div>
+              </>
+            )
+            if (location.pathname.startsWith('/security-compliance/certifications-standards/euai')) return (
+              <>
+                <PageHeader title="Security & Compliance" segment="EU AI Act" parentPath="/security-compliance/certifications-standards" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+                <div className="file-box"><div className="file-box-body"><EuAiActCompliance /></div></div>
+              </>
+            )
+            return (
+              <>
+                <PageHeader title="Security &amp; Compliance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />
+                <div className="file-box">
+                  <div className="file-box-body">
+                    <SecurityCompliance subsection={activeSection ?? undefined} />
+                  </div>
+                </div>
+              </>
+            )
+          })()
         ) : activeTab === 'delivery' ? (
           <>
             <PageHeader title="Delivery &amp; Governance" subtitle={PROJECT_TITLE} activeTab={activeTab} selectedFile={selectedFile} fileContent={fileContent} fileView={fileView} onSetFileView={setFileView} />

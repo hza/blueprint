@@ -282,7 +282,7 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             <thead>
               <tr>
                 <th style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'left', background: 'var(--canvas-subtle)', color: 'var(--fg)', fontSize: 'var(--font-size-sm)' }}></th>
-                {colHeaders.map(h => (
+                {colHeaders.map((h) => (
                   <th key={h} style={{ padding: '6px', border: '1px solid var(--border)', textAlign: 'center', background: 'var(--canvas-subtle)', color: 'var(--fg)', fontSize: 'var(--font-size-sm)', fontWeight: 600 }}>{h}</th>
                 ))}
               </tr>
@@ -290,11 +290,14 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
             <tbody>
               {certRows.map((row, ri) => {
                 const isLast = ri === certRows.length - 1
+                const cellBorder = isLast
+                  ? { borderTop: '1px solid var(--border)', borderLeft: '1px solid var(--border)', borderRight: '1px solid var(--border)' }
+                  : { border: '1px solid var(--border)' }
                 return (
                 <tr key={row.cert}>
-                  <td style={{ padding: '6px', border: isLast ? 'none' : '1px solid var(--border)', borderLeft: isLast ? '1px solid var(--border)' : undefined, borderRight: isLast ? '1px solid var(--border)' : undefined, fontWeight: 600, whiteSpace: 'nowrap', fontSize: 'var(--font-size-sm)', color: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'var(--accent, #0969da)' : 'var(--fg)', cursor: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'pointer' : undefined, textDecoration: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'underline' : undefined }} onClick={row.cert === 'GDPR' ? () => navigate('/gdpr-compliance') : row.cert === 'SOC 2 Type II' ? () => navigate('/soc2-compliance') : row.cert === 'ISO 27001' ? () => navigate('/iso27001-compliance') : row.cert === 'EU AI Act' ? () => navigate('/euai-compliance') : undefined}>{row.cert}</td>
+                  <td style={{ padding: '6px', ...cellBorder, fontWeight: 600, whiteSpace: 'nowrap', fontSize: 'var(--font-size-sm)', color: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'var(--accent, #0969da)' : 'var(--fg)', cursor: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'pointer' : undefined, textDecoration: (row.cert === 'GDPR' || row.cert === 'SOC 2 Type II' || row.cert === 'ISO 27001' || row.cert === 'EU AI Act') ? 'underline' : undefined }} onClick={row.cert === 'GDPR' ? () => navigate('/security-compliance/certifications-standards/gdpr') : row.cert === 'SOC 2 Type II' ? () => navigate('/security-compliance/certifications-standards/soc2') : row.cert === 'ISO 27001' ? () => navigate('/security-compliance/certifications-standards/iso27001') : row.cert === 'EU AI Act' ? () => navigate('/security-compliance/certifications-standards/euai') : undefined}>{row.cert}</td>
                   {row.cells.map((c, ci) => (
-                    <td key={ci} style={{ padding: '6px', border: isLast ? 'none' : '1px solid var(--border)', borderLeft: isLast ? '1px solid var(--border)' : undefined, borderRight: isLast ? '1px solid var(--border)' : undefined, textAlign: 'center', ...coverageStyle(c) }}>
+                    <td key={ci} style={{ padding: '6px', ...cellBorder, textAlign: 'center', ...coverageStyle(c) }}>
                       {coverageLabel(c)}
                     </td>
                   ))}

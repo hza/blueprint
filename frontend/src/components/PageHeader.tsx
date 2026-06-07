@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import type { FileContent, FileView, ViewTab } from '../types'
 import { FileBoxHeader } from './FileBoxHeader'
 
@@ -5,6 +6,7 @@ interface PageHeaderProps {
   title: string
   subtitle?: string
   segment?: string
+  parentPath?: string
   showSearch?: boolean
   activeTab: ViewTab
   selectedFile: string | null
@@ -19,6 +21,7 @@ export function PageHeader({
   title,
   subtitle,
   segment,
+  parentPath,
   showSearch = true,
   activeTab,
   selectedFile,
@@ -28,9 +31,21 @@ export function PageHeader({
   hasReturnPath,
   onClose,
 }: PageHeaderProps) {
+  const navigate = useNavigate()
   let titleArea: React.ReactNode
 
-  if (subtitle) {
+  if (segment && parentPath) {
+    titleArea = (
+      <div className="breadcrumb-title-block">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span className="breadcrumb-file breadcrumb-parent" onClick={() => navigate(parentPath)}>{title}</span>
+          <span className="breadcrumb-sep">/</span>
+          <span className="breadcrumb-file">{segment}</span>
+        </div>
+        {subtitle && <span className="breadcrumb-subtitle">{subtitle}</span>}
+      </div>
+    )
+  } else if (subtitle) {
     const displayTitle = segment ? `${title} / ${segment}` : title
     titleArea = (
       <div className="breadcrumb-title-block">

@@ -14,6 +14,8 @@
 .breadcrumb-sep    { color: var(--fg-subtle); font-size: 11px; }
 .breadcrumb-folder { color: var(--accent); font-weight: 500; }
 .breadcrumb-file   { color: var(--fg); font-weight: 600; }
+.breadcrumb-parent { cursor: pointer; }
+.breadcrumb-parent:hover { text-decoration: underline; }
 
 .breadcrumb-title-block { display: flex; flex-direction: column; gap: 1px; }
 .breadcrumb-subtitle    { font-size: 12px; font-weight: 400; color: var(--fg-subtle); line-height: 1; }
