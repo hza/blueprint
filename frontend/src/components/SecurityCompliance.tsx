@@ -303,6 +303,38 @@ export function SecurityCompliance({ subsection }: { subsection?: string }) {
           </table>
         </div>
 
+        {/* Partial Coverage Detail */}
+        <div className="overview-card" style={{ gridColumn: '1 / -1' }}>
+          <div className="overview-card-header">
+            <span className="overview-card-icon">⚠</span>
+            Partial Coverage — Detail &amp; Remediation
+          </div>
+          <table className="overview-table">
+            <thead>
+              <tr>
+                <th>Standard</th>
+                <th>Area</th>
+                <th>Why Partial &amp; Remediation Path</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { cert: 'SOC 2 Type II', area: 'Data Residency', reason: 'Backup replication currently spans EU and US-East regions. All primary data is EU-resident; cross-region replication will be restricted to EU-only by Q3 2026 once Azure paired-region migration completes.' },
+                { cert: 'ISO 27001', area: 'Incident Resp.', reason: 'Playbooks exist for Tier 1–2 incidents; Tier 3 (nation-state / supply-chain) scenarios are in final review. Full coverage expected at next ISO surveillance audit (Sep 2026).' },
+                { cert: 'GDPR', area: 'Access Control', reason: 'Data-subject access request (DSAR) portal is live for EU users; automated DSAR routing for US-based data subjects is in staging and scheduled for release Aug 2026.' },
+                { cert: 'EU AI Act', area: 'Encryption', reason: 'AI model weights stored with AES-256 at rest; end-to-end encrypted inference pipeline for high-risk use-cases is under implementation per Article 15 requirements, targeting Q4 2026.' },
+                { cert: 'PII Anonymisation', area: 'Audit Logs', reason: 'Anonymisation events are logged; structured metadata (data-subject ID hash, technique applied, timestamp) is captured for 80% of flows — remaining 20% (legacy batch jobs) will be migrated to structured logging by Jul 2026.' },
+              ].map(({ cert, area, reason }) => (
+                <tr key={cert + area}>
+                  <td><strong>{cert}</strong></td>
+                  <td className="overview-table-label">{area}</td>
+                  <td>{reason}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         <div className="overview-card">
           <div className="overview-card-header">
             <span className="overview-card-icon">📋</span>
