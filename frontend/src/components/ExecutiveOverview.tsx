@@ -362,7 +362,7 @@ export function ExecutiveOverview({ subsection }: { subsection?: string }) {
           <table className="overview-table">
             <thead>
               <tr>
-                <th>#</th>
+                <th>REF</th>
                 <th>Assumption</th>
                 <th>Status</th>
                 <th>Impact if Wrong</th>
